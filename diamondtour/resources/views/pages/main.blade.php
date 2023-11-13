@@ -48,6 +48,34 @@
                 </div>
               </div>
             </div>
+            <div class="swiper-slide">
+              <div class="carousel-home--item animate-ken-burns animate-ken-burns--in">
+                <img src="{{ asset('assets/images/slider-1.jpg') }}" alt="" class="img-fluid">
+                <div class="-content">
+                  <div class="-tag">
+                    <ul>
+                      <li><a href="#">Feel The Experience</a></li>
+                    </ul>
+                  </div>
+                  <h2>Explore The Majestic Asia Landscape Now</h2>
+                  <a href="#" class="btn btn-view">Explore</a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="carousel-home--item animate-ken-burns animate-ken-burns--in">
+                <img src="{{ asset('assets/images/slider-2.jpg') }}" alt="" class="img-fluid">
+                <div class="-content">
+                  <div class="-tag">
+                    <ul>
+                      <li><a href="#">Feel The Experience</a></li>
+                    </ul>
+                  </div>
+                  <h2>Explore The Majestic Asia Landscape Now</h2>
+                  <a href="#" class="btn btn-view">Explore</a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="swiper-wrapper-widget">
             <ul class="-social">

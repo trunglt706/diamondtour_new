@@ -220,22 +220,20 @@ html, body{
   background-color: rgba(255, 255, 255, 0.9);
   color: #000000;
 }
-.animate-ken-burns img,
-.animate-ken-burns.carousel-home--item::before{
+.carousel-home-swiper .animate-ken-burns img{
     transition-property: transform;
     transition-duration: 10s;
     transition-timing-function: linear;
 }
-.swiper-slide-active .animate-ken-burns img,
-.swiper-slide-active .animate-ken-burns.carousel-home--item::before{
+.carousel-home-swiper .swiper-slide:first-child .animate-ken-burns img, 
+.carousel-home-swiper .swiper-slide-active .animate-ken-burns img{
     transition-duration: 20s
 }
-.animate-ken-burns.animate-ken-burns--in img,
-.animate-ken-burns.animate-ken-burns--in.carousel-home--item::before{
+.carousel-home-swiper .animate-ken-burns.animate-ken-burns--in img{
   transform: scale(1);
 }
-.swiper-slide-active .animate-ken-burns.animate-ken-burns--in img,
-.swiper-slide-active .animate-ken-burns.animate-ken-burns--in.carousel-home--item::before{
+.carousel-home-swiper .swiper-slide:first-child .animate-ken-burns.animate-ken-burns--in img, 
+.carousel-home-swiper .swiper-slide-active .animate-ken-burns.animate-ken-burns--in img{
   transform: scale(1.3)
 }
 /*------------------------------------ Box Tour Home */
