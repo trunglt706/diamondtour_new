@@ -249,6 +249,7 @@
         </div>
       </div>
     </section>
-    @include('pages.blocks.newsletter');
+    @include('pages.blocks.newsletter')
+    @include('pages.blocks.discovery')
   </article>
 @endsection
