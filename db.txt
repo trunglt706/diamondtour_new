@@ -1,0 +1,32 @@
+1/ tour:
+id, code, name, description, status, price, duration, date_start, background,
+destination: table
+destination_content,
+schedule: table
+schedule_file
+include, exclude, term, notice
+
+2/ schedule
+id, name, image,
+
+3/ destination
+id, code, name, background, description, 
+price, why_select: json
+review: table
+
+4/ review
+id, name, avatar, position, content, status
+
+5/ post
+id, code, group_id, name, gallary, description, content, status, tags, image
+
+6/ qa: id, name, content, status
+
+7/ Link: id, name, link, status
+
+8/ Social: id, name, image, status, link
+
+9/ Setting: id, group_id, code, name, type, value, status
+
+10/ booking: id, code, name, phone, date_from, date_to, total_adult, total_children,
+content, status
