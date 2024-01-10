@@ -752,6 +752,7 @@ html, body{
 .image-overlay-item{
   position: relative;
   border-radius: 15px;
+  margin-bottom: 1rem;
   padding: 10px;
   background: #FFFFFF1F;
   position: relative;
@@ -937,6 +938,263 @@ html, body{
 .companion-private--embed{
   overflow: hidden;
   border-radius: 20px;
+  position: relative;
+  pointer-events: none;
+}
+.companion-private--embed::before{
+  content: '';
+  background: #0000004A;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 1;
+}
+.companion-private--embed iframe{
+  width: 100% !important;
+  height: 140% !important;
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+/*------------------------------------ Box Distinctive Value */
+.box-distinctive-value{
+  padding: 60px 0px 120px 0px;
+}
+.box-distinctive-value .distinctive-value--header{text-align: center;}
+.box-distinctive-value .distinctive-value--content{margin: 60px 0px 30px;}
+.distinctive-value--header h2{
+  color: #000000;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 2.675rem;
+  line-height: 1.2;
+}
+.distinctive-value--header p{
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+/*------------------------------------ Box Distinctive Value - Item */
+.distinctive-value-item{
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  border: 1px solid #ECECEC;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.distinctive-value-item .-image{
+  flex: 0 0 auto;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.distinctive-value-item .-image img{
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+.distinctive-value-item .-content{
+  flex: 0 0 auto;
+  width: calc(100% - (70px + 1rem));
+  margin-left: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+/*------------------------------------ Box Breadcrumb Cover */
+.box-breadcrumb-cover{
+  padding: 150px 0px 100px;
+  margin-bottom: 100px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.box-breadcrumb-cover::before{
+  content: '';
+  position: absolute;
+  background-color: transparent;
+  background-image: linear-gradient(90deg, #0000009C 0%, #00000047 100%);
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+}
+.box-breadcrumb-cover .container{
+  position: relative;
+  z-index: 1;
+}
+.box-breadcrumb-cover h2{
+  color: #fff;
+  margin: 0px;
+  font-size: 4rem;
+  font-weight: 700;
+  width: 40%;
+}
+.box-breadcrumb-cover .nav-breadcrumb{
+  margin: 0px 0px 20px 0px;
+  padding: 6px 20px 6px 20px;
+  background-color: #FFFFFF0D;
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #FFFFFF36;
+  border-radius: 50px 50px 50px 50px;
+  display: inline-block;
+  position: relative;
+}
+.box-breadcrumb-cover .nav-breadcrumb::before{
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border-radius: inherit;
+  background-color: inherit;
+}
+.box-breadcrumb-cover .breadcrumb{
+  position: relative;
+  z-index: 1;
+  margin: 0px;
+}
+.box-breadcrumb-cover .breadcrumb-item{
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  color: #fff;
+}
+.box-breadcrumb-cover .breadcrumb-item+.breadcrumb-item::before{
+  content: '\f138';
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 12px;
+  color: #fff;
+  transform: translateY(2px);
+}
+.box-breadcrumb-cover .breadcrumb-item>a{
+  color: #fff;
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+.box-breadcrumb-cover .breadcrumb-item>a:hover{opacity: 0.7;}
+/*------------------------------------ Box Wrapper Single Page */
+.box-wrapper-single-page{
+
+}
+.box-wrapper-single-page .single-page-head-title{
+  color: #000000;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 2.675rem;
+  line-height: 1.2;
+}
+.box-wrapper-single-page .single-page-head-content{
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+.box-wrapper-single-page .single-page-head-content>*{
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+/*------------------------------------ Box Tour Guide */
+.box-tour-guide{
+  background: #000;
+  padding: 30px;
+  border-radius: 20px;
+  margin-left: 2.75rem;
+}
+.box-tour-guide .-image{
+  overflow: hidden;
+  border-radius: 20px;
+}
+.box-tour-guide .-image img{
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+.box-tour-guide .-content{
+  text-align: center;
+  color: #fff;
+}
+.box-tour-guide .-content h2{
+  font-size: 1.75rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0.5rem 1rem 1rem;
+}
+.box-tour-guide .-content p,
+.box-tour-guide .-quote{
+  line-height: 1.5;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+  color: #fff;
+}
+.box-tour-guide .-quote{
+  font-size: 1.15rem;
+  margin: 0px;
+}
+/*------------------------------------ Box Image Row Single Page */
+.box-image-row-single-page{
+  --widgets-spacing: 50px;
+}
+.box-image-row-single-page:not(:last-child){
+  margin: 20px 0px 30%;
+}
+.box-image-row-single-page .col-left,
+.box-image-row-single-page .col-right{
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #E7E7E7;
+  background-size: cover;
+  margin-bottom: 30px;
+}
+.box-image-row-single-page .col-left{
+  --spacer-size: 700px;
+  border-radius: 0px 20px 20px 0px;
+  width: 50%;
+  height: var(--spacer-size);
+}
+.box-image-row-single-page .col-right{
+  --spacer-size: 450px;
+  border-radius: 20px;
+  width: calc(50% - var(--widgets-spacing));
+  height: var(--spacer-size);
+  margin-left: auto;
+  margin-top: -60%;
+}
+.box-image-row-single-page .col-right-content{
+  width: calc(50% - (var(--widgets-spacing) - 10px));
+  margin-left: auto;
+  margin-bottom: 30px;
+  margin-top: -27%;
+}
+.box-image-row-single-page .-image-child-item{
+  --spacer-size: 450px;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  height: var(--spacer-size);
+}
+.box-image-row-single-page .-image-child-item>img{
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
 }
 /*------------------------------------ Monitor Ipad Landspace */
 @media(max-width: 1024px){
@@ -944,6 +1202,10 @@ html, body{
   .destinations-swiper .swiper-slide{
     width: calc(100vw / 3);
   }
+  .box-image-row-single-page .col-left{--spacer-size: 600px;}
+  .box-image-row-single-page .col-right{--spacer-size: 450px;}
+  .box-image-row-single-page .col-right{margin-top: -80%;}
+  .box-image-row-single-page .-image-child-item{--spacer-size: 350px;}
 }
 /*------------------------------------ Monitor Ipad Portrial */
 @media only screen and (max-width: 992px){
@@ -991,6 +1253,28 @@ html, body{
   .block-footer-introduce .introduce-content{font-size: 13px;}
   .box-footer .block-footer-header h2{font-size: 1.25rem;}
   .box-footer .block-footer-content{font-size: 13px;}
+  .box-distinctive-value,
+  .box-companion,
+  .box-discovery{padding: 0px 0px 50px;}
+  .box-companion-private{
+    padding: 50px 0px;
+    margin-bottom: 50px;
+  }
+  .box-breadcrumb-cover{
+    padding: 100px 0px;
+    margin-bottom: 50px;
+  }
+  .box-breadcrumb-cover h2{
+    font-size: 3rem;
+    width: 100%;
+  }
+  .box-tour-guide{margin: 2rem 0px;}
+  .box-image-row-single-page .col-right {
+    margin-top: -82%;
+    --spacer-size: 300px;
+  }
+  .box-image-row-single-page .-image-child-item {--spacer-size: 275px;}
+  .box-image-row-single-page .col-right-content{margin-bottom: 50px;}
 }
 /*------------------------------------ Monitor Ipad Portrial */
 @media (max-width: 780px){
@@ -1043,6 +1327,7 @@ html, body{
   .block-footer-introduce .introduce-content{width: 100%;}
   .block-footer-introduce .introduce-logo img{width: 120px;}
   .box-footer .footer-copyright ul.-social{text-align: center;}
+  .box-companion .block-companion-banner{min-height: 600px;}
 }
 /*------------------------------------ Monitor Mobile Landspace */
 @media screen and (min-width: 576px) and (max-width: 767px){
@@ -1093,4 +1378,14 @@ html, body{
     margin-bottom: 20px;
   }
   .destinations-swiper .swiper-slide{width: calc(100vw / 1);}
+  .box-image-row-single-page:not(:last-child){margin: 20px 0px 50px;}
+  .box-image-row-single-page .col-left,
+  .box-image-row-single-page .col-right{
+    --widgets-spacing: 20px;
+    --spacer-size: 250px;
+    width: calc(100% - var(--widgets-spacing));
+    margin: 0px auto 2rem;
+    height: var(--spacer-size);
+    border-radius: 20px;
+  }
 }

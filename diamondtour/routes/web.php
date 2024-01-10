@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.main');
 });
+Route::get('/ve-chung-toi', function () {
+    return view('pages.about-us');
+});

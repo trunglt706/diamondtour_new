@@ -15,8 +15,8 @@
           <div class="wsmainwp clearfix">
             <nav class="wsmenu clearfix">
               <ul class="wsmenu-list">
-                <li><a class="active" href="#">HOME</a></li>
-                <li><a href="#">About us</a></li>
+                <li><a class="active" href="/">HOME</a></li>
+                <li><a href="/ve-chung-toi">About us</a></li>
                 <li><a href="#">Destinations</a></li>
                 <li><a href="#">Tours</a></li>
                 <li><a href="#">Library</a></li>
