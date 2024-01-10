@@ -2,7 +2,7 @@
   <div class="box-companion-private">
     <div class="container">
       <div class="companion-private--header">
-        <div class="row gx-4">
+        <div class="row row-cols-1 row-cols-sm-2 gx-4">
           <div class="col">
             <h2>Thiết kế riêng hành trình phù hợp nhất với bạn</h2>
           </div>
@@ -15,7 +15,7 @@
       </div>
       <div class="companion-private--content">
         <div class="accordion accordion-flush" id="accordionFlushExample">
-          <div class="row row-cols-2">
+          <div class="row row-cols-1 row-cols-sm-2">
             <div class="col">
               <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -105,7 +105,7 @@
       </div>
       <div class="companion-private--embed">
         <div class="ratio ratio-21x9">
-          <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+          <iframe width="1320px" height="650px" src="https://www.youtube.com/embed/8GFuxiE3He4?autoplay=1&mute=1&loop=1&controls=0" title="South East Asia - 1 Year around Asia | 4K Cinematic Travel Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
       </div>
     </div>

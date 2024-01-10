@@ -2,7 +2,7 @@
   <div class="box-companion">
     <div class="container">
       <div class="row gx-5">
-        <div class="col-md-4">
+        <div class="col-lg-4">
           <div class="block-companion-content">
             <h2>Đồng hành cùng Diamondtour</h2>
             <p>Lợi ích của khách hàng khi lựa chọn Diamondtour</p>
@@ -46,7 +46,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-lg-8">
           <div class="block-companion-banner">
             <img src="{{ asset('assets/images/companion_banner_main.jpg') }}" class="img-fluid" alt="">
             <div class="overlay-content">

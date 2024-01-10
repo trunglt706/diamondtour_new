@@ -133,6 +133,7 @@
         </div>
       </div>
     </section>
+    @include('pages.blocks.companion')
     <section>
       <div class="box-introduce">
         <div class="container">
@@ -250,8 +251,5 @@
       </div>
     </section>
     @include('pages.blocks.newsletter')
-    @include('pages.blocks.discovery')
-    @include('pages.blocks.companion')
-    @include('pages.blocks.companion-private')
   </article>
 @endsection
