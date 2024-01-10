@@ -1,0 +1,44 @@
+Slide nhiều hình
+
+1/ Không phân theo danh mục tour
+
+2/ Giới thiệu lấy lại bên dev
+
+3/ Trang chủ theo dev
+
+4/ list điểm đến theo dev
+
+1 điểm đến sẽ link đến nhiều tour
+
+5/ chi tiết điểm đến theo thiết kế
++ Theo quốc gia: theo thiết kế
++ Chi tiết: giống blog thiết kế
+
+6/ Danh sách tour
+- Theo thiết kế: off trên banner
++ Bỏ continetial
+- Theo thời gian hoặc nổi bật
+
+7/ Thiết kế lịch trình riêng
+
+8/ Chi tiết tour: giống design
+
+9/ Thư viện ảnh: 
+- Giống dev
+
+10/ FAQ: như dev
+
+11/ Blog: mới nhất
+
+- DS nổi bật
+- Nhật ký hành trình
+- Cẩm nang kinh nghiệm
+- Văn hóa
+
++ Trong chi tiết blog => Chọn ds tour cần hiển thị
+
+12/ Chuyển đổi ngôn ngữ
+
+
+
+=> Chân trang lấy con dev
