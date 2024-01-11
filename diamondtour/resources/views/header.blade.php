@@ -19,8 +19,8 @@
                 <li><a href="/ve-chung-toi">About us</a></li>
                 <li><a href="#">Destinations</a></li>
                 <li><a href="#">Tours</a></li>
-                <li><a href="#">Library</a></li>
-                <li><a href="#">Blogs</a></li>
+                <li><a href="/thu-vien-anh">Library</a></li>
+                <li><a href="/blog">Blogs</a></li>
               </ul>
             </nav>
           </div>

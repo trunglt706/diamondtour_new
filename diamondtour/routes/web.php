@@ -19,3 +19,12 @@ Route::get('/', function () {
 Route::get('/ve-chung-toi', function () {
     return view('pages.about-us');
 });
+Route::get('/thu-vien-anh', function () {
+    return view('pages.gallery');
+});
+Route::get('/thu-vien-anh/{alias}', function () {
+    return view('pages.single-gallery');
+});
+Route::get('/blog', function () {
+    return view('pages.posts');
+});
