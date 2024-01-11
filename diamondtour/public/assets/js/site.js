@@ -38,6 +38,18 @@ var destinations_swiper = new Swiper(".destinations-swiper", {
     disableOnInteraction: false,
   },
 });
+/*------------------------------------ Blog Slider Swiper */
+var blog_slider_swiper = new Swiper(".blog-slider-swiper", {
+  loop: true,
+  slidesPerView: 'auto',
+  centeredSlides: true,
+  spaceBetween: 5,
+  initialSlide: 1,
+  autoplay: {
+    delay: 10000,
+    disableOnInteraction: false,
+  },
+});
 /*------------------------------------ Box Tour Home */
 (function($) {
   $('.section-tour-home--content').isotope({
@@ -46,6 +58,17 @@ var destinations_swiper = new Swiper(".destinations-swiper", {
     originLeft: true,
     masonry: {
       columnWidth: '.th-grid-sizer',
+    }
+  });
+})(jQuery);
+/*------------------------------------ Box Blog Page */
+(function($) {
+  $('.section-blog-page--content').isotope({
+    itemSelector: '.blog-grid-item',
+    percentPosition: true,
+    originLeft: true,
+    masonry: {
+      columnWidth: '.blog-grid-sizer',
     }
   });
 })(jQuery);

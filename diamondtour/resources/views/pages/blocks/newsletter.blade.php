@@ -26,10 +26,22 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-4">
+                    <input type="email" class="form-control" name="promo_email" placeholder="Email" value="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-4">
+                    <input type="text" class="form-control" name="promo_question" placeholder="How can we help you?" value="">
+                  </div>
+                </div>
+              </div>
               <div class="mb-4">
                 <textarea name="promo_content" class="form-control" placeholder="Write something for us..." rows="8" cols="80"></textarea>
               </div>
-              <button type="submit" class="btn d-block w-100 btn-submit">Submit</button>
+              <button type="submit" class="btn d-block mx-auto btn-submit">Submit</button>
             </form>
           </div>
         </div>
