@@ -134,7 +134,10 @@
       </div>
     </section>
     @include('pages.blocks.companion')
+    @include('pages.blocks.about-home')
+    @include('pages.blocks.destination-home')
     @include('pages.blocks.faq-home')
+    @include('pages.blocks.post-home')
     @include('pages.blocks.newsletter')
   </article>
 @endsection
