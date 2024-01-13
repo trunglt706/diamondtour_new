@@ -190,7 +190,7 @@ html, body{
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
 }
 .carousel-home--item .-content{
   position: absolute;
@@ -968,7 +968,8 @@ html, body{
   margin-bottom: 2rem;
 }
 .companion-private--header h2,
-.about-home--header h2{
+.about-home--header h2,
+.discovery-home--header h2{
   color: #fff;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -976,7 +977,8 @@ html, body{
   line-height: 1.2;
 }
 .companion-private--header p,
-.about-home--header p{
+.about-home--header p,
+.discovery-home--header p{
   line-height: 1.5;
   margin-bottom: 0.75rem;
   font-weight: 400;
@@ -985,7 +987,8 @@ html, body{
   color: #fff;
 }
 .companion-private--header .btn,
-.about-home--header .btn{
+.about-home--header .btn,
+.discovery-home--header .btn{
   display: inline-block;
   padding: 15px 34px 15px 34px;
   font-size: 14px;
@@ -995,14 +998,16 @@ html, body{
   border-radius: 50px 50px 50px 50px;
 }
 .companion-private--header .btn-more,
-.about-home--header .btn-more{
+.about-home--header .btn-more,
+.discovery-home--header .btn-more{
   background: #fff;
   border-color: #fff;
   color: #000;
   transition: all 0.5s ease;
 }
 .companion-private--header .btn-more:hover,
-.about-home--header .btn-more:hover{
+.about-home--header .btn-more:hover,
+.discovery-home--header .btn-more:hover{
   background: rgba(255, 255, 255, 0.7);
   border-color: rgba(255, 255, 255, 0.7);
 }
@@ -1902,6 +1907,214 @@ html, body{
   background: #F6F6F6;
 }
 .box-about-home .box-image-row-single-page .col-right{margin-top: -48%;}
+/*---------------------------------------- Box Discovery Home */
+.box-discovery-home{
+  background: #000;
+  padding: 120px 0px 100px 0px;
+  margin-bottom: 50px;
+}
+.box-discovery-home .block-portfolio-gallery-container{
+  position: relative;
+  overflow: hidden;
+  margin: 50px 0px;
+}
+/*---------------------------------------- Box Discovery Home - Gallery Items */
+.gallery-items{display: flex;}
+.gallery-items .image-item{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -webkit-transform: scale(1.1,1.1);
+  transform: scale(1.1,1.1);
+  -webkit-transition: all .7s ease;
+  transition: all .7s ease;
+  background-size: cover;
+  background-position: center center;
+}
+.gallery-items .image-item.current-item{
+  -webkit-transform: scale(1,1);
+  transform: scale(1,1);
+  opacity: 1;
+}
+/*---------------------------------------- Box Discovery Home - Item */
+.discovery-home-item{
+  height: 750px;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+  border-right: 1px solid rgba(255,255,255,.3);
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+}
+.discovery-home-item.current-item::before{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background: rgba(0,0,0,.1);
+}
+.discovery-home-item .-content{
+  padding: 40px 0px;
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+  overflow: hidden;
+}
+.discovery-home-item .-content:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: #000;
+  z-index: -1;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+}
+.discovery-home-item:hover .-content:after{
+  height: 100%;
+}
+.discovery-home-item .-content p{
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+.discovery-home-item .-content h2{
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.4;
+}
+.discovery-home-item .-content-more{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0;
+  -webkit-transform: translateY(20%);
+  transform: translateY(20%);
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+  z-index: 2;
+}
+.discovery-home-item:hover .-content-more{
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+.discovery-home-item .-content-more>a{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  font-size: 0 !important;
+}
+/*---------------------------------------- Box Testimonial */
+.box-testimonial{
+  position: relative;
+  overflow: hidden;
+  padding: 50px 0px;
+}
+.box-testimonial::before{
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 30%;
+  background-color: transparent;
+  background-image: linear-gradient(90deg, #000 0%, #FFFFFF00 60%);
+  z-index: 5;
+}
+.box-testimonial::after{
+  content: '';
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  width: 30%;
+  background-color: transparent;
+  background-image: linear-gradient(270deg, #000 0%, #FFFFFF00 60%);
+  z-index: 5;
+}
+/*---------------------------------------- Box Testimonial - Item */
+.testimonial-item{
+  text-align: left;
+  background-color: #191919;
+  padding: 10px 35px 40px 35px;
+  border-radius: 20px;
+  box-shadow: 0 3px 15px 0 rgba(0,0,0,.16);
+  overflow: hidden;
+}
+.testimonial-item .comment-content{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.testimonial-item .comment-content p{
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: -0.2px;
+  text-align: left;
+  margin: 0px 0px -10px 0px;
+  padding: 0px 0px 0px 0px;
+  color: #FFFFFF99;
+}
+.testimonial-item .comment-bio{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.testimonial-item .comment-bio .profile-image{
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.testimonial-item .comment-bio .profile-image img{
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+.testimonial-item .comment-bio .profile-info{
+  flex: 0 0 auto;
+  width: calc(100% - 55px);
+  margin-left: auto;
+}
+.testimonial-item .comment-bio .profile-name{
+  font-family: 'Philosopher', sans-serif;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+.testimonial-item .comment-bio .profile-des{
+  color: #fff;
+  font-size: 0.75rem;
+  margin: 0px;
+}
 /*---------------------------------------- Box Pagination */
 .box-pagination{
 	text-align: center;
@@ -2056,7 +2269,7 @@ html, body{
     width: 100%;
   }
   .box-slider-home{
-    padding-top: 170%;
+    padding-top: 60%;
   }
   .carousel-home-swiper .swiper-wrapper-widget{
     right: 5%;
@@ -2111,7 +2324,7 @@ html, body{
     width: 100%;
   }
   .box-slider-home{
-    padding-top: 170%;
+    padding-top: 150%;
   }
   .carousel-home-swiper .swiper-wrapper-widget{
     right: 5%;
