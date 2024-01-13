@@ -20,8 +20,9 @@ return new class extends Migration
             $table->date('date_to');
             $table->integer('total_adult')->nullable()->default(1);
             $table->integer('total_children')->nullable()->default(0);
+            $table->text('description')->nullable();
             $table->string('content')->nullable();
-            $table->boolean('status')->nullable()->default(0);
+            $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
             $table->timestamps();
         });
     }

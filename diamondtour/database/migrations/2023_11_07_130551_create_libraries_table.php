@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id()->index();
             $table->unsignedBigInteger('group_id')->index();
             $table->string('name');
+            $table->string('link');
+            $table->string('created_by');
             $table->text('description')->nullable();
-            $table->string('image')->nullable();
-            $table->boolean('status')->nullable()->default(1);
+            $table->string('images')->nullable();
+            $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
+            $table->foreign('group_id')->references('id')->on('library_groups')->onDelete('cascade');
             $table->timestamps();
         });
     }

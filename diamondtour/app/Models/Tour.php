@@ -13,6 +13,8 @@ class Tour extends Model
 
     protected $fillable = [
         'group_id',
+        'country_id',
+        'province_id',
         'slug',
         'code',
         'name',
@@ -21,10 +23,10 @@ class Tour extends Model
         'currency',
         'background',
         'duration',
-        'destination_content',
+        'content',
         'schedule_file',
         'include',
-        'exclude',
+        'exclude',  
         'term',
         'notice',
         'status'
@@ -52,8 +54,8 @@ class Tour extends Model
         });
     }
 
-    const STATUS_ACTIVE = 1;
-    const STATUS_BLOCKED = 0;
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {

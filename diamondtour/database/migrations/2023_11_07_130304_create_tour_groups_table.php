@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id()->index();
             $table->string('code')->unique();
             $table->string('name');
+            $table->string('description')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('status')->nullable()->default(1);
+            $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
             $table->timestamps();
         });
     }

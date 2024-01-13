@@ -13,9 +13,11 @@ class Library extends Model
     protected $fillable = [
         'group_id',
         'name',
+        'link',
         'description',
-        'image',
-        'status'
+        'images',
+        'status',
+        'created_by',
     ];
 
     protected $hidden = [];
@@ -37,8 +39,8 @@ class Library extends Model
         });
     }
 
-    const STATUS_ACTIVE = 1;
-    const STATUS_BLOCKED = 0;
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {
