@@ -14,22 +14,25 @@ return new class extends Migration
         Schema::create('tours', function (Blueprint $table) {
             $table->id()->index();
             $table->unsignedBigInteger('group_id')->index();
+            $table->unsignedBigInteger('country_id')->index()->nullable();
+            $table->unsignedBigInteger('province_id')->index()->nullable();
             $table->string('slug')->unique();
             $table->string('code')->unique();
             $table->string('name');
             $table->string('description')->nullable();
             $table->integer('price')->nullable();
-            $table->string('currency')->nullable()->default('VND');
-            $table->date('date_start')->nullable();
+            $table->string('currency',10)->nullable()->default('vnd');
+            $table->datetime('day_start')->nullable();
             $table->string('background')->nullable();
-            $table->integer('duration')->nullable();
-            $table->text('destination_content')->nullable();
-            $table->string('schedule_file')->nullable();
+            $table->string('duration')->nullable();
+            $table->text('content')->nullable();
+            $table->text('schedule_file')->nullable();
             $table->text('include')->nullable();
             $table->text('exclude')->nullable();
             $table->text('term')->nullable();
             $table->text('notice')->nullable();
-            $table->boolean('status')->nullable()->default(1);
+            $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
+            $table->foreign('group_id')->references('id')->on('tour_groups')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -41,4 +44,8 @@ return new class extends Migration
     {
         Schema::dropIfExists('tours');
     }
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> d2b2c3a4d0a14c1ce32ef300b7da2716de2e9c51

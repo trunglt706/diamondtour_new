@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c491b8531eec05ba41a11d9276a5749",
+    "content-hash": "59ebb20d7a4d35639f5c39e4a221842e",
     "packages": [
         {
             "name": "brick/math",
@@ -2314,6 +2314,91 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "nwidart/laravel-modules",
+            "version": "10.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nWidart/laravel-modules.git",
+                "reference": "5a75f90d7d0d2689f1fb08c766f23fd3ee76769e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nWidart/laravel-modules/zipball/5a75f90d7d0d2689f1fb08c766f23fd3ee76769e",
+                "reference": "5a75f90d7d0d2689f1fb08c766f23fd3ee76769e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.6",
+                "laravel/framework": "^10.0",
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^8.0",
+                "phpstan/phpstan": "^1.4",
+                "phpunit/phpunit": "^10.0",
+                "spatie/phpunit-snapshot-assertions": "^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nwidart\\Modules\\LaravelModulesServiceProvider"
+                    ],
+                    "aliases": {
+                        "Module": "Nwidart\\Modules\\Facades\\Module"
+                    }
+                },
+                "branch-alias": {
+                    "dev-master": "10.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Nwidart\\Modules\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Widart",
+                    "email": "n.widart@gmail.com",
+                    "homepage": "https://nicolaswidart.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Module management",
+            "keywords": [
+                "laravel",
+                "module",
+                "modules",
+                "nwidart",
+                "rad"
+            ],
+            "support": {
+                "issues": "https://github.com/nWidart/laravel-modules/issues",
+                "source": "https://github.com/nWidart/laravel-modules/tree/10.0.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/dcblogdev",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nwidart",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-11-13T22:35:16+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -5410,6 +5495,65 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.6"
             },
             "time": "2023-01-03T09:29:04+00:00"
+        },
+        {
+            "name": "vanthao03596/laravel-hanhchinhvn",
+            "version": "1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vanthao03596/laravel-hanhchinhvn.git",
+                "reference": "1a2b514dc14f2e4405d201cdfd3cc16e68176aac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vanthao03596/laravel-hanhchinhvn/zipball/1a2b514dc14f2e4405d201cdfd3cc16e68176aac",
+                "reference": "1a2b514dc14f2e4405d201cdfd3cc16e68176aac",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5|^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vanthao03596\\HCVN\\HCVNServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vanthao03596\\HCVN\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PhamThao",
+                    "email": "phamthao03596@gmail.com"
+                }
+            ],
+            "description": "hành chính việt nam laravel",
+            "homepage": "https://github.com/vanthao03596/laravel-hanhchinhvn",
+            "keywords": [
+                "hanhchinhvn",
+                "laravel",
+                "vanthao03596"
+            ],
+            "support": {
+                "issues": "https://github.com/vanthao03596/laravel-hanhchinhvn/issues",
+                "source": "https://github.com/vanthao03596/laravel-hanhchinhvn/tree/1.1.7"
+            },
+            "time": "2021-03-29T04:39:18+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

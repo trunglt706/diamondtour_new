@@ -16,7 +16,9 @@ class Schedule extends Model
         'code',
         'name',
         'description',
-        'status'
+        'status',
+        'image',
+        'numering'
     ];
 
     protected $hidden = [];
@@ -38,8 +40,8 @@ class Schedule extends Model
         });
     }
 
-    const STATUS_ACTIVE = 1;
-    const STATUS_BLOCKED = 0;
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {
