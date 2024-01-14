@@ -957,6 +957,38 @@ html, body{
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
 }
+/*------------------------------------ Block Accordion Item */
+.block-style-accordion .accordion-item{
+  background: transparent;
+  border: none;
+}
+.block-style-accordion .accordion-button{
+  color: #000;
+  background-color: #02010100;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: #00000024;
+  padding: 20px 0px 20px 10px;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+.block-style-accordion .accordion-button::after,
+.block-style-accordion .accordion-button:not(.collapsed)::after{
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+.block-style-accordion .accordion-button:focus{
+  outline: none;
+  box-shadow: 0 0 0 0 transparent;
+}
+.block-style-accordion .accordion-body{
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 1.5;
+  padding: 20px 0px 18px 30px;
+  color: #000;
+}
 /*------------------------------------ Box Companion Private */
 .box-companion-private{
   padding: 120px 0px 100px 0px;
@@ -1014,35 +1046,17 @@ html, body{
 .companion-private--content{
 
 }
-.companion-private--content .accordion-item{
-  background: transparent;
-  border: none;
-}
 .companion-private--content .accordion-button{
   color: #FFFFFF;
   background-color: #02010100;
-  border-style: solid;
-  border-width: 0px 0px 1px 0px;
   border-color: #FFFFFF40;
-  padding: 20px 0px 20px 10px;
-  font-size: 1.5rem;
-  text-transform: capitalize;
 }
 .companion-private--content .accordion-button::after,
 .companion-private--content .accordion-button:not(.collapsed)::after{
   --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
-.companion-private--content .accordion-button:focus{
-  outline: none;
-  box-shadow: 0 0 0 0 transparent;
-}
 .companion-private--content .accordion-body{
-  font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 1.5;
-  padding: 20px 0px 18px 30px;
   color: #FFFFFF91;
 }
 .companion-private--embed{
@@ -1072,9 +1086,14 @@ html, body{
 }
 /*------------------------------------ Box Distinctive Value */
 .box-distinctive-value{
+  --header-distinctive-value: 500px;
   padding: 60px 0px 120px 0px;
 }
-.box-distinctive-value .distinctive-value--header{text-align: center;}
+.box-distinctive-value .distinctive-value--header{
+  margin: auto;
+  width: var(--header-distinctive-value);
+  text-align: center;
+}
 .box-distinctive-value .distinctive-value--content{margin: 60px 0px 30px;}
 .distinctive-value--header h2{
   color: #000000;
@@ -1088,6 +1107,9 @@ html, body{
   margin-bottom: 0.75rem;
   font-weight: 400;
   font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+.box-distinctive-value .distinctive-other-image{
   margin-bottom: 1rem;
 }
 /*------------------------------------ Box Distinctive Value - Item */
@@ -1120,6 +1142,21 @@ html, body{
   line-height: 1.5;
   font-weight: 400;
   font-size: 1.25rem;
+}
+/*------------------------------------ Box Distinctive Value - Other Image Item */
+.distinctive-other-image .-image{
+  --height-size-item: 350px;
+  height: var(--height-size-item);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.distinctive-other-image .-image img{
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 /*------------------------------------ Box Breadcrumb Cover */
 .box-breadcrumb-cover{
@@ -1762,15 +1799,18 @@ html, body{
   opacity: 0.8;
 }
 /*---------------------------------------- Box Destination Home */
-.box-destination-home{
+.box-destination-home,
+.block-list-by-sites{
   --width-destination-header: 500px;
   --width-destination-header-tabs: 600px;
 }
-.box-destination-home .block-section-header{
+.box-destination-home .block-section-header,
+.block-list-by-sites .block-section-header{
   max-width: var(--width-destination-header);
   margin: auto;
 }
-.box-destination-home .block-destination-header{
+.box-destination-home .block-destination-header,
+.block-list-by-sites .block-destination-header{
   max-width: var(--width-destination-header-tabs);
   margin: auto;
   border: 1px solid #000;
@@ -1778,7 +1818,8 @@ html, body{
   padding: 0.75rem;
   margin-bottom: 1rem;
 }
-.box-destination-home .block-destination-header .nav-link{
+.box-destination-home .block-destination-header .nav-link,
+.block-list-by-sites .block-destination-header .nav-link{
   padding: 10px 28px 10px 28px;
   margin: 0px 5px 0px 5px;
   border-radius: 50px;
@@ -1787,17 +1828,22 @@ html, body{
   transition: all 0.25s ease;
 }
 .box-destination-home .block-destination-header .nav-link:focus,
-.box-destination-home .block-destination-header .nav-link:hover{
+.box-destination-home .block-destination-header .nav-link:hover,
+.block-list-by-sites .block-destination-header .nav-link:focus,
+.block-list-by-sites .block-destination-header .nav-link:hover{
   background: #000;
   color: #fff;
 }
 .box-destination-home .nav-pills .nav-link.active,
-.box-destination-home .nav-pills .show>.nav-link{
+.box-destination-home .nav-pills .show>.nav-link,
+.block-list-by-sites .nav-pills .nav-link.active,
+.block-list-by-sites .nav-pills .show>.nav-link{
   background: #0000000F;
   color: #000;
   pointer-events: none;
 }
-.box-destination-home  .block-destination-content{
+.box-destination-home .block-destination-content,
+.block-list-by-sites .block-destination-content{
   padding: 50px 0px;
 }
 /*---------------------------------------- Box Destination Home - Item */
@@ -2115,6 +2161,52 @@ html, body{
   font-size: 0.75rem;
   margin: 0px;
 }
+/*---------------------------------------- Box Single FAQ */
+.box-single-faq{margin: 50px 0px;}
+.box-single-faq .block-section-header{
+  text-align: center;
+  margin-bottom: 50px;
+}
+.box-single-faq .block-section-header h2{font-size: 4rem;}
+.box-single-faq .block-section-header p{font-size: 1rem;}
+/*---------------------------------------- Box Single FAQ - Item */
+.section-faq-item:not(:last-child){margin-bottom: 1.25rem;}
+.section-faq-item>h2{font-weight: 700;}
+.faq-question-list{
+
+}
+.faq-question-list .accordion-button{font-weight: 700;}
+.faq-question-list .accordion-body{
+  font-weight: 400;
+  font-family: Arial;
+}
+.faq-question-list .accordion-body *{font-family: Arial;}
+/*---------------------------------------- Box Wrapper Destination */
+.box-wrapper-destination{
+  --width-destination-header: 500px;
+}
+.box-wrapper-destination .block-section-header{
+  max-width: var(--width-destination-header);
+  margin: auto;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.box-wrapper-destination .block-discovery-list{margin-bottom: 50px;}
+.box-wrapper-destination .block-list-by-sites .block-section-header{
+  margin-bottom: 0px;
+}
+.box-wrapper-destination  .block-list-by-sites .block-destination-content{
+  padding-top: 25px;
+}
+.box-wrapper-destination  .block-list-by-sites .destination-home-item .-info{
+  width: 100%;
+}
+.box-wrapper-destination  .block-list-by-sites .destination-home-item .-info p{
+  opacity: 0.5;
+}
+.box-wrapper-destination  .block-list-by-sites .destination-home-item .-info::after{
+  display: none;
+}
 /*---------------------------------------- Box Pagination */
 .box-pagination{
 	text-align: center;
@@ -2251,6 +2343,8 @@ html, body{
   .box-image-row-single-page .-image-child-item {--spacer-size: 275px;}
   .box-image-row-single-page .col-right-content{margin-bottom: 50px;}
   .box-about-home{--about-home--header-h2: 100%;}
+  .box-distinctive-value{--header-distinctive-value: 100%;}
+  .box-wrapper-destination{--width-destination-header: 100%;}
 }
 /*------------------------------------ Monitor Ipad Portrial */
 @media (max-width: 780px){

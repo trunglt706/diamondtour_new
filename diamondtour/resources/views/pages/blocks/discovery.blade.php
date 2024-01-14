@@ -13,42 +13,42 @@
           <div class="block-discovery-list">
             <div class="row gx-3 gy-3 gx-lg-5 gy-lg-5">
               <div class="col-sm-6">
-                <a href"#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
+                <a href="#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
                   <h3>Tour Tây Tạng</h3>
                 </a>
               </div>
               <div class="col-sm-6">
-                <a href"#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
+                <a href="#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
                   <h3>Tour Trung Hoa</h3>
                 </a>
               </div>
               <div class="col-sm-6">
-                <a href"#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
+                <a href="#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
                   <h3>Tour Tây Tạng</h3>
                 </a>
               </div>
               <div class="col-sm-6">
-                <a href"#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
+                <a href="#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
                   <h3>Tour Trung Hoa</h3>
                 </a>
               </div>
               <div class="col-sm-6">
-                <a href"#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
+                <a href="#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
                   <h3>Tour Tây Tạng</h3>
                 </a>
               </div>
               <div class="col-sm-6">
-                <a href"#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
+                <a href="#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
                   <h3>Tour Trung Hoa</h3>
                 </a>
               </div>
               <div class="col-sm-6">
-                <a href"#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
+                <a href="#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
                   <h3>Tour Tây Tạng</h3>
                 </a>
               </div>
               <div class="col-sm-6">
-                <a href"#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
+                <a href="#" class="discovery-tour-item" style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
                   <h3>Tour Trung Hoa</h3>
                 </a>
               </div>

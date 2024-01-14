@@ -28,3 +28,9 @@ Route::get('/thu-vien-anh/{alias}', function () {
 Route::get('/blog', function () {
     return view('pages.posts');
 });
+Route::get('/faq', function () {
+    return view('pages.faq');
+});
+Route::get('/diem-den', function () {
+    return view('pages.destination');
+});
