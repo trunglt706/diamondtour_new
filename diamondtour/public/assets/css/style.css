@@ -711,7 +711,7 @@ html, body{
 }
 /*------------------------------------ Box Discovery */
 .box-discovery{
-  padding: 60px 0px 120px 0px;
+  padding: 60px;
 }
 .box-discovery .block-discovery-content{
   position: sticky;
@@ -793,7 +793,7 @@ html, body{
 }
 /*------------------------------------ Box Companion */
 .box-companion{
-  padding: 60px 0px 120px 0px;
+  padding: 60px;
 }
 .box-companion .block-companion-content{
   margin-bottom: 1rem;
@@ -1090,7 +1090,7 @@ html, body{
 /*------------------------------------ Box Distinctive Value */
 .box-distinctive-value{
   --header-distinctive-value: 500px;
-  padding: 60px 0px 120px 0px;
+  padding-top: 60px;
 }
 .box-distinctive-value .distinctive-value--header{
   margin: auto;
@@ -1254,9 +1254,10 @@ html, body{
 .box-wrapper-single-page .single-page-head-content{
   font-weight: 400;
   font-size: 1.1rem;
+  text-align: justify;
 }
 .box-wrapper-single-page .single-page-head-content>*{
-  line-height: 1.5;
+  line-height: 1.75;
   margin-bottom: 0.5rem;
 }
 /*------------------------------------ Box Tour Guide */

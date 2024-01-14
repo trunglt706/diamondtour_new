@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Guest\AboutController;
+use App\Http\Controllers\Guest\BlogController;
+use App\Http\Controllers\Guest\DestinationController;
+use App\Http\Controllers\Guest\HomeController;
+use App\Http\Controllers\Guest\LibraryController;
+use App\Http\Controllers\Guest\TourController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,27 +19,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.main');
+Route::prefix('')->controller(HomeController::class)->group(function () {
+    Route::get('', 'index')->name('index');
+    Route::get('faq', 'faq')->name('faq');
 });
-Route::get('/ve-chung-toi', function () {
-    return view('pages.about-us');
+Route::get('about', [AboutController::class, 'index'])->name('about');
+Route::prefix('library')->name('library.')->controller(LibraryController::class)->group(function () {
+    Route::get('', 'index')->name('index');
+    Route::get('{alias}', 'detail')->name('detail');
 });
-Route::get('/thu-vien-anh', function () {
-    return view('pages.gallery');
+Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(function () {
+    Route::get('', 'index')->name('index');
+    Route::get('{alias}', 'detail')->name('detail');
 });
-Route::get('/thu-vien-anh/{alias}', function () {
-    return view('pages.single-gallery');
+Route::prefix('destination')->name('destination.')->controller(DestinationController::class)->group(function () {
+    Route::get('', 'index')->name('index');
+    Route::get('{alias}', 'detail')->name('detail');
 });
-Route::get('/blog', function () {
-    return view('pages.posts');
-});
-Route::get('/faq', function () {
-    return view('pages.faq');
-});
-Route::get('/diem-den', function () {
-    return view('pages.destination');
-});
-Route::get('/tour', function () {
-    return view('pages.tour');
+Route::prefix('tour')->name('tour.')->controller(TourController::class)->group(function () {
+    Route::get('', 'index')->name('index');
+    Route::get('{alias}', 'detail')->name('detail');
 });
