@@ -17,8 +17,8 @@
               <ul class="wsmenu-list">
                 <li><a class="active" href="/">HOME</a></li>
                 <li><a href="/ve-chung-toi">About us</a></li>
-                <li><a href="#">Destinations</a></li>
-                <li><a href="#">Tours</a></li>
+                <li><a href="/diem-den">Destinations</a></li>
+                <li><a href="/tour">Tours</a></li>
                 <li><a href="/thu-vien-anh">Library</a></li>
                 <li><a href="/blog">Blogs</a></li>
               </ul>

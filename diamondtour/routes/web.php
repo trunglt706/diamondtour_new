@@ -34,3 +34,6 @@ Route::get('/faq', function () {
 Route::get('/diem-den', function () {
     return view('pages.destination');
 });
+Route::get('/tour', function () {
+    return view('pages.tour');
+});

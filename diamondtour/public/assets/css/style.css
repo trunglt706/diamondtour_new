@@ -265,7 +265,8 @@ html, body{
 }
 .tour-home--item,
 .blog-mansory--item,
-.destination-home-item{
+.destination-home-item,
+.tour-item{
   position: relative;
   width: 100%;
   height: 100%;
@@ -281,7 +282,8 @@ html, body{
 }
 .tour-home--item::before,
 .blog-mansory--item::before,
-.destination-home-item::before{
+.destination-home-item::before,
+.tour-item::before{
   content: '';
   position: absolute;
   top: 0px;
@@ -314,7 +316,8 @@ html, body{
 }
 .tour-home--item:hover::before,
 .blog-mansory--item:hover::before,
-.destination-home-item:hover::before{
+.destination-home-item:hover::before,
+.tour-item:hover::before{
   moz-transition: all .25s ease-in-out;
   -o-transition: all .25s ease-in-out;
   -webkit-transition: all .25s ease-in-out;
@@ -2207,6 +2210,186 @@ html, body{
 .box-wrapper-destination  .block-list-by-sites .destination-home-item .-info::after{
   display: none;
 }
+/*---------------------------------------- Box Wrapper Tour */
+.article-wrapper-tour .box-breadcrumb-cover h2{width: 70%;}
+.card-find-tour{
+  padding: 40px 20px;
+  border-radius: 20px;
+  border: 1px solid rgb(0 0 0 / 10%);
+  margin-bottom: 100px;
+  box-shadow: 0px 4px 20px 0px rgb(0 0 0 / 10%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin: 0px -10px;
+}
+.card-find-tour .find-tour-control{
+  flex: 0 0 auto;
+  width: 22%;
+  padding: 0px 10px;
+}
+.card-find-tour .find-tour-control:last-child{
+  width: 12%;
+}
+.find-tour-control label{
+  color: #A3A3A3;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+.find-tour-control .form-select,
+.find-tour-control .form-control{
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1.875rem;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-color: transparent;
+}
+.find-tour-control .form-select>option{
+  font-size: 1rem;
+}
+.find-tour-control .form-select:focus,
+.find-tour-control .form-select:active,
+.find-tour-control .form-control:focus,
+.find-tour-control .form-control:active{
+  box-shadow: 0 0 0 0 transparent;
+  outline: none;
+}
+.find-tour-control .input-group-text{
+  background: #fff;
+  border-color: #fff;
+}
+/*---------------------------------------- Box Wrapper Tour - Setup Bootstrap Select */
+.bootstrap-select>.dropdown-toggle.bs-placeholder,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:active,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:hover{
+  color: #000;
+  outline: none;
+  box-shadow: 0 0 0 0 transparent;
+  border: 1px solid #fff;
+}
+.find-tour-control .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){width: 100%;}
+.find-tour-control .bootstrap-select>.dropdown-toggle{
+  padding-left: 0px;
+  padding-right: 0px;
+  background: #fff;
+  border-color: #fff;
+}
+.bootstrap-select .dropdown-toggle .filter-option-inner-inner{
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1.875rem;
+}
+.find-tour-control .btn-default{
+  background: #fff;
+  border-color: #fff;
+}
+.find-tour-control .mh-50{min-height: 50px;}
+/*---------------------------------------- Box Wrapper Tour - List */
+.block-tour-list{
+  margin: 50px 0px 0px;
+  --width-grid-normal: 33.33333333%;
+  --width-grid-large: 66.66666667%;
+  --height-grid-normal: 320px;
+  --height-grid-large: 672px;
+}
+.block-tour-list .section-tour--content{
+  margin-left: -16px;
+  margin-right: -16px;
+}
+.block-tour-list::after,
+.block-tour-list .section-tour--content::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.section-tour--content .th-grid-item,
+.section-tour--content .th-grid-sizer {
+  width: var(--width-grid-normal);
+}
+.section-tour--content .th-grid-sizer {
+  height: 0;
+  visibility: hidden;
+}
+.section-tour--content .th-grid-item {
+  float: left;
+  padding: 0 16px;
+  margin-bottom: 32px;
+}
+.section-tour--content .size-w-33{
+  width: var(--width-grid-normal);
+}
+.section-tour--content .size-h-672{
+  height: var(--height-grid-large);
+}
+.section-tour--content .size-w-66{
+  width: var(--width-grid-large);
+}
+.section-tour--content .size-h-320{
+  height: var(--height-grid-normal);
+}
+/*---------------------------------------- Box Wrapper Tour - Tour Item */
+.tour-item,
+.tour-item:hover{
+  color: #fff;
+}
+.tour-item .overlay-content{
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.tour-item .overlay-content .-content-top,
+.tour-item .overlay-content .-content-bottom{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.tour-item .overlay-content .-content-top .-inner-title,
+.tour-item .overlay-content .-content-bottom .-inner-content{
+  flex: 0 0 auto;
+  width: 70%;
+}
+.tour-item .overlay-content .-content-top .-inner-date,
+.tour-item .overlay-content .-content-bottom .-inner-price{
+  flex: 0 0 auto;
+  width: calc(30% - 1rem);
+  margin-left: auto;
+  text-align: right;
+}
+.tour-item .overlay-content .-content-top .-inner-title h2{
+  font-size: 2rem;
+  margin-bottom: 0rem;
+}
+.tour-item .overlay-content .-content-top .-inner-title p{margin-bottom: 0px;}
+.tour-item .overlay-content .-content-top .-inner-date{
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1.5rem;
+}
+.tour-item .overlay-content .-content-bottom .-inner-content p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  -webkit-line-clamp: 2;
+  height: 40px;
+  margin: 0px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-weight: 300;
+}
+.tour-item .overlay-content .-content-bottom .-inner-price p{
+  margin: 0px;
+}
+.tour-item .overlay-content .-content-bottom .-inner-price .-label{
+  font-size: 0.875rem;
+}
+.tour-item .overlay-content .-content-bottom .-inner-price .-price{
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1.875rem;
+}
 /*---------------------------------------- Box Pagination */
 .box-pagination{
 	text-align: center;
@@ -2345,6 +2528,12 @@ html, body{
   .box-about-home{--about-home--header-h2: 100%;}
   .box-distinctive-value{--header-distinctive-value: 100%;}
   .box-wrapper-destination{--width-destination-header: 100%;}
+  .block-tour-list{
+    --width-grid-normal: 50%;
+    --width-grid-large: 50%;
+    --height-grid-normal: 320px;
+    --height-grid-large: 320px;
+  }
 }
 /*------------------------------------ Monitor Ipad Portrial */
 @media (max-width: 780px){
@@ -2398,6 +2587,10 @@ html, body{
   .block-footer-introduce .introduce-logo img{width: 120px;}
   .box-footer .footer-copyright ul.-social{text-align: center;}
   .box-companion .block-companion-banner{min-height: 600px;}
+  .block-tour-list{
+    --width-grid-normal: 100%;
+    --width-grid-large: 100%;
+  }
 }
 /*------------------------------------ Monitor Mobile Landspace */
 @media screen and (min-width: 576px) and (max-width: 767px){

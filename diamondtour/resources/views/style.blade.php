@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="{{ asset('assets/css/webslidemenu.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-5-select/css/bootstrap-select.min.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ asset('assets/plugins/datetimepicker/jquery.datetimepicker.min.css') }}" type="text/css" />
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" />
 <!-- Custom Fonts -->
