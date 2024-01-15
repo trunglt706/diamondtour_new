@@ -12,7 +12,6 @@
                                     <div class="-tag">
                                         <ul>
                                             <li><a href="#">Feel The Experience</a></li>
-                                            <li><a href="#">123</a></li>
                                         </ul>
                                     </div>
                                     <h2>Explore The Majestic Asia Landscape Now</h2>

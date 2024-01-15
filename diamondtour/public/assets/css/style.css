@@ -80,7 +80,7 @@ html, body{
   transition: all 0.25s ease;
 }
 .box-header.sticky{
-  background: #000 !important;
+  background: #00000078 !important;
 }
 .box-header .block-header-main--wrap{
   padding: 0.75rem 0px;
@@ -261,7 +261,7 @@ html, body{
 }
 /*------------------------------------ Box Tour Home */
 .box-tour-home{
-  margin-bottom: 68px;
+  /* margin-bottom: 68px; */
 }
 .tour-home--item,
 .blog-mansory--item,
@@ -548,6 +548,7 @@ html, body{
 }
 .block-get-promo-content .-content{
   color: #BBBBBB;
+  text-align: justify;
 }
 .block-get-promo-form{margin-bottom: 1rem;}
 .form-get-promo .form-control{
@@ -727,11 +728,12 @@ html, body{
   line-height: 1.2;
 }
 .box-discovery .block-discovery-content p{
-  line-height: 1.5;
+  line-height: 1.75;
   margin-bottom: 0.75rem;
   font-weight: 400;
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
+  text-align: justify;
 }
 .box-discovery .block-discovery-content .btn{
   display: inline-block;
@@ -794,7 +796,7 @@ html, body{
 }
 /*------------------------------------ Box Companion */
 .box-companion{
-  padding: 60px;
+  padding: 60px 0px;
 }
 .box-companion .block-companion-content{
   margin-bottom: 1rem;
@@ -995,7 +997,7 @@ html, body{
 }
 /*------------------------------------ Box Companion Private */
 .box-companion-private{
-  padding: 120px 0px 100px 0px;
+  padding: 50px 0px;
   background: #000000;
 }
 .box-companion-private .companion-private--header,
@@ -1015,12 +1017,13 @@ html, body{
 .companion-private--header p,
 .about-home--header p,
 .discovery-home--header p{
-  line-height: 1.5;
+  line-height: 1.75;
   margin-bottom: 0.75rem;
   font-weight: 400;
   font-size: 1.1rem;
   margin-bottom: 1rem;
   color: #fff;
+  text-align: justify;
 }
 .companion-private--header .btn,
 .about-home--header .btn,
@@ -1671,7 +1674,7 @@ html, body{
   padding-bottom: 5px;
 }
 /*---------------------------------------- Box Post Home */
-.box-post-home{ padding: 100px 0px 50px; }
+.box-post-home{ padding: 50px 0px; }
 .post-home-first-item{
   overflow: hidden;
   border-radius: 20px;

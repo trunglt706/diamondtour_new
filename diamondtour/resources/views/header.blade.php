@@ -36,12 +36,11 @@
                                 </li>
                                 <li>
                                     <a class="{{ Request::is('tour*') ? 'active' : '' }}"
-                                        href="{{ route('tour.index') }}">Du lịch</a>
+                                        href="{{ route('tour.index') }}">Tour</a>
                                 </li>
                                 <li>
                                     <a class="{{ Request::is('blog*') ? 'active' : '' }}"
-                                        href="{{ route('blog.index') }}">Bài
-                                        viết</a>
+                                        href="{{ route('blog.index') }}">Blog</a>
                                 </li>
                                 <li>
                                     <a class="{{ Request::is('library*') ? 'active' : '' }}"

@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favico.png') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ env('APP_NAME') }} - </title>
+    <title>{{ env('APP_NAME') }} - Diamontour</title>
     @include('style')
 </head>
 
