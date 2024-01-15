@@ -957,11 +957,12 @@ html, body{
   line-height: 1.2;
 }
 .companion-item .-content p{
-  line-height: 1.5;
+  line-height: 1.75;
   margin-bottom: 0.75rem;
   font-weight: 400;
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
+  text-align: justify;
 }
 /*------------------------------------ Block Accordion Item */
 .block-style-accordion .accordion-item{
@@ -1298,6 +1299,7 @@ html, body{
   margin-bottom: 0.5rem;
   font-style: italic;
   color: #fff;
+  text-align: justify;
 }
 .box-tour-guide .-quote{
   font-size: 1.15rem;
