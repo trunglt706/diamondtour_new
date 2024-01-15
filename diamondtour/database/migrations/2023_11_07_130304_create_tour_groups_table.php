@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('tour_groups', function (Blueprint $table) {
             $table->id()->index();
+            $table->string('slug')->unique();
             $table->string('code')->unique();
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('image')->nullable();
+            $table->integer('numering')->nullable()->default(0);
             $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
             $table->timestamps();
         });

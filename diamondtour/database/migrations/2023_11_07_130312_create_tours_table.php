@@ -26,12 +26,16 @@ return new class extends Migration
             $table->string('background')->nullable();
             $table->string('duration')->nullable();
             $table->text('content')->nullable();
-            $table->text('schedule_file')->nullable();
+            $table->string('schedule_file')->nullable();
             $table->text('include')->nullable();
             $table->text('exclude')->nullable();
             $table->text('term')->nullable();
             $table->text('notice')->nullable();
-            $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
+            $table->integer('important')->nullable()->default(0);
+            $table->json('tags')->nullable();
+            $table->integer('view_total')->nullable()->default(0);
+            $table->integer('like_total')->nullable()->default(0);
+            $table->enum('status', ['draft', 'active', 'blocked'])->index()->nullable()->default('draft');
             $table->foreign('group_id')->references('id')->on('tour_groups')->onDelete('cascade');
             $table->timestamps();
         });

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('icon');
             $table->string('link')->nullable();
+            $table->integer('numering')->nullable();
             $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->string('email')->unique();
             $table->json('device')->nullable();
-            $table->boolean('status')->nullable()->default(1);
+            $table->enum('status', ['un_active', 'active', 'blocked'])->index()->nullable()->default('un_active');
             $table->timestamps();
         });
     }

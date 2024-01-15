@@ -14,15 +14,20 @@ return new class extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->id()->index();
             $table->unsignedBigInteger('group_id')->index();
+            $table->unsignedBigInteger('country_id')->index()->nullable();
+            $table->unsignedBigInteger('province_id')->index()->nullable();
+            $table->string('slug')->unique();
             $table->string('code')->unique();
             $table->string('name');
             $table->string('image')->nullable();
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
+            $table->text('content')->nullable();
             $table->string('address')->nullable();
             $table->string('price')->nullable();
-            $table->unsignedBigInteger('country_id')->index()->nullable();
-            $table->unsignedBigInteger('province_id')->index()->nullable();
-            $table->enum('type', ['domestic', 'foreign'])->index()->nullable()->default('domestic');
+            $table->integer('important')->nullable()->default(0);
+            $table->json('tags')->nullable();
+            $table->integer('view_total')->nullable()->default(0);
+            $table->integer('like_total')->nullable()->default(0);
             $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
             $table->foreign('group_id')->references('id')->on('destination_groups')->onDelete('cascade');
             $table->timestamps();

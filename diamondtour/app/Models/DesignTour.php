@@ -10,11 +10,16 @@ class DesignTour extends Model
     use HasFactory;
     protected $table = 'design_tours';
 
-    protected $fillable = [];
+    protected $fillable = [
+        
+    ];
 
     protected $hidden = [];
 
-    protected $casts = [];
+    protected $casts = [
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+    ];
 
     public static function boot()
     {

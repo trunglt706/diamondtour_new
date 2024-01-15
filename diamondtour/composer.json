@@ -10,7 +10,6 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "nwidart/laravel-modules": "^10.0",
         "anhskohbo/no-captcha": "^3.5",
         "intervention/image": "^2.7",
         "vanthao03596/laravel-hanhchinhvn": "^1.1"
@@ -28,8 +27,7 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "Modules\\": "Modules/"
+            "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
             "app/Helpers/AppHelper.php",

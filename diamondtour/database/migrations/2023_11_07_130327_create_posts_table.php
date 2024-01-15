@@ -21,8 +21,11 @@ return new class extends Migration
             $table->string('album')->nullable();
             $table->string('description')->nullable();
             $table->text('content')->nullable();
-            $table->json('tag')->nullable();
-            $table->boolean('status')->nullable()->default(1);
+            $table->integer('important')->nullable()->default(0);
+            $table->json('tags')->nullable();
+            $table->integer('view_total')->nullable()->default(0);
+            $table->integer('like_total')->nullable()->default(0);
+            $table->enum('status', ['draft', 'active', 'blocked'])->index()->nullable()->default('draft');
             $table->timestamps();
         });
     }

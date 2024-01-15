@@ -35,15 +35,38 @@ class Contact extends Model
         self::deleted(function ($model) {
         });
     }
+
+    const STATUS_UN_ACTIVE = 'un_active';
     const STATUS_ACTIVE = 'active';
     const STATUS_BLOCKED = 'blocked';
 
+    public static function get_status($status = '')
+    {
+        $_status = [
+            self::STATUS_UN_ACTIVE => ['Chưa kích hoạt', 'secondary'],
+            self::STATUS_ACTIVE => ['Đang kích hoạt', 'success'],
+            self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
+        ];
+        return $status == '' ? $_status : $_status["$status"];
+    }
+
     public function scopeOfStatus($query, $status)
     {
-        return $query->where('blogs.status', $status);
+        return $query->where('contacts.status', $status);
     }
+
     public function scopeOfCode($query, $status)
     {
-        return $query->where('blogs.status', $status);
+        return $query->where('contacts.status', $status);
+    }
+
+    public function scopeOfEmail($query, $email)
+    {
+        return $query->where('contacts.email', $email);
+    }
+
+    public function scopeOfPhone($query, $phone)
+    {
+        return $query->where('contacts.phone', $phone);
     }
 }

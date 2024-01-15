@@ -35,7 +35,7 @@ class Booking extends Model
             $model->code = $model->code ?? Str::uuid();
             $model->total_adult = $model->total_adult ?? 1;
             $model->total_children = $model->total_children ?? 0;
-            $model->status = $model->status ?? self::STATUS_BLOCKED;
+            $model->status = $model->status ?? self::STATUS_UN_ACTIVE;
         });
         self::created(function ($model) {
         });
@@ -45,12 +45,14 @@ class Booking extends Model
         });
     }
 
+    const STATUS_UN_ACTIVE = 'un_active';
     const STATUS_ACTIVE = 'active';
     const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {
         $_status = [
+            self::STATUS_UN_ACTIVE => ['Chưa kích hoạt', 'secondary'],
             self::STATUS_ACTIVE => ['Đang kích hoạt', 'success'],
             self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
         ];
