@@ -617,6 +617,7 @@ html, body{
   color: #FFFFFF91;
   font-size: 15px;
   font-weight: 300;
+  line-height: 2.2rem;
 }
 .block-footer-introduce .introduce-content p{margin: 0px;}
 .box-footer .block-footer-header{
@@ -1642,6 +1643,7 @@ html, body{
   -webkit-line-clamp: 4;
   height: 95px;
   margin-bottom: 0.75rem;
+  text-align: justify;
 }
 /*------------------------------------ Block Local Culture Post Main */
 .block-local-culture-post-main .blog-normal-item{
@@ -1789,6 +1791,7 @@ html, body{
   height: 65px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  text-align: justify;
 }
 .post-home-item .-content .read-more,
 .activity-home-item .-content .read-more{
@@ -2128,6 +2131,7 @@ html, body{
   margin: 0px 0px -10px 0px;
   padding: 0px 0px 0px 0px;
   color: #FFFFFF99;
+  text-align: justify;
 }
 .testimonial-item .comment-bio{
   display: flex;
@@ -2574,7 +2578,9 @@ html, body{
   }
   .carousel-home--item .-content h2{font-size: 3rem;}
   .box-slider-home,
-  .box-tour-home{margin-bottom: 50px;}
+  .box-tour-home{
+    /* margin-bottom: 50px; */
+  }
   .box-introduce{padding: 50px 0px;}
   .box-introduce h2 {margin: 0px 50px 25px 25px;}
   .box-introduce .-content {margin: 0px 25px 40px;}
