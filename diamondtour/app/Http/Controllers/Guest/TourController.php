@@ -12,8 +12,8 @@ class TourController extends Controller
       return view('pages.tour');
     }
 
-    public function details($alias)
+    public function detail($alias)
     {
-      
+      return view('pages.single-tour');
     }
 }

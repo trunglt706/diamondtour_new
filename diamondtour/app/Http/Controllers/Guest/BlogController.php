@@ -12,7 +12,8 @@ class BlogController extends Controller
         return view('pages.posts');
     }
 
-    public function details($alias)
+    public function detail($alias)
     {
+        return view('pages.single-post');
     }
 }

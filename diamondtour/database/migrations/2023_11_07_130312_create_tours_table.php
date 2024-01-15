@@ -48,8 +48,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('tours');
     }
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> d2b2c3a4d0a14c1ce32ef300b7da2716de2e9c51

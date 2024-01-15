@@ -1,3 +1,4 @@
+
 function appSelectPicker(element) {
 
     if (typeof(element) == 'undefined') {
@@ -120,6 +121,7 @@ function init_datepicker(element_date, element_time) {
 }
 /*--------------------- Scroll */
 var header = document.querySelector(".box-header");
+var myBacktoTop = document.getElementById("btn-back-to-top");
 window.onscroll = function () {
     // pageYOffset or scrollY
     if (window.pageYOffset > 50) {
@@ -127,6 +129,8 @@ window.onscroll = function () {
     } else {
         header.classList.remove("sticky");
     }
+
+    scrollFunction();
 };
 $(".scroll-top-sec>a").click(function () {
     var destination = $(this).attr("href");
@@ -137,6 +141,20 @@ $(".scroll-top-sec>a").click(function () {
         150
     );
 });
+function scrollFunction() {
+  if (
+    document.body.scrollTop > 20 ||
+    document.documentElement.scrollTop > 20
+  ) {
+    myBacktoTop.style.display = "block";
+  } else {
+    myBacktoTop.style.display = "none";
+  }
+}
+function backToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 /*------------------------------------ Box Slider Home */
 var carousel_home_swiper = new Swiper(".carousel-home-swiper", {
     loop: true,
@@ -257,5 +275,7 @@ var blog_slider_swiper = new Swiper(".testimonial-slider-swiper", {
 
     init_selectpicker();
     init_datepicker();
+
+    myBacktoTop.addEventListener("click", backToTop);
 
 })(jQuery);
