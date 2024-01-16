@@ -11,16 +11,17 @@ class Menu extends Model
     protected $table = 'menus';
 
     protected $fillable = [
+        'code',
         'numering',
         'name',
         'link',
         'icon',
         'parent_id',
-        'status'
+        'status',
+        'images',
     ];
 
     protected $hidden = [];
-
     protected $casts = [];
 
     public static function boot()
@@ -40,8 +41,8 @@ class Menu extends Model
         });
     }
 
-    const STATUS_ACTIVE = 1;
-    const STATUS_BLOCKED = 0;
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {
@@ -55,6 +56,11 @@ class Menu extends Model
     public function scopeParentId($query, $parent_id)
     {
         return $query->where('menus.parent_id', $parent_id);
+    }
+
+    public function scopeOfCode($query, $code)
+    {
+        return $query->where('menus.code', $code);
     }
 
     public function scopeOfStatus($query, $status)

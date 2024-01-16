@@ -16,11 +16,12 @@ class LibraryGroup extends Model
         'name',
         'description',
         'image',
-        'status'
+        'status',
+        'important',
+        'numering'
     ];
 
     protected $hidden = [];
-
     protected $casts = [];
 
     public static function boot()
@@ -29,6 +30,8 @@ class LibraryGroup extends Model
         self::creating(function ($model) {
             $model->slug = $model->code ?? Str::slug('name');
             $model->status = $model->status ?? self::STATUS_ACTIVE;
+            $model->important = $model->important ?? false;
+            $model->numering = $model->numering ?? self::getOrder();
         });
         self::created(function ($model) {
         });
@@ -51,6 +54,11 @@ class LibraryGroup extends Model
         return $status == '' ? $_status : $_status["$status"];
     }
 
+    public function scopeOfImportant($query, $important)
+    {
+        return $query->where('library_groups.important', $important);
+    }
+
     public function scopeOfSlug($query, $slug)
     {
         return $query->where('library_groups.slug', $slug);
@@ -61,8 +69,14 @@ class LibraryGroup extends Model
         return $query->where('library_groups.status', $status);
     }
 
-    public function library()
+    public function libraries()
     {
         return $this->hasMany(Library::class, 'group_id', 'id');
+    }
+
+    public static function getOrder()
+    {
+        $max = LibraryGroup::max('numering') ?? 0;
+        return $max + 1;
     }
 }

@@ -12,10 +12,13 @@ class DestinationGroup extends Model
     protected $table = 'destination_groups';
 
     protected $fillable = [
+        'slug',
         'code',
         'name',
         'image',
+        'type',
         'description',
+        'numering',
         'status'
     ];
 
@@ -30,6 +33,7 @@ class DestinationGroup extends Model
             $model->code = $model->code ?? Str::uuid();
             $model->slug = $model->code ?? Str::slug('name');
             $model->status = $model->status ?? self::STATUS_ACTIVE;
+            $model->numering = $model->numering ?? self::getOrder();
         });
         self::created(function ($model) {
         });
@@ -38,6 +42,18 @@ class DestinationGroup extends Model
         self::deleted(function ($model) {
             // delete background
         });
+    }
+
+    const TYPE_NATIONAL = 'national';
+    const TYPE_LOCAL = 'local';
+
+    public static function get_type($type = '')
+    {
+        $_status = [
+            self::TYPE_NATIONAL => ['Quốc tế', 'success'],
+            self::TYPE_LOCAL => ['Trong nước', 'danger'],
+        ];
+        return $type == '' ? $_status : $_status["$type"];
     }
 
     const STATUS_ACTIVE = 'active';
@@ -52,23 +68,34 @@ class DestinationGroup extends Model
         return $status == '' ? $_status : $_status["$status"];
     }
 
+    public function scopeOfType($query, $type)
+    {
+        return $query->where('destination_groups.type', $type);
+    }
+
     public function scopeOfCode($query, $code)
     {
-        return $query->where('destinations.code', $code);
+        return $query->where('destination_groups.code', $code);
     }
 
     public function scopeOfSlug($query, $slug)
     {
-        return $query->where('destinations.slug', $slug);
+        return $query->where('destination_groups.slug', $slug);
     }
 
     public function scopeOfStatus($query, $status)
     {
-        return $query->where('destinations.status', $status);
+        return $query->where('destination_groups.status', $status);
     }
 
-    public function reviews()
+    public function destinations()
     {
-        return $this->hasMany(Review::class, 'destination_id', 'id');
+        return $this->hasMany(Destination::class, 'group_id', 'id');
+    }
+
+    public static function getOrder()
+    {
+        $max = DestinationGroup::max('numering') ?? 0;
+        return $max + 1;
     }
 }
