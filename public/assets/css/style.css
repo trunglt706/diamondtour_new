@@ -1066,6 +1066,7 @@ html, body{
 }
 .companion-private--content .accordion-body{
   color: #FFFFFF91;
+  text-align: justify;
 }
 .companion-private--embed{
   overflow: hidden;
