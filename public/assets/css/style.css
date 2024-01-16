@@ -2457,6 +2457,8 @@ html, body{
 .block-suggested-tours{
   margin-bottom: 25px;
 }
+/*---------------------------------------- Article Wrapper Single Tour */
+.article-wrapper-single-tour .box-breadcrumb-cover h2{width: 100%;}
 /*---------------------------------------- Box Wrapper Single Tour */
 .box-wrapper-single-tour{
 
@@ -2506,6 +2508,178 @@ html, body{
 .box-wrapper-single-tour .block-destination-content h6{
   color: #000;
   font-weight: 700;
+}
+.box-wrapper-single-tour .single-tour-list-grid-destination{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-flow: dense;
+  grid-row-gap: 30px;
+  grid-column-gap: 30px;
+  margin-bottom: 50px;
+}
+.box-wrapper-single-tour .single-tour-list-col-destination:nth-child(6n+1),
+.box-wrapper-single-tour .single-tour-list-col-destination:nth-child(6n+4),
+.box-wrapper-single-tour .single-tour-list-col-destination:nth-child(6n+5),
+.box-wrapper-single-tour .single-tour-list-col-destination:nth-child(6n+6){
+  grid-column: span 3 / auto;
+  grid-row: span 1 / auto;
+}
+.box-wrapper-single-tour .single-tour-list-col-destination:nth-child(6n+2){
+  grid-column: span 3 / auto;
+  grid-row: span 2 / auto;
+}
+.box-wrapper-single-tour .single-tour-list-col-destination:nth-child(6n+3){
+  grid-column: span 6 / auto;
+  grid-row: span 1 / auto;
+}
+/*---------------------------------------- Box Wrapper Single Tour Destination Item */
+.single-tour-destination--item{
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+}
+.single-tour-destination--item .-image{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.single-tour-destination--item .-image::before,
+.single-tour-destination--item .-image::after{
+  position: absolute;
+  content: '';
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+.single-tour-destination--item .-image::before{
+  height: 0;
+  background: rgba(13, 59, 84, 0.2);
+  transition: height 0.4s cubic-bezier(0.17, 0.73, 0.66, 0.99);
+  z-index: 1;
+}
+.single-tour-destination--item .-image::after{
+  height: 100%;
+  background-image: linear-gradient(2deg, rgba(0, 0, 0, 0.502), transparent);
+}
+.single-tour-destination--item .-image>img{
+  max-width: 100%;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  transform: translateY(0);
+  transition: transform 0.4s cubic-bezier(0.17, 0.73, 0.66, 0.99);
+  overflow: hidden;
+}
+.single-tour-destination--item .-content{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  color: #fff;
+  z-index: 1;
+}
+.single-tour-destination--item .-content h2{
+  text-transform: capitalize;
+  margin: 0;
+  transition: transform 0.5s cubic-bezier(0.17, 0.73, 0.66, 0.99);
+  color: #fff;
+  transform: translateY(60px);
+  font-size: 16px;
+  font-weight: 400;
+}
+.single-tour-destination--item a{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+}
+.single-tour-destination--item:hover .-image::before{height: 100%;}
+.single-tour-destination--item:hover .-image>img{transform: translateY(-44px);}
+.single-tour-destination--item:hover .-content h2{transform: translateY(0);}
+/*---------------------------------------- Box Wrapper Single Tour Schedule Item */
+.single-tour-list-schedule{
+  overflow: hidden;
+  margin: 50px 0px;
+}
+.tour-schedule--item{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.tour-schedule--item .-image,
+.tour-schedule--item .-content{
+  flex: 0 0 auto;
+  width: 50%;
+}
+.tour-schedule--item .-image{
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+}
+.tour-schedule--item .-image>img{
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+.tour-schedule--item .-image::before{
+  content: '';
+  background-color: transparent;
+  background-image: linear-gradient(0deg, #000000 0%, #00000000 100%);
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.tour-schedule--item .overlay-content{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 0px 60px 50px 60px;
+}
+.tour-schedule--item .overlay-content>*{
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+.tour-schedule--item .overlay-content h2{
+  font-weight: 700;
+  font-size: 3rem;
+}
+.tour-schedule--item .overlay-content p{
+  margin-bottom: 0.5rem;
+
+}
+.tour-schedule--item .-content--header{
+  background: #E1E1E1;
+  padding: 20px 30px;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.tour-schedule--item .-content--innder .block-style-accordion .accordion-button{
+  padding-left: 20px;
+}
+.tour-schedule--item .-content--innder .block-style-accordion .accordion-button i{
+  background: #008DD0;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1rem;
+  width: 25px;
+  height: 25px;
+  padding: 0px;
+  text-align: center;
+  line-height: 1.875;
 }
 /*---------------------------------------- Box Pagination */
 .box-pagination{
@@ -2658,6 +2832,15 @@ html, body{
     --height-grid-normal: 320px;
     --height-grid-large: 320px;
   }
+  .section-blog-page--content .size-w-66,
+  .section-blog-page--content .size-w-33{width: 50%;}
+  .section-blog-page--content .size-h-596,
+  .section-blog-page--content .size-h-282{height: 320px;}
+  .card-find-tour .find-tour-control{width: 50%;}
+  .card-find-tour .find-tour-control:last-child {
+    width: 50%;
+    margin: 15px auto 0px;
+  }
 }
 /*------------------------------------ Monitor Ipad Portrial */
 @media (max-width: 780px){
@@ -2717,6 +2900,11 @@ html, body{
     --width-grid-normal: 100%;
     --width-grid-large: 100%;
   }
+  .section-blog-page--content .size-w-66,
+  .section-blog-page--content .size-w-33{width: 100%;}
+  .section-blog-page--content .size-h-596,
+  .section-blog-page--content .size-h-282{height: 320px;}
+  .discovery-home-item{height: 240px;}
 }
 /*------------------------------------ Monitor Mobile Landspace */
 @media screen and (min-width: 576px) and (max-width: 767px){
@@ -2777,5 +2965,21 @@ html, body{
     margin: 0px auto 2rem;
     height: var(--spacer-size);
     border-radius: 20px;
+  }
+  .post-home-item, .activity-home-item{
+    flex-wrap: wrap;
+  }
+  .post-home-item .-image,
+  .activity-home-item .-image{margin-bottom: 0.5rem;}
+  .post-home-item .-image,
+  .activity-home-item .-image,
+  .post-home-item .-content,
+  .activity-home-item .-content{
+    width: 100%;
+  }
+  .card-find-tour .find-tour-control{width: 100%;}
+  .card-find-tour .find-tour-control:last-child {
+    width: 100%;
+    margin: 15px auto 0px;
   }
 }

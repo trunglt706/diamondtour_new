@@ -1,6 +1,6 @@
 @extends('index')
 @section('content')
-    <article>
+    <article class="article-wrapper-single-tour">
         @include('pages.blocks.breadcrumb', [
             'background' => asset('assets/images/slider-1.jpg'),
             'title' => 'Chi tiết tour',
@@ -43,8 +43,170 @@
                 <p>Israel – lá cờ tiên phong trên thế giới trong lĩnh vực cải tạo đất hoang mạc thành đất nông nghiệp trù phú.</p>
                 <p>Palestine với vị trí trung tâm của thế giới cổ đại. Palestine trở thành một cây cầu nối liền Châu Á với Châu Phi, nối Địa Trung Hải với Biển Đỏ và Đại Tây Dương với Ấn Độ Dương.</p>
               </div>
+              <div class="single-tour-list-grid-destination">
+                <div class="single-tour-list-col-destination">
+                  <div class="single-tour-destination--item">
+                    <div class="-image">
+                      <img src="{{ asset('assets/images/jelusalem1.jpg') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="-content"><h2>Biển chết</h2></div>
+                    <a href="{{ asset('assets/images/jelusalem1.jpg') }}" data-fancybox="gallery"></a>
+                  </div>
+                </div>
+                <div class="single-tour-list-col-destination">
+                  <div class="single-tour-destination--item">
+                    <div class="-image">
+                      <img src="{{ asset('assets/images/jelusalem2.jpg') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="-content"><h2>Biển chết</h2></div>
+                    <a href="{{ asset('assets/images/jelusalem2.jpg') }}" data-fancybox="gallery"></a>
+                  </div>
+                </div>
+                <div class="single-tour-list-col-destination">
+                  <div class="single-tour-destination--item">
+                    <div class="-image">
+                      <img src="{{ asset('assets/images/jelusalem3.jpg') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="-content"><h2>Biển chết</h2></div>
+                    <a href="{{ asset('assets/images/jelusalem3.jpg') }}" data-fancybox="gallery"></a>
+                  </div>
+                </div>
+                <div class="single-tour-list-col-destination">
+                  <div class="single-tour-destination--item">
+                    <div class="-image">
+                      <img src="{{ asset('assets/images/jelusalem4.jpg') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="-content"><h2>Biển chết</h2></div>
+                    <a href="{{ asset('assets/images/jelusalem4.jpg') }}" data-fancybox="gallery"></a>
+                  </div>
+                </div>
+                <div class="single-tour-list-col-destination">
+                  <div class="single-tour-destination--item">
+                    <div class="-image">
+                      <img src="{{ asset('assets/images/jelusalem5.jpg') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="-content"><h2>Biển chết</h2></div>
+                    <a href="{{ asset('assets/images/jelusalem5.jpg') }}" data-fancybox="gallery"></a>
+                  </div>
+                </div>
+                <div class="single-tour-list-col-destination">
+                  <div class="single-tour-destination--item">
+                    <div class="-image">
+                      <img src="{{ asset('assets/images/jelusalem6.jpg') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="-content"><h2>Biển chết</h2></div>
+                    <a href="{{ asset('assets/images/jelusalem6.jpg') }}" data-fancybox="gallery"></a>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="single-tour-list-schedule">
+              <div class="swiper carousel-list-schedule-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="tour-schedule--item">
+                      <div class="-image">
+                        <img src="{{ asset('assets/images/jelusalem5.jpg') }}" class="img-fluid" alt="">
+                        <div class="overlay-content">
+                          <h2>Ngày 1</h2>
+                          <p>VIỆT NAM - NAZARETH</p>
+                        </div>
+                      </div>
+                      <div class="-content">
+                        <div class="-content--header">Lịch Trình Chi Tiết</div>
+                        <div class="-content--innder">
+                          <div class="block-style-accordion faq-question-list">
+                            <div class="accordion accordion-flush" id="accordionQuestionSectionOne">
+                              <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseQuestionSectionOneOne" aria-expanded="false" aria-controls="flush-collapseQuestionSectionOneOne">
+                                    <i class="fa-solid fa-location-dot d-inline-block me-2"></i> Jordan
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseQuestionSectionOneOne" class="accordion-collapse collapse" data-bs-parent="#accordionQuestionSectionOne">
+                                  <div class="accordion-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
 
+                                    Felis cursus efficitur. Integer eros orci, sollicitudin nec eros et, condimentum bibendum ante. Fusce efficitur efficitur risus, non fringilla tortor hendrerit sed. In eu risus tincidunt, interdum nunc sit amet, mollis lacus. Nulla nec arcu eu tellus bibendum vehicula nec eu diam. Aliquam pellentesque, leo a pulvinar tempus
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseQuestionSectionOneTwo" aria-expanded="false" aria-controls="flush-collapseQuestionSectionOneTwo">
+                                    <i class="fa-solid fa-location-dot d-inline-block me-2"></i> Nhà thờ truyền tin
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseQuestionSectionOneTwo" class="accordion-collapse collapse" data-bs-parent="#accordionQuestionSectionOne">
+                                  <div class="accordion-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+
+                                    Felis cursus efficitur. Integer eros orci, sollicitudin nec eros et, condimentum bibendum ante. Fusce efficitur efficitur risus, non fringilla tortor hendrerit sed. In eu risus tincidunt, interdum nunc sit amet, mollis lacus. Nulla nec arcu eu tellus bibendum vehicula nec eu diam. Aliquam pellentesque, leo a pulvinar tempus
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="tour-schedule--item">
+                      <div class="-image">
+                        <img src="{{ asset('assets/images/jelusalem5.jpg') }}" class="img-fluid" alt="">
+                        <div class="overlay-content">
+                          <h2>Ngày 1</h2>
+                          <p>VIỆT NAM - NAZARETH</p>
+                        </div>
+                      </div>
+                      <div class="-content">
+                        <div class="-content--header">Lịch Trình Chi Tiết</div>
+                        <div class="-content--innder">
+                          <div class="block-style-accordion faq-question-list">
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                              <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseQuestionSectionOneOne" aria-expanded="false" aria-controls="flush-collapseQuestionSectionOneOne">
+                                    <i class="fa-solid fa-location-dot d-inline-block me-2"></i> Jordan
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseQuestionSectionOneOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+
+                                    Felis cursus efficitur. Integer eros orci, sollicitudin nec eros et, condimentum bibendum ante. Fusce efficitur efficitur risus, non fringilla tortor hendrerit sed. In eu risus tincidunt, interdum nunc sit amet, mollis lacus. Nulla nec arcu eu tellus bibendum vehicula nec eu diam. Aliquam pellentesque, leo a pulvinar tempus
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseQuestionSectionOneTwo" aria-expanded="false" aria-controls="flush-collapseQuestionSectionOneTwo">
+                                    <i class="fa-solid fa-location-dot d-inline-block me-2"></i> Nhà thờ truyền tin
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseQuestionSectionOneTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                  <div class="accordion-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+
+                                    Felis cursus efficitur. Integer eros orci, sollicitudin nec eros et, condimentum bibendum ante. Fusce efficitur efficitur risus, non fringilla tortor hendrerit sed. In eu risus tincidunt, interdum nunc sit amet, mollis lacus. Nulla nec arcu eu tellus bibendum vehicula nec eu diam. Aliquam pellentesque, leo a pulvinar tempus
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-navigation">
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
             <div class="block-description-single-tour">
               <div class="container">
                 <div class="block-destination-header">
