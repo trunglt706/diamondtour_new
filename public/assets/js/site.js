@@ -166,7 +166,18 @@ var carousel_home_swiper = new Swiper(".carousel-home-swiper", {
         disableOnInteraction: false,
     },
 });
-
+var carousel_list_schedule_swiper = new Swiper(".carousel-list-schedule-swiper", {
+    loop: true,
+    spaceBetween: 30,
+    slidesPerView: 1,
+    pagination: {
+      el: ".swiper-pagination",
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+});
 /*------------------------------------ Box Destinations */
 var destinations_swiper = new Swiper(".destinations-swiper", {
     loop: true,

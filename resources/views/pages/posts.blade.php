@@ -47,51 +47,26 @@
                 </div>
                 <div class="container">
                     <div class="row gx-5">
-                        <div class="col-md-4">
-                            <div class="blog-normal-item">
-                                <div class="block-images">
-                                    <a href="#"><img src="{{ asset('assets/images/blog-normal-1.png') }}"
-                                            alt="" class="img-fluid"></a>
-                                </div>
-                                <div class="block-content">
-                                    {{-- <a href="#" class="-category">Category</a> --}}
-                                    <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                    <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec viverra
-                                        lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                    <a href="#" class="-more">Read more</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="blog-normal-item">
-                                <div class="block-images">
-                                    <a href="#"><img src="{{ asset('assets/images/blog-normal-2.png') }}"
-                                            alt="" class="img-fluid"></a>
-                                </div>
-                                <div class="block-content">
-                                    {{-- <a href="#" class="-category">Category</a> --}}
-                                    <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                    <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec viverra
-                                        lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                    <a href="#" class="-more">Read more</a>
+                        @for ($i = 0; $i < 3; $i++)
+                            <div class="col-md-4">
+                                <div class="blog-normal-item">
+                                    <div class="block-images">
+                                        <a href="{{ route('blog.detail', ['alias' => $i]) }}">
+                                            <img src="{{ asset('assets/images/blog-normal-1.png') }}" alt=""
+                                                class="img-fluid">
+                                        </a>
+                                    </div>
+                                    <div class="block-content">
+                                        {{-- <a href="#" class="-category">Category</a> --}}
+                                        <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
+                                        <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
+                                            viverra
+                                            lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
+                                        <a href="#" class="-more">Read more</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="blog-normal-item">
-                                <div class="block-images">
-                                    <a href="#"><img src="{{ asset('assets/images/blog-normal-3.png') }}"
-                                            alt="" class="img-fluid"></a>
-                                </div>
-                                <div class="block-content">
-                                    {{-- <a href="#" class="-category">Category</a> --}}
-                                    <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                    <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec viverra
-                                        lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                    <a href="#" class="-more">Read more</a>
-                                </div>
-                            </div>
-                        </div>
+                        @endfor
                     </div>
                 </div>
                 <div class="container">
@@ -117,98 +92,29 @@
                     <div class="row block-blog-slider-content">
                         <div class="swiper blog-slider-swiper">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <a href="#" class="blog-slider-item">
-                                        <div class="-images">
-                                            <img src="{{ asset('assets/images/blog-slider-1.png') }}" alt=""
-                                                class="img-fluid">
-                                        </div>
-                                        <div class="-content">
-                                            <span class="-category">Journey diary</span>
-                                            <h3>Ut aliquet magna viverra tincidunt. Suspendisse et massa vulputate</h3>
-                                            <p>Nullam pellentesque bibendum justo. In lobortis vestibulum justo. Aliquam
-                                                pellentesque feugiat tortor sed pellentesque. Proin ornare urna quis aliquet
-                                                auctor. Sed eu quam enim. Suspendisse potenti</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#" class="blog-slider-item">
-                                        <div class="-images">
-                                            <img src="{{ asset('assets/images/blog-slider-1.png') }}" alt=""
-                                                class="img-fluid">
-                                        </div>
-                                        <div class="-content">
-                                            <span class="-category">Journey diary</span>
-                                            <h3>Ut aliquet magna viverra tincidunt. Suspendisse et massa vulputate</h3>
-                                            <p>Nullam pellentesque bibendum justo. In lobortis vestibulum justo. Aliquam
-                                                pellentesque feugiat tortor sed pellentesque. Proin ornare urna quis aliquet
-                                                auctor. Sed eu quam enim. Suspendisse potenti</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#" class="blog-slider-item">
-                                        <div class="-images">
-                                            <img src="{{ asset('assets/images/blog-slider-1.png') }}" alt=""
-                                                class="img-fluid">
-                                        </div>
-                                        <div class="-content">
-                                            <span class="-category">Journey diary</span>
-                                            <h3>Ut aliquet magna viverra tincidunt. Suspendisse et massa vulputate</h3>
-                                            <p>Nullam pellentesque bibendum justo. In lobortis vestibulum justo. Aliquam
-                                                pellentesque feugiat tortor sed pellentesque. Proin ornare urna quis aliquet
-                                                auctor. Sed eu quam enim. Suspendisse potenti</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#" class="blog-slider-item">
-                                        <div class="-images">
-                                            <img src="{{ asset('assets/images/blog-slider-1.png') }}" alt=""
-                                                class="img-fluid">
-                                        </div>
-                                        <div class="-content">
-                                            <span class="-category">Journey diary</span>
-                                            <h3>Ut aliquet magna viverra tincidunt. Suspendisse et massa vulputate</h3>
-                                            <p>Nullam pellentesque bibendum justo. In lobortis vestibulum justo. Aliquam
-                                                pellentesque feugiat tortor sed pellentesque. Proin ornare urna quis aliquet
-                                                auctor. Sed eu quam enim. Suspendisse potenti</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#" class="blog-slider-item">
-                                        <div class="-images">
-                                            <img src="{{ asset('assets/images/blog-slider-1.png') }}" alt=""
-                                                class="img-fluid">
-                                        </div>
-                                        <div class="-content">
-                                            <span class="-category">Journey diary</span>
-                                            <h3>Ut aliquet magna viverra tincidunt. Suspendisse et massa vulputate</h3>
-                                            <p>Nullam pellentesque bibendum justo. In lobortis vestibulum justo. Aliquam
-                                                pellentesque feugiat tortor sed pellentesque. Proin ornare urna quis aliquet
-                                                auctor. Sed eu quam enim. Suspendisse potenti</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#" class="blog-slider-item">
-                                        <div class="-images">
-                                            <img src="{{ asset('assets/images/blog-slider-1.png') }}" alt=""
-                                                class="img-fluid">
-                                        </div>
-                                        <div class="-content">
-                                            <span class="-category">Journey diary</span>
-                                            <h3>Ut aliquet magna viverra tincidunt. Suspendisse et massa vulputate</h3>
-                                            <p>Nullam pellentesque bibendum justo. In lobortis vestibulum justo. Aliquam
-                                                pellentesque feugiat tortor sed pellentesque. Proin ornare urna quis aliquet
-                                                auctor. Sed eu quam enim. Suspendisse potenti</p>
-                                        </div>
-                                    </a>
-                                </div>
+                                @for ($i = 0; $i < 6; $i++)
+                                    <div class="swiper-slide">
+                                        <a href="{{ route('blog.detail', ['alias' => $i]) }}" class="blog-slider-item">
+                                            <div class="-images">
+                                                <img src="{{ asset('assets/images/blog-slider-1.png') }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="-content">
+                                                <span class="-category">Journey diary</span>
+                                                <h3>Ut aliquet magna viverra tincidunt. Suspendisse et massa vulputate</h3>
+                                                <p>Nullam pellentesque bibendum justo. In lobortis vestibulum justo. Aliquam
+                                                    pellentesque feugiat tortor sed pellentesque. Proin ornare urna quis
+                                                    aliquet
+                                                    auctor. Sed eu quam enim. Suspendisse potenti</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endfor
                             </div>
                         </div>
+                    </div>
+                    <div class="row block-blog-slider-footer">
+                        <a href="#">Load all aricles</a>
                     </div>
                 </div>
             </div>
@@ -225,51 +131,26 @@
                         </div>
                         <div class="col-md-9">
                             <div class="row gx-4">
-                                <div class="col-md-4">
-                                    <div class="blog-normal-item">
-                                        <div class="block-images">
-                                            <a href="#"><img src="{{ asset('assets/images/blog-normal-1.png') }}"
-                                                    alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="block-content">
-                                            {{-- <a href="#" class="-category">Category</a> --}}
-                                            <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                            <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
-                                                viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                            <a href="#" class="-more">Read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="blog-normal-item">
-                                        <div class="block-images">
-                                            <a href="#"><img src="{{ asset('assets/images/blog-normal-2.png') }}"
-                                                    alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="block-content">
-                                            {{-- <a href="#" class="-category">Category</a> --}}
-                                            <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                            <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
-                                                viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                            <a href="#" class="-more">Read more</a>
+                                @for ($i = 0; $i < 3; $i++)
+                                    <div class="col-md-4">
+                                        <div class="blog-normal-item">
+                                            <div class="block-images">
+                                                <a href="{{ route('blog.detail', ['alias' => $i]) }}">
+                                                    <img src="{{ asset('assets/images/blog-normal-1.png') }}" alt=""
+                                                        class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="block-content">
+                                                {{-- <a href="#" class="-category">Category</a> --}}
+                                                <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
+                                                <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed
+                                                    nec
+                                                    viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
+                                                <a href="#" class="-more">Read more</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="blog-normal-item">
-                                        <div class="block-images">
-                                            <a href="#"><img src="{{ asset('assets/images/blog-normal-3.png') }}"
-                                                    alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="block-content">
-                                            {{-- <a href="#" class="-category">Category</a> --}}
-                                            <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                            <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
-                                                viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                            <a href="#" class="-more">Read more</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endfor
                             </div>
                         </div>
                     </div>
@@ -286,89 +167,39 @@
                     <div class="row gx-5">
                         <div class="col-md-9">
                             <div class="block-local-culture-post-main">
-                                <div class="blog-normal-item">
-                                    <div class="block-images">
-                                        <a href="#"><img src="{{ asset('assets/images/post-culture-1.png') }}"
-                                                alt="" class="img-fluid"></a>
+                                @for ($i = 0; $i < 4; $i++)
+                                    <div class="blog-normal-item">
+                                        <div class="block-images">
+                                            <a href="{{ route('blog.detail', ['alias' => $i]) }}">
+                                                <img src="{{ asset('assets/images/post-culture-1.png') }}" alt=""
+                                                    class="img-fluid">
+                                            </a>
+                                        </div>
+                                        <div class="block-content">
+                                            {{-- <a href="#" class="-category">Category</a> --}}
+                                            <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
+                                            <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
+                                                viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
+                                            <a href="#" class="-more">Read more</a>
+                                        </div>
                                     </div>
-                                    <div class="block-content">
-                                        {{-- <a href="#" class="-category">Category</a> --}}
-                                        <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                        <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
-                                            viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                        <a href="#" class="-more">Read more</a>
-                                    </div>
-                                </div>
-                                <div class="blog-normal-item">
-                                    <div class="block-images">
-                                        <a href="#"><img src="{{ asset('assets/images/post-culture-2.png') }}"
-                                                alt="" class="img-fluid"></a>
-                                    </div>
-                                    <div class="block-content">
-                                        {{-- <a href="#" class="-category">Category</a> --}}
-                                        <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                        <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
-                                            viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                        <a href="#" class="-more">Read more</a>
-                                    </div>
-                                </div>
-                                <div class="blog-normal-item">
-                                    <div class="block-images">
-                                        <a href="#"><img src="{{ asset('assets/images/post-culture-3.png') }}"
-                                                alt="" class="img-fluid"></a>
-                                    </div>
-                                    <div class="block-content">
-                                        {{-- <a href="#" class="-category">Category</a> --}}
-                                        <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                        <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
-                                            viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                        <a href="#" class="-more">Read more</a>
-                                    </div>
-                                </div>
-                                <div class="blog-normal-item">
-                                    <div class="block-images">
-                                        <a href="#"><img src="{{ asset('assets/images/post-culture-4.png') }}"
-                                                alt="" class="img-fluid"></a>
-                                    </div>
-                                    <div class="block-content">
-                                        {{-- <a href="#" class="-category">Category</a> --}}
-                                        <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                        <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
-                                            viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                        <a href="#" class="-more">Read more</a>
-                                    </div>
-                                </div>
+                                @endfor
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="block-local-culture-post-other">
-                                <div class="blog-normal-item">
-                                    <div class="block-content">
-                                        {{-- <a href="#" class="-category">Category</a> --}}
-                                        <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                        <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
-                                            viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                        <a href="#" class="-more">Read more</a>
+                                @for ($i = 0; $i < 3; $i++)
+                                    <div class="blog-normal-item">
+                                        <div class="block-content">
+                                            {{-- <a href="#" class="-category">Category</a> --}}
+                                            <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
+                                            <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
+                                                viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
+                                            <a href="{{ route('blog.detail', ['alias' => $i]) }}" class="-more">Read
+                                                more</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="blog-normal-item">
-                                    <div class="block-content">
-                                        {{-- <a href="#" class="-category">Category</a> --}}
-                                        <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                        <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
-                                            viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                        <a href="#" class="-more">Read more</a>
-                                    </div>
-                                </div>
-                                <div class="blog-normal-item">
-                                    <div class="block-content">
-                                        {{-- <a href="#" class="-category">Category</a> --}}
-                                        <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                        <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque. Sed nec
-                                            viverra lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                        <a href="#" class="-more">Read more</a>
-                                    </div>
-                                </div>
+                                @endfor
                             </div>
                         </div>
                     </div>
