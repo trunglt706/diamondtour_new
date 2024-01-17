@@ -73,4 +73,13 @@ class Booking extends Model
     {
         return $query->where('bookings.status', $status);
     }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('bookings.code', 'LIKE', "%$search%")
+                ->orWhere('bookings.name', 'LIKE', "%$search%")
+                ->orWhere('bookings.phone', 'LIKE', "%$search%");
+        });
+    }
 }

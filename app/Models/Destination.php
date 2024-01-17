@@ -101,6 +101,14 @@ class Destination extends Model
         return $query->where('destinations.status', $status);
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('destinations.code', 'LIKE', "%$search%")
+                ->orWhere('destinations.name', 'LIKE', "%$search%");
+        });
+    }
+
     public function reviews()
     {
         return $this->hasMany(Review::class, 'destination_id', 'id');

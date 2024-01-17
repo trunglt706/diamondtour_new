@@ -67,4 +67,12 @@ class Newllter extends Model
     {
         return $query->where('newllters.status', $status);
     }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('newllters.code', 'LIKE', "%$search%")
+                ->orWhere('newllters.name', 'LIKE', "%$search%");
+        });
+    }
 }

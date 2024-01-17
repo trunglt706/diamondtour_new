@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('destination_id')->index();
             $table->string('code')->unique();
             $table->string('name');
-            $table->string('position')->nullable();
+            $table->string('vendor')->nullable();
+            $table->integer('important')->nullable()->default(0);
             $table->enum('type', ['auto', 'manual'])->nullable()->default('manual');
             $table->text('content')->nullable();
             $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');

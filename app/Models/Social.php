@@ -15,7 +15,8 @@ class Social extends Model
         'name',
         'link',
         'icon',
-        'status'
+        'status',
+        'numering'
     ];
 
     protected $hidden = [];
@@ -27,6 +28,7 @@ class Social extends Model
         parent::boot();
         self::creating(function ($model) {
             $model->status = $model->status ?? self::STATUS_ACTIVE;
+            $model->numering = $model->numering ?? self::getOrder();
         });
         self::created(function ($model) {
         });
@@ -57,5 +59,19 @@ class Social extends Model
     public function scopeOfStatus($query, $status)
     {
         return $query->where('socials.status', $status);
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('socials.code', 'LIKE', "%$search%")
+                ->orWhere('socials.name', 'LIKE', "%$search%");
+        });
+    }
+
+    public static function getOrder()
+    {
+        $max = Social::max('numering') ?? 0;
+        return $max + 1;
     }
 }

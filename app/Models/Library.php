@@ -70,6 +70,13 @@ class Library extends Model
         return $query->where('libraries.status', $status);
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('libraries.name', 'LIKE', "%$search%");
+        });
+    }
+
     public function group()
     {
         return $this->belongsTo(LibraryGroup::class, 'group_id');

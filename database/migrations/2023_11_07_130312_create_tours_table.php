@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->integer('price')->nullable();
-            $table->string('currency',10)->nullable()->default('vnd');
+            $table->string('currency', 10)->nullable()->default('vnd');
             $table->datetime('day_start')->nullable();
             $table->string('background')->nullable();
             $table->string('duration')->nullable();

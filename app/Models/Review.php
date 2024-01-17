@@ -15,9 +15,10 @@ class Review extends Model
         'destination_id',
         'code',
         'name',
-        'position',
+        'important',
         'content',
-        'status'
+        'status',
+        'vendor'
     ];
 
     protected $hidden = [];
@@ -39,8 +40,8 @@ class Review extends Model
         });
     }
 
-    const STATUS_ACTIVE = 1;
-    const STATUS_BLOCKED = 0;
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {
@@ -64,6 +65,19 @@ class Review extends Model
     public function scopeOfStatus($query, $status)
     {
         return $query->where('reviews.status', $status);
+    }
+
+    public function scopeOfImportant($query, $important)
+    {
+        return $query->where('reviews.important', $important);
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('reviews.code', 'LIKE', "%$search%")
+                ->orWhere('reviews.name', 'LIKE', "%$search%");
+        });
     }
 
     public function destination()
