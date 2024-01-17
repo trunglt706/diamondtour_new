@@ -15,7 +15,7 @@
                         <div class="row gx-3 gy-3 gx-lg-5 gy-lg-5">
                             @for ($i = 0; $i < 8; $i++)
                                 <div class="col-sm-6">
-                                    <a href="#" class="discovery-tour-item"
+                                    <a href="{{ route('tour.detail', ['alias' => $i]) }}" class="discovery-tour-item"
                                         style="background-image: url({{ asset('assets/images/tour-discovery-1.jpg') }})">
                                         <h3>Tour Tây Tạng</h3>
                                     </a>

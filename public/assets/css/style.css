@@ -1574,6 +1574,14 @@ html, body{
 .box-blog-slider .swiper-slide-active .blog-slider-item .-images{
   transform: translateY(0px);
 }
+.block-blog-slider-footer a {
+  text-align: center;
+  padding-top: 28px;
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
 /*------------------------------------ Box HandBook */
 .box-handbook{
   margin-bottom: 50px;

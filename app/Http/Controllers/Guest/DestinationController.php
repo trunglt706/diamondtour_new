@@ -12,7 +12,8 @@ class DestinationController extends Controller
         return view('pages.destination');
     }
 
-    public function details($slug)
+    public function detail($alias)
     {
+        // return view('pages.destination');
     }
 }
