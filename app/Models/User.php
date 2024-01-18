@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_login',
+        'status',
+        'admin'
     ];
 
     /**
@@ -42,4 +45,56 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    const MAX_TIME_ACTIVE_CODE = 3; // minutes
+
+    const IS_ADMIN = 1;
+    const NOT_ADMIN = 2;
+
+    const STATUS_UN_ACTIVE = 'un_active';
+    const STATUS_ACTIVE = 'active';
+    const STATUS_SUSPEND = 'blocked';
+
+    public static function get_status($status = '')
+    {
+        $types = [
+            self::STATUS_UN_ACTIVE => ['Chưa kích hoạt', 'success', COLOR_SECONDARY],
+            self::STATUS_ACTIVE => ['Đang hoạt động', 'success', COLOR_SUCCESS],
+            self::STATUS_SUSPEND => ['Tạm ngưng', 'secondary', COLOR_SECONDARY],
+        ];
+        return $status == '' ? $types : $types["$status"];
+    }
+
+    public function scopeActiveCode($query, $active_code)
+    {
+        return $query->where('users.active_code', $active_code);
+    }
+
+    public function scopeActiveCodeExpired($query)
+    {
+        return $query->whereNotNull('users.active_expire')->where('users.active_expire', '>', time());
+    }
+
+    public function scopeOfEmail($query, $email)
+    {
+        return $query->where('users.email', $email);
+    }
+
+    public function scopeOfStatus($query, $status)
+    {
+        return $query->where('users.status', $status);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('users.status', self::STATUS_ACTIVE);
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('users.name', 'LIKE', "%$search%")
+                ->orWhere('users.email', 'LIKE', "%$search%");
+        });
+    }
 }

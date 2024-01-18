@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TourDesign extends Model
 {
-use HasFactory;
+    use HasFactory;
     protected $table = 'tour_designs';
 
     protected $fillable = [
@@ -22,7 +22,6 @@ use HasFactory;
         'total_children',
         'infomation',
         'status',
-        'admin_id'
     ];
 
     protected $hidden = [];
@@ -33,7 +32,6 @@ use HasFactory;
     {
         parent::boot();
         self::creating(function ($model) {
-          
         });
         self::created(function ($model) {
         });

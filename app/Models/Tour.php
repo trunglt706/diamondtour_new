@@ -29,7 +29,8 @@ class Tour extends Model
         'exclude',
         'term',
         'notice',
-        'status'
+        'status',
+        'important'
     ];
 
     protected $hidden = [];
@@ -44,6 +45,7 @@ class Tour extends Model
             $model->slug = $model->slug ?? Str::slug('name');
             $model->currency = $model->currency ?? 'VND';
             $model->status = $model->status ?? self::STATUS_ACTIVE;
+            $model->important = $model->important ?? false;
         });
         self::created(function ($model) {
         });
@@ -54,12 +56,14 @@ class Tour extends Model
         });
     }
 
+    const STATUS_UN_ACTIVE = 'draft';
     const STATUS_ACTIVE = 'active';
     const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {
         $_status = [
+            self::STATUS_ACTIVE => ['Bản nháp', 'secondary'],
             self::STATUS_ACTIVE => ['Đang kích hoạt', 'success'],
             self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
         ];
@@ -86,8 +90,16 @@ class Tour extends Model
         return $query->where('tours.group_id', $group_id);
     }
 
-    public function tour()
+    public function scopeSearch($query, $search)
     {
-        return $this->belongsTo(Tour::class, 'group_id', 'id');
+        return $query->where(function ($query) use ($search) {
+            $query->where('tours.code', 'LIKE', "%$search%")
+                ->orWhere('tours.name', 'LIKE', "%$search%");
+        });
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(TourGroup::class, 'group_id', 'id');
     }
 }

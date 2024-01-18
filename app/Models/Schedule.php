@@ -31,6 +31,7 @@ class Schedule extends Model
         self::creating(function ($model) {
             $model->code = $model->code ?? Str::uuid();
             $model->status = $model->status ?? self::STATUS_ACTIVE;
+            $model->numering = $model->numering ?? self::getOrder($model->tour_id);
         });
         self::created(function ($model) {
         });
@@ -67,8 +68,22 @@ class Schedule extends Model
         return $query->where('schedules.tour_id', $tour_id);
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('schedules.code', 'LIKE', "%$search%")
+                ->orWhere('schedules.name', 'LIKE', "%$search%");
+        });
+    }
+
     public function tour()
     {
         return $this->belongsTo(Tour::class, 'tour_id');
+    }
+
+    public static function getOrder($tour_id)
+    {
+        $max = Schedule::tourId($tour_id)->max('numering') ?? 0;
+        return $max + 1;
     }
 }

@@ -69,6 +69,13 @@ class LibraryGroup extends Model
         return $query->where('library_groups.status', $status);
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('library_groups.name', 'LIKE', "%$search%");
+        });
+    }
+
     public function libraries()
     {
         return $this->hasMany(Library::class, 'group_id', 'id');

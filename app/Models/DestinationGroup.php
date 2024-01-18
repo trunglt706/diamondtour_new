@@ -88,6 +88,14 @@ class DestinationGroup extends Model
         return $query->where('destination_groups.status', $status);
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('destination_groups.code', 'LIKE', "%$search%")
+                ->orWhere('destination_groups.name', 'LIKE', "%$search%");
+        });
+    }
+
     public function destinations()
     {
         return $this->hasMany(Destination::class, 'group_id', 'id');

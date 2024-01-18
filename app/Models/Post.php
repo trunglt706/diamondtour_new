@@ -20,12 +20,14 @@ class Post extends Model
         'album',
         'description',
         'content',
-        'tag',
-        'status'
+        'tags',
+        'status',
+        'like_total',
+        'view_total',
+        'important'
     ];
 
     protected $hidden = [];
-
     protected $casts = [];
 
     public static function boot()
@@ -34,7 +36,8 @@ class Post extends Model
         self::creating(function ($model) {
             $model->code = $model->code ?? Str::uuid();
             $model->slug = $model->slug ?? Str::slug('name');
-            $model->status = $model->status ?? self::STATUS_ACTIVE;
+            $model->status = $model->status ?? self::STATUS_UN_ACTIVE;
+            $model->important = $model->important ?? false;
         });
         self::created(function ($model) {
         });
@@ -47,16 +50,23 @@ class Post extends Model
         });
     }
 
-    const STATUS_ACTIVE = 1;
-    const STATUS_BLOCKED = 0;
+    const STATUS_UN_ACTIVE = 'un_active';
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {
         $_status = [
+            self::STATUS_ACTIVE => ['Chưa kích hoạt', 'secondary'],
             self::STATUS_ACTIVE => ['Đang kích hoạt', 'success'],
             self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
         ];
         return $status == '' ? $_status : $_status["$status"];
+    }
+
+    public function scopeOfImportant($query, $important)
+    {
+        return $query->where('posts.important', $important);
     }
 
     public function scopeOfCode($query, $code)
@@ -77,6 +87,14 @@ class Post extends Model
     public function scopeOfStatus($query, $status)
     {
         return $query->where('posts.status', $status);
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('posts.code', 'LIKE', "%$search%")
+                ->orWhere('posts.name', 'LIKE', "%$search%");
+        });
     }
 
     public function group()

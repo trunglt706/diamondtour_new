@@ -69,4 +69,14 @@ class Contact extends Model
     {
         return $query->where('contacts.phone', $phone);
     }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('contacts.code', 'LIKE', "%$search%")
+                ->orWhere('contacts.name', 'LIKE', "%$search%")
+                ->orWhere('contacts.phone', 'LIKE', "%$search%")
+                ->orWhere('contacts.email', 'LIKE', "%$search%");
+        });
+    }
 }

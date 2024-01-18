@@ -181,3 +181,6 @@ if (!function_exists('previousUrl')) {
         return url()->previous();
     }
 }
+if (!defined('MAX_FILE_SIZE_UPLOAD')) {
+    define('MAX_FILE_SIZE_UPLOAD', (5 * 1024));
+}

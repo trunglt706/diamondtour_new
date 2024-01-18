@@ -15,7 +15,8 @@ class Qa extends Model
         'code',
         'name',
         'description',
-        'status'
+        'status',
+        'numering'
     ];
 
     protected $hidden = [];
@@ -28,6 +29,7 @@ class Qa extends Model
         self::creating(function ($model) {
             $model->code = $model->code ?? Str::uuid();
             $model->status = $model->status ?? self::STATUS_ACTIVE;
+            $model->numering = $model->numering ?? self::getOrder();
         });
         self::created(function ($model) {
         });
@@ -37,8 +39,8 @@ class Qa extends Model
         });
     }
 
-    const STATUS_ACTIVE = 1;
-    const STATUS_BLOCKED = 0;
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {
@@ -57,5 +59,19 @@ class Qa extends Model
     public function scopeOfStatus($query, $status)
     {
         return $query->where('qas.status', $status);
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('qas.code', 'LIKE', "%$search%")
+                ->orWhere('qas.name', 'LIKE', "%$search%");
+        });
+    }
+
+    public static function getOrder()
+    {
+        $max = Qa::max('numering') ?? 0;
+        return $max + 1;
     }
 }

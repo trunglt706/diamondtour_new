@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('setting_groups', function (Blueprint $table) {
             $table->id()->index();
+            $table->string('code')->unique();
             $table->string('name');
             $table->string('icon')->nullable();
             $table->integer('numering')->nullable()->default(0);
