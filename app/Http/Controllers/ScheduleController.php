@@ -22,10 +22,12 @@ class ScheduleController extends Controller
             $limit = request('limit', 10);
             $status = request('status', '');
             $search = request('search', '');
+            $tour_id = request('tour_id', '');
 
             $list = Schedule::query();
             $list = $status != '' ? $list->ofStatus($status) : $list;
             $list = $search != '' ? $list->search($search) : $list;
+            $list = $tour_id != '' ? $list->tourId($tour_id) : $list;
             $list = $list->latest()->paginate($limit);
             return response()->json([
                 'status' => true,

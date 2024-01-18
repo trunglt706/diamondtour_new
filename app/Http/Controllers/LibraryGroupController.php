@@ -22,10 +22,12 @@ class LibraryGroupController extends Controller
             $limit = request('limit', 10);
             $status = request('status', '');
             $search = request('search', '');
+            $important = request('important', '');
 
             $list = LibraryGroup::query();
             $list = $status != '' ? $list->ofStatus($status) : $list;
             $list = $search != '' ? $list->search($search) : $list;
+            $list = $important != '' ? $list->ofImportant($important) : $list;
             $list = $list->latest()->paginate($limit);
             return response()->json([
                 'status' => true,

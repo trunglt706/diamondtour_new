@@ -22,8 +22,12 @@ class BlogController extends Controller
             $limit = request('limit', 10);
             $status = request('status', '');
             $search = request('search', '');
+            $group_id = request('group_id', '');
+            $important = request('important', '');
 
             $list = Post::query();
+            $list = $group_id != '' ? $list->groupId($group_id) : $list;
+            $list = $important != '' ? $list->ofImportant($important) : $list;
             $list = $status != '' ? $list->ofStatus($status) : $list;
             $list = $search != '' ? $list->search($search) : $list;
             $list = $list->latest()->paginate($limit);

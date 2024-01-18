@@ -22,10 +22,18 @@ class TourController extends Controller
             $limit = request('limit', 10);
             $status = request('status', '');
             $search = request('search', '');
+            $group_id = request('group_id', '');
+            $country_id = request('country_id', '');
+            $province_id = request('province_id', '');
+            $important = request('important', '');
 
             $list = Tour::query();
             $list = $status != '' ? $list->ofStatus($status) : $list;
             $list = $search != '' ? $list->search($search) : $list;
+            $list = $group_id != '' ? $list->groupId($group_id) : $list;
+            $list = $country_id != '' ? $list->countryId($country_id) : $list;
+            $list = $province_id != '' ? $list->provinceId($province_id) : $list;
+            $list = $important != '' ? $list->ofImportant($important) : $list;
             $list = $list->latest()->paginate($limit);
             return response()->json([
                 'status' => true,
