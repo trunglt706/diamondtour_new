@@ -45,3 +45,12 @@ if (!defined('CACHE_QA')) {
 if (!defined('CACHE_SETTING')) {
     define('CACHE_SETTING', 'C_Setting');
 }
+
+if (!defined('CACHE_SEO')) {
+    define('CACHE_SEO', 'C_Seo');
+}
+
+//===================== User
+if (!defined('CACHE_MENU_USER')) {
+    define('CACHE_MENU_USER', 'C_Menu_User');
+}

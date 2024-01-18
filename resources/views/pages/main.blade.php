@@ -78,9 +78,11 @@
                     </div>
                     <div class="swiper-wrapper-widget">
                         <ul class="-social">
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                            @foreach ($socials as $item)
+                                <li>
+                                    <a href="{{ $item->link }}">{!! $item->icon !!}</a>
+                                </li>
+                            @endforeach
                         </ul>
                         <div class="scroll-top-sec">
                             <a href="#sec-tour-home" data-text="SCROLL">

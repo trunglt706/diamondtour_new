@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('group_id')->index();
             $table->string('code')->unique();
             $table->string('name');
-            $table->string('value')->nullable();
+            $table->text('value')->nullable();
             $table->enum('type', ['text', 'textarea', 'radio', 'checkbox', 'color', 'editor', 'file'])->nullable()->default('text');
             $table->json('data')->nullable();
             $table->string('description')->nullable();

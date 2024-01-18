@@ -53,18 +53,13 @@
                         <div class="col-md-12">
                             <div class="block-footer-introduce my-4 mb-3">
                                 <div class="introduce-logo">
-                                    <a href="#"><img src="{{ asset('assets/images/diamondtour.png') }}"
-                                            alt="" class="d-block mx-auto img-fluid"></a>
+                                    <a href="{{ route('index') }}">
+                                        <img src="{{ $seo['seo-logo'] }}" alt=""
+                                            class="d-block mx-auto img-fluid">
+                                    </a>
                                 </div>
                                 <div class="introduce-content">
-                                    <p>CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN DU LỊCH KIM CƯƠNG (DIAMONDTOUR)</p>
-                                    <p>Địa chỉ: Số 15 ngõ 1, phố Phan Huy Chú, Yết Kiêu, Hà Đông, Hà Nội</p>
-                                    <p>Hotline: <strong>0912 11 5515</strong> Email:
-                                        <strong>info@diamondtour.vn</strong>
-                                    </p>
-                                    <p>Số GPKD: 0107878502 do Sở KH&ĐT Thành Phố Hà Nội cấp lần hai ngày 11/01/2019</p>
-                                    <p>Giấy phép lữ hành Quốc tế số: 01-931/2019/TCDL-GP LHQT cấp lần hai ngày
-                                        28/01/2019</p>
+                                    {!! get_option('footer-info') !!}
                                 </div>
                             </div>
                         </div>
@@ -72,10 +67,7 @@
                 </div>
                 <div class="col-md-12 col-lg-12 col-xl-3">
                     <div class="ratio ratio-21x9 mt-5">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14901.728939011884!2d105.776639!3d20.975304!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134532c18a3d7bb%3A0x361fc6ae597b821a!2zMTUgUGjhu5EgUGhhbiBIdXkgQ2jDuiwgUC4gWeG6v3QgS2nDqnUsIEjDoCDEkMO0bmcsIEjDoCBO4buZaSwgVmlldG5hbQ!5e0!3m2!1sen!2sus!4v1704746143770!5m2!1sen!2sus"
-                            style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        {!! get_option('google-map') !!}
                     </div>
                 </div>
             </div>
@@ -85,14 +77,17 @@
                 <div class="row">
                     <div class="col-md-4">
                         <ul class="-social">
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+                            @foreach ($socials as $item)
+                                <li>
+                                    <a href="{{ $item->link }}">{!! $item->icon !!}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-md-8">
-                        <p class="text-center text-sm-end">Copyright © 2023. Diamond Tour All rights reserved</p>
+                        <p class="text-center text-sm-end">
+                            {{ get_option('copyright') }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -100,5 +95,5 @@
     </div>
 </footer>
 <button type="button" class="btn btn-primary rounded-circle btn-floating btn-lg" id="btn-back-to-top">
-  <i class="fas fa-arrow-up"></i>
+    <i class="fas fa-arrow-up"></i>
 </button>
