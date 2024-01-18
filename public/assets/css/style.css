@@ -2616,6 +2616,47 @@ html, body{
   overflow: hidden;
   margin: 50px 0px;
 }
+.single-tour-list-schedule .swiper-navigation{
+  position: relative;
+  left: 60px;
+  bottom: 60px;
+  width: 75px;
+  height: 100%;
+}
+.single-tour-list-schedule .swiper-button-next,
+.single-tour-list-schedule .swiper-button-prev{
+  --swiper-navigation-size: 55px;
+}
+.single-tour-list-schedule .swiper-button-next,
+.single-tour-list-schedule .swiper-rtl .swiper-button-prev{right: 0px;}
+.single-tour-list-schedule .swiper-button-prev,
+.single-tour-list-schedule .swiper-rtl .swiper-button-next{left: 0px;}
+.single-tour-list-schedule .swiper-button-next:after,
+.single-tour-list-schedule .swiper-button-prev:after{
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%22800px%22%20height%3D%22800px%22%20viewBox%3D%22-0.5%200%2025%2025%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M12%2022.4199C17.5228%2022.4199%2022%2017.9428%2022%2012.4199C22%206.89707%2017.5228%202.41992%2012%202.41992C6.47715%202.41992%202%206.89707%202%2012.4199C2%2017.9428%206.47715%2022.4199%2012%2022.4199Z%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M10.5596%208.41992L13.6196%2011.29C13.778%2011.4326%2013.9047%2011.6068%2013.9914%2011.8015C14.0781%2011.9962%2014.123%2012.2068%2014.123%2012.4199C14.123%2012.633%2014.0781%2012.8439%2013.9914%2013.0386C13.9047%2013.2332%2013.778%2013.4075%2013.6196%2013.55L10.5596%2016.4199%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.single-tour-list-schedule .swiper-button-prev:after{
+  transform: rotate(180deg);
+}
+.single-tour-list-schedule .swiper-pagination{
+  bottom: 50%;
+  width: 50px;
+  margin: auto;
+  right: 0;
+}
+.single-tour-list-schedule .swiper-pagination-bullet{
+  --swiper-pagination-bullet-width: 15px;
+  --swiper-pagination-bullet-height: 15px;
+  --swiper-pagination-color: #fff;
+  display: block;
+}
+.single-tour-list-schedule .swiper-pagination-bullet:not(:last-child){margin-bottom: 0.5rem;}
 .tour-schedule--item{
   display: flex;
   flex-wrap: wrap;
@@ -2653,7 +2694,7 @@ html, body{
   bottom: 0px;
   left: 0px;
   right: 0px;
-  padding: 0px 60px 50px 60px;
+  padding: 0px 60px 100px 60px;
 }
 .tour-schedule--item .overlay-content>*{
   position: relative;
@@ -2688,6 +2729,45 @@ html, body{
   padding: 0px;
   text-align: center;
   line-height: 1.875;
+}
+/*------------------------------------ Box Wrapper Single Destination */
+.box-wrapper-single-destination{
+  margin: 50px 0px;
+}
+/*------------------------------------ Box Image Row Single Destination */
+.box-image-row-single-destination{
+  --widgets-spacing: 50px;
+}
+.box-image-row-single-destination:not(:last-child){
+  margin: 20px 0px 30%;
+}
+.box-image-row-single-destination .col-left{
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #E7E7E7;
+  background-size: cover;
+  margin-bottom: 30px;
+}
+.box-image-row-single-destination .col-left{
+  flex: 0 0 auto;
+  --spacer-size: 700px;
+  width: 50%;
+  height: var(--spacer-size);
+}
+.box-image-row-single-destination .col-left .overlay-content{
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.box-image-row-single-destination .col-left .overlay-content .--content{
+  padding: 2rem;
+  padding-right: 0px;
+}
+.box-image-row-single-destination .col-left .overlay-content .--content h2{
+  font-size: 3rem;
+  font-weight: 700;
 }
 /*---------------------------------------- Box Pagination */
 .box-pagination{
@@ -2849,6 +2929,15 @@ html, body{
     width: 50%;
     margin: 15px auto 0px;
   }
+  .tour-schedule--item .overlay-content{
+    padding: 0px 30px 100px 30px;
+  }
+  .single-tour-list-schedule .swiper-navigation{left: 30px;}
+  .tour-schedule--item .-image, .tour-schedule--item .-content{width: 100%;}
+  .single-tour-list-schedule .swiper-pagination{
+    margin-left: auto;
+    margin-right: 0px;
+  }
 }
 /*------------------------------------ Monitor Ipad Portrial */
 @media (max-width: 780px){
@@ -2989,5 +3078,9 @@ html, body{
   .card-find-tour .find-tour-control:last-child {
     width: 100%;
     margin: 15px auto 0px;
+  }
+  .box-wrapper-single-tour .single-tour-list-col-destination{
+    grid-column: span 12 / auto !important;
+    grid-row: span 1 / auto !important;
   }
 }

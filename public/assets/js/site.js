@@ -167,11 +167,12 @@ var carousel_home_swiper = new Swiper(".carousel-home-swiper", {
     },
 });
 var carousel_list_schedule_swiper = new Swiper(".carousel-list-schedule-swiper", {
-    loop: true,
+    loop: false,
     spaceBetween: 30,
     slidesPerView: 1,
     pagination: {
       el: ".swiper-pagination",
+      clickable: true,
     },
     navigation: {
       nextEl: ".swiper-button-next",

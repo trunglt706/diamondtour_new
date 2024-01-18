@@ -5,7 +5,7 @@
             <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
             <span class="smllogo">
                 <a href="{{ route('index') }}">
-                    <img src="{{ $seo['seo-logo'] }}" width="80" alt="" />
+                    <img src="{{ $seo['seo-logo']??'' }}" width="80" alt="" />
                 </a>
             </span>
         </div>
@@ -14,7 +14,7 @@
             <div class="block-header-main--wrap d-flex flex-row w-100 h-100 align-items-center justify-content-between">
                 <div class="block-header-main--logo">
                     <a href="{{ route('index') }}">
-                        <img src="{{ $seo['seo-logo'] }}" alt="" class="img-fluid">
+                        <img src="{{ $seo['seo-logo']??'' }}" alt="" class="img-fluid">
                     </a>
                 </div>
                 <div class="block-header-main--menu">

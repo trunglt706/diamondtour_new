@@ -14,6 +14,6 @@ class DestinationController extends Controller
 
     public function detail($alias)
     {
-        // return view('pages.destination');
+        return view('pages.single-destination');
     }
 }
