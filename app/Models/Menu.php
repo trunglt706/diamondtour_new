@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Menu extends Model
 {
@@ -19,6 +20,7 @@ class Menu extends Model
         'parent_id',
         'status',
         'images',
+        'active',
     ];
 
     protected $hidden = [];
@@ -34,10 +36,13 @@ class Menu extends Model
             $model->status = $model->status ?? self::STATUS_ACTIVE;
         });
         self::created(function ($model) {
+            Cache::forget(CACHE_MENU);
         });
         self::updated(function ($model) {
+            Cache::forget(CACHE_MENU);
         });
         self::deleted(function ($model) {
+            Cache::forget(CACHE_MENU);
         });
     }
 
@@ -70,7 +75,17 @@ class Menu extends Model
 
     public static function  getOrder($parent_id)
     {
-        $max = Menu::parentId($parent_id)->max('nummering') ?? 0;
+        $max = Menu::parentId($parent_id)->max('numering') ?? 0;
         return $max + 1;
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Menu::class, 'parent_id');
+    }
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class, 'parent_id', 'id')->ofStatus(Menu::STATUS_ACTIVE)->orderBy('numering', 'asc');
     }
 }

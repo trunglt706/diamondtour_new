@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->string('name');
             $table->string('link')->nullable()->default('');
+            $table->string('active')->nullable()->default('');
             $table->integer('numering')->nullable()->default(0);
             $table->string('icon')->nullable();
             $table->json('images')->nullable();

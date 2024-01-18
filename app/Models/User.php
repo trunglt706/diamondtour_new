@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'code',
         'name',
         'email',
         'password',
@@ -45,6 +46,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->code = $model->code ?? generateRandomString();
+            $model->status = $model->status ?? self::STATUS_UN_ACTIVE;
+        });
+        self::created(function ($model) {
+        });
+        self::updated(function ($model) {
+        });
+        self::deleted(function ($model) {
+        });
+    }
 
     const MAX_TIME_ACTIVE_CODE = 3; // minutes
 
