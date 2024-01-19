@@ -24,6 +24,18 @@
                         </a>
                     </li>
                 @endforeach
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link text-active-primary {{ Request::is('social*') ? 'active' : '' }}"
+                        href="{{ route('user.social.index') }}">
+                        <i class="fas fa-share-alt"></i> Mạng xã hội
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link text-active-primary {{ Request::is('qa*') ? 'active' : '' }}"
+                        href="{{ route('user.qa.index') }}">
+                        <i class="fas fa-question-circle"></i> Câu hỏi thường gặp
+                    </a>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
