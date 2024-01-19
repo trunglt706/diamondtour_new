@@ -54,7 +54,7 @@
                             <div class="block-footer-introduce my-4 mb-3">
                                 <div class="introduce-logo">
                                     <a href="{{ route('index') }}">
-                                        <img src="{{ $seo['seo-logo'] }}" alt=""
+                                        <img src="{{ $seo['seo-logo']??'' }}" alt=""
                                             class="d-block mx-auto img-fluid">
                                     </a>
                                 </div>
