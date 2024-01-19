@@ -20,7 +20,8 @@ class TourGroupController extends Controller
 
     public function index(TourGroupViewRequest $request)
     {
-        return view('user.pages.tour.group.index');
+        $data['status'] = TourGroup::get_status();
+        return view('user.pages.tour.group.index', compact('data'));
     }
 
     public function list(TourGroupViewRequest $request)

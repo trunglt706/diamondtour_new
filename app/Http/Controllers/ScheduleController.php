@@ -20,7 +20,8 @@ class ScheduleController extends Controller
 
     public function index(ScheduleViewRequest $request)
     {
-        return view('user.pages.tour.schedule.index');
+        $data['status'] = Schedule::get_status();
+        return view('user.pages.tour.schedule.index', compact('data'));
     }
 
     public function list(ScheduleViewRequest $request)

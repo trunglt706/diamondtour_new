@@ -20,7 +20,8 @@ class FAQController extends Controller
 
     public function index(QaViewRequest $request)
     {
-        return view('user.pages.qa.index');
+        $data['status'] = Qa::get_status();
+        return view('user.pages.qa.index', compact('data'));
     }
 
     public function list(QaViewRequest $request)

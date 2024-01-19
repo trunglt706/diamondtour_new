@@ -20,7 +20,8 @@ class LibraryGroupController extends Controller
 
     public function index(LibraryGroupViewRequest $request)
     {
-        return view('user.pages.library.group.index');
+        $data['status'] = LibraryGroup::get_status();
+        return view('user.pages.library.group.index', compact('data'));
     }
 
     public function list(LibraryGroupViewRequest $request)

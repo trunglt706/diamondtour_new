@@ -20,7 +20,8 @@ class DestinationGroupController extends Controller
 
     public function index(DestinationGroupViewRequest $request)
     {
-        return view('user.pages.destination.group.index');
+        $data['status'] = DestinationGroup::get_status();
+        return view('user.pages.destination.group.index', compact('data'));
     }
 
     public function list(DestinationGroupViewRequest $request)

@@ -1,11 +1,16 @@
 @extends('user.default')
-@section('title', 'Quản trị viên')
+@section('title', 'Danh sách tour')
 @section('content')
     <div class="d-flex justify-content-between mb-3">
-        <h5 class="hide-mobile">Quản trị viên <span class="total-item">(0)</span></h5>
+        <h5 class="hide-mobile">Danh sách tour <span class="total-item">(0)</span></h5>
         <div class="btn-group" role="group">
-            <a href="{{ previousUrl() }}" class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-primary">
-                <i class="fas fa-chevron-left"></i> Quay lại
+            <a href="{{ route('user.tour_group.index') }}"
+                class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-primary">
+                <i class="fas fa-th-large"></i> Danh mục tour
+            </a>
+            <a href="{{ route('user.tour_design.index') }}"
+                class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-primary">
+                <i class="fas fa-pencil-ruler"></i> Thiết kế tour
             </a>
         </div>
     </div>
@@ -19,6 +24,11 @@
                     {!! generate_limit_select() !!}
                 </div>
                 <div class="d-flex justify-content-end hide-mobile">
+                    <div class="me-1 w-200px">
+                        <select name="group_id" class="form-select filter-group_id form-filter">
+
+                        </select>
+                    </div>
                     <div class="me-1 w-150px">
                         <select name="status" class="form-select filter-status form-filter select-picker">
                             <option value="" selected>-- Trạng thái --</option>
@@ -48,9 +58,9 @@
                 <thead>
                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0 bg-light-primary">
                         <th class="text-center w-100px">#</th>
-                        <th class="text-center w-150px hide-mobile">Mã</th>
-                        <th class="text-center">Tên</th>
-                        <th class="text-center w-250px hide-mobile">Email</th>
+                        <th class="text-center">Tour</th>
+                        <th class="text-center w-150px hide-mobile">Giá</th>
+                        <th class="text-center w-175px hide-mobile">Thời gian</th>
                         <th class="text-center w-125px hide-mobile">Trạng thái</th>
                     </tr>
                 </thead>
@@ -67,12 +77,12 @@
         </div>
         <!--end::Card body-->
     </div>
-    @include('user.pages.user.create')
+    @include('user.pages.tour.create')
 @endsection
 @push('js')
     <script>
+        initSelect2('.filter-group_id', "-- Danh mục --", 'tour_groups');
         const routeList = "{{ route('user.tour.list') }}";
-        const routeUpdate = "{{ route('user.tour.update') }}";
 
         filterTable();
 

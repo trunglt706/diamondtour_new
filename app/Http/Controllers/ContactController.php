@@ -20,7 +20,8 @@ class ContactController extends Controller
 
     public function index(ContactViewRequest $request)
     {
-        return view('user.pages.contact.index');
+        $data['status'] = Contact::get_status();
+        return view('user.pages.contact.index', compact('data'));
     }
 
     public function list(ContactViewRequest $request)

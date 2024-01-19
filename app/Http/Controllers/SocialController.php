@@ -20,7 +20,8 @@ class SocialController extends Controller
 
     public function index(SocialViewRequest $request)
     {
-        return view('user.pages.setting.social.index');
+        $data['status'] = Social::get_status();
+        return view('user.pages.setting.social.index', compact('data'));
     }
 
     public function list(SocialViewRequest $request)

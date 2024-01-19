@@ -20,7 +20,8 @@ class BookingController extends Controller
 
     public function index(BookingViewRequest $request)
     {
-        return view('user.pages.booking.index');
+        $data['status'] = Booking::get_status();
+        return view('user.pages.booking.index', compact('data'));
     }
 
     public function list(BookingViewRequest $request)

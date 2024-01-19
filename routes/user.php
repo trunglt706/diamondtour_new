@@ -32,7 +32,7 @@ Route::prefix('login')->name('login.')->group(function () {
 Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->group(function () {
     Route::get('', [HomeController::class, 'index'])->name('index');
     Route::get('logout', [HomeController::class, 'logout'])->name('logout');
-    Route::get('select2', [HomeController::class, 'get_data_select2'])->name('get_data_select2');
+    Route::post('select2', [HomeController::class, 'get_data_select2'])->name('get_data_select2');
     Route::get('doupload', [HomeController::class, 'upload_editor'])->name('upload_editor');
 
     Route::prefix('blog')->name('blog.')->group(function () {

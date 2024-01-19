@@ -20,7 +20,8 @@ class LibraryController extends Controller
 
     public function index(LibraryViewRequest $request)
     {
-        return view('user.pages.library.index');
+        $data['status'] = Library::get_status();
+        return view('user.pages.library.index', compact('data'));
     }
 
     public function list(LibraryViewRequest $request)

@@ -20,7 +20,8 @@ class TourController extends Controller
 
     public function index(TourViewRequest $request)
     {
-        return view('user.pages.tour.index');
+        $data['status'] = Tour::get_status();
+        return view('user.pages.tour.index', compact('data'));
     }
 
     public function list(TourViewRequest $request)

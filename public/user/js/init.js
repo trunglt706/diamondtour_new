@@ -349,7 +349,7 @@ function initSelect2(
 ) {
     var $where =
         typeof userId != "undefined"
-            ? { status: "active", brand_id: brandId }
+            ? { status: "active" }
             : { status: "active" };
     $where = where ? where : $where;
     return $(element).select2({

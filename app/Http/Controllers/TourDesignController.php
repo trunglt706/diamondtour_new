@@ -19,7 +19,8 @@ class TourDesignController extends Controller
 
     public function index(TourDesignViewRequest $request)
     {
-        return view('user.pages.tour.design.index');
+        $data['status'] = TourDesign::get_status();
+        return view('user.pages.tour.design.index', compact('data'));
     }
 
     public function list(TourDesignViewRequest $request)

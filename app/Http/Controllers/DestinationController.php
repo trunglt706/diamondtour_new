@@ -20,7 +20,8 @@ class DestinationController extends Controller
 
     public function index(DestinationViewRequest $request)
     {
-        return view('user.pages.destination.index');
+        $data['status'] = Destination::get_status();
+        return view('user.pages.destination.index', compact('data'));
     }
 
     public function list(DestinationViewRequest $request)

@@ -20,7 +20,8 @@ class BlogController extends Controller
 
     public function index(BlogViewRequest $request)
     {
-        return view('user.pages.blog.index');
+        $data['status'] = Post::get_status();
+        return view('user.pages.blog.index', compact('data'));
     }
 
     public function list(BlogViewRequest $request)

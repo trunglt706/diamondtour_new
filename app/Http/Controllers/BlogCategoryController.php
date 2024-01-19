@@ -20,7 +20,8 @@ class BlogCategoryController extends Controller
 
     public function index(BlogCategoryViewRequest $request)
     {
-        return view('user.pages.blog.group.index');
+        $data['status'] = PostGroup::get_status();
+        return view('user.pages.blog.group.index', compact('data'));
     }
 
     public function list(BlogCategoryViewRequest $request)
