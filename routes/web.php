@@ -6,6 +6,7 @@ use App\Http\Controllers\Guest\DestinationController;
 use App\Http\Controllers\Guest\HomeController;
 use App\Http\Controllers\Guest\LibraryController;
 use App\Http\Controllers\Guest\TourController;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('clear-cache', function () {
+    Cache::flush();
+});
 Route::prefix('')->controller(HomeController::class)->group(function () {
     Route::get('', 'index')->name('index');
     Route::get('faq', 'faq')->name('faq');
