@@ -6,6 +6,7 @@
           <div class="block-section-header">
             <h2>Read Our Latest Travel Blog & Tips Here</h2>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et.</p>
+            <a href="#" class="btn btn-more">Xem thêm</a>
           </div>
           <div class="post-home-first-item">
             <img src="{{ asset('assets/images/post-home-first-1.jpg') }}" class="img-fluid" alt="">

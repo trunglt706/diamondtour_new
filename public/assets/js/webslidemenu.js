@@ -3,11 +3,30 @@ jQuery(function() {
     document['addEventListener']('touchstart', function() {}, false);
     jQuery(function() {
         jQuery('<div class="overlapblackbg"></div>')['prependTo']('.wsmenu');
+        jQuery('<div class="overlapblackbg"></div>')['prependTo']('.box-offcanvas-contact-us');
+        jQuery('<div class="overlapblackbg"></div>')['prependTo']('.box-offcanvas-search');
         jQuery('#wsnavtoggle')['click'](function() {
             jQuery('body')['toggleClass']('wsactive')
         });
+
+        jQuery('#navContactUs')['click'](function() {
+            jQuery('.box-offcanvas-contact-us')['addClass']('active');
+        });
+        jQuery('#offcanvas-contact-us')['click'](function() {
+            jQuery('.box-offcanvas-contact-us')['removeClass']('active');
+        });
+
+        jQuery('#navSearch')['click'](function() {
+            jQuery('.box-offcanvas-search')['addClass']('active');
+        });
+        jQuery('#offcanvas-search')['click'](function() {
+            jQuery('.box-offcanvas-search')['removeClass']('active');
+        });
+
         jQuery('.overlapblackbg')['click'](function() {
             jQuery('body')['removeClass']('wsactive')
+            jQuery('.box-offcanvas-contact-us')['removeClass']('active');
+            jQuery('.box-offcanvas-search')['removeClass']('active');
         });
         jQuery('.wssearch')['click'](function() {
             jQuery(this)['toggleClass']('wsopensearch')

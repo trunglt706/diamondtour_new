@@ -204,13 +204,41 @@ var blog_slider_swiper = new Swiper(".blog-slider-swiper", {
     },
 });
 /*------------------------------------ testimonial Slider Swiper */
-var blog_slider_swiper = new Swiper(".testimonial-slider-swiper", {
+var testimonial_slider_swiper = new Swiper(".testimonial-slider-swiper", {
     loop: true,
     spaceBetween: 30,
     slidesPerView: 1,
     autoplay: {
         delay: 10000,
         disableOnInteraction: false,
+    },
+    breakpoints: {
+        640: {
+            slidesPerView: 1,
+            spaceBetween: 30,
+        },
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+        },
+        1024: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+        },
+    },
+});
+/*------------------------------------ Reason Slider Swiper */
+var reason_slider_swiper = new Swiper(".reason-slider-swiper", {
+    loop: true,
+    spaceBetween: 30,
+    slidesPerView: 1,
+    autoplay: {
+        delay: 10000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
     breakpoints: {
         640: {
@@ -290,4 +318,17 @@ var blog_slider_swiper = new Swiper(".testimonial-slider-swiper", {
 
     myBacktoTop.addEventListener("click", backToTop);
 
+
+    $('a.current-language').click(function(e) {
+      e.preventDefault();
+      if($(this).hasClass('active') || $(this).closest('.block-header-top--language').find('.option-select').hasClass('open') || $(this).closest('.wslanguage').find('.option-select').hasClass('open')){
+        $(this).removeClass('active');
+        $(this).closest('.block-header-top--language').find('.option-select').removeClass('open');
+        $(this).closest('.wslanguage').find('.option-select').removeClass('open');
+      }else{
+        $(this).addClass('active');
+        $(this).closest('.block-header-top--language').find('.option-select').addClass('open');
+        $(this).closest('.wslanguage').find('.option-select').addClass('open');
+      }
+    });
 })(jQuery);
