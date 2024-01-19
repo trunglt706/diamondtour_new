@@ -21,7 +21,12 @@ class SettingController extends Controller
 
     public function index(SettingViewRequest $request)
     {
-        return view('user.pages.setting.index');
+        $type = request('type', 'seo');
+        $data = [
+            'groups' => SettingGroup::ofStatus(SettingGroup::STATUS_ACTIVE)->orderBy('numering', 'asc')->select('code', 'name', 'icon', 'id')->get(),
+            'group' => SettingGroup::with('settings')->ofCode($type)->ofStatus(SettingGroup::STATUS_ACTIVE)->firstOrFail()
+        ];
+        return view('user.pages.setting.index', compact('data'));
     }
 
     public function update(SettingUpdateRequest $request)

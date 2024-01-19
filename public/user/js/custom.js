@@ -127,7 +127,6 @@ function generateUUID() {
 
 $(document).on("click", ".show-password", function (e) {
     e.preventDefault();
-    console.log(11);
     var passElement = $(this).closest("div").find("input");
     const type = passElement.attr("type");
     if (type == "password") {

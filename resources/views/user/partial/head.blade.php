@@ -17,7 +17,7 @@
 </style>
 <!-- ================== END BASE CSS STYLE ================== -->
 @stack('css')
-
+<link href="{{ asset('user/css/select2.min.css') }}" rel="stylesheet" />
 @if (auth()->check())
     <link href="{{ asset('user/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('user/plugins/select-picker/dist/picker.min.css') }}" rel="stylesheet">

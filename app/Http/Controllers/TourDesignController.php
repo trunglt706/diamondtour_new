@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class TourDesignController extends Controller
 {
+    protected $limit_default;
+
+    public function __construct()
+    {
+        $this->limit_default = 10;
+    }
+
     public function index(TourDesignViewRequest $request)
     {
         return view('user.pages.tour.design.index');

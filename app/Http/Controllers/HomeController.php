@@ -18,7 +18,7 @@ class HomeController extends Controller
         $data = [
             'users' => User::count(),
             'blogs' => Post::count(),
-            'destinatons' => Destination::count(),
+            'destinations' => Destination::count(),
             'tours' => Tour::count(),
         ];
         return view('user.pages.index', compact('data'));
@@ -46,5 +46,10 @@ class HomeController extends Controller
             }
         }
         return $data->get()->toArray();
+    }
+
+    public function upload_editor()
+    {
+        return view('user.editor.index');
     }
 }

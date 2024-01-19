@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
+    protected $limit_default;
+
+    public function __construct()
+    {
+        $this->limit_default = 10;
+    }
+
     public function index(BlogViewRequest $request)
     {
         return view('user.pages.blog.index');

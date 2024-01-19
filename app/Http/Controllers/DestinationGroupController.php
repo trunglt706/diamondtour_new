@@ -11,10 +11,18 @@ use Illuminate\Support\Facades\DB;
 
 class DestinationGroupController extends Controller
 {
+    protected $limit_default;
+
+    public function __construct()
+    {
+        $this->limit_default = 10;
+    }
+
     public function index(DestinationGroupViewRequest $request)
     {
         return view('user.pages.destination.group.index');
     }
+
     public function list(DestinationGroupViewRequest $request)
     {
         try {

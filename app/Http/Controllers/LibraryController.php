@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class LibraryController extends Controller
 {
+    protected $limit_default;
+
+    public function __construct()
+    {
+        $this->limit_default = 10;
+    }
+
     public function index(LibraryViewRequest $request)
     {
         return view('user.pages.library.index');

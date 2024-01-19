@@ -7,6 +7,13 @@ use App\Models\LogAction;
 
 class LogActionController extends Controller
 {
+    protected $limit_default;
+
+    public function __construct()
+    {
+        $this->limit_default = 10;
+    }
+
     public function index(LogActionViewRequest $request)
     {
         return view('user.pages.log_action.index');

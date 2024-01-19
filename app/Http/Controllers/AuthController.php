@@ -21,7 +21,7 @@ class AuthController extends Controller
         DB::beginTransaction();
         try {
             $user = User::ofEmail(request('email'))->active()->first();
-            if ($user && !Hash::check(request('password'), $user->password)) {
+            if ($user && Hash::check(request('password'), $user->password)) {
                 Auth::login($user);
                 $user->last_login = now();
                 $user->save();

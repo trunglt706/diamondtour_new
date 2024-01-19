@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class TourGroupController extends Controller
 {
+    protected $limit_default;
+
+    public function __construct()
+    {
+        $this->limit_default = 10;
+    }
+
     public function index(TourGroupViewRequest $request)
     {
         return view('user.pages.tour.group.index');

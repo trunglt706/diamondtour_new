@@ -2,6 +2,7 @@
 
 use App\Models\Setting;
 use App\Models\UserMenu;
+use Illuminate\Support\Facades\Request;
 
 if (!function_exists('get_option')) {
     function get_option($code, $default = '')
@@ -17,7 +18,7 @@ if (!function_exists('renderUserMenu')) {
         $menus = UserMenu::with('menus')->parentId(0)->ofStatus(UserMenu::STATUS_ACTIVE)->orderBy('numering', 'asc')->get();
         foreach ($menus as $menu) {
             $hasSub = (count($menu->menus) > 0) ? 'has-sub' : '';
-            $menuUrl = (!empty($menu->url)) ? $menu->url : '';
+            $menuUrl = (!empty($menu->link)) ? $menu->link : '';
             $menuIcon = (!empty($menu->icon)) ? '<span class="menu-icon">' . $menu->icon . '</span>' : '';
             $menuText = (!empty($menu->name)) ? '<span class="menu-text">' . $menu->name . '</span>' : '';
             $menuCaret = (!empty($hasSub)) ? '<span class="menu-caret"><b class="caret"></b></span>' : '';
@@ -30,7 +31,7 @@ if (!function_exists('renderUserMenu')) {
                     $menuSubMenu .= $subMenu[0];
                     $menuSubMenu .= '</div>';
 
-                    $active = ((!empty($menu->url) && check_active_menu($menu->url, $currentUrl)) || $subMenu[1] == 'active') ? 'active' : '';
+                    $active = $subMenu[1] == 'active' ? 'active' : '';
                     echo '
                         <div class="menu-item ' . $hasSub . ' ' . $active . '">
                             <a href="' . $menuUrl . '" class="menu-link ' . $active . '">
@@ -42,8 +43,8 @@ if (!function_exists('renderUserMenu')) {
                         </div>
                     ';
                 }
-            } else if ($menu->code == 'dashboard') {
-                $active = (!empty($menu->url) && check_active_menu($menu->url, $currentUrl)) ? 'active' : '';
+            } else {
+                $active = Request::is($menu->active) ? 'active' : '';
                 echo '
                         <div class="menu-item ' . $hasSub . ' ' . $active . '">
                             <a href="' . $menuUrl . '" class="menu-link ' . $active . '">
@@ -66,29 +67,27 @@ if (!function_exists('renderUserSubMenu')) {
         $subMenu = '';
         $status_active = '';
         foreach ($value as $menu) {
-            if ($menu->code == 'dashboard') {
-                $subSubMenu = '';
-                $hasSub = count($menu->menus) > 0 ? 'has-sub' : '';
-                $menuUrl = $menu->url ?? '';
-                $menuCaret = (!empty($hasSub)) ? '<span class="menu-caret"><b class="caret"></b></span>' : '';
-                $menuText = $menu->name ? '<span class="menu-text">' . $menu->name . '</span>' : '';
+            $subSubMenu = '';
+            $hasSub = count($menu->menus) > 0 ? 'has-sub' : '';
+            $menuUrl = $menu->link ?? '';
+            $menuCaret = (!empty($hasSub)) ? '<span class="menu-caret"><b class="caret"></b></span>' : '';
+            $menuText = $menu->name ? '<span class="menu-text">' . $menu->name . '</span>' : '';
 
-                if (!empty($hasSub)) {
-                    $subSubMenu .= '<div class="menu-submenu">';
-                    $subSubMenu .= renderUserSubMenu($menu->menus, $currentUrl);
-                    $subSubMenu .= '</div>';
-                }
-                $active = check_active_menu($menuUrl, $currentUrl) ? 'active' : '';
-                if ($status_active == '') {
-                    $status_active = $active;
-                }
-                $subMenu .= '
+            if (!empty($hasSub)) {
+                $subSubMenu .= '<div class="menu-submenu">';
+                $subSubMenu .= renderUserSubMenu($menu->menus, $currentUrl);
+                $subSubMenu .= '</div>';
+            }
+            $active = Request::is($menu->active) ? 'active' : '';
+            if ($status_active == '') {
+                $status_active = $active;
+            }
+            $subMenu .= '
                         <div class="menu-item ' . $hasSub . ' ' . $active . '">
                             <a href="' . $menuUrl . '" class="menu-link">' . $menuText . $menuCaret . '</a>
                             ' . $subSubMenu . '
                         </div>
                 ';
-            }
         }
         return [$subMenu, $status_active];
     }
@@ -107,5 +106,18 @@ if (!function_exists('check_active_menu')) {
 }
 
 if (!defined('USER_PREFIX_ROUTE')) {
-    define('USER_PREFIX_ROUTE', 'user');
+    define('USER_PREFIX_ROUTE', 'admin');
+}
+
+if (!function_exists('generate_limit_select')) {
+    function generate_limit_select($values = [10, 20, 50, 100])
+    {
+        $string = '<div class="w-75px me-1"><select name="limit" class="form-select filter-limit form-filter select-picker">';
+        foreach ($values as $key => $v) {
+            $selected = $key == 0 ? ' selected' : '';
+            $string .= '<option value="' . $v . '" ' . $selected . '>' . $v . '</option>';
+        }
+        $string .= '</select></div>';
+        return $string;
+    }
 }

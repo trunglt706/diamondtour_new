@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class ScheduleController extends Controller
 {
+    protected $limit_default;
+
+    public function __construct()
+    {
+        $this->limit_default = 10;
+    }
+
     public function index(ScheduleViewRequest $request)
     {
         return view('user.pages.tour.schedule.index');

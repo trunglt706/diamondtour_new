@@ -21,13 +21,13 @@
                         <div class="mb-3">
                             <label class="form-label">Email <span class="text-danger fw-900">*</span></label>
                             <input type="email" name="email" class="form-control form-control-lg fs-15px"
-                                placeholder="Nhập email" value="{{ old('email') }}">
+                                placeholder="Nhập email" value="admin@gmail.com">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Mật khẩu <span class="text-danger fw-900">*</span></label>
                             <div class="input-group">
-                                <input type="password" name="password" class="form-control form-control-lg fs-15px"
-                                    placeholder="Nhập mật khẩu" required>
+                                <input type="password" name="password" value="123456"
+                                    class="form-control form-control-lg fs-15px" placeholder="Nhập mật khẩu" required>
                                 <span role="button" class="input-group-text show-password">
                                     <i class="fas fa-eye"></i>
                                 </span>

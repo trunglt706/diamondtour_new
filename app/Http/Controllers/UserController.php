@@ -13,9 +13,17 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    protected $limit_default;
+
+    public function __construct()
+    {
+        $this->limit_default = 10;
+    }
+
     public function index(UserViewRequest $request)
     {
-        return view('user.pages.user.index');
+        $data['status'] = User::get_status();
+        return view('user.pages.user.index', compact('data'));
     }
 
     public function list(UserViewRequest $request)

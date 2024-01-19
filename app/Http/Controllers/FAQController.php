@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class FAQController extends Controller
 {
+    protected $limit_default;
+
+    public function __construct()
+    {
+        $this->limit_default = 10;
+    }
+
     public function index(QaViewRequest $request)
     {
         return view('user.pages.qa.index');

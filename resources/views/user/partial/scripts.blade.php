@@ -2,6 +2,7 @@
 <script src="{{ asset('user/js/vendor.min.js') }}"></script>
 <script src="{{ asset('user/js/app.min.js') }}"></script>
 <script src="{{ asset('user/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+<script src="{{ asset('user/js/select2.min.js') }}"></script>
 @if (auth()->check())
     <script src="{{ asset('user/plugins/select-picker/dist/picker.min.js') }}"></script>
     <script src="{{ asset('user/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
@@ -44,9 +45,6 @@
 </script>
 @if (auth()->check())
     <script src="{{ asset('user/js/init.js') }}"></script>
-    @stack('js')
-    <script src="{{ asset('user/js/custom.js') }}"></script>
-@else
-    @stack('js')
-    <script src="{{ asset('user/js/custom.js') }}"></script>
 @endif
+@stack('js')
+<script src="{{ asset('user/js/custom.js') }}"></script>

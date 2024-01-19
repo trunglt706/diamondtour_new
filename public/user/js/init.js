@@ -40,7 +40,7 @@ function loadTable(
         hideSniper(".table-loading");
         $("button[type=submit]").removeAttr("disabled");
         $(".btn-reload").html('<i class="fas fa-sync"></i>');
-        if (rs.status == 200) {
+        if (rs.status) {
             $(tableElement).html(rs.data);
             $(".total-item").html(`(${formatNumber(rs?.total)})`);
             if (otherFunction) {
@@ -70,7 +70,7 @@ function deleteData(id, url, title = "Xác nhận xóa dữ liệu này?") {
             data: { id },
             success: function (rs) {
                 hideSniper(".table-loading");
-                if (rs.status == 200) {
+                if (rs.status) {
                     filterTable();
                 }
                 Toast.fire({
@@ -102,7 +102,7 @@ function loadNotify(urlLoadNotify) {
         contentType: false,
         type: "POST",
         success: function (rs) {
-            if (rs.status == 200) {
+            if (rs.status) {
                 $(".notification .notify-total").text(rs?.data?.total);
                 $(".notification .dropdown-notification").html(rs?.data?.list);
             }
@@ -175,7 +175,7 @@ function updateNotification(type = "one", id = "", status = 1) {
             type: type,
         },
         function (data) {
-            if (data?.status == 200) {
+            if (data?.status) {
                 let total = $(".notification .notify-total").text();
                 if (data?.read == "all") {
                     $(".notification-item")
@@ -239,9 +239,11 @@ if (form_create) {
             contentType: false,
             type: "POST",
             success: function (rs) {
-                $("#addModal .btn-create").html(`<i class="fas fa-plus"></i> Tạo mới`);
+                $("#addModal .btn-create").html(
+                    `<i class="fas fa-plus"></i> Tạo mới`
+                );
                 $("button[type=submit]").removeAttr("disabled");
-                if (rs.status == 200) {
+                if (rs.status) {
                     loadTable();
                     if (rs?.uri) {
                         location.href = rs?.uri;
@@ -256,7 +258,9 @@ if (form_create) {
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 var err = eval("(" + XMLHttpRequest.responseText + ")");
-                $("#addModal .btn-create").html(`<i class="fas fa-plus"></i> Tạo mới`);
+                $("#addModal .btn-create").html(
+                    `<i class="fas fa-plus"></i> Tạo mới`
+                );
                 $("button[type=submit]").removeAttr("disabled");
                 Toast.fire({
                     icon: "error",
@@ -287,7 +291,7 @@ if (form_update) {
                     `<i class="fas fa-save"></i> Cập nhật`
                 );
                 $("button[type=submit]").removeAttr("disabled");
-                if (rs.status == 200) {
+                if (rs.status) {
                     form_update[0].reset();
                     loadTable();
                     if (rs?.uri) {
