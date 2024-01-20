@@ -22,7 +22,24 @@ class UserInsertRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email' => 'required|email|unique:users,email',
+            'name' => 'required',
+            'password' => 'required|between:6,30',
+            'confirm_password' => 'required|same:password'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Nhập email!',
+            'email.email' => 'Email không đúng định dạng!',
+            'email.unique' => 'Email đã tồn tại!',
+            'name.required' => 'Nhập tên!',
+            'password.required' => 'Nhập mật khẩu',
+            'password.between' => 'Độ dài mật khẩu từ 6 - 30 ký tự!',
+            'confirm_password.required' => 'Nhập mật khẩu xác nhận!',
+            'confirm_password.same' => 'Mật khẩu xác nhận chưa đúng!',
         ];
     }
 }

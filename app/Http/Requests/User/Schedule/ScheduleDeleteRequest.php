@@ -22,7 +22,15 @@ class ScheduleDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:schedules,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn lịch trình!',
+            'id.exists' => 'Lịch trình này không tồn tại!',
         ];
     }
 }

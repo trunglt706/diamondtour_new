@@ -22,7 +22,17 @@ class SocialUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:socials,id',
+            'name' => 'required'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn mạng xã hội!',
+            'id.exists' => 'Mạng xã hội này không tồn tại!',
+            'name.required' => 'Nhập tên mạng xã hội!'
         ];
     }
 }

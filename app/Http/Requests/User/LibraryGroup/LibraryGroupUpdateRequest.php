@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User\LibraryGroup;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class LibraryGroupUpdateRequest extends FormRequest
 {
@@ -22,7 +23,25 @@ class LibraryGroupUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:library_groups,id',
+            'name' => 'required',
+            'image' => [
+                'nullable',
+                File::image()->between(1, MAX_FILE_SIZE_UPLOAD)
+            ],
+            'important' => 'nullable|in:1'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn danh mục thư viện!',
+            'id.exists' => 'Danh mục thư viện không tồn tại!',
+            'name.required' => 'Nhập tên danh mục thư viện!',
+            'image.image' => 'Hình ảnh chưa đúng định dạng!',
+            'image.between' => 'Kích thước hình ảnh chưa phù hợp!',
+            'important.in' => 'Thông tin quan trọng chưa hợp lệ!'
         ];
     }
 }

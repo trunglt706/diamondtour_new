@@ -55,14 +55,23 @@ class UserController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = request()->all();
+            $data = request()->only('name', 'email', 'password', 'status');
+            $data['password'] = Hash::make($data['password']);
             $new = User::create($data);
             DB::commit();
-            return redirect()->back()->with('success', 'Tạo mới thành công');
+            return response()->json([
+                'status' => true,
+                'message' => 'Tạo mới thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();
-            return redirect()->back()->with('error', 'Có lỗi xãy ra!');
+            return response()->json([
+                'status' => false,
+                'message' => 'Có lỗi xãy ra!',
+                'type' => 'error',
+            ]);
         }
     }
 

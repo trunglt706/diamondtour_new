@@ -22,7 +22,15 @@ class TourDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:tours,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn thông tin tour!',
+            'id.exists' => 'Thông tin tour này không tồn tại!',
         ];
     }
 }

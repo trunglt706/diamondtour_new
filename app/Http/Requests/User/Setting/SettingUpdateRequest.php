@@ -21,8 +21,11 @@ class SettingUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return [];
+    }
+
+    public function messages(): array
+    {
+        return [];
     }
 }

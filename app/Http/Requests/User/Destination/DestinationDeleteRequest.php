@@ -22,7 +22,15 @@ class DestinationDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:destinations,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn điểm đến!',
+            'id.exists' => 'Điểm đến này không tồn tại!',
         ];
     }
 }

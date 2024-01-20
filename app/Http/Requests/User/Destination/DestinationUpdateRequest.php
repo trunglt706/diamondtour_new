@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User\Destination;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class DestinationUpdateRequest extends FormRequest
 {
@@ -22,7 +23,34 @@ class DestinationUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:destinations,id',
+            'group_id' => 'required|exists:destination_groups,id',
+            'country_id' => 'nullable|exists:countries,id',
+            'province_id' => 'nullable|exists:provinces,id',
+            'name' => 'required',
+            'image' => [
+                'nullable',
+                File::image()->between(1, MAX_FILE_SIZE_UPLOAD),
+            ],
+            'content' => 'required',
+            'important' => 'nullable|in:1',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn điểm đến!',
+            'id.exists' => 'Điểm đến không tồn tại!',
+            'group_id.required' => 'Chọn danh mục!',
+            'group_id.exists' => 'Danh mục không tồn tại!',
+            'country_id.exists' => 'Quốc gia này không tồn tại!',
+            'province_id.exists' => 'Tỉnh thành này không tồn tại!',
+            'name.required' => 'Nhập tiêu đề điểm đến!',
+            'image.image' => 'Hình ảnh chưa đúng định dạng!',
+            'image.between' => 'Kích thước hình ảnh chưa phù hợp!',
+            'content.required' => 'nhập nội dung!',
+            'important.in' => 'Giá trị quan trọng chưa đúng!'
         ];
     }
 }

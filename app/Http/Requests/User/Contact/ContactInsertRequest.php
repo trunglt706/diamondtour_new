@@ -22,7 +22,19 @@ class ContactInsertRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'required|email',
+            'question' => 'required'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nhập tên người liên hệ!',
+            'email.required' => 'Nhập email người liên hệ!',
+            'email.email' => 'Email chưa đúng định dạng!',
+            'question.required' => 'Nhập nội dung!'
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User\DestinationGroup;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class DestinationGroupInsertRequest extends FormRequest
 {
@@ -22,7 +23,23 @@ class DestinationGroupInsertRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'image' => [
+                'nullable',
+                File::image()->between(1, MAX_FILE_SIZE_UPLOAD)
+            ],
+            'type' => 'required|in:national,local'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nhập tên danh mục điểm đến!',
+            'image.image' => 'Hình ảnh chưa đúng định dạng!',
+            'image.between' => 'Kích thước hình ảnh chưa phù hợp!',
+            'type.required' => 'Nhập loại điểm đến!',
+            'type.in' => 'Giá trị loại điểm đến chưa đúng!',
         ];
     }
 }

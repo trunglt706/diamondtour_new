@@ -22,7 +22,22 @@ class ContactUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:contacts,id',
+            'name' => 'required',
+            'email' => 'required|email',
+            'question' => 'required'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn thông tin liên hệ!',
+            'id.exists' => 'Thông tin liên hệ không tồn tại!',
+            'name.required' => 'Nhập tên người liên hệ!',
+            'email.required' => 'Nhập email người liên hệ!',
+            'email.email' => 'Email chưa đúng định dạng!',
+            'question.required' => 'Nhập nội dung!'
         ];
     }
 }

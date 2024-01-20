@@ -22,7 +22,15 @@ class ContactDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:contacts,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn thông tin liên hệ!',
+            'id.exists' => 'Thông tin liên hệ này không tồn tại!',
         ];
     }
 }

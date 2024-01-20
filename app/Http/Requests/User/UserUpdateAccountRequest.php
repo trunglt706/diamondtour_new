@@ -22,7 +22,21 @@ class UserUpdateAccountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:users,id',
+            'password' => 'required|between:6,30',
+            'confirm_password' => 'required|same:password'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn quản trị viên!',
+            'id.exists' => 'Quản trị viên này không tồn tại!',
+            'password.required' => 'Nhập mật khẩu',
+            'password.between' => 'Độ dài mật khẩu từ 6 - 30 ký tự!',
+            'confirm_password.required' => 'Nhập mật khẩu xác nhận!',
+            'confirm_password.same' => 'Mật khẩu xác nhận chưa đúng!',
         ];
     }
 }

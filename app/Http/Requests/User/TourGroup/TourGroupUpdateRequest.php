@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User\TourGroup;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class TourGroupUpdateRequest extends FormRequest
 {
@@ -22,7 +23,23 @@ class TourGroupUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:tour_groups,id',
+            'name' => 'required',
+            'image' => [
+                'nullable',
+                File::image()->between(1, MAX_FILE_SIZE_UPLOAD)
+            ]
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn danh mục tour!',
+            'id.exists' => 'Danh mục này không tồn tại!',
+            'name' => 'Nhập tên danh mục!',
+            'image.image' => 'Hình ảnh chưa đúng định dạng!',
+            'image.between' => 'Kích thước hình ảnh chưa đúng!',
         ];
     }
 }

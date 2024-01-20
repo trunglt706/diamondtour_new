@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User\TourGroup;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class TourGroupInsertRequest extends FormRequest
 {
@@ -22,7 +23,20 @@ class TourGroupInsertRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'image' => [
+                'nullable',
+                File::image()->between(1, MAX_FILE_SIZE_UPLOAD)
+            ]
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nhập tên danh mục tour!',
+            'image.image' => 'Hình ảnh chưa đúng định dạng!',
+            'image.between' => 'Kích thước hình ảnh chưa phù hợp!',
         ];
     }
 }

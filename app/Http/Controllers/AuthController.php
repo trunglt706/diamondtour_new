@@ -226,7 +226,8 @@ class AuthController extends Controller
             Social::create([
                 'code' => 'facebook',
                 'name' => 'Facebook',
-                'icon' => '<i class="fa-brands fa-square-facebook"></i>'
+                'icon' => '<i class="fa-brands fa-square-facebook"></i>',
+                'link' => 'https://www.facebook.com/diamondtourvn'
             ]);
             Social::create([
                 'code' => 'instagram',

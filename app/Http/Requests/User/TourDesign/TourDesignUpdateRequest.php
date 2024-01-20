@@ -22,7 +22,16 @@ class TourDesignUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:tour_designs,id',
+            'day_start' => 'nullable|date:Y-m-d',
+            'email' => 'nullable|email',
+            'total_adult' => 'nullable|integer|min:0',
+            'total_children' => 'nullable|integer|min:0',
         ];
+    }
+
+    public function messages(): array
+    {
+        return [];
     }
 }

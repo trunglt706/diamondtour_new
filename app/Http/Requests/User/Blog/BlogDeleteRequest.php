@@ -22,7 +22,15 @@ class BlogDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:posts,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn blog!',
+            'id.exists' => 'Blog này không tồn tại!',
         ];
     }
 }

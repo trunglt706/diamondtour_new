@@ -22,7 +22,15 @@ class BlogCategoryDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|exists:post_groups,id',
+            'id' => 'required|exists:post_groups,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn danh mục blog!',
+            'id.exists' => 'Danh mục blog này không tồn tại!',
         ];
     }
 }

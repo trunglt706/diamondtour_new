@@ -22,7 +22,22 @@ class LibraryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:libraries,id',
+            'group_id' => 'required|exists:library_groups,id',
+            'name' => 'required',
+            'important' => 'nullable|in:1'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn thư viện!',
+            'id.exists' => 'Thư viện này không tồn tại!',
+            'group_id.required' => 'Chọn danh mục thư viện!',
+            'group_id.exists' => 'Danh mục này không tồn tại!',
+            'name.required' => 'Nhập tên thư viện',
+            'important.in' => 'Giá trị quan trọng chưa phù hợp!'
         ];
     }
 }

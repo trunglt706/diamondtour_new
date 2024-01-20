@@ -22,7 +22,15 @@ class UserDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:users,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn quản trị viên!',
+            'id.exists' => 'Quản trị viên này không tồn tại!',
         ];
     }
 }

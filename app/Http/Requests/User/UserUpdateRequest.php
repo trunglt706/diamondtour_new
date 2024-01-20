@@ -22,7 +22,21 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:users,id',
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,except,' . request('id')
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn quản trị viên!',
+            'id.exists' => 'Quản trị viên này không tồn tại!',
+            'name.required' => 'Nhập tên!',
+            'email.required' => 'Nhập email!',
+            'email.email' => 'Email không đúng định dạng!',
+            'email.unique' => 'Email đã tồn tại!',
         ];
     }
 }

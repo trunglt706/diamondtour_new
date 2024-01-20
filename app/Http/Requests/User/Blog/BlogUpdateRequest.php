@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User\Blog;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class BlogUpdateRequest extends FormRequest
 {
@@ -22,7 +23,30 @@ class BlogUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:posts,id',
+            'group_id' => 'required|exists:post_groups,id',
+            'name' => 'required',
+            'image' => [
+                'nullable',
+                File::image()->between(6, MAX_FILE_SIZE_UPLOAD)
+            ],
+            'content' => 'required',
+            'important' => 'nullable|in:1'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn blog!',
+            'id.exists' => 'Blog này không tồn tại!',
+            'group_id.required' => 'Chọn danh mục!',
+            'group_id.exists' => 'Danh mục này không tồn tại!',
+            'name.required' => 'Nhập tiêu đề blog!',
+            'content.required' => 'Nhập nội dung blog!',
+            'important.in' => 'Giá trị blog quan trọng chưa đúng!',
+            'image.image' => 'Hình ảnh chưa đúng định dạng!',
+            'image.between' => 'Kích thước hình ảnh chưa phù hợp!'
         ];
     }
 }

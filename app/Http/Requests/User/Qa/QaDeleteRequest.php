@@ -22,7 +22,15 @@ class QaDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:qas,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn câu hỏi!',
+            'id.exists' => 'Câu hỏi này không tồn tại!',
         ];
     }
 }

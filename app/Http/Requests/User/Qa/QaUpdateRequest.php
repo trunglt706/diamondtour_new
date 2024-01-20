@@ -22,7 +22,17 @@ class QaUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:qas,id',
+            'name' => 'required'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn câu hỏi!',
+            'id.exists' => 'Câu hỏi này không tồn tại!',
+            'name.required' => 'Nhập câu hỏi!'
         ];
     }
 }

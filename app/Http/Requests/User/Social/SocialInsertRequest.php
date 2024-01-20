@@ -22,7 +22,14 @@ class SocialInsertRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nhập tên mạng xã hội!'
         ];
     }
 }

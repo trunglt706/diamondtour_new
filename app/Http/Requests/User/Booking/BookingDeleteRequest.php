@@ -22,7 +22,15 @@ class BookingDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:bookings,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn thông tin đặt lịch!',
+            'id.exists' => 'Thông tin đặt lịch này không tồn tại!',
         ];
     }
 }

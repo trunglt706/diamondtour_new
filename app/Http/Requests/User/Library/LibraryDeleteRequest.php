@@ -22,7 +22,15 @@ class LibraryDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:libraries,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn thư viện!',
+            'id.exists' => 'Thư viện này không tồn tại!',
         ];
     }
 }

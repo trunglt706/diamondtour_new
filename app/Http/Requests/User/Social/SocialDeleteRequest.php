@@ -22,7 +22,15 @@ class SocialDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required|exists:socials,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Chọn mạng xã hội!',
+            'id.exists' => 'Mạng xã hội này không tồn tại!',
         ];
     }
 }
