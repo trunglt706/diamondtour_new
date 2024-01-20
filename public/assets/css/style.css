@@ -68,6 +68,7 @@ html, body{
   font-weight: 400;
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
+  text-align: justify;
 }
 .block-section-header .btn{
   display: inline-block;
@@ -155,9 +156,9 @@ html, body{
   letter-spacing: -0.2px;
 }
 .box-offcanvas-contact-us .-about img{
-  width: 200px;
-  display: block;
-  margin-bottom: 1rem;
+  max-width: 107px;
+    display: block;
+    margin-bottom: 3rem;
 }
 .box-offcanvas-contact-us .-content ul{
   list-style: none;
@@ -2056,6 +2057,7 @@ html, body{
 .block-list-by-sites .block-destination-content,
 .block-description-single-tour .block-destination-content{
   padding: 50px 0px;
+  text-align: justify;
 }
 /*---------------------------------------- Box Destination Home - Item */
 .destination-home-item{
@@ -2334,7 +2336,7 @@ html, body{
   text-align: left;
   margin: 0px 0px -10px 0px;
   padding: 0px 0px 0px 0px;
-  color: #FFFFFF99;
+  color: #FFFFFF99;text-align: justify;
 }
 .testimonial-item .comment-bio{
   display: flex;
@@ -2390,6 +2392,7 @@ html, body{
 .faq-question-list .accordion-body{
   font-weight: 400;
   font-family: Arial;
+  text-align: justify;
 }
 .faq-question-list .accordion-body *{font-family: Arial;}
 /*---------------------------------------- Box Wrapper Destination */
@@ -2606,6 +2609,9 @@ html, body{
 .box-wrapper-single-post .block-single-post-bottom{
   margin: 50px 0px;
 }
+.box-wrapper-single-post .block-single-post-content {
+  text-align: justify;
+}
 .block-single-post-bottom .-post-tags h2{
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -2667,7 +2673,10 @@ html, body{
   padding: 10px 20px;
   border-radius: 20px;
 }
-.box-wrapper-single-tour .single-tour-content{margin-bottom: 50px;}
+.box-wrapper-single-tour .single-tour-content{
+  margin-bottom: 50px;
+  text-align: justify;
+}
 .box-wrapper-single-tour .single-tour-content h2{
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
@@ -2941,6 +2950,7 @@ html, body{
 .box-image-row-single-destination .col-left .overlay-content .--content{
   padding: 2rem;
   padding-right: 0px;
+  text-align: justify;
 }
 .box-image-row-single-destination .col-left .overlay-content .--content h2,
 .box-address-row-single-destination .-content h2{
@@ -2954,6 +2964,7 @@ html, body{
 .box-address-row-single-destination .-content h2{margin-bottom: 2rem;}
 .box-address-row-single-destination .-content .-desc{
   padding-right: 2rem;
+  text-align: justify;
 }
 .box-address-row-single-destination .-image{
   border-radius: 20px;
@@ -3052,6 +3063,7 @@ html, body{
   margin-bottom: 0px;
   letter-spacing: -0.2px;
   font-weight: 400;
+  text-align: justify;
 }
 /*---------------------------------------- Boox Pricing Row Single Destination */
 .box-pricing-row-single-destination{
@@ -3069,8 +3081,8 @@ html, body{
 }
 .box-pricing-row-single-destination .-pricing-left-content p,
 .box-pricing-row-single-destination .-pricing-right-content p{
-  font-size: 300;
   letter-spacing: -0.2px;
+  text-align: justify;
 }
 .box-pricing-row-single-destination .-pricing-image-item{
   margin-bottom: 1rem;
