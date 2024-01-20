@@ -42,7 +42,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [BlogController::class, 'detail'])->name('detail');
         Route::post('insert', [BlogController::class, 'insert'])->name('insert');
         Route::post('update', [BlogController::class, 'update'])->name('update');
-        Route::post('delete', [BlogController::class, 'update'])->name('delete');
+        Route::post('delete', [BlogController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('blog_group')->name('blog_group.')->group(function () {
@@ -51,7 +51,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [BlogCategoryController::class, 'detail'])->name('detail');
         Route::post('insert', [BlogCategoryController::class, 'insert'])->name('insert');
         Route::post('update', [BlogCategoryController::class, 'update'])->name('update');
-        Route::post('delete', [BlogCategoryController::class, 'update'])->name('delete');
+        Route::post('delete', [BlogCategoryController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('booking')->name('booking.')->group(function () {
@@ -60,7 +60,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [BookingController::class, 'detail'])->name('detail');
         Route::post('insert', [BookingController::class, 'insert'])->name('insert');
         Route::post('update', [BookingController::class, 'update'])->name('update');
-        Route::post('delete', [BookingController::class, 'update'])->name('delete');
+        Route::post('delete', [BookingController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('contact')->name('contact.')->group(function () {
@@ -69,7 +69,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [ContactController::class, 'detail'])->name('detail');
         Route::post('insert', [ContactController::class, 'insert'])->name('insert');
         Route::post('update', [ContactController::class, 'update'])->name('update');
-        Route::post('delete', [ContactController::class, 'update'])->name('delete');
+        Route::post('delete', [ContactController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('destination')->name('destination.')->group(function () {
@@ -78,7 +78,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [DestinationController::class, 'detail'])->name('detail');
         Route::post('insert', [DestinationController::class, 'insert'])->name('insert');
         Route::post('update', [DestinationController::class, 'update'])->name('update');
-        Route::post('delete', [DestinationController::class, 'update'])->name('delete');
+        Route::post('delete', [DestinationController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('destination_group')->name('destination_group.')->group(function () {
@@ -87,7 +87,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [DestinationGroupController::class, 'detail'])->name('detail');
         Route::post('insert', [DestinationGroupController::class, 'insert'])->name('insert');
         Route::post('update', [DestinationGroupController::class, 'update'])->name('update');
-        Route::post('delete', [DestinationGroupController::class, 'update'])->name('delete');
+        Route::post('delete', [DestinationGroupController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('qa')->name('qa.')->group(function () {
@@ -96,7 +96,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [FAQController::class, 'detail'])->name('detail');
         Route::post('insert', [FAQController::class, 'insert'])->name('insert');
         Route::post('update', [FAQController::class, 'update'])->name('update');
-        Route::post('delete', [FAQController::class, 'update'])->name('delete');
+        Route::post('delete', [FAQController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('library')->name('library.')->group(function () {
@@ -105,7 +105,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [LibraryController::class, 'detail'])->name('detail');
         Route::post('insert', [LibraryController::class, 'insert'])->name('insert');
         Route::post('update', [LibraryController::class, 'update'])->name('update');
-        Route::post('delete', [LibraryController::class, 'update'])->name('delete');
+        Route::post('delete', [LibraryController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('library_group')->name('library_group.')->group(function () {
@@ -114,7 +114,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [LibraryGroupController::class, 'detail'])->name('detail');
         Route::post('insert', [LibraryGroupController::class, 'insert'])->name('insert');
         Route::post('update', [LibraryGroupController::class, 'update'])->name('update');
-        Route::post('delete', [LibraryGroupController::class, 'update'])->name('delete');
+        Route::post('delete', [LibraryGroupController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('log_action')->name('log_action.')->group(function () {
@@ -134,7 +134,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [ScheduleController::class, 'detail'])->name('detail');
         Route::post('insert', [ScheduleController::class, 'insert'])->name('insert');
         Route::post('update', [ScheduleController::class, 'update'])->name('update');
-        Route::post('delete', [ScheduleController::class, 'update'])->name('delete');
+        Route::post('delete', [ScheduleController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('setting')->name('setting.')->group(function () {
@@ -148,7 +148,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [SocialController::class, 'detail'])->name('detail');
         Route::post('insert', [SocialController::class, 'insert'])->name('insert');
         Route::post('update', [SocialController::class, 'update'])->name('update');
-        Route::post('delete', [SocialController::class, 'update'])->name('delete');
+        Route::post('delete', [SocialController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('tour')->name('tour.')->group(function () {
@@ -157,7 +157,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [TourController::class, 'detail'])->name('detail');
         Route::post('insert', [TourController::class, 'insert'])->name('insert');
         Route::post('update', [TourController::class, 'update'])->name('update');
-        Route::post('delete', [TourController::class, 'update'])->name('delete');
+        Route::post('delete', [TourController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('tour_group')->name('tour_group.')->group(function () {
@@ -166,7 +166,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('{id}', [TourGroupController::class, 'detail'])->name('detail');
         Route::post('insert', [TourGroupController::class, 'insert'])->name('insert');
         Route::post('update', [TourGroupController::class, 'update'])->name('update');
-        Route::post('delete', [TourGroupController::class, 'update'])->name('delete');
+        Route::post('delete', [TourGroupController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('tour_design')->name('tour_design.')->group(function () {
@@ -174,7 +174,7 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::get('list', [TourDesignController::class, 'list'])->name('list');
         Route::get('{id}', [TourDesignController::class, 'detail'])->name('detail');
         Route::post('update', [TourDesignController::class, 'update'])->name('update');
-        Route::post('delete', [TourDesignController::class, 'update'])->name('delete');
+        Route::post('delete', [TourDesignController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('user')->name('user.')->group(function () {
@@ -184,6 +184,6 @@ Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->grou
         Route::post('insert', [UserController::class, 'insert'])->name('insert');
         Route::post('update', [UserController::class, 'update'])->name('update');
         Route::post('update_account', [UserController::class, 'update_account'])->name('update_account');
-        Route::post('delete', [UserController::class, 'update'])->name('delete');
+        Route::post('delete', [UserController::class, 'delete'])->name('delete');
     });
 });

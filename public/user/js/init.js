@@ -66,6 +66,7 @@ function deleteData(id, url, title = "Xác nhận xóa dữ liệu này?") {
     if (confirm(title)) {
         showSniper(".table-loading");
         $.ajax({
+            method: "POST",
             url: url,
             data: { id },
             success: function (rs) {

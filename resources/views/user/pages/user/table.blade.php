@@ -11,10 +11,12 @@
         @endphp
         <tr id="tr-{{ $item->id }}">
             <td class="text-center">
-                <button data-bs-toggle="tooltip" title="Xóa" class="btn bg-gradient-orange-red btn-sm btn-delete"
-                    onclick="confirmDelete('{{ $item->id }}')">
-                    <i class="fas fa-trash text-white"></i>
-                </button>
+                @if ($item->id != auth()->user()->id)
+                    <button data-bs-toggle="tooltip" title="Xóa" class="btn bg-gradient-orange-red btn-sm btn-delete"
+                        onclick="confirmDelete('{{ $item->id }}')">
+                        <i class="fas fa-trash text-white"></i>
+                    </button>
+                @endif
                 <a data-bs-toggle="tooltip" title="Xem chi tiết"
                     href="{{ route('user.user.detail', ['id' => $item->id]) }}"
                     class="btn bg-gradient-custom-indigo btn-sm">

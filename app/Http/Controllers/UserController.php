@@ -112,14 +112,22 @@ class UserController extends Controller
     {
         DB::beginTransaction();
         try {
-            $new = User::findOrFail(request('id'));
+            $new = User::where('id', '<>', auth()->user()->id)->findOrFail(request('id'));
             $new->delete();
             DB::commit();
-            return redirect()->back()->with('success', 'Xóa thành công');
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();
-            return redirect()->back()->with('error', 'Có lỗi xãy ra!');
+            return response()->json([
+                'status' => false,
+                'message' => 'Có lỗi xãy ra!',
+                'type' => 'error',
+            ]);
         }
     }
 
