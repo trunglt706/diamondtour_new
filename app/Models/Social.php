@@ -29,6 +29,7 @@ class Social extends Model
         self::creating(function ($model) {
             $model->status = $model->status ?? self::STATUS_ACTIVE;
             $model->numering = $model->numering ?? self::getOrder();
+            $model->code = $model->code ?? generateRandomString();
         });
         self::created(function ($model) {
         });

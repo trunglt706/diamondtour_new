@@ -56,11 +56,19 @@ class TourGroupController extends Controller
             $data = request()->all();
             $new = TourGroup::create($data);
             DB::commit();
-            return redirect()->back()->with('success', 'Tạo mới thành công');
+            return response()->json([
+                'status' => true,
+                'message' => 'Tạo mới thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();
-            return redirect()->back()->with('error', 'Có lỗi xãy ra!');
+            return response()->json([
+                'status' => false,
+                'message' => 'Có lỗi xãy ra!',
+                'type' => 'error',
+            ]);
         }
     }
 
@@ -87,11 +95,19 @@ class TourGroupController extends Controller
             $new = TourGroup::findOrFail(request('id'));
             $new->delete();
             DB::commit();
-            return redirect()->back()->with('success', 'Xóa thành công');
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();
-            return redirect()->back()->with('error', 'Có lỗi xãy ra!');
+            return response()->json([
+                'status' => false,
+                'message' => 'Có lỗi xãy ra!',
+                'type' => 'error',
+            ]);
         }
     }
 

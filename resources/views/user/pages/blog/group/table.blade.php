@@ -1,5 +1,5 @@
 @php
-    use App\Models\BlogGroup;
+    use App\Models\PostGroup;
 @endphp
 @if ($list->count() > 0)
     @php
@@ -7,7 +7,7 @@
     @endphp
     @foreach ($list as $item)
         @php
-            $status = BlogGroup::get_status($item->status);
+            $status = PostGroup::get_status($item->status);
         @endphp
         <tr id="tr-{{ $item->id }}">
             <td class="text-center">

@@ -60,7 +60,7 @@
         </div>
         <!--end::Card body-->
     </div>
-    @include('user.pages.tour.group.create')
+    @include('user.pages.blog.group.create')
 @endsection
 @push('js')
     <script>
