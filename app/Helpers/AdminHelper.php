@@ -44,7 +44,7 @@ if (!function_exists('renderUserMenu')) {
                     ';
                 }
             } else {
-                $active = Request::is($menu->active) ? 'active' : '';
+                $active = check_active($menu->active);
                 echo '
                         <div class="menu-item ' . $hasSub . ' ' . $active . '">
                             <a href="' . $menuUrl . '" class="menu-link ' . $active . '">
@@ -78,7 +78,7 @@ if (!function_exists('renderUserSubMenu')) {
                 $subSubMenu .= renderUserSubMenu($menu->menus, $currentUrl);
                 $subSubMenu .= '</div>';
             }
-            $active = Request::is($menu->active) ? 'active' : '';
+            $active = check_active($menu->active);
             if ($status_active == '') {
                 $status_active = $active;
             }
@@ -119,5 +119,18 @@ if (!function_exists('generate_limit_select')) {
         }
         $string .= '</select></div>';
         return $string;
+    }
+}
+
+if (!function_exists('check_active')) {
+    function check_active($json)
+    {
+        $data = $json ? json_decode($json) : [];
+        foreach ($data as $item) {
+            if (Request::is($item)) {
+                return 'active';
+            }
+        }
+        return '';
     }
 }
