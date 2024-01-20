@@ -2166,6 +2166,9 @@ html, body{
   background: #F6F6F6;
 }
 .box-about-home .box-image-row-single-page .col-right{margin-top: -48%;}
+.box-about-home .box-image-row-single-page {
+  margin-top: 65px;
+}
 /*---------------------------------------- Box Discovery Home */
 .box-discovery-home{
   background: #000;
@@ -2420,6 +2423,9 @@ html, body{
 }
 .box-wrapper-destination  .block-list-by-sites .destination-home-item .-info::after{
   display: none;
+}
+.box-wrapper-destination .block-section-header p {
+  text-align: center;
 }
 /*---------------------------------------- Box Wrapper Tour */
 .article-wrapper-tour .box-breadcrumb-cover h2{width: 70%;}
@@ -2801,6 +2807,7 @@ html, body{
 .single-tour-list-schedule{
   overflow: hidden;
   margin: 50px 0px;
+  padding: 0px 40px;
 }
 .single-tour-list-schedule .swiper-navigation{
   position: relative;
@@ -2919,6 +2926,7 @@ html, body{
 /*------------------------------------ Box Wrapper Single Destination */
 .box-wrapper-single-destination{
   margin: 50px 0px;
+  padding: 0px 40px;
 }
 /*------------------------------------ Box Image Row Single Destination */
 .box-image-row-single-destination{
@@ -3398,6 +3406,46 @@ html, body{
   .box-image-row-single-destination .col-left .overlay-content{width: calc(100% - 30px);}
   .box-image-row-single-destination .col-left{padding-top: 100px;}
   .box-image-row-single-destination .col-left .overlay-content .--content h2, .box-address-row-single-destination .-content h2{font-size: 2.5rem;}
+
+  .box-companion .block-companion-content h2,
+    .companion-private--header h2,
+    .about-home--header h2,
+    .discovery-home--header h2,
+    .block-section-header h2,
+    .box-breadcrumb-cover h2,
+    .distinctive-value--header h2,
+        .box-image-row-single-destination .col-left .overlay-content .--content h2,
+        .box-address-row-single-destination .-content h2,
+                .block-get-promo-content h2,
+                                .box-wrapper-single-tour .single-tour-content h2,
+                                .block-handbook-header h2,
+                                .block-local-culture-header h2 {
+    font-size: 2rem;
+  }
+    .companion-private--header .btn,
+    .about-home--header .btn,
+    .discovery-home--header .btn,
+    .block-section-header .btn {
+      padding: 8px 22px;
+    }
+    .block-style-accordion .accordion-body {
+      padding: 20px;
+    }
+    .companion-item .-content p {
+      padding-right: 20px;
+    }
+    .box-wrapper-single-page .single-page-head-content {
+      padding: 0px 10px;
+    }
+    .box-wrapper-single-tour .single-tour-content {
+      padding: 0px 20px;
+    }
+    .block-destination-content {
+      padding: 50px 20px !important;
+    }
+    .single-tour-list-schedule {
+padding: 0px 20px;
+    }
 }
 /*------------------------------------ Monitor Mobile Landspace */
 @media screen and (min-width: 576px) and (max-width: 767px){

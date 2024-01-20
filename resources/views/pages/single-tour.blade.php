@@ -153,7 +153,7 @@
                                                             </button>
                                                         </h2>
                                                         <div id="flush-collapseQuestionSectionOneOne"
-                                                            class="accordion-collapse collapse"
+                                                            class="accordion-collapse collapse show"
                                                             data-bs-parent="#accordionQuestionSectionOne">
                                                             <div class="accordion-body">
                                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
