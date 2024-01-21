@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('code')->unique();
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->integer('price')->nullable();
             $table->string('currency', 10)->nullable()->default('vnd');
             $table->datetime('day_start')->nullable();

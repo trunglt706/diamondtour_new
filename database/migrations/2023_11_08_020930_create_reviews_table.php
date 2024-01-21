@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
             $table->timestamps();
+            $table->foreign('destination_id')->references('id')->on('tours')->onDelete('cascade');
         });
     }
 

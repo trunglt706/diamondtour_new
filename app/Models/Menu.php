@@ -21,6 +21,8 @@ class Menu extends Model
         'status',
         'images',
         'active',
+        'description',
+        'background'
     ];
 
     protected $hidden = [];

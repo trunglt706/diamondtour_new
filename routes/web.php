@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('clear-cache', function () {
     Cache::flush();
+    return 'Xóa cache thành công';
 });
 Route::prefix('')->controller(HomeController::class)->group(function () {
     Route::get('', 'index')->name('index');

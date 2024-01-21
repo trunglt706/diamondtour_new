@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('album')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->text('content')->nullable();
             $table->integer('important')->nullable()->default(0);
             $table->json('tags')->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('like_total')->nullable()->default(0);
             $table->enum('status', ['draft', 'active', 'blocked'])->index()->nullable()->default('draft');
             $table->timestamps();
+            $table->foreign('group_id')->references('id')->on('post_groups')->onDelete('cascade');
         });
     }
 

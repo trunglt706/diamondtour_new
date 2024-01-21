@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->string('name');
             $table->string('image')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->text('content')->nullable();
             $table->string('address')->nullable();
             $table->string('price')->nullable();

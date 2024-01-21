@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class LibraryGroup extends Model
@@ -28,16 +29,19 @@ class LibraryGroup extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->slug = $model->code ?? Str::slug('name');
+            $model->slug = $model->slug ?? Str::slug('name');
             $model->status = $model->status ?? self::STATUS_ACTIVE;
             $model->important = $model->important ?? false;
             $model->numering = $model->numering ?? self::getOrder();
         });
         self::created(function ($model) {
+            Cache::forget(CACHE_LIBRARY);
         });
         self::updated(function ($model) {
+            Cache::forget(CACHE_LIBRARY);
         });
         self::deleted(function ($model) {
+            Cache::forget(CACHE_LIBRARY);
             // delete image
         });
     }

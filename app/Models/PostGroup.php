@@ -28,7 +28,7 @@ class PostGroup extends Model
         parent::boot();
         self::creating(function ($model) {
             $model->code = $model->code ?? Str::uuid();
-            $model->slug = $model->code ?? Str::slug('name');
+            $model->slug = $model->slug ?? Str::slug('name');
             $model->status = $model->status ?? self::STATUS_ACTIVE;
             $model->numering = $model->numering ?? self::getOrder();
         });

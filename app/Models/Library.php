@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Library extends Model
 {
@@ -13,11 +14,8 @@ class Library extends Model
     protected $fillable = [
         'group_id',
         'name',
-        'link',
-        'description',
-        'images',
+        'image',
         'status',
-        'created_by',
         'important',
         'numering'
     ];
@@ -35,10 +33,13 @@ class Library extends Model
             $model->numering = $model->numering ?? self::getOrder($model->group_id);
         });
         self::created(function ($model) {
+            Cache::forget(CACHE_LIBRARY . '-' . $model->group_id);
         });
         self::updated(function ($model) {
+            Cache::forget(CACHE_LIBRARY . '-' . $model->group_id);
         });
         self::deleted(function ($model) {
+            Cache::forget(CACHE_LIBRARY . '-' . $model->group_id);
             // delete image
         });
     }

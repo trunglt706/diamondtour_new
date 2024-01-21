@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id()->index();
             $table->unsignedBigInteger('group_id')->index();
             $table->string('name');
-            $table->string('link');
-            $table->string('created_by');
-            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->integer('important')->nullable()->default(0);
             $table->integer('numering')->nullable()->default(0);

@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('CACHE_TIME')) {
-    define('CACHE_TIME', 360);
+    define('CACHE_TIME', 60);
 }
 
 //====== menu

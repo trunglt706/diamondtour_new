@@ -6,6 +6,7 @@ use App\Models\Setting;
 use App\Models\SettingGroup;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class seed_setting extends Seeder
 {
@@ -14,8 +15,8 @@ class seed_setting extends Seeder
      */
     public function run(): void
     {
-        SettingGroup::truncate();
-        Setting::truncate();
+        DB::table('settings')->delete();
+        DB::table('setting_groups')->delete();
 
         //============= seo
         $seo = SettingGroup::create([
