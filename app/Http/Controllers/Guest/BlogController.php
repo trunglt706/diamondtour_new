@@ -12,6 +12,11 @@ class BlogController extends Controller
         return view('pages.posts');
     }
 
+    public function cat_blog($cat_alias)
+    {
+      return view('pages.cat-post');
+    }
+
     public function detail($alias)
     {
         return view('pages.single-post');

@@ -12,6 +12,11 @@ class TourController extends Controller
       return view('pages.tour');
     }
 
+    public function cat_tours($cat_alias)
+    {
+      return view('pages.cat-tour');
+    }
+
     public function detail($alias)
     {
       return view('pages.single-tour');

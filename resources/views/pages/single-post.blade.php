@@ -11,9 +11,39 @@
 
         <section>
             <div class="box-wrapper-single-post">
-                <div class="container-fluid mb-5">
-                    <img src="{{ asset('assets/images/bg-blog-detail.png') }}" class="img-fluid d-block mx-auto"
-                        alt="">
+                <div class="container mb-5">
+                  <div class="single-post-list-grid">
+                    <div class="single-post-list-col">
+                      <a href="{{ asset('assets/images/tour_home_3.png') }}" data-fancybox="gallery">
+                        <img src="{{ asset('assets/images/tour_home_3.png') }}" class="img-fluid" alt="">
+                      </a>
+                    </div>
+                    <div class="single-post-list-col">
+                      <a href="{{ asset('assets/images/destination-home-3.jpg') }}" data-fancybox="gallery">
+                        <img src="{{ asset('assets/images/destination-home-3.jpg') }}" class="img-fluid" alt="">
+                      </a>
+                    </div>
+                    <div class="single-post-list-col">
+                      <a href="{{ asset('assets/images/slider-2.jpg') }}" data-fancybox="gallery">
+                        <img src="{{ asset('assets/images/slider-2.jpg') }}" class="img-fluid" alt="">
+                      </a>
+                    </div>
+                    <div class="single-post-list-col">
+                      <a href="{{ asset('assets/images/bg_newsletter.png') }}" data-fancybox="gallery">
+                        <img src="{{ asset('assets/images/bg_newsletter.png') }}" class="img-fluid" alt="">
+                      </a>
+                    </div>
+                    <div class="single-post-list-col">
+                      <a href="{{ asset('assets/images/bg-tour-list.png') }}" data-fancybox="gallery">
+                        <img src="{{ asset('assets/images/bg-tour-list.png') }}" class="img-fluid" alt="">
+                      </a>
+                    </div>
+                    <div class="single-post-list-col">
+                      <a href="{{ asset('assets/images/post-culture-4.png') }}" data-fancybox="gallery">
+                        <img src="{{ asset('assets/images/post-culture-4.png') }}" class="img-fluid" alt="">
+                      </a>
+                    </div>
+                  </div>
                 </div>
                 <div class="container">
                     <div class="row">

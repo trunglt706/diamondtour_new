@@ -45,3 +45,15 @@ Route::prefix('tour')->name('tour.')->controller(TourController::class)->group(f
     Route::get('', 'index')->name('index');
     Route::get('{alias}', 'detail')->name('detail');
 });
+Route::prefix('danh-muc-blog')->name('blog.')->controller(BlogController::class)->group(function () {
+  Route::get('{cat_alias}', 'cat_blog')->name('cat_blog');
+});
+Route::prefix('danh-muc-diem-den')->name('destination.')->controller(DestinationController::class)->group(function () {
+  Route::get('{cat_alias}', 'cat_destinations')->name('cat_destinations');
+});
+Route::prefix('danh-muc-tour')->name('tour.')->controller(TourController::class)->group(function () {
+  Route::get('{cat_alias}', 'cat_tours')->name('cat_tours');
+});
+Route::get('contact', function () {
+    return view('pages.contact');
+});
