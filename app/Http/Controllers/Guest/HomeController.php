@@ -15,4 +15,8 @@ class HomeController extends Controller
     {
         return view('pages.faq');
     }
+    public function privte_schedule()
+    {
+        return view('pages.privte_schedule');
+    }
 }

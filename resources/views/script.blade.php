@@ -6,4 +6,5 @@
 <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-5-select/js/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datetimepicker/jquery.datetimepicker.full.min.js') }}"></script>
+@yield('plugins_script')
 <script src="{{ asset('assets/js/site.js') }}"></script>

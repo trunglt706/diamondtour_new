@@ -27,6 +27,7 @@ Route::get('clear-cache', function () {
 Route::prefix('')->controller(HomeController::class)->group(function () {
     Route::get('', 'index')->name('index');
     Route::get('faq', 'faq')->name('faq');
+    Route::get('thiet-ke-lich-trinh-rieng', 'privte_schedule')->name('privte_schedule');
 });
 Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::prefix('library')->name('library.')->controller(LibraryController::class)->group(function () {
