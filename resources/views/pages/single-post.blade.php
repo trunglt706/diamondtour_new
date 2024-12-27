@@ -1,201 +1,126 @@
+@php
+    $tags = $data['blog']->tags ? json_decode($data['blog']->tags) : [];
+    $album = $data['blog']->album ? json_decode($data['blog']->album) : [];
+    $item_name = $locale == 'vi' ? 'name' : 'name_' . $locale;
+    $_item_name = $data['blog']->$item_name ?? $data['blog']->name;
+@endphp
 @extends('index')
 @section('content')
     <article class="article-wrapper-post">
         @include('pages.blocks.breadcrumb', [
-            'background' => asset('assets/images/bg_blog.png'),
-            'title' => 'Handbook - Experience',
-            'description' => 'Explore The Destination With Us',
-            'author' => 'MARKETING GUY',
-            'date_create' => '07:06:29 June 13, 2023',
+            'background' => $data['blog']->background ?? $data['menu']->background,
+            'title' => __('messages.menu.blog'),
+            'description' => $_item_name,
+            'author' => '',
+            'date_create' => '',
+            'link' => route('blog.index'),
         ])
 
         <section>
             <div class="box-wrapper-single-post">
-                <div class="container mb-5">
-                  <div class="single-post-list-grid">
-                    <div class="single-post-list-col">
-                      <a href="{{ asset('assets/images/tour_home_3.png') }}" data-fancybox="gallery">
-                        <img src="{{ asset('assets/images/tour_home_3.png') }}" class="img-fluid" alt="">
-                      </a>
+                @if ($album)
+                    <div class="container mb-5">
+                        <div class="single-post-list-grid">
+                            @foreach ($album as $item)
+                                <div class="single-post-list-col">
+                                    <a href="{{ get_url($item) }}" data-fancybox="gallery">
+                                        <img loading="lazy" src="{{ get_url($item) }}" loading="lazy" class="img-fluid"
+                                            alt="image">
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="single-post-list-col">
-                      <a href="{{ asset('assets/images/destination-home-3.jpg') }}" data-fancybox="gallery">
-                        <img src="{{ asset('assets/images/destination-home-3.jpg') }}" class="img-fluid" alt="">
-                      </a>
-                    </div>
-                    <div class="single-post-list-col">
-                      <a href="{{ asset('assets/images/slider-2.jpg') }}" data-fancybox="gallery">
-                        <img src="{{ asset('assets/images/slider-2.jpg') }}" class="img-fluid" alt="">
-                      </a>
-                    </div>
-                    <div class="single-post-list-col">
-                      <a href="{{ asset('assets/images/bg_newsletter.png') }}" data-fancybox="gallery">
-                        <img src="{{ asset('assets/images/bg_newsletter.png') }}" class="img-fluid" alt="">
-                      </a>
-                    </div>
-                    <div class="single-post-list-col">
-                      <a href="{{ asset('assets/images/bg-tour-list.png') }}" data-fancybox="gallery">
-                        <img src="{{ asset('assets/images/bg-tour-list.png') }}" class="img-fluid" alt="">
-                      </a>
-                    </div>
-                    <div class="single-post-list-col">
-                      <a href="{{ asset('assets/images/post-culture-4.png') }}" data-fancybox="gallery">
-                        <img src="{{ asset('assets/images/post-culture-4.png') }}" class="img-fluid" alt="">
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                @endif
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="block-single-post-content">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim
-                                    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim
-                                    Proin ullamcorper pretium orci. Donec nec scelerisque leo. Nam massa dolor, imperdiet
-                                    nec consequat a, congue id sem. Maecenas malesuada faucibus finibus. Donec vitae libero
-                                    porttitor, laoreet sapien a, ultrices leo. Duis dictum vestibulum ante vitae
-                                    ullamcorper. Phasellus ullamcorper, odio vitae eleifend ultricies, lectus orci congue
-                                    magna, in egestas nulla libero non nisl. Etiam efficitur in arcu ut lacinia.
-                                </p>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim
-                                    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim
-                                    Proin ullamcorper pretium orci. Donec nec scelerisque leo. Nam massa dolor, imperdiet
-                                    nec consequat a, congue id sem. Maecenas malesuada faucibus finibus. Donec vitae libero
-                                    porttitor, laoreet sapien a, ultrices leo. Duis dictum vestibulum ante vitae
-                                    ullamcorper. Phasellus ullamcorper, odio vitae eleifend ultricies, lectus orci congue
-                                    magna, in egestas nulla libero non nisl. Etiam efficitur in arcu ut lacinia.
-                                </p>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim
-                                    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim
-                                    Proin ullamcorper pretium orci. Donec nec scelerisque leo. Nam massa dolor, imperdiet
-                                    nec consequat a, congue id sem. Maecenas malesuada faucibus finibus. Donec vitae libero
-                                    porttitor, laoreet sapien a, ultrices leo. Duis dictum vestibulum ante vitae
-                                    ullamcorper. Phasellus ullamcorper, odio vitae eleifend ultricies, lectus orci congue
-                                    magna, in egestas nulla libero non nisl. Etiam efficitur in arcu ut lacinia.
-                                </p>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim
-                                    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim
-                                    Proin ullamcorper pretium orci. Donec nec scelerisque leo. Nam massa dolor, imperdiet
-                                    nec consequat a, congue id sem. Maecenas malesuada faucibus finibus. Donec vitae libero
-                                    porttitor, laoreet sapien a, ultrices leo. Duis dictum vestibulum ante vitae
-                                    ullamcorper. Phasellus ullamcorper, odio vitae eleifend ultricies, lectus orci congue
-                                    magna, in egestas nulla libero non nisl. Etiam efficitur in arcu ut lacinia.
-                                </p>
+                                {!! $data['blog']->content !!}
                             </div>
                             <div class="block-single-post-bottom">
                                 <div class="row row-cols-1 row-cols-sm-2">
                                     <div class="col">
-                                        <div class="-post-tags">
-                                            <h2>Tags</h2>
-                                            <ul>
-                                                @for ($i = 0; $i < 3; $i++)
-                                                    <li><a href="#">Tag {{ $i }}</a></li>
-                                                @endfor
-                                            </ul>
-                                        </div>
+                                        @if (count($tags) > 0)
+                                            <div class="-post-tags">
+                                                <h2>@lang('messages.tu_khoa_lien_ket')</h2>
+                                                <ul>
+                                                    @foreach ($tags as $item)
+                                                        <li>
+                                                            <a href="{{ route('search') }}?tag={{ $item }}">
+                                                                {{ $item }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="col">
                                         <div class="-post-tags -social text-end">
-                                            <h2>Share this post</h2>
-                                            <ul>
+                                            <h2>@lang('messages.chia_se_bai_viet')</h2>
+                                            <div class="sharethis-inline-share-buttons"></div>
+                                            {{-- <ul>
                                                 <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
                                                 <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
                                                 <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
                                                 <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
-                                            </ul>
+                                            </ul> --}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="block-post-related">
-                                <h2>Bài viết liên quan</h2>
-                                <div class="row gx-3 gx-xl-5">
-                                    @for ($i = 0; $i < 3; $i++)
-                                        <div class="col-sm-4 col-lg-4">
-                                            <div class="blog-normal-item">
-                                                <div class="block-images">
-                                                    <a href="{{ route('blog.detail', ['alias' => $i]) }}">
-                                                        <img src="{{ asset('assets/images/blog-normal-1.png') }}"
-                                                            alt="" class="img-fluid">
-                                                    </a>
-                                                </div>
-                                                <div class="block-content">
-                                                    {{-- <a href="#" class="-category">Category</a> --}}
-                                                    <h2>Aliquam erat volutpat. Mauris non pulvinar justo, a finibus ...</h2>
-                                                    <p>In hac habitasse platea dictumst. Sed viverra suscipit pellentesque.
-                                                        Sed
-                                                        nec viverra
-                                                        lacus. Praesent eu ante vitae arcu maximus efficitur...</p>
-                                                    <a href="#" class="-more">Read more</a>
+                            @if ($data['other']->count() > 0)
+                                <div class="block-post-related">
+                                    <h2>@lang('messages.bai_viet_lien_quan')</h2>
+                                    <div class="row gx-3 gx-xl-5">
+                                        @foreach ($data['other'] as $item)
+                                            <div class="col-sm-4 col-lg-4">
+                                                <div class="blog-normal-item">
+                                                    <div class="block-images">
+                                                        <a href="{{ route('blog.detail', ['alias' => $item->slug]) }}">
+                                                            <img loading="lazy" src="{{ get_url($item->image) }}"
+                                                                alt="{{ $item->name }}" class="img-fluid">
+                                                        </a>
+                                                    </div>
+                                                    <div class="block-content">
+                                                        {{-- <a href="#" class="-category">Category</a> --}}
+                                                        <h2>{{ $item->name }}</h2>
+                                                        <p>{{ $item->description }}</p>
+                                                        <a href="{{ route('blog.detail', ['alias' => $item->slug]) }}"
+                                                            class="-more">
+                                                            @lang('messages.xem_them')
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endfor
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         <div class="col-lg-3">
                             <div class="block-suggested-tours">
-                                <h2>Suggested tours</h2>
+                                <h2>@lang('messages.tour_lien_quan')</h2>
                                 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-1">
-                                    @for ($i = 0; $i < 4; $i++)
+                                    @foreach ($data['tours'] as $item)
                                         <div class="col">
-                                            <a href="{{ route('tour.detail', ['alias' => $i]) }}"
+                                            <a href="{{ route('tour.detail', ['alias' => $item->slug]) }}"
                                                 class="destination-home-item"
-                                                style="background-image: url({{ asset('assets/images/destination-home-1.jpg') }})">
+                                                style="background-image: url({{ get_url($item->image) }})">
                                                 <div class="-content">
                                                     <div class="-info">
-                                                        <h2>BHUTAN</h2>
-                                                        <p>Khám phá</p>
+                                                        <h2>{{ $item->name }}</h2>
+                                                        <p>@lang('messages.kham_pha')</p>
                                                     </div>
-                                                    <div class="-price">
-                                                        <small>Start From</small>
-                                                        <p>$40</p>
-                                                    </div>
+                                                    {{-- <div class="-price">
+                                                        <small>@lang('messages.chi_tu')</small>
+                                                        <p>{{ number_format($item->price) }} {{ $item->currency }}</p>
+                                                    </div> --}}
                                                 </div>
                                             </a>
                                         </div>
-                                    @endfor
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -204,6 +129,5 @@
             </div>
         </section>
         @include('pages.blocks.newsletter')
-
     </article>
 @endsection

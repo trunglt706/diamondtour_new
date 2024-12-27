@@ -4,8 +4,11 @@
     <div class="d-flex justify-content-between align-items-center mb-2">
         <h5 class="hide-mobile">Quản trị viên <span class="total-item">(0)</span></h5>
         <div class="btn-group" role="group">
-            <a href="{{ route('user.log_action.index') }}" class="btn btn-primary">
-                <i class="fas fa-history"></i> Nhật ký
+            <a href="{{ route('user.user.index') }}" class="btn btn-primary">
+                Quản trị viên
+            </a>
+            <a href="{{ route('user.log_action.index') }}" class="btn btn-secondary">
+                Nhật ký
             </a>
         </div>
     </div>
@@ -32,9 +35,8 @@
                             class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-primary btn-reload">
                             <i class="fas fa-sync"></i>
                         </button>
-                        <button type="button" id="btnAddModal"
-                            class="btn btn-trigger btn-outline btn-outline-dashed btn-outline-primary btn-active-primary"
-                            data-bs-toggle="modal" data-bs-target="#addModal">
+                        <button type="button" id="btnAddModal" class="btn btn-trigger btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#addModal">
                             <i class="fas fa-plus"></i> Tạo
                         </button>
                     </div>
@@ -50,13 +52,15 @@
                         <th class="text-center w-100px">#</th>
                         <th class="text-center w-150px hide-mobile">Mã</th>
                         <th class="text-center">Tên</th>
-                        <th class="text-center w-250px hide-mobile">Email</th>
+                        <th class="text-center w-200px hide-mobile">Email</th>
+                        <th class="text-center w-200px hide-mobile">Điện thoại</th>
                         <th class="text-center w-125px hide-mobile">Trạng thái</th>
+                        <th class="text-center w-175px hide-mobile">Last login</th>
                     </tr>
                 </thead>
                 <tbody id="load-table" class="text-gray-600 fw-semibold">
                     <tr>
-                        <td colspan="5" class="text-center empty-data">
+                        <td colspan="7" class="text-center empty-data">
                             <div class="text-center">
                                 <i class="fas fa-sad-cry fs-s2"></i> Không có dữ liệu
                             </div>

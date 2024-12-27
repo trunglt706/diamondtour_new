@@ -30,8 +30,8 @@ class LoginSubmitRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' => 'Chọn blog!',
-            'email.exists' => 'Blog này không tồn tại!',
+            'email.required' => 'Nhập email!',
+            'email.exists' => 'Email này không tồn tại!',
             'password.required' => 'Nhập mật khẩu!',
             'password.between' => 'Độ dài mật khẩu từ 6 - 30 ký tự!'
         ];

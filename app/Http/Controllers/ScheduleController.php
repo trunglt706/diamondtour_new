@@ -7,20 +7,27 @@ use App\Http\Requests\User\Schedule\ScheduleInsertRequest;
 use App\Http\Requests\User\Schedule\ScheduleUpdateRequest;
 use App\Http\Requests\User\Schedule\ScheduleViewRequest;
 use App\Models\Schedule;
+use App\Models\ScheduleDetal;
+use App\Models\Tour;
 use Illuminate\Support\Facades\DB;
 
 class ScheduleController extends Controller
 {
-    protected $limit_default;
+    protected $limit_default, $dir;
 
     public function __construct()
     {
         $this->limit_default = 10;
+        $this->dir = 'uploads/schedule';
     }
 
     public function index(ScheduleViewRequest $request)
     {
-        $data['status'] = Schedule::get_status();
+        $id = request('id', 0);
+        $data = [
+            'status' => Schedule::get_status(),
+            'tour' => Tour::select('id', 'name')->find($id),
+        ];
         return view('user.pages.tour.schedule.index', compact('data'));
     }
 
@@ -30,7 +37,7 @@ class ScheduleController extends Controller
             $limit = request('limit', 10);
             $status = request('status', '');
             $search = request('search', '');
-            $tour_id = request('tour_id', '');
+            $tour_id = request('tour_id', 0);
 
             $list = Schedule::query();
             $list = $status != '' ? $list->ofStatus($status) : $list;
@@ -56,13 +63,26 @@ class ScheduleController extends Controller
         DB::beginTransaction();
         try {
             $data = request()->all();
+            if (request()->hasFile('image')) {
+                $file = request()->file('image');
+                $data['image'] = store_file($file, $this->dir, false, 900);
+            }
             $new = Schedule::create($data);
+            save_log("Lịch trình #$new->name vừa mới được tạo", $data);
             DB::commit();
-            return redirect()->back()->with('success', 'Tạo mới thành công');
+            return response()->json([
+                'status' => true,
+                'message' => 'Tạo mới thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();
-            return redirect()->back()->with('error', 'Có lỗi xãy ra!');
+            return response()->json([
+                'status' => false,
+                'message' => 'Có lỗi xãy ra!',
+                'type' => 'error',
+            ]);
         }
     }
 
@@ -72,12 +92,32 @@ class ScheduleController extends Controller
         try {
             $data = request()->all();
             $new = Schedule::findOrFail(request('id'));
+            if (request()->hasFile('image')) {
+                delete_file($new->image);
+                $file = request()->file('image');
+                $data['image'] = store_file($file, $this->dir, false, 900);
+            }
             $new->update($data);
+            save_log("Lịch trình #$new->name vừa mới được cập nhật", $data);
             DB::commit();
+            if (request()->ajax()) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Cập nhật thành công',
+                    'type' => 'success',
+                ]);
+            }
             return redirect()->back()->with('success', 'Cập nhật thành công');
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();
+            if (request()->ajax()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Có lỗi xãy ra!',
+                    'type' => 'error',
+                ]);
+            }
             return redirect()->back()->with('error', 'Có lỗi xãy ra!');
         }
     }
@@ -88,18 +128,31 @@ class ScheduleController extends Controller
         try {
             $new = Schedule::findOrFail(request('id'));
             $new->delete();
+            save_log("Lịch trình #$new->name vừa mới bị xóa", $new);
             DB::commit();
-            return redirect()->back()->with('success', 'Xóa thành công');
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();
-            return redirect()->back()->with('error', 'Có lỗi xãy ra!');
+            return response()->json([
+                'status' => false,
+                'message' => 'Có lỗi xãy ra!',
+                'type' => 'error',
+            ]);
         }
     }
 
     public function detail($id, ScheduleViewRequest $request)
     {
         $data = Schedule::findOrFail($id);
-        return view('user.pages.tour.schedule.detail', compact('data'));
+        if (request()->ajax()) {
+            return view('user.pages.tour.schedule.show', compact('data'));
+        }
+        $status_detail = ScheduleDetal::get_status();
+        return view('user.pages.tour.schedule.detail', compact('data', 'status_detail'));
     }
 }

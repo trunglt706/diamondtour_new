@@ -293,8 +293,11 @@ if (form_update) {
                 );
                 $("button[type=submit]").removeAttr("disabled");
                 if (rs.status) {
-                    form_update[0].reset();
-                    loadTable();
+                    // form_update[0].reset();
+                    if (typeof noReload !== "undefined" && noReload == "true") {
+                    } else {
+                        loadTable();
+                    }
                     if (rs?.uri) {
                         location.href = rs?.uri;
                     }

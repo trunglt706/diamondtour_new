@@ -13,16 +13,25 @@ class LibraryController extends Controller
 
     public function index()
     {
-        if (Cache::has(CACHE_LIBRARY)) {
-            $data = Cache::get(CACHE_LIBRARY);
+        $page = request('page', '');
+        $key = CACHE_LIBRARY . '-index-' . $page;
+        if (Cache::has($key)) {
+            $data = Cache::get($key);
         } else {
-            $data = Cache::remember(CACHE_LIBRARY, CACHE_TIME, function () {
-                $menu = Menu::ofCode('library')->first();
+            $data = Cache::remember($key, CACHE_TIME, function () {
+                $menu = Menu::ofCode('library')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
                 $list = LibraryGroup::ofStatus(LibraryGroup::STATUS_ACTIVE)
-                    ->orderBy('important', 'desc')->orderBy('created_at', 'desc')->paginate(6);
+                    ->orderBy('important', 'desc')->orderBy('numering', 'desc')->orderBy('created_at', 'desc')
+                    ->select('slug', 'image', 'name_en', 'name_ch', 'name')->paginate(6);
+                $seo = [
+                    'image' => $menu->background,
+                    'title' => $menu->name,
+                    'description' => $menu->description,
+                ];
                 return [
                     'menu' => $menu,
-                    'list' => $list
+                    'list' => $list,
+                    'seo' => $seo
                 ];
             });
         }
@@ -31,21 +40,32 @@ class LibraryController extends Controller
 
     public function detail($alias)
     {
+        $page = request('page', '');
+        $key = CACHE_LIBRARY . '-detail-' . $page . '-' . $alias;
         $group = LibraryGroup::ofSlug($alias)->ofStatus(LibraryGroup::STATUS_ACTIVE)->firstOrFail();
-        if (Cache::has(CACHE_LIBRARY . '-' . $group->id)) {
-            $data = Cache::get(CACHE_LIBRARY . '-' . $group->id);
+        CheckViewSession("_library_group_$group->id", $group);
+        if (Cache::has($key)) {
+            $data = Cache::get($key);
         } else {
-            $data = Cache::remember(CACHE_LIBRARY . '-' . $group->id, CACHE_TIME, function () use ($group) {
-                $menu = Menu::ofCode('library')->first();
-                $list = Library::groupId($group->id)->ofStatus(Library::STATUS_ACTIVE)
-                    ->orderBy('important', 'desc')->orderBy('created_at', 'desc')->paginate(8);
+            $data = Cache::remember($key, CACHE_TIME, function () use ($group) {
+                $menu = Menu::ofCode('library')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+                $list = Library::groupId($group->id)->type(Library::TYPE_LIBRARY)->ofStatus(Library::STATUS_ACTIVE)
+                    ->orderBy('important', 'desc')->orderBy('numering', 'desc')->orderBy('created_at', 'desc')
+                    ->select('id', 'image', 'name', 'name_en', 'name_ch')->paginate(9);
+
+                $seo = [
+                    'image' => $group->image,
+                    'title' => $group->name,
+                    'description' => $group->description,
+                ];
                 return [
                     'menu' => $menu,
-                    'list' => $list
+                    'list' => $list,
+                    'seo' => $seo,
+                    'group' => $group
                 ];
             });
         }
-        $data['group'] = $group;
         return view('pages.single-gallery', compact('data'));
     }
 }

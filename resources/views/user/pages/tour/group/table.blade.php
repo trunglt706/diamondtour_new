@@ -11,18 +11,32 @@
         @endphp
         <tr id="tr-{{ $item->id }}">
             <td class="text-center">
-                <button data-bs-toggle="tooltip" title="Xóa" class="btn bg-gradient-orange-red btn-sm btn-delete"
-                    onclick="confirmDelete('{{ $item->id }}')">
-                    <i class="fas fa-trash text-white"></i>
-                </button>
+                @if ($item->tours_count == 0)
+                    <button data-bs-toggle="tooltip" title="Xóa" class="btn bg-gradient-orange-red btn-sm btn-delete"
+                        onclick="confirmDelete('{{ $item->id }}')">
+                        <i class="fas fa-trash text-white"></i>
+                    </button>
+                @endif
                 <a data-bs-toggle="tooltip" title="Xem chi tiết"
                     href="{{ route('user.tour_group.detail', ['id' => $item->id]) }}"
                     class="btn bg-gradient-custom-indigo btn-sm">
                     <i class="fas fa-eye"></i>
                 </a>
+                <a data-bs-toggle="tooltip" title="Cập nhật"
+                    href="{{ route('user.tour_group.detail', ['id' => $item->id]) }}"
+                    class="btn bg-gradient bg-gray-200 btn-sm data-item">
+                    <i class="fas fa-edit"></i>
+                </a>
+            </td>
+            <td>
+                <img src="{{ get_url($item->image) }}" class="img-fluid w-30px h-20px" alt="">
+                {{ $item->name }}
             </td>
             <td class="text-center hide-mobile">
-                {{ $item->name }}
+                {{ number_format($item->numering) }}
+            </td>
+            <td class="text-center hide-mobile">
+                {{ number_format($item->tours_count) }}
             </td>
             <td class="text-center hide-mobile">
                 <span
@@ -34,7 +48,7 @@
     @endforeach
     @if ($paginate != '')
         <tr>
-            <td colspan="3">
+            <td colspan="5">
                 <div class="mt-2">
                     {{ $paginate }}
                 </div>
@@ -43,7 +57,7 @@
     @endif
 @else
     <tr>
-        <td colspan="3" class="text-center empty-data">
+        <td colspan="5" class="text-center empty-data">
             <i class="fas fa-sad-cry fs-s2"></i> Không có dữ liệu
         </td>
     </tr>

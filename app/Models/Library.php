@@ -17,7 +17,13 @@ class Library extends Model
         'image',
         'status',
         'important',
-        'numering'
+        'numering',
+        'type',
+        'name_en',
+        'name_ch',
+        'like_total',
+        'view_total',
+        'extension'
     ];
 
     protected $hidden = [];
@@ -30,18 +36,50 @@ class Library extends Model
         self::creating(function ($model) {
             $model->status = $model->status ?? self::STATUS_ACTIVE;
             $model->important = $model->important ?? false;
-            $model->numering = $model->numering ?? self::getOrder($model->group_id);
+            $model->numering = $model->numering ?? self::getOrder($model->group_id, $model->type);
+            $model->name_en = $model->name_en ?? $model->name;
+            $model->name_ch = $model->name_ch ?? $model->name;
+            $model->extension = $model->extension ?? 'photo';
         });
         self::created(function ($model) {
-            Cache::forget(CACHE_LIBRARY . '-' . $model->group_id);
+            Cache::flush();
         });
         self::updated(function ($model) {
-            Cache::forget(CACHE_LIBRARY . '-' . $model->group_id);
+            Cache::flush();
         });
         self::deleted(function ($model) {
-            Cache::forget(CACHE_LIBRARY . '-' . $model->group_id);
-            // delete image
+            Cache::flush();
+            if ($model->image) {
+                delete_file($model->image);
+            }
         });
+    }
+
+    const EXTENSION_PHOTO = 'photo';
+    const EXTENSION_VIDEO = 'video';
+
+    public static function get_extension($extension = '')
+    {
+        $_status = [
+            self::EXTENSION_PHOTO => ['Hình ảnh', 'success'],
+            self::EXTENSION_VIDEO => ['Video', 'danger'],
+        ];
+        return $extension == '' ? $_status : $_status["$extension"];
+    }
+
+    const TYPE_LIBRARY = 'library';
+    const TYPE_TOUR = 'tour';
+
+    const IMPORTANT = 1;
+    const NONE_IMPORTANT = 0;
+
+    public static function get_important($status = '')
+    {
+        $_status = [
+            self::IMPORTANT => ['Ưu tiên', 'success'],
+            self::NONE_IMPORTANT => ['Không ưu tiên', 'danger'],
+        ];
+        return $status == '' ? $_status : $_status["$status"];
     }
 
     const STATUS_ACTIVE = 'active';
@@ -54,6 +92,11 @@ class Library extends Model
             self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
         ];
         return $status == '' ? $_status : $_status["$status"];
+    }
+
+    public function scopeType($query, $type)
+    {
+        return $query->where('libraries.type', $type);
     }
 
     public function scopeGroupId($query, $group_id)
@@ -83,9 +126,9 @@ class Library extends Model
         return $this->belongsTo(LibraryGroup::class, 'group_id');
     }
 
-    public static function getOrder($group_id)
+    public static function getOrder($group_id, $type)
     {
-        $max = Library::groupId($group_id)->max('numering') ?? 0;
+        $max = Library::groupId($group_id)->type($type)->max('numering') ?? 0;
         return $max + 1;
     }
 }

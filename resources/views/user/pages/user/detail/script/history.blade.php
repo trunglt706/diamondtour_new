@@ -1,4 +1,4 @@
-@include('admin::admin.detail.script.status')
+@include('user.pages.user.detail.script.status')
 <script>
     $('.datepicker').datepicker({
         format: 'dd-mm-yyyy',
@@ -11,7 +11,7 @@
         $('#form-filter').submit();
     });
 
-    const routeList = "{{ route('admin.log_action.list') }}";
+    const routeList = "{{ route('user.log_action.list') }}";
     filterTable();
 
     function filterTable(currentPage = 1) {

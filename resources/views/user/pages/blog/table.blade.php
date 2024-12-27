@@ -1,5 +1,5 @@
 @php
-    use App\Models\Blog;
+    use App\Models\Post;
 @endphp
 @if ($list->count() > 0)
     @php
@@ -7,7 +7,7 @@
     @endphp
     @foreach ($list as $item)
         @php
-            $status = Blog::get_status($item->status);
+            $status = Post::get_status($item->status);
         @endphp
         <tr id="tr-{{ $item->id }}">
             <td class="text-center">
@@ -21,14 +21,25 @@
                     <i class="fas fa-eye"></i>
                 </a>
             </td>
-            <td class="text-center hide-mobile">
+            <td>
+                <img src="{{ get_url($item->image) }}" class="img-fluid w-30px h-20px" alt="">
                 {{ $item->name }}
             </td>
-            <td>
-                {{ $item->group->name ?? '' }}
+            <td class="text-center hide-mobile">
+                @if ($item->tieu_diem)
+                    <i class="far fa-star text-warning"></i>
+                @endif
             </td>
             <td class="text-center hide-mobile">
-                {{ $item->created_at }}
+                @if ($item->hot)
+                    <i class="far fa-star text-warning"></i>
+                @endif
+            </td>
+            <td class="text-center">
+                {{ $item->important > 0 ? $item->important : '' }}
+            </td>
+            <td class="text-center hide-mobile">
+                {{ date('H:i:s d/m/Y', strtotime($item->created_at)) }}
             </td>
             <td class="text-center hide-mobile">
                 <span
@@ -40,7 +51,7 @@
     @endforeach
     @if ($paginate != '')
         <tr>
-            <td colspan="5">
+            <td colspan="7">
                 <div class="mt-2">
                     {{ $paginate }}
                 </div>
@@ -49,7 +60,7 @@
     @endif
 @else
     <tr>
-        <td colspan="5" class="text-center empty-data">
+        <td colspan="7" class="text-center empty-data">
             <i class="fas fa-sad-cry fs-s2"></i> Không có dữ liệu
         </td>
     </tr>

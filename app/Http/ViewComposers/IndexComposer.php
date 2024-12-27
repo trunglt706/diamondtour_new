@@ -29,6 +29,9 @@ class IndexComposer
      */
     public function compose(View $view)
     {
+        $locale = \Config::get('app.locale');
+        $view->with('locale', $locale);
+
         //=========== menu
         if (Cache::has(CACHE_MENU)) {
             $menus = Cache::get(CACHE_MENU);
@@ -44,25 +47,25 @@ class IndexComposer
             $socials = Cache::get(CACHE_SOCIAL);
         } else {
             $socials = Cache::rememberForever(CACHE_SOCIAL, function () {
-                return Social::ofStatus(Social::STATUS_ACTIVE)->orderBy('numering', 'asc')->get();
+                return Social::ofStatus(Social::STATUS_ACTIVE)->orderBy('numering', 'desc')->select('icon', 'link')->get();
             });
         }
         $view->with('socials', $socials);
 
         //=========== seo
-        if (Cache::has(CACHE_SEO)) {
-            $socials = Cache::get(CACHE_SEO);
+        if (Cache::has(CACHE_SEO . '-' . $locale)) {
+            $seo = Cache::get(CACHE_SEO . '-' . $locale);
         } else {
-            $socials = Cache::rememberForever(CACHE_SEO, function () {
+            $seo = Cache::rememberForever(CACHE_SEO . '-' . $locale, function () use ($locale) {
                 $settings = [];
-                Setting::whereHas('group', function ($q) {
-                    $q->ofCode('seo');
-                })->each(function ($modal) use (&$settings) {
-                    $settings[$modal->code] = $modal->value;
+                Setting::each(function ($modal) use (&$settings, $locale) {
+                    $value = $locale == 'vi' ? 'value' : 'value_' . $locale;
+                    $_value = $modal->$value ?? $modal->value;
+                    $settings[$modal->code] = $_value;
                 });
                 return $settings;
             });
         }
-        $view->with('seo', $socials);
+        $view->with('seo', $seo);
     }
 }

@@ -33,7 +33,7 @@ class DestinationUpdateRequest extends FormRequest
                 File::image()->between(1, MAX_FILE_SIZE_UPLOAD),
             ],
             'content' => 'required',
-            'important' => 'nullable|in:1',
+            'important' => 'nullable|integer',
         ];
     }
 
@@ -50,7 +50,7 @@ class DestinationUpdateRequest extends FormRequest
             'image.image' => 'Hình ảnh chưa đúng định dạng!',
             'image.between' => 'Kích thước hình ảnh chưa phù hợp!',
             'content.required' => 'nhập nội dung!',
-            'important.in' => 'Giá trị quan trọng chưa đúng!'
+            'important.integer' => 'Giá trị độ ưu tiên chưa đúng!'
         ];
     }
 }

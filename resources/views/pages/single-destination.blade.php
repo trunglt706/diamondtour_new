@@ -1,209 +1,254 @@
+@php
+    $why = json_decode($data['destination']->why);
+    $plan = json_decode($data['destination']->plan);
+    $name = $locale == 'vi' ? 'name' : 'name_' . $locale;
+    $_name = $data['menu']->$name ?? $data['menu']->name;
+    $destination = $locale == 'vi' ? 'name' : 'name_' . $locale;
+    $_destination = $data['destination']->$destination ?? $data['destination']->name;
+    $tags = $data['destination']->tags ? json_decode($data['destination']->tags) : [];
+@endphp
 @extends('index')
 @section('content')
     <article class="article-wrapper-single-tour">
         @include('pages.blocks.breadcrumb', [
-            'background' => asset('assets/images/bg-destination-single.png'),
-            'title' => 'Chi tiết destination',
-            'description' => 'Ha Long Bay, Vietnam',
+            'background' => $data['destination']->background ?? $data['menu']->background,
+            'title' => $_name,
+            'description' => $_destination,
         ])
         <section>
-          <div class="box-wrapper-single-destination">
-            <div class="box-image-row-single-destination">
-              <div class="col-left" style="background-image: url({{ asset('assets/images/bg-destination-single.png') }})">
-                <div class="overlay-content container">
-                  <div class="row justify-content-end">
-                    <div class="col-lg-6">
-                      <div class="--content">
-                        <h2>Ha Long Bay, Vietnam</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                      </div>
+            <div class="box-wrapper-single-destination">
+                {{-- <div class="container">
+                    <div class="block-destination-description">
+                        {!! $data['destination']->content !!}
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="box-address-row-single-destination">
-              <div class="container">
-                <div class="row row-cols-1 row-cols-lg-2">
-                  <div class="col">
-                    <div class="-content">
-                      <h2>Where is Bhutan?</h2>
-                      <div class="-desc">
-                        <p>Morbi mollis odio ut tellus lacinia, vitae rutrum est pharetra. Etiam velit lorem, varius at libero eget, lacinia convallis nisl. Quisque nec enim est. Pellentesque consequat commodo leo eget mollis. Sed consequat vel sem a vestibulum. Sed accumsan ullamcorper sapien, vitae venenatis lorem porta a. Integer risus lacus, dapibus sed interdum a, posuere at ligula. Morbi dapibus eget nunc eu ultricies. Ut nec risus ut quam rhoncus vehicula. Suspendisse tincidunt tincidunt dictum. Suspendisse vestibulum libero justo, a condimentum nisi fermentum vel. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque nec diam consequat, ultrices massa sit amet, ultrices arcu. Proin sed sapien at leo dapibus feugiat.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec commodo aliquet lobortis. Donec accumsan risus a nisi faucibus scelerisque. Nullam ultrices vulputate pretium. Donec molestie vel mi quis dapibus. Nulla facilisi. Pellentesque efficitur sit amet erat quis cursus. Vestibulum sed turpis in nibh placerat molestie sit amet vitae ipsum. Fusce lacus mauris, feugiat non tortor ac, mollis lobortis libero. Integer suscipit velit libero, a convallis purus maximus eu. Maecenas enim ex, faucibus ut finibus eget, facilisis sit amet ligula. Etiam sed purus ac diam hendrerit porta. Sed posuere, justo non rhoncus pretium, neque neque tempor ex, nec fermentum enim nulla venenatis risus. Proin eleifend velit a erat rhoncus, nec pulvinar ante rutrum. Praesent eu lorem sapien. Nam sed pulvinar nulla</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="-image">
-                      <img src="{{ asset('assets/images/address-single-destination.png') }}" class="img-fluid" alt="">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="box-reason-row-single-destination" style="background-image: url({{ asset('assets/images/bg-destination-single.png') }});">
-              <div class="container">
-                <div class="block-section-header">
-                  <h2>Why should be Bhutan?</h2>
-                </div>
-                <div class="swiper reason-slider-swiper">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <div class="reason-item">
-                        <h2>Reason 1</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-                      </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="reason-item">
-                        <h2>Reason 2</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-                      </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="reason-item">
-                        <h2>Reason 3</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-                      </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="reason-item">
-                        <h2>Reason 4</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-                      </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="reason-item">
-                        <h2>Reason 5</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-navigation">
-                  <div class="swiper-button-next"></div>
-                  <div class="swiper-button-prev"></div>
-                </div>
-              </div>
-            </div>
-            <div class="box-pricing-row-single-destination">
-              <div class="container">
-                <div class="block-section-header">
-                  <h2>Pricing and Plans</h2>
-                </div>
-                <div class="row row-cols-1 row-cols-lg-2">
-                  <div class="col">
-                    <div class="-pricing-left-content">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
-                      <div class="row row-cols-1 row-cols-sm-2">
-                        <div class="col">
-                          <div class="-pricing-image-item">
-                            <img src="{{ asset('assets/images/slider.png') }}" class="img-fluid" alt="">
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="-pricing-image-item">
-                            <img src="{{ asset('assets/images/slider-1.jpg') }}" class="img-fluid" alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="-pricing-right-content">
-                      <p>Morbi mollis odio ut tellus lacinia, vitae rutrum est pharetra. Etiam velit lorem, varius at libero eget, lacinia convallis nisl. Quisque nec enim est. Pellentesque consequat commodo leo eget mollis. Sed consequat vel sem a vestibulum. Sed accumsan ullamcorper sapien, vitae venenatis lorem porta a. Integer risus lacus, dapibus sed interdum a, posuere at ligula. Morbi dapibus eget nunc eu ultricies. Ut nec risus ut quam rhoncus vehicula. Suspendisse tincidunt tincidunt dictum. Suspendisse vestibulum libero justo, a condimentum nisi fermentum vel. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque nec diam consequat, ultrices massa sit amet, ultrices arcu. Proin sed sapien at leo dapibus feugiat.</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec commodo aliquet lobortis. Donec accumsan risus a nisi faucibus scelerisque. Nullam ultrices vulputate pretium. Donec molestie vel mi quis dapibus. Nulla facilisi. Pellentesque efficitur sit amet erat quis cursus. Vestibulum sed turpis in nibh placerat molestie sit amet vitae ipsum. Fusce lacus mauris, feugiat non tortor ac, mollis lobortis libero. Integer suscipit velit libero, a convallis purus maximus eu. Maecenas enim ex, faucibus ut finibus eget, facilisis sit amet ligula. Etiam sed purus ac diam hendrerit porta. Sed posuere, justo non rhoncus pretium, neque neque tempor ex, nec fermentum enim nulla venenatis risus. Proin eleifend velit a erat rhoncus, nec pulvinar ante rutrum. Praesent eu lorem sapien. Nam sed pulvinar nulla.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="box-testimonial-row-single-destination">
-              <div class="container">
-                <div class="row row-cols-1 row-cols-md-2">
-                  <div class="col">
-                    <div class="block-section-header">
-                      <h2>What people talk about us</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
-                    </div>
-                    <div class="-list-testimonial row row-cols-1 row-cols-lg-2">
-                      <div class="col">
-                        <div class="testimonial-item">
-                          <div class="comment-content">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-                          </div>
-                          <div class="comment-bio">
-                            <div class="profile-image">
-                              <img decoding="async" src="{{ asset('assets/images/testimonial-item.jpg') }}" alt="Louna Daniel">
+                </div> --}}
+                <div class="box-image-row-single-destination">
+                    <div class="col-left"
+                        style="background-image: url({{ get_url($data['destination']->image_description) }})">
+                        <div class="overlay-content container">
+                            <div class="row row-column justify-content-end">
+                                <div class="col-lg-6">
+                                    <div class="--content">
+                                        {!! $data['destination']->description !!}
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="block-tour-of-destination-related">
+                                        <div class="swiper tour-related-slider-swiper">
+                                            <div class="swiper-wrapper">
+                                                @foreach ($data['tours'] as $item)
+                                                    <div class="swiper-slide">
+                                                        <a href="{{ route('tour.detail', ['alias' => $item->slug]) }}"
+                                                            class="destination-home-item"
+                                                            style="background-image: url({{ get_url($item->image) }})">
+                                                            <div class="-content">
+                                                                <div class="-info">
+                                                                    <h2>{{ $item->name }}</h2>
+                                                                    <p>@lang('messages.kham_pha')</p>
+                                                                </div>
+                                                                {{-- <div class="-price">
+                                                                    <small>Chỉ từ</small>
+                                                                    <p>{{ number_format($item->price) }}đ</p>
+                                                                </div> --}}
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="swiper-navigation">
+                                            <div class="swiper-button-next"></div>
+                                            <div class="swiper-button-prev"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="profile-info">
-                              <strong class="profile-name">Louna Daniel</strong>
-                              <p class="profile-des">Designation</p>
-                            </span>
-                          </div>
                         </div>
-                      </div>
-                      <div class="col">
-                        <div class="testimonial-item">
-                          <div class="comment-content">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-                          </div>
-                          <div class="comment-bio">
-                            <div class="profile-image">
-                              <img decoding="async" src="{{ asset('assets/images/testimonial-item.jpg') }}" alt="Louna Daniel">
-                            </div>
-                            <span class="profile-info">
-                              <strong class="profile-name">Louna Daniel</strong>
-                              <p class="profile-des">Designation</p>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                  <div class="col">
-                    <div class="-list-testimonial row row-cols-1 row-cols-lg-2">
-                      <div class="col">
-                        <div class="testimonial-item">
-                          <div class="comment-content">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-                          </div>
-                          <div class="comment-bio">
-                            <div class="profile-image">
-                              <img decoding="async" src="{{ asset('assets/images/testimonial-item.jpg') }}" alt="Louna Daniel">
-                            </div>
-                            <span class="profile-info">
-                              <strong class="profile-name">Louna Daniel</strong>
-                              <p class="profile-des">Designation</p>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="testimonial-item">
-                          <div class="comment-content">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-                          </div>
-                          <div class="comment-bio">
-                            <div class="profile-image">
-                              <img decoding="async" src="{{ asset('assets/images/testimonial-item.jpg') }}" alt="Louna Daniel">
-                            </div>
-                            <span class="profile-info">
-                              <strong class="profile-name">Louna Daniel</strong>
-                              <p class="profile-des">Designation</p>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
+                <div class="box-address-row-single-destination">
+                    <div class="container">
+                        <div class="row row-cols-1 row-cols-lg-2">
+                            <div class="col">
+                                <div class="-content">
+                                    {{-- <h2>Where is Bhutan?</h2> --}}
+                                    <div class="-desc">
+                                        {!! $data['destination']->content !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="-image">
+                                    <img loading="lazy" src="{{ get_url($data['destination']->image_content) }}"
+                                        class="img-fluid" alt="image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if ($why)
+                    <div class="box-reason-row-single-destination"
+                        style="background-image: url({{ get_url('assets/images/bg-destination-single.png') }});">
+                        <div class="container">
+                            <div class="block-section-header">
+                                <h2>@lang('messages.tai_sao_lai_la_diem_den_nay')?</h2>
+                            </div>
+                            <div class="swiper reason-slider-swiper">
+                                <div class="swiper-wrapper">
+                                    @foreach ($why as $item)
+                                        <div class="swiper-slide">
+                                            <div class="reason-item">
+                                                <h2>{{ $item->title }}</h2>
+                                                <p>{!! $item->content !!}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="swiper-navigation">
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if ($plan)
+                    <div class="box-pricing-row-single-destination">
+                        <div class="container">
+                            <div class="block-section-header">
+                                <h2>@lang('messages.ke_hoach_du_lich_va_chi_phi')</h2>
+                            </div>
+                            <div class="row row-cols-1">
+                                <div class="col content">
+                                    {!! $plan->content !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                <div class="container">
+                    <div class="block-single-post-bottom">
+                        <div class="row row-cols-1 row-cols-sm-2">
+                            <div class="col">
+                                @if (count($tags) > 0)
+                                    <div class="-post-tags">
+                                        <h2>@lang('messages.tu_khoa_lien_ket')</h2>
+                                        <ul>
+                                            @foreach ($tags as $item)
+                                                <li>
+                                                    <a href="{{ route('search') }}?tag={{ $item }}">
+                                                        {{ $item }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col">
+                                <div class="-post-tags -social text-end">
+                                    <h2>@lang('messages.chia_se_diem_den')</h2>
+                                    <div class="sharethis-inline-share-buttons"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (count($data['reviews1']) > 0)
+                    <div class="box-testimonial-row-single-destination">
+                        <div class="container">
+                            <div class="row row-cols-1 row-cols-md-2">
+                                <div class="col">
+                                    <div class="block-section-header">
+                                        <h2>@lang('messages.chia_se_cua_khach_hang')</h2>
+                                        {!! $data['destination']->talk !!}
+                                    </div>
+                                    <div class="-list-testimonial row row-cols-1 row-cols-lg-2">
+                                        @foreach ($data['reviews1'] as $item)
+                                            <div class="col">
+                                                <div class="testimonial-item">
+                                                    <div class="comment-content">
+                                                        <p>{!! $item->content !!}</p>
+                                                    </div>
+                                                    <div class="comment-bio">
+                                                        <div class="profile-image">
+                                                            <img decoding="async"
+                                                                src="{{ $item->user_avatar ? get_url($item->user_avatar) : get_url('assets/images/user/no-avatar.jpg') }}"
+                                                                alt="{{ $item->user_name }}">
+                                                        </div>
+                                                        <span class="profile-info">
+                                                            <strong class="profile-name">{{ $item->user_name }}</strong>
+                                                            <p class="profile-des">{{ $item->name }}</p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($data['reviews2'])
+                                    <div class="col">
+                                        <div class="-list-testimonial row row-cols-1 row-cols-lg-2">
+                                            @foreach ($data['reviews2'] as $item)
+                                                <div class="col">
+                                                    <div class="testimonial-item">
+                                                        <div class="comment-content">
+                                                            <p>{!! $item->content !!}</p>
+                                                        </div>
+                                                        <div class="comment-bio">
+                                                            <div class="profile-image">
+                                                                <img decoding="async"
+                                                                    src="{{ $item->user_avatar ? get_url($item->user_avatar) : get_url('assets/images/user/no-avatar.jpg') }}"
+                                                                    alt="{{ $item->user_name }}">
+                                                            </div>
+                                                            <span class="profile-info">
+                                                                <strong
+                                                                    class="profile-name">{{ $item->user_name }}</strong>
+                                                                <p class="profile-des">{{ $item->name }}</p>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if ($data['other'])
+                    <div class="container" style="margin-top: 30px;">
+                        <div class="block-post-related">
+                            <h2>@lang('messages.diem_den_lien_quan')</h2>
+                            <div class="row gx-3 gx-xl-5">
+                                @foreach ($data['other'] as $item)
+                                    <div class="col-sm-4 col-lg-4">
+                                        <div class="blog-normal-item">
+                                            <div class="block-images">
+                                                <a href="{{ route('destination.detail', ['alias' => $item->slug]) }}">
+                                                    <img loading="lazy" src="{{ get_url($item->image) }}"
+                                                        alt="{{ $item->name }}" class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="block-content">
+                                                {{-- <a href="#" class="-category">Category</a> --}}
+                                                <h2>{{ $item->name }}</h2>
+                                                <p>{!! $item->description !!}</p>
+                                                <a href="{{ route('destination.detail', ['alias' => $item->slug]) }}"
+                                                    class="-more">
+                                                    @lang('messages.xem_them')
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
-          </div>
         </section>
         @include('pages.blocks.newsletter')
-
     </article>
 @endsection

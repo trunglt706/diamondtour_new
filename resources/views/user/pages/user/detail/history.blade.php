@@ -2,8 +2,8 @@
     <div class="card-header d-flex justify-content-between align-items-center">
         <div class="hide-mobile">Lịch sử hoạt động <span class="total-item">(0)</span></div>
         <form action="" id="form-filter">
-            <input type="hidden" name="admin_id" value="{{ $admin->id }}">
-            <input type="hidden" name="type" value="admin">
+            <input type="hidden" name="user_id" value="{{ $user->id }}">
+            <input type="hidden" name="type" value="user">
             <div class="d-flex justify-content-between">
                 <div class="me-1">
                     {!! generate_limit_select() !!}
@@ -30,7 +30,7 @@
                 <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0 bg-light-primary">
                     <th class="text-center w-50px">#</th>
                     <th class="text-center w-150px hide-mobile">Thời gian</th>
-                    <th class="text-center w-100px hide-mobile">Ip address</th>
+                    <th class="text-center w-150px hide-mobile">Ip address</th>
                     <th class="text-center">Nội dung</th>
                 </tr>
             </thead>
@@ -48,5 +48,5 @@
     <!--end::Card body-->
 </div>
 @push('js')
-    @include('admin::admin.detail.script.history')
+    @include('user.pages.user.detail.script.history')
 @endpush

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class DestinationGroup extends Model
@@ -19,7 +20,13 @@ class DestinationGroup extends Model
         'type',
         'description',
         'numering',
-        'status'
+        'name_en',
+        'name_ch',
+        'status',
+        'description_en',
+        'description_ch',
+        'view_total',
+        'like_total',
     ];
 
     protected $hidden = [];
@@ -30,17 +37,26 @@ class DestinationGroup extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->code = $model->code ?? Str::uuid();
-            $model->slug = $model->code ?? Str::slug('name');
+            $model->code = $model->code ?? generateRandomString();
+            $model->slug = $model->slug ?? Str::slug($model->name);
             $model->status = $model->status ?? self::STATUS_ACTIVE;
-            $model->numering = $model->numering ?? self::getOrder();
+            $model->numering = $model->numering ?? 0;
+            $model->name_en = $model->name_en ?? $model->name;
+            $model->name_ch = $model->name_ch ?? $model->name;
+            $model->description_en = $model->description_en ?? $model->description;
+            $model->description_ch = $model->description_ch ?? $model->description;
         });
         self::created(function ($model) {
+            Cache::flush();
         });
         self::updated(function ($model) {
+            Cache::flush();
         });
         self::deleted(function ($model) {
-            // delete background
+            Cache::flush();
+            if ($model->image) {
+                delete_file($model->image);
+            }
         });
     }
 

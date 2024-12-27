@@ -22,14 +22,17 @@ class QaInsertRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
+            'group_id' => 'required|exists:qa_groups,id'
         ];
     }
 
     public function messages(): array
     {
         return [
-            'name.required' => 'Nhập câu hỏi!'
+            'name.required' => 'Nhập câu hỏi!',
+            'group_id.required' => 'Chọn danh mục!',
+            'group_id.exists' => 'Danh mục không tồn tại!'
         ];
     }
 }

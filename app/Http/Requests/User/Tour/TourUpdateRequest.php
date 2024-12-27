@@ -33,7 +33,7 @@ class TourUpdateRequest extends FormRequest
                 File::image()->between(1, MAX_FILE_SIZE_UPLOAD)
             ],
             'content' => 'required',
-            'important' => 'nullable|in:1'
+            'important' => 'nullable|integer'
         ];
     }
 
@@ -49,8 +49,8 @@ class TourUpdateRequest extends FormRequest
             'name.required' => 'Nhập tiêu đề điểm đến!',
             'background.image' => 'Ảnh nền chưa đúng định dạng!',
             'background.between' => 'Kích thước ảnh nền chưa phù hợp!',
-            'content.required' => 'nhập nội dung!',
-            'important.in' => 'Giá trị quan trọng chưa đúng!'
+            'content.required' => 'Nhập nội dung!',
+            'important.integer' => 'Giá trị độ ưu tiên chưa đúng!'
         ];
     }
 }

@@ -1,95 +1,48 @@
+@php
+    $name = $locale == 'vi' ? 'name' : 'name_' . $locale;
+    $_name = $data['group']->$name ?? $data['group']->name;
+@endphp
 @extends('index')
 @section('content')
-  <article class="article-wrapper-tour">
-    @include('pages.blocks.breadcrumb', [
-      'background'  => asset('assets/images/bg-tour-list.png'),
-      'title'       => 'Danh mục Blog',
-      'description' => 'Nơi chia sẻ thông tin hành trình',
-    ])
-
-    <section>
-      <div class="box-wrapper-tour">
-
-        <div class="container">
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-3 gx-lg-5">
-            <div class="col">
-              <a href="#" class="cat-post-item">
-                <div class="-image">
-                  <img src="{{ asset('assets/images/gallery-group-1.jpg') }}" class="img-fluid" alt="">
+    <article class="article-wrapper-tour">
+        @include('pages.blocks.breadcrumb', [
+            'background' => $data['group']->image,
+            'title' => __('messages.blog'),
+            'description' => $_name,
+            'link' => route('blog.index'),
+        ])
+        <section>
+            <div class="box-wrapper-tour">
+                <div class="container mb-5">
+                    @if ($data['list']->count() > 0)
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gx-3 gx-lg-5">
+                            @foreach ($data['list'] as $item)
+                                @php
+                                    $item_name = $locale == 'vi' ? 'name' : 'name_' . $locale;
+                                    $_item_name = $item->$item_name ?? $item->name;
+                                @endphp
+                                <div class="col mb-4">
+                                    <a href="{{ route('blog.detail', ['alias' => $item->slug]) }}" class="cat-post-item">
+                                        <div class="-image">
+                                            <img loading="lazy" src="{{ get_url($item->image) }}" class="img-fluid w-100"
+                                                alt="{{ $_item_name }}">
+                                        </div>
+                                        <div class="-content">
+                                            <h2>{{ $_item_name }}</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="box-pagination">
+                            {!! $data['list']->appends(request()->all())->links() !!}
+                        </div>
+                    @else
+                        @include('pages.blocks.empty-content')
+                    @endif
                 </div>
-                <div class="-content">
-                  <h2>Khám phá Ladkh</h2>
-                </div>
-              </a>
             </div>
-            <div class="col">
-              <a href="#" class="cat-post-item">
-                <div class="-image">
-                  <img src="{{ asset('assets/images/gallery-group-2.jpg') }}" class="img-fluid" alt="">
-                </div>
-                <div class="-content">
-                  <h2>Cáp Nhĩ Tân</h2>
-                </div>
-              </a>
-            </div>
-            <div class="col">
-              <a href="#" class="cat-post-item">
-                <div class="-image">
-                  <img src="{{ asset('assets/images/gallery-group-3.jpg') }}" class="img-fluid" alt="">
-                </div>
-                <div class="-content">
-                  <h2>Chiêm Bái Thánh Tích Nam Hoa - Tại Quảng Châu</h2>
-                </div>
-              </a>
-            </div>
-            <div class="col">
-              <a href="#" class="cat-post-item">
-                <div class="-image">
-                  <img src="{{ asset('assets/images/gallery-group-4.jpg') }}" class="img-fluid" alt="">
-                </div>
-                <div class="-content">
-                  <h2>Khám phá Ladkh</h2>
-                </div>
-              </a>
-            </div>
-            <div class="col">
-              <a href="#" class="cat-post-item">
-                <div class="-image">
-                  <img src="{{ asset('assets/images/gallery-group-5.jpg') }}" class="img-fluid" alt="">
-                </div>
-                <div class="-content">
-                  <h2>Khám phá Ladkh</h2>
-                </div>
-              </a>
-            </div>
-            <div class="col">
-              <a href="#" class="cat-post-item">
-                <div class="-image">
-                  <img src="{{ asset('assets/images/gallery-group-2.jpg') }}" class="img-fluid" alt="">
-                </div>
-                <div class="-content">
-                  <h2>Cáp Nhĩ Tân</h2>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="box-pagination">
-          <nav>
-            <ul class="pagination justify-content-center">
-              <li class="disabled page-item"><span class="page-link"><i class="fa-solid fa-chevron-left"></i></span></li>
-              <li class="active page-item"><a href="#" class="page-link">1</a></li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item"><a href="#" class="page-link">3</a></li>
-              <li class="page-item"><a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </section>
-
-    @include('pages.blocks.newsletter')
-
-  </article>
+        </section>
+        @include('pages.blocks.newsletter')
+    </article>
 @endsection

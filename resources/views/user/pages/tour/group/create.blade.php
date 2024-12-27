@@ -1,5 +1,5 @@
 <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <form action="{{ route('user.tour_group.insert') }}" id="form-create" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-content">
@@ -13,29 +13,118 @@
                     </span>
                 </div>
                 <div class="modal-body px-4 py-1">
-                    <div class="mb-1 form-group">
-                        <label class="col-form-label">Tên <span class="text-danger fw-900">*</span></label>
-                        <input type="text" placeholder="Tên nhóm" class="form-control" required name="name">
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <img src="{{ asset('user/img/user/no-avatar.jpg') }}"
-                            class="img-thumbnail preview w-80px h-70px" alt="img">
-                        <div class="form-group w-100 ps-3">
-                            <label class="col-form-label">Hình ảnh</label>
-                            <input type="file" class="form-control previewImg" name="image" accept="image/*">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-vi-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-vi" type="button" role="tab" aria-controls="nav-vi"
+                                aria-selected="true">Tiếng Việt</button>
+                            <button class="nav-link" id="nav-en-tab" data-bs-toggle="tab" data-bs-target="#nav-en"
+                                type="button" role="tab" aria-controls="nav-en" aria-selected="false">Tiếng
+                                Anh</button>
+                            <button class="nav-link" id="nav-ch-tab" data-bs-toggle="tab" data-bs-target="#nav-ch"
+                                type="button" role="tab" aria-controls="nav-ch" aria-selected="false">Tiếng
+                                Trung</button>
                         </div>
-                    </div>
-                    <div class="mb-1 form-group">
-                        <label class="col-form-label">Mô tả</label>
-                        <textarea class="form-control" placeholder="Nội dung mô tả" rows="2" name="description"></textarea>
-                    </div>
-                    <div class="my-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" name="status" value="active" type="checkbox" role="switch"
-                                id="switch_status" checked>
-                            <label class="form-check-label" for="switch_status">
-                                Kích hoạt
-                            </label>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-vi" role="tabpanel"
+                            aria-labelledby="nav-vi-tab" tabindex="0">
+                            <div class="mb-1 form-group">
+                                <label class="col-form-label">Tên <span class="text-danger fw-900">*</span></label>
+                                <input type="text" placeholder="Tên danh mục" class="form-control" required
+                                    name="name">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-1">
+                                        <label class="col-form-label">
+                                            Hình ảnh
+                                            <small class="fst-italic">
+                                                (Kích thước gợi ý: 495 x 320px)
+                                            </small>
+                                        </label>
+                                        <input type="file" class="form-control previewImg" name="image"
+                                            accept="image/*">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-1 form-group">
+                                        <label class="col-form-label">Quốc gia</label>
+                                        <select name="country_id" class="form-select filter-country_id">
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-1 form-group">
+                                        <label class="col-form-label">Đánh giá</label>
+                                        <select name="starts" class="form-control form-select">
+                                            @for ($i = 1; $i < 6; $i++)
+                                                <option value="{{ $i }}" {{ $i == 5 ? 'selected' : '' }}>
+                                                    {{ $i }} sao</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-1 form-group">
+                                        <label class="col-form-label">Thời gian (ngày)</label>
+                                        <input type="text" class="form-control" name="days" value="0">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-1 form-group">
+                                        <label class="col-form-label">Số người</label>
+                                        <input type="text" class="form-control" name="personals" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-1 form-group">
+                                <label class="col-form-label">Mô tả</label>
+                                <textarea class="form-control" placeholder="Nội dung mô tả" rows="2" name="description"></textarea>
+                            </div>
+                            <div class="my-3 d-flex justify-content-between align-items-center">
+                                <div class="mb-1 form-group">
+                                    <label class="col-form-label">Trạng thái</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" name="status" value="active"
+                                            type="checkbox" role="switch" id="switch_status" checked>
+                                        <label class="form-check-label" for="switch_status">
+                                            Kích hoạt
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="mb-1 form-group">
+                                    <label class="col-form-label">Thứ tự</label>
+                                    <input type="number" placeholder="Thứ tự" class="form-control" name="numering">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab"
+                            tabindex="0">
+                            <div class="mb-1 form-group">
+                                <label class="col-form-label">Tên</label>
+                                <input type="text" placeholder="Tên danh mục" class="form-control"
+                                    name="name_en">
+                            </div>
+                            <div class="mb-1 form-group">
+                                <label class="col-form-label">Mô tả</label>
+                                <textarea class="form-control" placeholder="Nội dung mô tả" rows="2" name="description_en"></textarea>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-ch" role="tabpanel" aria-labelledby="nav-ch-tab"
+                            tabindex="0">
+                            <div class="mb-1 form-group">
+                                <label class="col-form-label">Tên</label>
+                                <input type="text" placeholder="Tên danh mục" class="form-control"
+                                    name="name_ch">
+                            </div>
+                            <div class="mb-1 form-group">
+                                <label class="col-form-label">Mô tả</label>
+                                <textarea class="form-control" placeholder="Nội dung mô tả" rows="2" name="description_ch"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>

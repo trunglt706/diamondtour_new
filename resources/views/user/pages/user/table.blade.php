@@ -33,16 +33,22 @@
                 {{ $item->email }}
             </td>
             <td class="text-center hide-mobile">
+                {{ $item->phone }}
+            </td>
+            <td class="text-center hide-mobile">
                 <span
                     class="badge bg-{{ $status[1] }} text-{{ $status[1] }} bg-opacity-15 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center">
                     <i class="fa fa-circle text-{{ $status[1] }} fs-9px fa-fw me-5px"></i> {{ $status[0] }}
                 </span>
             </td>
+            <td class="text-center hide-mobile">
+                {{ $item->last_login ? date('H:i:s d/m/Y', strtotime($item->last_login)) : '' }}
+            </td>
         </tr>
     @endforeach
     @if ($paginate != '')
         <tr>
-            <td colspan="5">
+            <td colspan="7">
                 <div class="mt-2">
                     {{ $paginate }}
                 </div>
@@ -51,7 +57,7 @@
     @endif
 @else
     <tr>
-        <td colspan="5" class="text-center empty-data">
+        <td colspan="7" class="text-center empty-data">
             <i class="fas fa-sad-cry fs-s2"></i> Không có dữ liệu
         </td>
     </tr>

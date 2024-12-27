@@ -55,9 +55,10 @@ class UserController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = request()->only('name', 'email', 'password', 'status');
+            $data = request()->only('name', 'email', 'phone', 'password');
             $data['password'] = Hash::make($data['password']);
             $new = User::create($data);
+            save_log("Nhân viên #$new->name vừa mới được tạo", $data);
             DB::commit();
             return response()->json([
                 'status' => true,
@@ -79,9 +80,10 @@ class UserController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = request()->all();
+            $data = request()->only('name', 'email', 'phone', 'status');
             $new = User::findOrFail(request('id'));
             $new->update($data);
+            save_log("Nhân viên #$new->name vừa mới được cập nhật", $data);
             DB::commit();
             return redirect()->back()->with('success', 'Cập nhật thành công');
         } catch (\Throwable $th) {
@@ -99,6 +101,7 @@ class UserController extends Controller
             $new = User::findOrFail(auth()->user()->id);
             $new->password = Hash::make($password);
             $new->save();
+            save_log("Tài khoản nhân viên #$new->name vừa mới được cập nhật", $request->all());
             DB::commit();
             return redirect()->back()->with('success', 'Cập nhật thành công');
         } catch (\Throwable $th) {
@@ -113,27 +116,54 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             $new = User::where('id', '<>', auth()->user()->id)->findOrFail(request('id'));
-            $new->delete();
-            DB::commit();
-            return response()->json([
-                'status' => true,
-                'message' => 'Xóa thành công',
-                'type' => 'success',
-            ]);
+            if ($new) {
+                $new->delete();
+                save_log("Nhân viên #$new->name vừa mới bị xóa", $new);
+                DB::commit();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Xóa thành công',
+                    'type' => 'success',
+                ]);
+            }
         } catch (\Throwable $th) {
             showLog($th);
-            DB::rollBack();
-            return response()->json([
-                'status' => false,
-                'message' => 'Có lỗi xãy ra!',
-                'type' => 'error',
-            ]);
         }
+        DB::rollBack();
+        return response()->json([
+            'status' => false,
+            'message' => 'Không thể xóa tài khoản này!',
+            'type' => 'error',
+        ]);
     }
 
     public function detail($id, UserViewRequest $request)
     {
-        $data = User::findOrFail($id);
-        return view('user.pages.user.detail', compact('data'));
+        $user = User::findOrFail($id);
+        $tab = request('tab', 'info');
+        $data['status'] = User::get_status();
+        return view('user.pages.user.detail.index', compact('data', 'user', 'tab'));
+    }
+
+    public function updateStatus()
+    {
+        try {
+            DB::beginTransaction();
+            $id = request('id', '');
+            $status = request('status', User::STATUS_ACTIVE);
+            $user = User::findOrFail($id);
+            if ($user) {
+                $user->status = $status;
+                $user->save();
+                $msg = $status ==  User::STATUS_ACTIVE ? 'được kích hoạt' : 'bị khóa';
+                save_log("Nhân viên #$user->name vừa mới $msg", request()->all());
+                DB::commit();
+                return redirect()->back()->with('success', "Trạng thái của nhân viên đã $msg");
+            }
+        } catch (\Throwable $th) {
+            showLog($th);
+            DB::rollBack();
+        }
+        return redirect()->back()->with('error', "Không thể cập nhật trạng thái!");
     }
 }

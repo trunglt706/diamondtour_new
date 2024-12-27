@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class PostGroup extends Model
@@ -17,7 +19,11 @@ class PostGroup extends Model
         'name',
         'image',
         'status',
-        'numering'
+        'numering',
+        'name_en',
+        'name_ch',
+        'view_total',
+        'like_total',
     ];
 
     protected $hidden = [];
@@ -27,17 +33,24 @@ class PostGroup extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->code = $model->code ?? Str::uuid();
-            $model->slug = $model->slug ?? Str::slug('name');
+            $model->code = $model->code ?? generateRandomString();
+            $model->slug = $model->slug ?? Str::slug($model->name);
             $model->status = $model->status ?? self::STATUS_ACTIVE;
-            $model->numering = $model->numering ?? self::getOrder();
+            $model->numering = $model->numering ?? 0;
+            $model->name_en = $model->name_en ?? $model->name;
+            $model->name_ch = $model->name_ch ?? $model->name;
         });
         self::created(function ($model) {
+            Cache::flush();
         });
         self::updated(function ($model) {
+            Cache::flush();
         });
         self::deleted(function ($model) {
-            // delete image
+            Cache::flush();
+            if ($model->image) {
+                delete_file($model->image);
+            }
         });
     }
 
@@ -51,6 +64,11 @@ class PostGroup extends Model
             self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
         ];
         return $status == '' ? $_status : $_status["$status"];
+    }
+
+    public function scopeOfSlug($query, $slug)
+    {
+        return $query->where('post_groups.slug', $slug);
     }
 
     public function scopeOfCode($query, $code)
@@ -71,7 +89,7 @@ class PostGroup extends Model
         });
     }
 
-    public function posts()
+    public function blogs()
     {
         return $this->hasMany(Post::class, 'group_id', 'id');
     }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone');
-            $table->string('question');
+            $table->string('question')->nullable();
             $table->text('comment')->nullable();
             $table->enum('status', ['un_active', 'active', 'blocked'])->index()->nullable()->default('un_active');
             $table->timestamps();

@@ -36,10 +36,17 @@
                                 <label class="col-form-label">Tên <span class="text-danger fw-900">*</span></label>
                                 <input type="text" placeholder="Tên quản trị" class="form-control" name="name">
                             </div>
-                            <div class="form-group mb-2">
-                                <label class="col-form-label">Email <span class="text-danger fw-900">*</span></label>
-                                <input type="email" placeholder="VD: admn@gmail.com" class="form-control"
-                                    name="email">
+                            <div class="row">
+                                <div class="form-group mb-2 col-md-6">
+                                    <label class="col-form-label">Email <span
+                                            class="text-danger fw-900">*</span></label>
+                                    <input type="email" placeholder="VD: admn@gmail.com" class="form-control"
+                                        name="email">
+                                </div>
+                                <div class="form-group mb-2 col-md-6">
+                                    <label class="col-form-label">Điện thoại</label>
+                                    <input placeholder="VD: 0909000999" class="form-control" name="phone">
+                                </div>
                             </div>
                             <div class="my-3">
                                 <div class="form-check form-switch">

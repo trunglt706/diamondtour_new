@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id()->index();
-            $table->unsignedBigInteger('group_id')->index();
-            $table->unsignedBigInteger('country_id')->index()->nullable();
+            $table->unsignedBigInteger('group_id')->index()->nullable();
             $table->unsignedBigInteger('province_id')->index()->nullable();
+            $table->unsignedBigInteger('country_id')->index()->nullable();
             $table->string('slug')->unique();
             $table->string('code')->unique();
             $table->string('name');
@@ -23,8 +23,12 @@ return new class extends Migration
             $table->integer('price')->nullable();
             $table->string('currency', 10)->nullable()->default('vnd');
             $table->datetime('day_start')->nullable();
+            $table->string('image')->nullable();
             $table->string('background')->nullable();
             $table->string('duration')->nullable();
+            $table->string('country')->nullable();
+            $table->date('from')->nullable();
+            $table->date('to')->nullable();
             $table->text('content')->nullable();
             $table->string('schedule_file')->nullable();
             $table->text('include')->nullable();
@@ -33,10 +37,12 @@ return new class extends Migration
             $table->text('notice')->nullable();
             $table->integer('important')->nullable()->default(0);
             $table->json('tags')->nullable();
+            $table->json('images')->nullable();
             $table->integer('view_total')->nullable()->default(0);
             $table->integer('like_total')->nullable()->default(0);
             $table->enum('status', ['draft', 'active', 'blocked'])->index()->nullable()->default('draft');
-            $table->foreign('group_id')->references('id')->on('tour_groups')->onDelete('cascade');
+            $table->foreign('group_id')->references('id')->on('tour_groups');
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();
         });
     }

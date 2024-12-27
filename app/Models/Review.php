@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 
 class Review extends Model
 {
@@ -18,7 +19,9 @@ class Review extends Model
         'important',
         'content',
         'status',
-        'vendor'
+        'vendor',
+        'user_name',
+        'user_avatar'
     ];
 
     protected $hidden = [];
@@ -29,14 +32,20 @@ class Review extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->code = $model->code ?? Str::uuid();
+            $model->code = $model->code ?? generateRandomString();
             $model->status = $model->status ?? self::STATUS_ACTIVE;
         });
         self::created(function ($model) {
+            Cache::flush();
         });
         self::updated(function ($model) {
+            Cache::flush();
         });
         self::deleted(function ($model) {
+            Cache::flush();
+            if ($model->user_avatar) {
+                delete_file($model->user_avatar);
+            }
         });
     }
 

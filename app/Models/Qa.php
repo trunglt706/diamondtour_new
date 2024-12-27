@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class Qa extends Model
 {
@@ -12,11 +12,16 @@ class Qa extends Model
     protected $table = 'qas';
 
     protected $fillable = [
+        'group_id',
         'code',
         'name',
         'description',
         'status',
-        'numering'
+        'name_en',
+        'name_ch',
+        'numering',
+        'description_en',
+        'description_ch'
     ];
 
     protected $hidden = [];
@@ -27,15 +32,22 @@ class Qa extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->code = $model->code ?? Str::uuid();
+            $model->code = $model->code ?? generateRandomString();
             $model->status = $model->status ?? self::STATUS_ACTIVE;
             $model->numering = $model->numering ?? self::getOrder();
+            $model->name_en = $model->name_en ?? $model->name;
+            $model->name_ch = $model->name_ch ?? $model->name;
+            $model->description_en = $model->description_en ?? $model->description;
+            $model->description_ch = $model->description_ch ?? $model->description;
         });
         self::created(function ($model) {
+            Cache::flush();
         });
         self::updated(function ($model) {
+            Cache::flush();
         });
         self::deleted(function ($model) {
+            Cache::flush();
         });
     }
 
@@ -49,6 +61,11 @@ class Qa extends Model
             self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
         ];
         return $status == '' ? $_status : $_status["$status"];
+    }
+
+    public function scopeGroupId($query, $group_id)
+    {
+        return $query->where('qas.group_id', $group_id);
     }
 
     public function scopeOfCode($query, $code)
@@ -67,6 +84,11 @@ class Qa extends Model
             $query->where('qas.code', 'LIKE', "%$search%")
                 ->orWhere('qas.name', 'LIKE', "%$search%");
         });
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(QaGroup::class, 'group_id');
     }
 
     public static function getOrder()

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 
 class UserMenu extends Model
 {
@@ -43,6 +44,10 @@ class UserMenu extends Model
         });
         self::deleted(function ($model) {
             Cache::forget(CACHE_MENU_USER);
+            $images = $model->images ? json_decode($model->images) : [];
+            foreach ($images as $item) {
+                File::delete(get_link_public($item));
+            }
         });
     }
 

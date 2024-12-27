@@ -1,13 +1,15 @@
 <?php
 
+use App\Models\LogAction;
 use App\Models\Setting;
 use App\Models\UserMenu;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
 
 if (!function_exists('get_option')) {
     function get_option($code, $default = '')
     {
-        $setting = Setting::ofCode($code)->first();
+        $setting = Setting::ofCode($code)->select('value')->first();
         return $setting->value ?? $default;
     }
 }
@@ -15,7 +17,13 @@ if (!function_exists('get_option')) {
 if (!function_exists('renderUserMenu')) {
     function renderUserMenu($currentUrl = '')
     {
-        $menus = UserMenu::with('menus')->parentId(0)->ofStatus(UserMenu::STATUS_ACTIVE)->orderBy('numering', 'asc')->get();
+        if (Cache::has(CACHE_MENU_USER)) {
+            $menus = Cache::get(CACHE_MENU_USER);
+        } else {
+            $menus = Cache::remember(CACHE_MENU_USER, CACHE_TIME, function () {
+                return UserMenu::with('menus')->parentId(0)->ofStatus(UserMenu::STATUS_ACTIVE)->orderBy('numering', 'asc')->get();
+            });
+        }
         foreach ($menus as $menu) {
             $hasSub = (count($menu->menus) > 0) ? 'has-sub' : '';
             $menuUrl = (!empty($menu->link)) ? $menu->link : '';
@@ -132,5 +140,31 @@ if (!function_exists('check_active')) {
             }
         }
         return '';
+    }
+}
+
+if (!function_exists('save_log')) {
+    function save_log($content, $payload = [])
+    {
+        LogAction::create([
+            'user_id' => auth()->check() ? auth()->user()->id : null,
+            'description' => $content,
+            'data_json' => json_encode($payload),
+            'ip' => get_ip(),
+            'device' => get_device()
+        ]);
+    }
+}
+
+if (!function_exists('stripHtml')) {
+    function stripHtml($content)
+    {
+        // Loại bỏ tất cả các thẻ HTML
+        $content = strip_tags($content);
+
+        // Thay thế các ký tự HTML entity (ví dụ: &nbsp;, &amp;) bằng ký tự bình thường
+        $content = html_entity_decode($content, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+        return $content;
     }
 }

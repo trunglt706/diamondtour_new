@@ -19,21 +19,34 @@ class Contact extends Model
         'status'
     ];
     protected $hidden = [];
-    protected $casts = [
-        'created_at' => 'timestamp',
-        'updated_at' => 'timestamp',
-    ];
+    protected $casts = [];
+
     public static function boot()
     {
         parent::boot();
         self::creating(function ($model) {
+            $model->code = $model->code ?? generateRandomString();
+            $model->status = $model->status ?? self::STATUS_UN_ACTIVE;
         });
-        self::created(function ($model) {
-        });
-        self::updated(function ($model) {
-        });
-        self::deleted(function ($model) {
-        });
+        self::created(function ($model) {});
+        self::updated(function ($model) {});
+        self::deleted(function ($model) {});
+    }
+
+    const TYPE_TOUR = 'tour';
+    const TYPE_LANDTOUR = 'landtour';
+    const TYPE_CUSTOMER = 'customer';
+    const TYPE_CUSTOMER_GROUP = 'customer_group';
+
+    public static function get_type($status = '')
+    {
+        $_status = [
+            self::TYPE_TOUR => ['Tours', 'dark'],
+            self::TYPE_LANDTOUR => ['LandTours', 'success'],
+            self::TYPE_CUSTOMER => ['Khách lẻ', 'danger'],
+            self::TYPE_CUSTOMER_GROUP => ['Nhóm khách', 'info'],
+        ];
+        return $status == '' ? $_status : $_status["$status"];
     }
 
     const STATUS_UN_ACTIVE = 'un_active';
@@ -43,11 +56,16 @@ class Contact extends Model
     public static function get_status($status = '')
     {
         $_status = [
-            self::STATUS_UN_ACTIVE => ['Chưa kích hoạt', 'secondary'],
-            self::STATUS_ACTIVE => ['Đang kích hoạt', 'success'],
-            self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
+            self::STATUS_UN_ACTIVE => ['Chưa duyệt', 'dark'],
+            self::STATUS_ACTIVE => ['Đã duyệt', 'success'],
+            self::STATUS_BLOCKED => ['Đã khóa', 'danger'],
         ];
         return $status == '' ? $_status : $_status["$status"];
+    }
+
+    public function scopeOfType($query, $question)
+    {
+        return $query->where('contacts.question', $question);
     }
 
     public function scopeOfStatus($query, $status)
@@ -55,9 +73,9 @@ class Contact extends Model
         return $query->where('contacts.status', $status);
     }
 
-    public function scopeOfCode($query, $status)
+    public function scopeOfCode($query, $code)
     {
-        return $query->where('contacts.status', $status);
+        return $query->where('contacts.code', $code);
     }
 
     public function scopeOfEmail($query, $email)

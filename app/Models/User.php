@@ -24,7 +24,8 @@ class User extends Authenticatable
         'password',
         'last_login',
         'status',
-        'admin'
+        'admin',
+        'phone'
     ];
 
     /**
@@ -74,9 +75,9 @@ class User extends Authenticatable
     public static function get_status($status = '')
     {
         $types = [
-            self::STATUS_UN_ACTIVE => ['Chưa kích hoạt', 'success', COLOR_SECONDARY],
+            self::STATUS_UN_ACTIVE => ['Chưa kích hoạt', 'dark', COLOR_DARK],
             self::STATUS_ACTIVE => ['Đang hoạt động', 'success', COLOR_SUCCESS],
-            self::STATUS_SUSPEND => ['Tạm ngưng', 'secondary', COLOR_SECONDARY],
+            self::STATUS_SUSPEND => ['Tạm ngưng', 'danger', COLOR_DANGER],
         ];
         return $status == '' ? $types : $types["$status"];
     }

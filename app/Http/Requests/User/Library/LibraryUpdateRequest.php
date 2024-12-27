@@ -37,7 +37,7 @@ class LibraryUpdateRequest extends FormRequest
             'group_id.required' => 'Chọn danh mục thư viện!',
             'group_id.exists' => 'Danh mục này không tồn tại!',
             'name.required' => 'Nhập tên thư viện',
-            'important.in' => 'Giá trị quan trọng chưa phù hợp!'
+            'important.in' => 'Giá trị độ ưu tiên chưa phù hợp!'
         ];
     }
 }

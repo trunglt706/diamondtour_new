@@ -3,6 +3,14 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-2">
         <h5 class="hide-mobile">Danh sách nhật ký <span class="total-item">(0)</span></h5>
+        <div class="btn-group" role="group">
+            <a href="{{ route('user.user.index') }}" class="btn btn-secondary">
+                Quản trị viên
+            </a>
+            <a href="{{ route('user.log_action.index') }}" class="btn btn-primary">
+                Nhật ký
+            </a>
+        </div>
     </div>
     <div class="card card-header-actions">
         <form action="" id="form-filter">

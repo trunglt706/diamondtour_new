@@ -30,7 +30,7 @@ class Newllter extends Model
                 'ip' => request()->ip(),
                 'device' => request()->userAgent(),
             ]);
-            $model->code = $model->code ?? Str::uuid();
+            $model->code = $model->code ?? generateRandomString();
             $model->status = $model->status ?? self::STATUS_BLOCKED;
         });
         self::created(function ($model) {
@@ -47,8 +47,8 @@ class Newllter extends Model
     public static function get_status($status = '')
     {
         $_status = [
-            self::STATUS_ACTIVE => ['Đang kích hoạt', 'success'],
-            self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
+            self::STATUS_ACTIVE => ['Đã duyệt', 'success'],
+            self::STATUS_BLOCKED => ['Chưa duyệt', 'dark'],
         ];
         return $status == '' ? $_status : $_status["$status"];
     }

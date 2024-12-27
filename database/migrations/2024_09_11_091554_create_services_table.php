@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('services', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('name_en')->nullable();
+            $table->string('name_ch')->nullable();
+            $table->string('description')->nullable();
+            $table->string('description_en')->nullable();
+            $table->string('description_ch')->nullable();
+            $table->json('backgrounds')->nullable();
+            $table->string('image')->nullable();
+            $table->enum('status', ['active', 'blocked'])->nullable()->default('active');
+            $table->string('link')->nullable();
+            $table->date('date')->nullable();
+            $table->integer('numering')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('services');
+    }
+};

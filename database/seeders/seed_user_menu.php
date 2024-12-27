@@ -42,7 +42,8 @@ class seed_user_menu extends Seeder
             'active' => json_encode([
                 USER_PREFIX_ROUTE . '/tour*',
                 USER_PREFIX_ROUTE . '/tour_group*',
-                USER_PREFIX_ROUTE . '/tour_design*'
+                USER_PREFIX_ROUTE . '/tour_design*',
+                USER_PREFIX_ROUTE . '/schedule*',
             ]),
             'icon' => '<i class="fas fa-plane-departure"></i>'
         ]);
@@ -58,13 +59,32 @@ class seed_user_menu extends Seeder
         ]);
         UserMenu::create([
             'code' => 'destination',
-            'name' => 'Destination',
+            'name' => 'Điểm đến',
             'link' => route('user.destination.index'),
             'active' => json_encode([
                 USER_PREFIX_ROUTE . '/destination*',
-                USER_PREFIX_ROUTE . '/destination_group*'
+                USER_PREFIX_ROUTE . '/destination_group*',
+                USER_PREFIX_ROUTE . '/review*',
             ]),
             'icon' => '<i class="fas fa-map-marker-alt"></i>'
+        ]);
+        UserMenu::create([
+            'code' => 'event',
+            'name' => 'Sự kiện',
+            'link' => route('user.event.index'),
+            'active' => json_encode([
+                USER_PREFIX_ROUTE . '/event*',
+            ]),
+            'icon' => '<i class="fas fa-calendar-alt"></i>'
+        ]);
+        UserMenu::create([
+            'code' => 'service',
+            'name' => 'Dịch vụ',
+            'link' => route('user.service.index'),
+            'active' => json_encode([
+                USER_PREFIX_ROUTE . '/service*',
+            ]),
+            'icon' => '<i class="fas fa-hand-holding-heart"></i>'
         ]);
         UserMenu::create([
             'code' => 'setting',
@@ -73,9 +93,67 @@ class seed_user_menu extends Seeder
             'active' => json_encode([
                 USER_PREFIX_ROUTE . '/setting*',
                 USER_PREFIX_ROUTE . '/social*',
-                USER_PREFIX_ROUTE . '/qa*'
+                USER_PREFIX_ROUTE . '/qa*',
+                USER_PREFIX_ROUTE . '/qa_group*',
+                USER_PREFIX_ROUTE . '/menu*',
             ]),
             'icon' => '<i class="fas fa-tools"></i>'
+        ]);
+        $other = UserMenu::create([
+            'code' => 'other',
+            'name' => 'Khác',
+            'link' => route('user.contact.index'),
+            'active' => json_encode([
+                USER_PREFIX_ROUTE . '/contact*',
+                USER_PREFIX_ROUTE . '/newllter*',
+                USER_PREFIX_ROUTE . '/country*',
+                USER_PREFIX_ROUTE . '/province*',
+            ]),
+            'icon' => '<i class="fas fa-th-large"></i>'
+        ]);
+        UserMenu::create([
+            'parent_id' => $other->id,
+            'code' => 'contact',
+            'name' => 'Thông tin đăng ký',
+            'link' => route('user.contact.index'),
+            'active' => json_encode([
+                USER_PREFIX_ROUTE . '/contact*',
+                USER_PREFIX_ROUTE . '/newllter*',
+                USER_PREFIX_ROUTE . '/register_promo*',
+                USER_PREFIX_ROUTE . '/register_tour*',
+            ]),
+            'icon' => '<i class="fas fa-th-large"></i>'
+        ]);
+        UserMenu::create([
+            'parent_id' => $other->id,
+            'code' => 'country',
+            'name' => 'Quốc gia',
+            'link' => route('user.country.index'),
+            'active' => json_encode([
+                USER_PREFIX_ROUTE . '/country*',
+            ]),
+            'icon' => '<i class="fas fa-globe-europe"></i>'
+        ]);
+        UserMenu::create([
+            'parent_id' => $other->id,
+            'code' => 'province',
+            'name' => 'Khu vực',
+            'link' => route('user.province.index'),
+            'active' => json_encode([
+                USER_PREFIX_ROUTE . '/province*',
+            ]),
+            'icon' => '<i class="fas fa-crosshairs"></i>'
+        ]);
+        UserMenu::create([
+            'parent_id' => $other->id,
+            'code' => 'library',
+            'name' => 'Thư viện',
+            'link' => route('user.library.index'),
+            'active' => json_encode([
+                USER_PREFIX_ROUTE . '/library*',
+                USER_PREFIX_ROUTE . '/library_group*',
+            ]),
+            'icon' => '<i class="fas fa-images"></i>'
         ]);
     }
 }

@@ -1,0 +1,247 @@
+@extends('guest.layout')
+@section('title', get_data_lang($data['menu'], 'name'))
+@section('keywords', '')
+@section('description', get_data_lang($data['menu'], 'description'))
+@section('image', asset($data['menu']->background))
+@section('style')
+    <style>
+        .header-title-style-3.header-title {
+            align-items: center;
+        }
+
+        .widget_tour_1 {
+            padding: 50px 0 !important;
+        }
+
+        .widget_tour_1 .tour-item .title .top .header-tour-detail {
+            -webkit-line-clamp: 1 !important;
+        }
+
+        @media (max-width: 932px) {
+
+            .main-content {
+                padding-top: 50px !important;
+            }
+
+            .widget_item_1 {
+                display: none;
+            }
+
+            .widget_tour_1 {
+                padding: 0px !important;
+            }
+
+            .header-title-style-3.header-title .header {
+                font-size: 26px !important;
+                text-align: center !important;
+            }
+
+            .widget_tour_1 .tour-item .title {
+                padding: 8px !important;
+            }
+
+            .header-title-style-3.header-title {
+                justify-content: center !important;
+            }
+        }
+    </style>
+@endsection
+@section('content')
+    <section class="main-content">
+        <div class="wrapper home search">
+            {{-- start slider --}}
+            <div class="widget_slider">
+                <div class="box-content">
+                    <div class="widget_slider_banner">
+                        <div>
+                            <a href="#">
+                                <img src="{{ asset($data['menu']->background) }}" alt="Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- end slider --}}
+
+            {{-- start toolbar --}}
+            @include('guest.home.toolbar')
+            {{-- end toolbar --}}
+
+            <div class="widget_tour_1">
+                {{-- tour --}}
+                @if ($data['tours'])
+                    <div class="container">
+                        <div class="header-title header-title-style-3">
+                            <p class="header text-uppercase">
+                                {{ __('messages.result_find_tour') }}
+                                ({{ $data['tours']->count() }})
+                            </p>
+                        </div>
+                        <div class="row">
+                            @foreach ($data['tours'] as $tour)
+                                @php
+                                    $_url = route('demo.tour.detail', ['slug' => $tour->slug]);
+                                @endphp
+                                <div class="col-md-4 col-12">
+                                    <div class="tour-item">
+                                        <div class="img">
+                                            <a href="{{ $_url }}">
+                                                <img src="{{ asset($tour->image) }}" alt="Image" title=""
+                                                    loading="lazy">
+                                            </a>
+                                        </div>
+                                        <div class="title">
+                                            <div class="top">
+                                                <h3 class="header-tour-detail"><a
+                                                        href="{{ $_url }}">{{ get_data_lang($tour, 'name') }}</a>
+                                                </h3>
+                                                <a class="btn-read-more" href="{{ $_url }}">@lang('messages.view_now') ></a>
+                                            </div>
+                                            <div class="list-icon-share">
+                                                <a href="/">
+                                                    <i class="fas fa-calendar-week"></i>
+                                                    {{ $tour->from ? date('d/m/Y', strtotime($tour->from)) : __('messages.dang_cap_nhat') }}
+                                                </a>
+                                                <a href="/" class="vnd">
+                                                    {{ $tour->price ? number_format($tour->price) . 'Đ' : __('messages.dang_cap_nhat') }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            @php
+                                $pagination = $data['tours']->appends(request()->all())->links();
+                            @endphp
+                            {!! $pagination !!}
+                        </div>
+                    </div>
+                @endif
+
+                {{-- blog --}}
+                @if ($data['blogs'])
+                    <div class="container">
+                        <div class="header-title header-title-style-3">
+                            <p class="header text-uppercase">
+                                {{ __('messages.result_find_blog') }}
+                                ({{ $data['blogs']->count() }})
+                            </p>
+                        </div>
+                        <div class="row">
+                            @foreach ($data['blogs'] as $item)
+                                @php
+                                    $_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                                @endphp
+                                <div class="col-md-4 col-12">
+                                    <div class="tour-item">
+                                        <div class="img">
+                                            <a href="{{ $_url }}">
+                                                <img src="{{ asset($item->image) }}" alt="Image" title=""
+                                                    loading="lazy">
+                                            </a>
+                                        </div>
+                                        <div class="title">
+                                            <div class="top">
+                                                <h3 class="header-tour-detail"><a
+                                                        href="{{ $_url }}">{{ get_data_lang($item, 'name') }}</a>
+                                                </h3>
+                                                <a class="btn-read-more" href="{{ $_url }}">@lang('messages.view_now') ></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            @php
+                                $pagination = $data['blogs']->appends(request()->all())->links();
+                            @endphp
+                            {!! $pagination !!}
+                        </div>
+                    </div>
+                @endif
+
+                {{-- diểm đến --}}
+                @if ($data['destinations'])
+                    <div class="container">
+                        <div class="header-title header-title-style-3">
+                            <p class="header text-uppercase">
+                                {{ __('messages.result_find_destination') }}
+                                ({{ $data['destinations']->count() }})
+                            </p>
+                        </div>
+                        <div class="row">
+                            @foreach ($data['destinations'] as $des)
+                                @php
+                                    $_url = route('demo.destination.detail', ['slug' => $des->slug]);
+                                @endphp
+                                <div class="col-md-4 col-12">
+                                    <div class="tour-item">
+                                        <div class="img">
+                                            <a href="{{ $_url }}">
+                                                <img src="{{ asset($des->image) }}" alt="Image" title=""
+                                                    loading="lazy">
+                                            </a>
+                                        </div>
+                                        <div class="title">
+                                            <div class="top">
+                                                <h3 class="header-tour-detail"><a
+                                                        href="{{ $_url }}">{{ get_data_lang($des, 'name') }}</a>
+                                                </h3>
+                                                <a class="btn-read-more" href="{{ $_url }}">@lang('messages.view_now') ></a>
+                                            </div>
+                                            <div class="list-icon-share">
+                                                <a href="#">
+                                                    @if ($des->type == 'local')
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                        {{ $des->province_name ?? __('messages.dang_cap_nhat') }}
+                                                    @else
+                                                        <i class="fas fa-globe-asia"></i>
+                                                        {{ $des->country_name ?? __('messages.dang_cap_nhat') }}
+                                                    @endif
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            @php
+                                $pagination = $data['destinations']->appends(request()->all())->links();
+                            @endphp
+                            {!! $pagination !!}
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </section>
+@endsection
+@section('script')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <script>
+        var url = "{{ route('demo.search') }}";
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                    opens: "left",
+                },
+                function(start, end, label) {
+                    const startDate = start.format("YYYY-MM-DD");
+                    const endDate = end.format("YYYY-MM-DD");
+                    const url = `/${url}?t=tour&start=${startDate}&end=${endDate}`;
+                    location.href = url;
+                }
+            );
+        });
+
+        $(".widget_item_1 .dropdown").on("click", function(e) {
+            e.stopPropagation();
+        });
+    </script>
+@endsection

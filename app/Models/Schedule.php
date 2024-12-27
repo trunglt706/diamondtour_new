@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class Schedule extends Model
 {
@@ -29,15 +29,21 @@ class Schedule extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->code = $model->code ?? Str::uuid();
+            $model->code = $model->code ?? generateRandomString();
             $model->status = $model->status ?? self::STATUS_ACTIVE;
             $model->numering = $model->numering ?? self::getOrder($model->tour_id);
         });
         self::created(function ($model) {
+            Cache::flush();
         });
         self::updated(function ($model) {
+            Cache::flush();
         });
         self::deleted(function ($model) {
+            Cache::flush();
+            if ($model->image) {
+                delete_file($model->image);
+            }
         });
     }
 
@@ -79,6 +85,11 @@ class Schedule extends Model
     public function tour()
     {
         return $this->belongsTo(Tour::class, 'tour_id');
+    }
+
+    public function details()
+    {
+        return $this->hasMany(ScheduleDetal::class, 'schedule_id', 'id')->select('id', 'name', 'description', 'schedule_id');
     }
 
     public static function getOrder($tour_id)

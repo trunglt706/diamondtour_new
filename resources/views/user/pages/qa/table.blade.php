@@ -20,7 +20,7 @@
                     <i class="fas fa-eye"></i>
                 </a>
             </td>
-            <td class="text-center hide-mobile">
+            <td>
                 {{ $item->name }}
             </td>
             <td class="text-center hide-mobile">

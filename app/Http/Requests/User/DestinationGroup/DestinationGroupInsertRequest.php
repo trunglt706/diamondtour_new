@@ -28,7 +28,6 @@ class DestinationGroupInsertRequest extends FormRequest
                 'nullable',
                 File::image()->between(1, MAX_FILE_SIZE_UPLOAD)
             ],
-            'type' => 'required|in:national,local'
         ];
     }
 
@@ -38,8 +37,6 @@ class DestinationGroupInsertRequest extends FormRequest
             'name.required' => 'Nhập tên danh mục điểm đến!',
             'image.image' => 'Hình ảnh chưa đúng định dạng!',
             'image.between' => 'Kích thước hình ảnh chưa phù hợp!',
-            'type.required' => 'Nhập loại điểm đến!',
-            'type.in' => 'Giá trị loại điểm đến chưa đúng!',
         ];
     }
 }

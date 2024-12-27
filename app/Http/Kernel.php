@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\checkUser;
+use App\Http\Middleware\SetLang;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,5 +67,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkUser' => checkUser::class,
+        'SetLang' => SetLang::class,
     ];
 }

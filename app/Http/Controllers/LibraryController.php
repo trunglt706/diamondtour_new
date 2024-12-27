@@ -11,16 +11,20 @@ use Illuminate\Support\Facades\DB;
 
 class LibraryController extends Controller
 {
-    protected $limit_default;
+    protected $limit_default, $dir;
 
     public function __construct()
     {
         $this->limit_default = 10;
+        $this->dir = 'uploads/library';
     }
 
     public function index(LibraryViewRequest $request)
     {
-        $data['status'] = Library::get_status();
+        $data = [
+            'status' => Library::get_status(),
+            'important' => Library::get_important(),
+        ];
         return view('user.pages.library.index', compact('data'));
     }
 
@@ -33,7 +37,7 @@ class LibraryController extends Controller
             $group_id = request('group_id', '');
             $important = request('important', '');
 
-            $list = Library::query();
+            $list = Library::type(Library::TYPE_LIBRARY);
             $list = $status != '' ? $list->ofStatus($status) : $list;
             $list = $search != '' ? $list->search($search) : $list;
             $list = $group_id != '' ? $list->groupId($group_id) : $list;
@@ -58,13 +62,27 @@ class LibraryController extends Controller
         DB::beginTransaction();
         try {
             $data = request()->all();
+            if (request()->hasFile('image')) {
+                $file = request()->file('image');
+                $data['image'] = store_file($file, $this->dir, false, 1500);
+            }
+            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
             $new = Library::create($data);
+            save_log("Thư viện #$new->name vừa mới được tạo", $data);
             DB::commit();
-            return redirect()->back()->with('success', 'Tạo mới thành công');
+            return response()->json([
+                'status' => true,
+                'message' => 'Tạo mới thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();
-            return redirect()->back()->with('error', 'Có lỗi xãy ra!');
+            return response()->json([
+                'status' => false,
+                'message' => 'Có lỗi xãy ra!',
+                'type' => 'error',
+            ]);
         }
     }
 
@@ -73,13 +91,35 @@ class LibraryController extends Controller
         DB::beginTransaction();
         try {
             $data = request()->all();
-            $new = Library::findOrFail(request('id'));
+            $new = Library::type(Library::TYPE_LIBRARY)->findOrFail(request('id'));
+            if (request()->hasFile('image')) {
+                delete_file($new->image);
+                $file = request()->file('image');
+                $data['image'] = store_file($file, $this->dir, false, 1500);
+            }
+            $data['status'] = isset($data['status']) && $data['status'] == Library::STATUS_ACTIVE ? Library::STATUS_ACTIVE : Library::STATUS_BLOCKED;
+            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
             $new->update($data);
+            save_log("Thư viện #$new->name vừa mới được cập nhật", $data);
             DB::commit();
+            if (request()->ajax()) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Cập nhật thành công',
+                    'type' => 'success',
+                ]);
+            }
             return redirect()->back()->with('success', 'Cập nhật thành công');
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();
+            if (request()->ajax()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Có lỗi xãy ra!',
+                    'type' => 'error',
+                ]);
+            }
             return redirect()->back()->with('error', 'Có lỗi xãy ra!');
         }
     }
@@ -88,20 +128,32 @@ class LibraryController extends Controller
     {
         DB::beginTransaction();
         try {
-            $new = Library::findOrFail(request('id'));
+            $new = Library::type(Library::TYPE_LIBRARY)->findOrFail(request('id'));
             $new->delete();
+            save_log("Thư viện #$new->name vừa mới bị xóa", $new);
             DB::commit();
-            return redirect()->back()->with('success', 'Xóa thành công');
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();
-            return redirect()->back()->with('error', 'Có lỗi xãy ra!');
+            return response()->json([
+                'status' => false,
+                'message' => 'Có lỗi xãy ra!',
+                'type' => 'error',
+            ]);
         }
     }
 
     public function detail($id, LibraryViewRequest $request)
     {
-        $data = Library::findOrFail($id);
+        $data = Library::type(Library::TYPE_LIBRARY)->findOrFail($id);
+        if (request()->ajax()) {
+            return view('user.pages.library.show', compact('data'))->render();
+        }
         return view('user.pages.library.detail', compact('data'));
     }
 }

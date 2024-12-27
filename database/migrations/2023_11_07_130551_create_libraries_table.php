@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('group_id')->index();
             $table->string('name');
             $table->string('image')->nullable();
+            $table->string('type')->nullable()->default('library');
             $table->integer('important')->nullable()->default(0);
             $table->integer('numering')->nullable()->default(0);
             $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
-            $table->foreign('group_id')->references('id')->on('library_groups')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -24,7 +24,8 @@ class UserUpdateRequest extends FormRequest
         return [
             'id' => 'required|exists:users,id',
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,except,' . request('id')
+            'email' => 'required|email',
+            'g-recaptcha-response' => 'required|captcha'
         ];
     }
 
@@ -37,6 +38,8 @@ class UserUpdateRequest extends FormRequest
             'email.required' => 'Nhập email!',
             'email.email' => 'Email không đúng định dạng!',
             'email.unique' => 'Email đã tồn tại!',
+            'g-recaptcha-response.required' => 'Chọn mã captchar!',
+            'g-recaptcha-response.captcha' => 'Mã captchar chưa hợp lệ hoặc đã hết hạn!',
         ];
     }
 }

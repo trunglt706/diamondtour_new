@@ -21,14 +21,25 @@
                     <i class="fas fa-eye"></i>
                 </a>
             </td>
-            <td class="text-center hide-mobile">
+            <td>
+                <img src="{{ get_url($item->image) }}" class="img-fluid w-30px h-20px" alt="">
                 {{ $item->name }}
             </td>
-            <td>
-                {{ $item->price }}
+            <td class="text-center hide-mobile">
+                {{ number_format($item->price) }} {{ $item->currency }}
             </td>
             <td class="text-center hide-mobile">
-                {{ $item->created_at }}
+                {{ $item->withCountry ? $item->withCountry->name : '-' }}
+            </td>
+            <td class="text-center">
+                {{ $item->important > 0 ? $item->important : '' }}
+            </td>
+            <td class="text-center hide-mobile">
+                @php
+                    $from = $item->from ? date('d/m/Y', strtotime($item->from)) : '';
+                    $to = $item->to ? date('d/m/Y', strtotime($item->to)) : '';
+                @endphp
+                {{ $from . ' - ' . $to }}
             </td>
             <td class="text-center hide-mobile">
                 <span
@@ -40,7 +51,7 @@
     @endforeach
     @if ($paginate != '')
         <tr>
-            <td colspan="5">
+            <td colspan="7">
                 <div class="mt-2">
                     {{ $paginate }}
                 </div>
@@ -49,7 +60,7 @@
     @endif
 @else
     <tr>
-        <td colspan="5" class="text-center empty-data">
+        <td colspan="7" class="text-center empty-data">
             <i class="fas fa-sad-cry fs-s2"></i> Không có dữ liệu
         </td>
     </tr>

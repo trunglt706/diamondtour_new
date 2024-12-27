@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
+// use \Maatwebsite\Excel\Sheet;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(255);
         Paginator::useBootstrap();
+        // Sheet::macro('styleCells', function (Sheet $sheet, string $cellRange, array $style) {
+        //     $sheet->getDelegate()->getStyle($cellRange)->applyFromArray($style);
+        // });
     }
 }

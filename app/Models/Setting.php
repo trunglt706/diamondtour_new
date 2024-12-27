@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Setting extends Model
 {
@@ -19,7 +20,9 @@ class Setting extends Model
         'description',
         'data',
         'numering',
-        'status'
+        'status',
+        'value_en',
+        'value_ch'
     ];
 
     protected $hidden = [];
@@ -36,12 +39,17 @@ class Setting extends Model
         self::creating(function ($model) {
             $model->status = $model->status ?? self::STATUS_ACTIVE;
             $model->numering = $model->numering ?? self::getOrder($model->group_id);
+            $model->value_en = $model->value_en ?? $model->value;
+            $model->value_ch = $model->value_ch ?? $model->value;
         });
         self::created(function ($model) {
+            Cache::flush();
         });
         self::updated(function ($model) {
+            Cache::flush();
         });
         self::deleted(function ($model) {
+            Cache::flush();
         });
     }
 
@@ -64,6 +72,7 @@ class Setting extends Model
     const TYPE_TEXT_AREA = 'textarea';
     const TYPE_RADIO = 'radio';
     const TYPE_EDITOR = 'editor';
+    const TYPE_IMAGES = 'images';
 
     public static function get_type($type = '')
     {
@@ -75,6 +84,7 @@ class Setting extends Model
             self::TYPE_TEXT_AREA => 'Text area',
             self::TYPE_RADIO => 'Radio button',
             self::TYPE_EDITOR => 'Editor',
+            self::TYPE_IMAGES => 'Images',
         ];
         return $type == '' ? $types : $types["$type"];
     }
@@ -96,6 +106,9 @@ class Setting extends Model
 
     public function scopeOfType($query, $type)
     {
+        if (is_array($type)) {
+            return $query->whereIn('settings.type', $type);
+        }
         return $query->where('settings.type', $type);
     }
 

@@ -26,11 +26,13 @@ class LogActionController extends Controller
             $status = request('status', '');
             $search = request('search', '');
             $user_id = request('user_id', '');
+            $date = request('date', '');
 
-            $list = LogAction::query();
+            $list = LogAction::with('user');
             $list = $status != '' ? $list->ofStatus($status) : $list;
             $list = $search != '' ? $list->search($search) : $list;
             $list = $user_id != '' ? $list->userId($user_id) : $list;
+            $list = $date != '' ? $list->date($date) : $list;
             $list = $list->latest()->paginate($limit);
             return response()->json([
                 'status' => true,
@@ -48,7 +50,7 @@ class LogActionController extends Controller
 
     public function detail($id, LogActionViewRequest $request)
     {
-        $data = LogAction::findOrFail($id);
-        return view('user.pages.library.log_action.detail', compact('data'));
+        $data = LogAction::with('user')->findOrFail($id);
+        return view('user.pages.log_action.detail', compact('data'));
     }
 }

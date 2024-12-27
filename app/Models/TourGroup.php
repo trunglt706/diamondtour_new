@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class TourGroup extends Model
@@ -18,7 +19,21 @@ class TourGroup extends Model
         'image',
         'status',
         'description',
-        'numering'
+        'name_en',
+        'name_ch',
+        'numering',
+        'description_en',
+        'description_ch',
+        'view_total',
+        'like_total',
+        'starts',
+        'days',
+        'personals',
+        'country_id',
+        'video_name',
+        'video_status',
+        'video_url',
+        'video_image',
     ];
 
     protected $hidden = [];
@@ -29,17 +44,32 @@ class TourGroup extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->code = $model->code ?? Str::uuid();
-            $model->slug = $model->code ?? Str::slug('name');
+            $model->code = $model->code ?? generateRandomString();
+            $model->slug = $model->slug ?? Str::slug($model->name);
             $model->status = $model->status ?? self::STATUS_ACTIVE;
-            $model->numering = $model->numering ?? self::getOrder();
+            $model->numering = $model->numering ?? 0;
+            $model->name_en = $model->name_en ?? $model->name;
+            $model->name_ch = $model->name_ch ?? $model->name;
+            $model->description_en = $model->description_en ?? $model->description;
+            $model->description_ch = $model->description_ch ?? $model->description;
+            $model->starts = $model->starts ?? 5;
+            $model->days = $model->days ?? 0;
+            $model->personals = $model->personals ?? 0;
         });
         self::created(function ($model) {
+            Cache::flush();
         });
         self::updated(function ($model) {
+            Cache::flush();
         });
         self::deleted(function ($model) {
-            // delete image
+            Cache::flush();
+            if ($model->image) {
+                delete_file($model->image);
+            }
+            if ($model->video_image) {
+                delete_file($model->video_image);
+            }
         });
     }
 
@@ -60,6 +90,16 @@ class TourGroup extends Model
         return $query->where('tour_groups.code', $code);
     }
 
+    public function scopeCountryId($query, $country_id)
+    {
+        return $query->where('tour_groups.country_id', $country_id);
+    }
+
+    public function scopeOfSlug($query, $slug)
+    {
+        return $query->where('tour_groups.slug', $slug);
+    }
+
     public function scopeOfStatus($query, $status)
     {
         return $query->where('tour_groups.status', $status);
@@ -76,6 +116,11 @@ class TourGroup extends Model
     public function tours()
     {
         return $this->hasMany(Tour::class, 'group_id', 'id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Countries::class, 'country_id');
     }
 
     public static function getOrder()

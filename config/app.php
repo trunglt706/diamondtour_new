@@ -160,6 +160,9 @@ return [
          * Package Service Providers...
          */
         App\Providers\ComposerServiceProvider::class,
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+        // Maatwebsite\Excel\ExcelServiceProvider::class,
+        App\Providers\DropboxServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -183,7 +186,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+        // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];

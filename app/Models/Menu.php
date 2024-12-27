@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 
 class Menu extends Model
 {
@@ -22,7 +23,11 @@ class Menu extends Model
         'images',
         'active',
         'description',
-        'background'
+        'background',
+        'name_en',
+        'name_ch',
+        'description_en',
+        'description_ch'
     ];
 
     protected $hidden = [];
@@ -36,15 +41,22 @@ class Menu extends Model
             $model->parent_id = $parent_id;
             $model->numering = self::getOrder($parent_id);
             $model->status = $model->status ?? self::STATUS_ACTIVE;
+            $model->name_en = $model->name_en ?? $model->name;
+            $model->name_ch = $model->name_ch ?? $model->name;
+            $model->description_en = $model->description_en ?? $model->description;
+            $model->description_ch = $model->description_ch ?? $model->description;
         });
         self::created(function ($model) {
-            Cache::forget(CACHE_MENU);
+            Cache::flush();
         });
         self::updated(function ($model) {
-            Cache::forget(CACHE_MENU);
+            Cache::flush();
         });
         self::deleted(function ($model) {
-            Cache::forget(CACHE_MENU);
+            Cache::flush();
+            if ($model->background) {
+                File::delete(get_link_public($model->background));
+            }
         });
     }
 
@@ -73,6 +85,13 @@ class Menu extends Model
     public function scopeOfStatus($query, $status)
     {
         return $query->where('menus.status', $status);
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('menus.name', 'LIKE', "%$search%");
+        });
     }
 
     public static function  getOrder($parent_id)

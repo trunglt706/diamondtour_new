@@ -17,13 +17,36 @@
                         <label class="col-form-label">Tên <span class="text-danger fw-900">*</span></label>
                         <input type="text" class="form-control" required name="name">
                     </div>
-                    <div class="mb-1 form-group">
-                        <label class="col-form-label">Liên kết</label>
-                        <input type="url" class="form-control" name="link">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-1 form-group">
+                                <label class="col-form-label">Đường dẫn liên kết</label>
+                                <input type="url" class="form-control" placeholder="VD: https://" name="link">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-1 form-group">
+                                <label class="col-form-label">Thứ tự ưu tiên</label>
+                                <input type="integer" class="form-control" name="numering">
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-1 form-group">
-                        <label class="col-form-label">Icon</label>
+                    {{-- <div class="mb-1 form-group">
+                        <label class="col-form-label">
+                            Icon
+                            <small>
+                                <a href="https://fontawesome.com/v5/search?o=r&m=free" target="_blank">(Xem tại đây)</a>
+                            </small>
+                        </label>
                         <input type="text" class="form-control" name="icon">
+                    </div> --}}
+                    <div class="d-flex justify-content-between align-items-center my-3">
+                        <img src="{{ asset('user/img/user/no-avatar.jpg') }}"
+                            class="img-thumbnail preview w-80px h-70px" alt="img">
+                        <div class="form-group w-100 ps-3">
+                            <label class="col-form-label">Hình ảnh</label>
+                            <input type="file" class="form-control previewImg" name="icon" accept="image/*">
+                        </div>
                     </div>
                     <div class="my-3">
                         <div class="form-check form-switch">

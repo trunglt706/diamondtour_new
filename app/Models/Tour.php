@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class Tour extends Model
@@ -13,7 +14,6 @@ class Tour extends Model
 
     protected $fillable = [
         'group_id',
-        'country_id',
         'province_id',
         'slug',
         'code',
@@ -21,6 +21,7 @@ class Tour extends Model
         'description',
         'price',
         'currency',
+        'image',
         'background',
         'duration',
         'content',
@@ -30,7 +31,23 @@ class Tour extends Model
         'term',
         'notice',
         'status',
-        'important'
+        'important',
+        'country_id',
+        'images',
+        'from',
+        'to',
+        'name_en',
+        'name_ch',
+        'tags',
+        'season',
+        'language',
+        'guest',
+        'design',
+        'bundle',
+        'type',
+        'location_img',
+        'location_description',
+        'activity'
     ];
 
     protected $hidden = [];
@@ -41,19 +58,65 @@ class Tour extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->code = $model->code ?? Str::uuid();
-            $model->slug = $model->slug ?? Str::slug('name');
+            $model->code = $model->code ?? generateRandomString();
+            $model->slug = $model->slug ?? Str::slug($model->name);
             $model->currency = $model->currency ?? 'VND';
             $model->status = $model->status ?? self::STATUS_ACTIVE;
-            $model->important = $model->important ?? false;
+            $model->important = $model->important ?? 0;
+            $model->name_en = $model->name_en ?? $model->name;
+            $model->name_ch = $model->name_ch ?? $model->name;
+            $model->design = $model->design ?? self::IS_NOT_DESIGN;
+            $model->bundle = $model->bundle ?? null;
+            $model->type = $model->type ?? self::IS_TOUR;
         });
         self::created(function ($model) {
+            Cache::flush();
         });
         self::updated(function ($model) {
+            Cache::flush();
         });
         self::deleted(function ($model) {
-            // delete background
+            Cache::flush();
+            if ($model->image) {
+                delete_file($model->image);
+            }
+            if ($model->background) {
+                delete_file($model->background);
+            }
+            if ($model->location_img) {
+                delete_file($model->location_img);
+            }
+            $images = $model->images ? json_decode($model->images) : [];
+            foreach ($images as $item) {
+                try {
+                    delete_file($item);
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+            }
         });
+    }
+
+    const IS_DESIGN = '1';
+    const IS_NOT_DESIGN = '0';
+
+    const IS_TOUR = '0';
+    const IS_LANDTOUR = '1';
+
+    const SEASON_XUAN = 'xuan';
+    const SEASON_HA = 'ha';
+    const SEASON_THU = 'thu';
+    const SEASON_DONG = 'dong';
+
+    public static function get_season($season = '')
+    {
+        $_status = [
+            self::SEASON_XUAN => ['Mùa xuân', 'dark'],
+            self::SEASON_HA => ['Mùa hạ', 'success'],
+            self::SEASON_THU => ['Mùa thu', 'danger'],
+            self::SEASON_DONG => ['Mùa đông', 'info'],
+        ];
+        return $season == '' ? $_status : $_status["$season"];
     }
 
     const STATUS_UN_ACTIVE = 'draft';
@@ -63,11 +126,31 @@ class Tour extends Model
     public static function get_status($status = '')
     {
         $_status = [
-            self::STATUS_ACTIVE => ['Bản nháp', 'secondary'],
+            self::STATUS_UN_ACTIVE => ['Bản nháp', 'dark'],
             self::STATUS_ACTIVE => ['Đang kích hoạt', 'success'],
-            self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
+            self::STATUS_BLOCKED => ['Đã khóa', 'danger'],
         ];
         return $status == '' ? $_status : $_status["$status"];
+    }
+
+    public function scopeOfDesign($query, $design)
+    {
+        return $query->where('tours.design', (int)$design);
+    }
+
+    public function scopeOfBundle($query, $bundle)
+    {
+        return $query->where('tours.bundle', (int)$bundle);
+    }
+
+    public function scopeOfType($query, $type)
+    {
+        return $query->where('tours.type', (int)$type);
+    }
+
+    public function scopeOfSeason($query, $season)
+    {
+        return $query->where('tours.season', $season);
     }
 
     public function scopeOfSlug($query, $slug)
@@ -90,6 +173,38 @@ class Tour extends Model
         return $query->where('tours.group_id', $group_id);
     }
 
+    public function scopeCountryId($query, $country_id)
+    {
+        return $query->where('tours.country_id', $country_id);
+    }
+
+    public function scopeBetween($query, $from, $to)
+    {
+        return $query->where(function ($q) use ($from, $to) {
+            $q->whereBetween('tours.from', [$from, $to])
+                ->orWhereBetween('tours.from', [$from, $to])
+                ->orWhere(function ($q1) use ($from, $to) {
+                    $q1->where('tours.from', '>=', $from)
+                        ->where('tours.to', '<=', $to);
+                });
+        });
+    }
+
+    public function scopeFrom($query, $from)
+    {
+        return $query->where('tours.from', '>=', $from);
+    }
+
+    public function scopeTo($query, $to)
+    {
+        return $query->where('tours.to', '<=', $to);
+    }
+
+    public function scopeBetweenPrice($query, $from, $to)
+    {
+        return $query->where('tours.price', [$from, $to]);
+    }
+
     public function scopeSearch($query, $search)
     {
         return $query->where(function ($query) use ($search) {
@@ -100,6 +215,21 @@ class Tour extends Model
 
     public function group()
     {
-        return $this->belongsTo(TourGroup::class, 'group_id', 'id');
+        return $this->belongsTo(TourGroup::class, 'group_id')->select('name', 'id');
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class, 'tour_id', 'id')->orderBy('created_at', 'desc')->select('id', 'name', 'description', 'image', 'tour_id');
+    }
+
+    public function withCountry()
+    {
+        return $this->belongsTo(Countries::class, 'country_id')->select('name', 'id');
+    }
+
+    public function groups()
+    {
+        return $this->hasMany(TourGroupDetail::class, 'tour_id', 'id');
     }
 }

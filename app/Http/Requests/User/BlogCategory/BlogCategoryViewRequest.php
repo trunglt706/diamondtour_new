@@ -23,7 +23,17 @@ class BlogCategoryViewRequest extends FormRequest
     {
         return [
             'limit' => 'nullable|integer|between:1,100',
-            'page' => 'nullable|integer|min:0'
+            'page' => 'nullable|integer|min:1',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'limit.integer' => 'Giá trị số lượng không hợp lệ!',
+            'limit.min' => 'Giá trị số lượng không hợp lệ!',
+            'page.integer' => 'Giá trị trang hiện tại không hợp lệ!',
+            'page.min' => 'Giá trị trang hiện tại không hợp lệ!',
         ];
     }
 }

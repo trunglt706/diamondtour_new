@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\Setting\SettingUpdateRequest;
 use App\Http\Requests\User\Setting\SettingViewRequest;
+use App\Models\Images;
 use App\Models\Setting;
 use App\Models\SettingGroup;
 use Illuminate\Support\Facades\DB;
-use Image;
-use File;
 
 class SettingController extends Controller
 {
@@ -16,7 +15,7 @@ class SettingController extends Controller
 
     public function __construct()
     {
-        $this->dir = 'uploads/setting/';
+        $this->dir = 'uploads/setting';
     }
 
     public function index(SettingViewRequest $request)
@@ -33,6 +32,8 @@ class SettingController extends Controller
     {
         $data = $request->all();
         try {
+            $lang = !is_null($data['lang']) ? $data['lang'] : '';
+            $value = $lang == '' ? 'value' : 'value_' . $lang;
             DB::beginTransaction();
             $group = SettingGroup::ofCode($data['type'])->first();
             // get setting of group
@@ -44,17 +45,19 @@ class SettingController extends Controller
                         case Setting::TYPE_FILE:
                             if (request()->hasFile($setting->code)) {
                                 $file = request()->file($setting->code);
-                                $name_random = time() . generateRandomString(5);
-                                $filename = $name_random . '.' . $file->getClientOriginalExtension();
-                                $path = $this->dir . $filename;
-                                if (!File::exists($this->dir)) {
-                                    File::makeDirectory($this->dir, $mode = 0777, true, true);
-                                }
-                                Image::make($file)->save($path);
-
                                 // delete old image
-                                File::delete($setting->value);
-                                $data['value'] = $path;
+                                delete_file($setting->value);
+                                $data['value'] = store_file($file, $this->dir, false, 900);
+                            }
+                            break;
+                        case Setting::TYPE_IMAGES:
+                            if (request()->hasFile($setting->code)) {
+                                foreach (request()->file($setting->code) as $file) {
+                                    Images::create([
+                                        'code' => $setting->code,
+                                        'url' => store_file($file, $this->dir, false, 900)
+                                    ]);
+                                }
                             }
                             break;
                         case Setting::TYPE_CHECK_BOX:
@@ -67,11 +70,12 @@ class SettingController extends Controller
                             $data['value'] = trim(request($setting->code));
                             break;
                     }
-                    $setting->value = $data['value'];
+                    $setting->$value = $data['value'];
                     $setting->save();
                 }
             }
             Setting::groupId($group->id)->ofType(Setting::TYPE_CHECK_BOX)->whereNotIn('id', $checkbox)->update(['value' => 0]);
+            save_log("Danh sách cấu hình thuộc danh mục #$group->name vừa mới được cập nhật", $data);
             DB::commit();
             return redirect()->back()->with('success', 'Cập nhật thành công');
         } catch (\Throwable $th) {
@@ -79,5 +83,23 @@ class SettingController extends Controller
             showLog($th);
             return redirect()->back()->with('error', 'Cập nhật thất bại!');
         }
+    }
+
+    public function swapImage()
+    {
+        $draggedIndex = Images::find(request('draggedId'));
+        $targetIndex = Images::find(request('targetId'));
+
+        $tmp_targetIndex = $draggedIndex->numering;
+        $draggedIndex->numering = $targetIndex->numering;
+        $draggedIndex->save();
+
+        $targetIndex->numering = $tmp_targetIndex;
+        $targetIndex->save();
+        return response()->json([
+            'status' => true,
+            'message' => 'Cập nhật thành công',
+            'type' => 'success',
+        ]);
     }
 }

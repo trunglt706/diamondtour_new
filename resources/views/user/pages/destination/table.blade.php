@@ -8,6 +8,7 @@
     @foreach ($list as $item)
         @php
             $status = Destination::get_status($item->status);
+            $type = Destination::get_type($item->type);
         @endphp
         <tr id="tr-{{ $item->id }}">
             <td class="text-center">
@@ -21,14 +22,31 @@
                     <i class="fas fa-eye"></i>
                 </a>
             </td>
-            <td class="text-center hide-mobile">
+            <td>
+                <img src="{{ get_url($item->image) }}" class="img-fluid w-30px h-20px" alt="">
                 {{ $item->name }}
             </td>
-            <td>
-                {{ $item->group->name ?? '' }}
+            <td class="text-center hide-mobile">
+                @if ($item->group)
+                    <a href="{{ route('user.destination_group.detail', ['id' => $item->group_id]) }}"
+                        class="text-decoration-none">
+                        {{ $item->group->name }}
+                    </a>
+                @else
+                    -
+                @endif
             </td>
             <td class="text-center hide-mobile">
-                {{ $item->created_at }}
+                <span
+                    class="badge bg-{{ $type[1] }} text-{{ $type[1] }} bg-opacity-15 px-2 pt-5px pb-5px rounded fs-12px d-inline-flex align-items-center">
+                    {{ $type[0] }}
+                </span>
+            </td>
+            <td class="text-center hide-mobile">
+                {{ $item->important > 0 ? $item->important : '' }}
+            </td>
+            <td class="text-center hide-mobile">
+                {{ date('H:i:s d/m/Y', strtotime($item->created_at)) }}
             </td>
             <td class="text-center hide-mobile">
                 <span
@@ -40,7 +58,7 @@
     @endforeach
     @if ($paginate != '')
         <tr>
-            <td colspan="5">
+            <td colspan="7">
                 <div class="mt-2">
                     {{ $paginate }}
                 </div>
@@ -49,7 +67,7 @@
     @endif
 @else
     <tr>
-        <td colspan="5" class="text-center empty-data">
+        <td colspan="7" class="text-center empty-data">
             <i class="fas fa-sad-cry fs-s2"></i> Không có dữ liệu
         </td>
     </tr>

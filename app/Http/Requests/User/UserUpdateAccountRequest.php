@@ -24,7 +24,8 @@ class UserUpdateAccountRequest extends FormRequest
         return [
             'id' => 'required|exists:users,id',
             'password' => 'required|between:6,30',
-            'confirm_password' => 'required|same:password'
+            'confirm_password' => 'required|same:password',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
 
@@ -37,6 +38,8 @@ class UserUpdateAccountRequest extends FormRequest
             'password.between' => 'Độ dài mật khẩu từ 6 - 30 ký tự!',
             'confirm_password.required' => 'Nhập mật khẩu xác nhận!',
             'confirm_password.same' => 'Mật khẩu xác nhận chưa đúng!',
+            'g-recaptcha-response.required' => 'Chọn mã captchar!',
+            'g-recaptcha-response.captcha' => 'Mã captchar chưa hợp lệ hoặc đã hết hạn!',
         ];
     }
 }

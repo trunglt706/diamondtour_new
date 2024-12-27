@@ -31,6 +31,7 @@ class AuthController extends Controller
                 Auth::login($user);
                 $user->last_login = now();
                 $user->save();
+                save_log("Nhân viên $user->name vừa mới đăng nhập hệ thống", request()->all());
                 DB::commit();
                 return redirect()->route('user.index')->with('success', 'Đăng nhập thành công');
             }
@@ -317,6 +318,7 @@ class AuthController extends Controller
                 'status' => User::STATUS_ACTIVE
             ]);
 
+            save_log("Hệ thống vừa mới được đồng bộ");
             return 'Đồng bộ thành công';
         }
         return 'Lỗi xác thực!';

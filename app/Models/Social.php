@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Social extends Model
 {
@@ -32,11 +33,16 @@ class Social extends Model
             $model->code = $model->code ?? generateRandomString();
         });
         self::created(function ($model) {
+            Cache::flush();
         });
         self::updated(function ($model) {
+            Cache::flush();
         });
         self::deleted(function ($model) {
-            // delete image
+            Cache::flush();
+            if ($model->icon) {
+                delete_file($model->icon);
+            }
         });
     }
 

@@ -25,6 +25,6 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(['*'], 'App\Http\ViewComposers\AdminComposer');
-        view()->composer(['*'], 'App\Http\ViewComposers\IndexComposer');
+        view()->composer(['header', 'footer', 'index', 'pages/*'], 'App\Http\ViewComposers\IndexComposer');
     }
 }

@@ -21,13 +21,13 @@
                 @endif
             </td>
             <td class="text-center hide-mobile">
-                {{ $item->created_at ? date('H:i:s d/m/Y', $item->created_at) : '-' }}
+                {{ $item->created_at ? date('H:i:s d/m/Y', strtotime($item->created_at)) : '-' }}
             </td>
             <td class="text-center hide-mobile">
                 {{ $item->ip }}
             </td>
             <td class="max-content">
-                {!! $item->content !!}
+                {!! $item->description !!}
             </td>
         </tr>
     @endforeach

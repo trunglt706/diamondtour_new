@@ -11,8 +11,10 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $data = User::findOrFail(auth()->user()->id);
-        return view('user.pages.profile.index', compact('data'));
+        $user = User::findOrFail(auth()->user()->id);
+        $tab = request('tab', 'info');
+        $data['status'] = User::get_status();
+        return view('user.pages.user.profile.index', compact('data', 'user', 'tab'));
     }
 
     public function update_account()
@@ -23,6 +25,7 @@ class ProfileController extends Controller
             $new = User::findOrFail(auth()->user()->id);
             $new->password = Hash::make($password);
             $new->save();
+            save_log("Thông tin tài khoản của bạn vừa mới được cập nhật", request()->all());
             DB::commit();
             Auth::logout();
             return redirect()->route('login.index')->with('success', 'Đăng xuất thành công');

@@ -41,7 +41,7 @@ class LibraryGroupUpdateRequest extends FormRequest
             'name.required' => 'Nhập tên danh mục thư viện!',
             'image.image' => 'Hình ảnh chưa đúng định dạng!',
             'image.between' => 'Kích thước hình ảnh chưa phù hợp!',
-            'important.in' => 'Thông tin quan trọng chưa hợp lệ!'
+            'important.in' => 'Thông tin độ ưu tiên chưa hợp lệ!'
         ];
     }
 }

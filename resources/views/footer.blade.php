@@ -7,14 +7,14 @@
                         <div class="col-md-3">
                             <section class="mb-3">
                                 <div class="block-footer-header">
-                                    <h2>Thông Tin Cần Biết</h2>
+                                    <h2>@lang('messages.thong_tin_can_biet')</h2>
                                 </div>
                                 <div class="block-footer-content">
                                     <ul>
-                                        <li><a href="{{ route('about') }}">Về chúng tôi</a></li>
-                                        <li><a href="#">Dịch vụ</a></li>
-                                        <li><a href="{{ route('faq') }}">FAQ</a></li>
-                                        <li><a href="#">Liên hệ</a></li>
+                                        <li><a href="{{ route('about') }}">@lang('messages.ve_chung_toi')</a></li>
+                                        <li><a href="#">@lang('messages.dich_vu')</a></li>
+                                        <li><a href="{{ route('faq') }}">@lang('messages.FAQ')</a></li>
+                                        <li><a href="{{ route('contact.index') }}">@lang('messages.menu.contact')</a></li>
                                     </ul>
                                 </div>
                             </section>
@@ -22,14 +22,19 @@
                         <div class="col-md-3">
                             <section class="mb-3">
                                 <div class="block-footer-header">
-                                    <h2>Liên Kết Hữu Ích</h2>
+                                    <h2>@lang('messages.lien_ket_huu_ich')</h2>
                                 </div>
                                 <div class="block-footer-content">
                                     <ul>
-                                        <li><a href="#">Chính sách bảo mật</a></li>
-                                        <li><a href="{{ route('destination.index') }}">Điểm đến</a></li>
-                                        <li><a href="{{ route('blog.index') }}">Bài viết</a></li>
-                                        <li><a href="#">Điều khoản</a></li>
+                                        <li><a href="#">@lang('messages.chinh_sach_bao_mat')</a></li>
+                                        <li><a href="{{ route('privte_schedule') }}">@lang('messages.thiet_ke_lich_trinh_rieng')</a></li>
+                                        <li><a href="{{ route('blog.index') }}">@lang('messages.bai_viet')</a></li>
+                                        <li>
+                                            <a target="_blank"
+                                                href="{{ asset('assets/files/PROFILE DIAMOND TOUR.pdf') }}">
+                                                @lang('messages.Catalog')
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </section>
@@ -37,15 +42,16 @@
                         <div class="col-md-6">
                             <section class="mb-3">
                                 <div class="block-footer-header">
-                                    <h2>Đăng Ký Nhận Thông Tin</h2>
+                                    <h2>@lang('messages.dang_ky_nhan_thong_tin')</h2>
                                 </div>
                                 <div class="block-footer-content">
-                                    <p>Đăng ký nhận thông tin của chúng tôi để cập nhật những tin tức mới nhất về các
-                                        chương trình tour.</p>
-                                    <form id="form_newsletter" class="form-newsletter" action="#" method="post">
-                                        <input type="email" class="form-control"
-                                            placeholder="Để lại số điện thoại của bạn">
-                                        <button class="btn btn-submit" type="submit">Đăng ký</button>
+                                    <p>@lang('messages.dang_ky_de_cap_nhat_thong_tin')</p>
+                                    <form id="form_newsletter" class="form-newsletter" action="{{ route('newllter') }}"
+                                        method="post">
+                                        @csrf
+                                        <input type="email" name="email" required class="form-control"
+                                            placeholder="@lang('messages.de_lại_email_cua_ban')">
+                                        <button class="btn btn-submit" type="submit">@lang('messages.dang_ky')</button>
                                     </form>
                                 </div>
                             </section>
@@ -54,12 +60,12 @@
                             <div class="block-footer-introduce my-4 mb-3">
                                 <div class="introduce-logo">
                                     <a href="{{ route('index') }}">
-                                        <img src="{{ $seo['seo-logo']??'' }}" alt=""
-                                            class="d-block mx-auto img-fluid">
+                                        <img src="{{ $seo['seo-logo'] ? get_url($seo['seo-logo']) : '' }}"
+                                            alt="image" class="d-block mx-auto img-fluid">
                                     </a>
                                 </div>
                                 <div class="introduce-content">
-                                    {!! get_option('footer-info') !!}
+                                    {!! $seo['footer-info'] !!}
                                 </div>
                             </div>
                         </div>
@@ -67,7 +73,7 @@
                 </div>
                 <div class="col-md-12 col-lg-12 col-xl-3">
                     <div class="ratio ratio-21x9 mt-5">
-                        {!! get_option('google-map') !!}
+                        {!! $seo['google-map'] !!}
                     </div>
                 </div>
             </div>
@@ -79,14 +85,17 @@
                         <ul class="-social">
                             @foreach ($socials as $item)
                                 <li>
-                                    <a href="{{ $item->link }}">{!! $item->icon !!}</a>
+                                    <a href="{{ $item->link }}">
+                                        <img src="{{ $item->icon ? get_url($item->icon) : asset('user/img/user/no-avatar.jpg') }}"
+                                            alt="img" class="icon-footer">
+                                    </a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                     <div class="col-md-8">
                         <p class="text-center text-sm-end">
-                            {{ get_option('copyright') }}
+                            {{ $seo['copyright'] }}
                         </p>
                     </div>
                 </div>

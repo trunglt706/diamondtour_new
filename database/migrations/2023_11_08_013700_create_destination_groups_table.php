@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('code')->unique()->index();
             $table->string('name');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->enum('type', ['national', 'local'])->nullable()->default('local');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->integer('numering')->nullable()->default(0);
             $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
             $table->timestamps();

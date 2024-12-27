@@ -32,7 +32,7 @@ class Booking extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->code = $model->code ?? Str::uuid();
+            $model->code = $model->code ?? generateRandomString();
             $model->total_adult = $model->total_adult ?? 1;
             $model->total_children = $model->total_children ?? 0;
             $model->status = $model->status ?? self::STATUS_UN_ACTIVE;

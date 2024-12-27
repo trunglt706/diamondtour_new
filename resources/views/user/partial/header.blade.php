@@ -20,8 +20,7 @@
             </button>
         </div>
         <a href="{{ route('user.index') }}" class="brand-logo">
-            <img src="{{ get_option('seo-logo', asset('user/img/logo.png')) }}" class="invert-dark" alt="logo"
-                height="50" />
+            <img src="{{ asset('style/images/logo.png') }}" class="invert-dark" alt="logo" height="50" />
         </a>
     </div>
     <!-- END brand -->
@@ -43,8 +42,8 @@
                     </div>
                 </div>
                 <div class="menu-img online">
-                    <img src="{{ $user_info->avatar ?? asset('user/img/avatar.png') }}" alt="staff"
-                        class="ms-100 mh-100 rounded-circle" />
+                    <img src="{{ $user_info->avatar ? get_url($user_info->avatar) : asset('user/img/avatar.png') }}"
+                        alt="staff" class="ms-100 mh-100 rounded-circle" />
                 </div>
             </a>
             <div class="dropdown-menu staff-header dropdown-menu-end me-lg-3">

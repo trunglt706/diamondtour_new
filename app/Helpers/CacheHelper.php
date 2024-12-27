@@ -1,7 +1,10 @@
 <?php
 
 if (!defined('CACHE_TIME')) {
-    define('CACHE_TIME', 60);
+    define('CACHE_TIME', 6000);
+}
+if (!defined('VIEW_TIME')) {
+    define('VIEW_TIME', 6000);
 }
 
 //====== menu
@@ -48,6 +51,14 @@ if (!defined('CACHE_SETTING')) {
 
 if (!defined('CACHE_SEO')) {
     define('CACHE_SEO', 'C_Seo');
+}
+
+if (!defined('CACHE_DESIGN_TOUR')) {
+    define('CACHE_DESIGN_TOUR', 'C_Design_Tour');
+}
+
+if (!defined('CACHE_CONTACT')) {
+    define('CACHE_CONTACT', 'C_Contact');
 }
 
 //===================== User

@@ -30,7 +30,7 @@ class BlogInsertRequest extends FormRequest
                 File::image()->between(6, MAX_FILE_SIZE_UPLOAD)
             ],
             'content' => 'required',
-            'important' => 'nullable|in:1'
+            'important' => 'nullable|integer'
         ];
     }
 
@@ -41,7 +41,7 @@ class BlogInsertRequest extends FormRequest
             'group_id.exists' => 'Danh mục này không tồn tại!',
             'name.required' => 'Nhập tiêu đề blog!',
             'content.required' => 'Nhập nội dung blog!',
-            'important.in' => 'Giá trị blog quan trọng chưa đúng!',
+            'important.integer' => 'Giá trị độ ưu tiên chưa đúng!',
             'image.image' => 'Hình ảnh chưa đúng định dạng!',
             'image.between' => 'Kích thước hình ảnh chưa phù hợp!'
         ];

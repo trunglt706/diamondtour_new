@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('qas', function (Blueprint $table) {
             $table->id()->index();
+            $table->unsignedBigInteger('group_id')->index();
             $table->string('code')->unique();
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->integer('numering')->nullable();
             $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
             $table->timestamps();
+            $table->foreign('group_id')->references('id')->on('qa_groups')->onDelete('cascade');
         });
     }
 
