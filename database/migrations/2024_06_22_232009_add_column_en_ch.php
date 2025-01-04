@@ -64,6 +64,8 @@ return new class extends Migration
         Schema::table('qas', function (Blueprint $table) {
             $table->string('name_en')->nullable();
             $table->string('name_ch')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_ch')->nullable();
         });
     }
 
