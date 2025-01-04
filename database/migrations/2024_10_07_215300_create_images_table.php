@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('table_id')->index()->nullable();
             $table->string('code', 100)->index()->nullable();
             $table->string('url')->nullable();
+            $table->integer('numering')->nullable();
             $table->timestamps();
         });
     }

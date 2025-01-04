@@ -29,8 +29,9 @@
             <thead>
                 <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0 bg-light-primary">
                     <th class="text-center w-50px">#</th>
+                    <th class="text-center w-200px hide-mobile">Quản trị viên</th>
                     <th class="text-center w-150px hide-mobile">Thời gian</th>
-                    <th class="text-center w-150px hide-mobile">Ip address</th>
+                    <th class="text-center w-100px hide-mobile">Ip</th>
                     <th class="text-center">Nội dung</th>
                 </tr>
             </thead>

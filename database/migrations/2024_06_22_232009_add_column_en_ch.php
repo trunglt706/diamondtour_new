@@ -67,6 +67,9 @@ return new class extends Migration
             $table->text('description_en')->nullable();
             $table->text('description_ch')->nullable();
         });
+        Schema::table('provinces', function (Blueprint $table) {
+            $table->integer('country_id')->index()->nullable();
+        });
     }
 
     /**
@@ -109,6 +112,9 @@ return new class extends Migration
         });
         Schema::table('qas', function (Blueprint $table) {
             $table->dropColumn('name_en', 'name_ch');
+        });
+        Schema::table('provinces', function (Blueprint $table) {
+            $table->dropColumn('country_id');
         });
     }
 };

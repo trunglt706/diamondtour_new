@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('background')->nullable();
             $table->integer('important')->nullable()->default(0);
             $table->integer('numering')->nullable()->default(0);
+            $table->boolean('hot')->nullable()->default(false);
+            $table->boolean('guest')->nullable()->default(false);
+            $table->string('season', 30)->nullable();
             $table->enum('status', ['active', 'blocked'])->index()->nullable()->default('active');
             $table->timestamps();
         });

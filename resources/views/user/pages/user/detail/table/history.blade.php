@@ -11,6 +11,7 @@
                     <i class="fas fa-eye"></i>
                 </a>
             </td>
+            <td>{{ $item->user->name }}</td>
             <td class="text-center hide-mobile">
                 {{ $item->created_at ? date('H:i:s d/m/Y', $item->created_at) : '-' }}
             </td>
@@ -24,7 +25,7 @@
     @endforeach
     @if ($paginate != '')
         <tr>
-            <td colspan="4">
+            <td colspan="5">
                 <div class="mt-2">
                     {{ $paginate }}
                 </div>
@@ -33,7 +34,7 @@
     @endif
 @else
     <tr>
-        <td colspan="4" class="text-center empty-data">
+        <td colspan="5" class="text-center empty-data">
             <i class="fas fa-sad-cry fs-s2"></i> Không có dữ liệu
         </td>
     </tr>

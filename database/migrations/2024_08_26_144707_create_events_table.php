@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('script')->nullable();
             $table->string('image')->nullable();
             $table->string('background')->nullable();
+            $table->date('date')->nullable();
             $table->enum('status', ['active', 'blocked'])->nullable()->default('active');
             $table->boolean('important')->nullable()->default(0);
             $table->boolean('home')->nullable()->default(0);

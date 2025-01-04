@@ -40,6 +40,10 @@ return new class extends Migration
             $table->json('images')->nullable();
             $table->integer('view_total')->nullable()->default(0);
             $table->integer('like_total')->nullable()->default(0);
+            $table->integer('type')->nullable()->default(0);
+            $table->boolean('design')->nullable()->default(0);
+            $table->integer('bundle')->nullable()->default(0);
+            $table->string('season', 30)->nullable();
             $table->enum('status', ['draft', 'active', 'blocked'])->index()->nullable()->default('draft');
             $table->foreign('group_id')->references('id')->on('tour_groups');
             $table->foreign('country_id')->references('id')->on('countries');

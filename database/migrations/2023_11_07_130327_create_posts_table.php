@@ -27,6 +27,8 @@ return new class extends Migration
             $table->json('tags')->nullable();
             $table->integer('view_total')->nullable()->default(0);
             $table->integer('like_total')->nullable()->default(0);
+            $table->boolean('tieu_diem')->nullable()->default(false);
+            $table->boolean('hot')->nullable()->default(false);
             $table->enum('status', ['draft', 'active', 'blocked'])->index()->nullable()->default('draft');
             $table->timestamps();
             $table->foreign('group_id')->references('id')->on('post_groups');
