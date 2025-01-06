@@ -22,22 +22,22 @@
                             <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=xuan"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="xuan">@lang('messages.home.mua_xuan')</p>
-                                <p class="text-number">({{ total_tour_by_season('xuan', $t) }})</p>
+                                {{-- <p class="text-number">({{ total_tour_by_season('xuan', $t) }})</p> --}}
                             </a>
                             <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=ha"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="ha">@lang('messages.home.mua_ha')</p>
-                                <p class="text-number">({{ total_tour_by_season('ha', $t) }})</p>
+                                {{-- <p class="text-number">({{ total_tour_by_season('ha', $t) }})</p> --}}
                             </a>
                             <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=thu"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="thu">@lang('messages.home.mua_thu')</p>
-                                <p class="text-number">({{ total_tour_by_season('thu', $t) }})</p>
+                                {{-- <p class="text-number">({{ total_tour_by_season('thu', $t) }})</p> --}}
                             </a>
                             <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=dong"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="dong">@lang('messages.home.mua_dong')</p>
-                                <p class="text-number">({{ total_tour_by_season('dong', $t) }})</p>
+                                {{-- <p class="text-number">({{ total_tour_by_season('dong', $t) }})</p> --}}
                             </a>
                         </div>
                     </div>
