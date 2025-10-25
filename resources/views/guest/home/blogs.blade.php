@@ -17,8 +17,7 @@
                                     <div class="img">
                                         <a href="{{ $_url }}">
                                             <img src="{{ $item->image ? asset($item->image) : asset('/style/images/post/Rectangle 136.png') }}"
-                                                alt="{{ get_data_lang($item, 'name') }}" title="" loading="lazy"
-                                                style="">
+                                                alt="{{ get_data_lang($item, 'name') }}" loading="lazy" height="292px" width="416px">
                                         </a>
                                     </div>
                                     <div class="title">

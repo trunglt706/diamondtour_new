@@ -22,22 +22,18 @@
                             <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=xuan"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="xuan">@lang('messages.home.mua_xuan')</p>
-                                <p class="text-number">({{ total_tour_by_season('xuan', $t) }})</p>
                             </a>
                             <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=ha"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="ha">@lang('messages.home.mua_ha')</p>
-                                <p class="text-number">({{ total_tour_by_season('ha', $t) }})</p>
                             </a>
                             <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=thu"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="thu">@lang('messages.home.mua_thu')</p>
-                                <p class="text-number">({{ total_tour_by_season('thu', $t) }})</p>
                             </a>
                             <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=dong"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="dong">@lang('messages.home.mua_dong')</p>
-                                <p class="text-number">({{ total_tour_by_season('dong', $t) }})</p>
                             </a>
                         </div>
                     </div>
@@ -47,7 +43,7 @@
                         <a href="{{ route('demo.tour.detail', ['slug' => $item->slug]) }}?t={{ $t }}"
                             class="img hover-opacity-7 pointer">
                             <img src="{{ $item->image ? asset($item->image) : asset('/style/images/banner/Rectangle 206.png') }}"
-                                alt="Image" srcset="">
+                                alt="Image" height="442px" width="266px" loading="lazy">
                             <p class="img-title">
                                 {{ get_data_lang($item, 'name') }}
                             </p>

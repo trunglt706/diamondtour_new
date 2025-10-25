@@ -198,18 +198,32 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script>
-        var url = "{{ route('demo.search') }}";
+        const url = "{{ route('demo.search') }}";
         $(function() {
+            // set startDat and endDate from request
+            const startDate = "{{ request()->get('start') }}";
+            const endDate = "{{ request()->get('end') }}";
+
             $('input[name="daterange"]').daterangepicker({
                     opens: "left",
+                    startDate: startDate ? moment(startDate) : moment(),
+                    endDate: endDate ? moment(endDate) : moment().add(7, 'days'),
                 },
                 function(start, end, label) {
                     const startDate = start.format("YYYY-MM-DD");
                     const endDate = end.format("YYYY-MM-DD");
-                    const url = `/${url}?t=tour&start=${startDate}&end=${endDate}`;
-                    location.href = url;
+                    location.href = `${url}?t=tour&start=${startDate}&end=${endDate}`;
                 }
             );
+
+            // event click btn-submit-daterange
+            $('.btn-submit-daterange').on('click', function() {
+                const daterange = $('input[name="daterange"]').val();
+                const dates = daterange.split(' - ');
+                const startDate = moment(dates[0], "MM/DD/YYYY").format("YYYY-MM-DD");
+                const endDate = moment(dates[1], "MM/DD/YYYY").format("YYYY-MM-DD");
+                location.href = `${url}?t=tour&start=${startDate}&end=${endDate}`;
+            });
         });
     </script>
     <script src="{{ asset('/style/js/home.js') }}"></script>

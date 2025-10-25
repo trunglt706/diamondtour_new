@@ -82,7 +82,7 @@
                     <div class="box-calendar">
                         <input type="text" name="daterange" class="form-control" value="" />
                         <div class="my-2 text-center">
-                            <button class="btn btn-sm btn-submit-range btn-primary w-100">Tìm</button>
+                            <button class="btn btn-submit-daterange btn-sm btn-submit-range btn-primary w-100">@lang('messages.tim_kiem')</button>
                         </div>
                     </div>
                 </div>

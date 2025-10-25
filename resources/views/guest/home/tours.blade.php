@@ -4,7 +4,6 @@
             <div class="header-title header-title-style-1">
                 <p class="header">@lang('messages.home.sap_cot_loi')</p>
                 <p class="header-text-bottom">@lang('messages.home.cua_chung_toi')</p>
-
             </div>
             <div class="box-content">
                 <div class="post">
@@ -18,7 +17,7 @@
                                     <div class="img">
                                         <a href="{{ $_url }}">
                                             <img src="{{ $item->image ? asset($item->image) : asset('user/img/user/no-avatar.jpg') }}"
-                                                alt="Image" title="" loading="lazy" style="">
+                                                alt="Image" loading="lazy" height="190px" width="318px">
                                         </a>
                                     </div>
                                     <div class="title">
@@ -32,8 +31,7 @@
                                             </div>
                                             <div class="rate">
                                                 @for ($i = 0; $i < $item->starts; $i++)
-                                                    <img src="/style/images/icon/Group.png" alt="Image"
-                                                        srcset="">
+                                                    <img src="/style/images/icon/Group.png" alt="star" loading="lazy" height="13px" width="14px">
                                                 @endfor
                                             </div>
                                         </div>

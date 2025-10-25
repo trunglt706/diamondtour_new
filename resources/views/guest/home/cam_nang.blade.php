@@ -16,7 +16,7 @@
                                 <div class="img">
                                     <a href="{{ $cam_nang_url }}">
                                         <img src="{{ $item->image ? asset($item->image) : asset('/style/images/post/Rectangle 212333.png') }}"
-                                            alt="Image" title="" loading="lazy" style="">
+                                            alt="Image" loading="lazy" height="258px" width="317px">
                                     </a>
                                 </div>
                                 <div class="title">

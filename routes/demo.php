@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('SetLang')->prefix('')->name('demo.')->group(function () {
-    Route::get('/lang/{lang}', [GuestHomeController::class, 'HomeController@changeLang'])->name('lang.change');
+    Route::get('/lang/{lang}', [GuestHomeController::class, 'changeLang'])->name('lang.change');
     Route::prefix('')->controller(HomeController::class)->group(function () {
         Route::get('', 'index')->name('home');
         Route::get('faq', 'faq')->name('faq');

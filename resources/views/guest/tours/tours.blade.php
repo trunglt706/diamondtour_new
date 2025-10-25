@@ -18,7 +18,7 @@
                                     <div class="img">
                                         <a href="{{ $_url }}">
                                             <img src="{{ $item->image ? asset($item->image) : asset('user/img/user/no-avatar.jpg') }}"
-                                                alt="Image" title="" loading="lazy" style="">
+                                                alt="Image" loading="lazy" height="190px" width="318px">
                                         </a>
                                     </div>
                                     <div class="title">
@@ -33,7 +33,7 @@
                                             <div class="rate">
                                                 @for ($i = 0; $i < $item->starts; $i++)
                                                     <img src="{{ asset('/style/images/icon/Group.png') }}"
-                                                        alt="Image" srcset="">
+                                                        alt="star" loading="lazy" height="13px" width="14px">
                                                 @endfor
                                             </div>
                                         </div>
