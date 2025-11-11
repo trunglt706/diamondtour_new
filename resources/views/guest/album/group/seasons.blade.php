@@ -23,7 +23,7 @@
                                     <div class="swiper-slide">
                                         <div class="img">
                                             <a href="{{ route('demo.library.detail', ['slug' => $item->slug]) }}">
-                                                <img src="{{ asset($item->image) }}" alt="Image" title=""
+                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" title=""
                                                     loading="lazy">
                                             </a>
                                         </div>

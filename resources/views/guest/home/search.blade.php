@@ -86,7 +86,7 @@
                                     <div class="tour-item">
                                         <div class="img">
                                             <a href="{{ $_url }}">
-                                                <img src="{{ asset($tour->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
+                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($tour->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
                                             </a>
                                         </div>
                                         <div class="title">
@@ -137,7 +137,7 @@
                                     <div class="tour-item">
                                         <div class="img">
                                             <a href="{{ $_url }}">
-                                                <img src="{{ asset($item->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
+                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
                                             </a>
                                         </div>
                                         <div class="title">
@@ -179,7 +179,7 @@
                                     <div class="tour-item">
                                         <div class="img">
                                             <a href="{{ $_url }}">
-                                                <img src="{{ asset($des->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
+                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($des->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
                                             </a>
                                         </div>
                                         <div class="title">

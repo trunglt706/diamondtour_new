@@ -7,7 +7,7 @@
             @foreach ($about_images as $item)
                 <div class="img">
                     <a data-fancybox="gallery" data-src="{{ asset($item->url) }}">
-                        <img src="{{ asset($item->url) }}" alt="Image" srcset="">
+                        <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($item->url) }}" alt="Image" srcset="" loading="lazy">
                     </a>
                 </div>
             @endforeach

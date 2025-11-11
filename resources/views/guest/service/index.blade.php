@@ -98,7 +98,7 @@
                                                         <div class="swiper-slide">
                                                             <div class="img">
                                                                 <a href="#">
-                                                                    <img src="{{ asset($bg->url) }}" alt="Image"
+                                                                    <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($bg->url) }}" alt="Image"
                                                                         title="" loading="lazy">
                                                                 </a>
                                                             </div>

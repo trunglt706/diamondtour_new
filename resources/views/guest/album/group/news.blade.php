@@ -16,7 +16,8 @@
 
                             <div class="img img-{{ ($key % 4) + 1 }}">
                                 <a href="{{ route('demo.library.detail', ['slug' => $item->slug]) }}">
-                                    <img src="{{ asset($item->image) }}" alt="Image">
+                                    <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" title=""
+                                        loading="lazy">
                                 </a>
                             </div>
                             {!! ($key + 1) % 4 == 0 || $key + 1 == count($data['news']) ? '</div></div>' : '' !!}

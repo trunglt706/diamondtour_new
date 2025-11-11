@@ -143,7 +143,7 @@
                                             <div class="col-6 mb-2">
                                                 <div class="item">
                                                     <a href="{{ $_url }}" class="img">
-                                                        <img src="{{ asset($tour->image) }}" alt="Image"
+                                                        <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($tour->image) }}" alt="Image"
                                                             loading="lazy" width="353px" height="270px">
                                                     </a>
                                                     <a href="{{ $_url }}">

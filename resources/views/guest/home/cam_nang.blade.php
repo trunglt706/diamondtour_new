@@ -15,7 +15,7 @@
                             <div class="item item-post-horizontal wow animated fadeIn">
                                 <div class="img">
                                     <a href="{{ $cam_nang_url }}">
-                                        <img src="{{ $item->image ? asset($item->image) : asset('/style/images/post/Rectangle 212333.png') }}"
+                                        <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/post/Rectangle 212333.png') }}"
                                             alt="Image" loading="lazy" height="258px" width="317px">
                                     </a>
                                 </div>

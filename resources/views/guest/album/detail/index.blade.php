@@ -51,8 +51,8 @@
                     </div>
                     <div class="box-img">
                         <div class="img">
-                            <img src="{{ $item->image ? asset($item->image) : asset('/style/images/banner/L1190477 1.png') }}"
-                                alt="Image">
+                            <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/banner/L1190477 1.png') }}"
+                                alt="Image" loading="lazy">
                         </div>
                     </div>
                 </div>

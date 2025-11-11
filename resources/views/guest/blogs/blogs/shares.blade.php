@@ -17,7 +17,7 @@
                             <div class="item swiper-slide">
                                 <div class="box-item">
                                     <div class="img">
-                                        <img src="{{ asset($item->image) }}" alt="Image" title=""
+                                        <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" title=""
                                             loading="lazy" style="">
                                         <div class="list-icon">
                                             <a href="#"><i class="fa-solid fa-share-nodes"></i></a>

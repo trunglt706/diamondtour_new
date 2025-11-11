@@ -18,7 +18,7 @@
                                     <div class="mb-2 text-center">
                                         <a data-fancybox="gallery" data-caption="{{ $item->name }}"
                                             data-src="{{ asset($item->image) }}">
-                                            <img src="{{ asset($item->image) }}" alt="Image">
+                                            <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" title="" loading="lazy">
                                         </a>
                                     </div>
                                 @endif

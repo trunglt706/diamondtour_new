@@ -29,8 +29,8 @@
                     <div class="swiper-wrapper">
                         @foreach ($item->libraries as $img)
                             <div class="swiper-slide">
-                                <img src="{{ $img->image ? asset($img->image) : asset('/style/images/banner/poster.png') }}"
-                                    alt="Image">
+                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $img->image ? asset($img->image) : asset('/style/images/banner/poster.png') }}"
+                                    alt="Image" loading="lazy">
                             </div>
                         @endforeach
                         <!-- Add more slides as needed -->

@@ -25,6 +25,31 @@
         );
     });
 
+    const $lazyImages = $('img[loading="lazy"][data-src]');
+
+    function loadImage($img) {        
+        const src = $img.data('src');
+        if (!src) return;
+
+        const highRes = new Image();
+        highRes.src = src;
+        highRes.onload = function() {
+            $img.attr('src', src).addClass('loaded');
+        };
+
+        $img.removeAttr('data-src'); // tránh load lại
+    }
+
+    function lazyLoad() {
+        $lazyImages.each(function() {
+            const $img = $(this);
+            loadImage($img);
+        });
+    }
+
+    // Gọi 1 lần đầu
+    lazyLoad();
+
     const Toast = Swal.mixin({
         toast: true,
         position: "bottom-end",

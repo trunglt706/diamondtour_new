@@ -35,7 +35,7 @@
                                         <div class="item">
                                             <div class="img">
                                                 <a href="{{ $_url }}">
-                                                    <img src="{{ asset($item->image) }}" alt="Image" title=""
+                                                    <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" title=""
                                                         loading="lazy" style="">
                                                 </a>
                                             </div>

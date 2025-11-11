@@ -13,7 +13,7 @@
                         <div class="tour-item">
                             <div class="img">
                                 <a href="{{ $_url }}">
-                                    <img src="{{ asset($other->image) }}" alt="Image" loading="lazy" width="648px" height="293px">
+                                    <img data-src="{{ asset($other->image) }}" src="{{ asset('style/images/blank.jpg') }}" alt="Image" loading="lazy" width="648px" height="293px">
                                 </a>
                             </div>
                             <div class="title">
