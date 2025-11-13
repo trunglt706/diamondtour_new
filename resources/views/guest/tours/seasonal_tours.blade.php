@@ -42,7 +42,7 @@
                     @foreach ($data['seasonal_tours'] as $item)
                         <a href="{{ route('demo.tour.detail', ['slug' => $item->slug]) }}?t={{ $t }}"
                             class="img hover-opacity-7 pointer">
-                            <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/banner/Rectangle 206.png') }}"
+                            <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? get_file($item->image) : asset('/style/images/banner/Rectangle 206.png') }}"
                                 alt="Image" height="442px" width="266px" loading="lazy">
                             <p class="img-title">
                                 {{ get_data_lang($item, 'name') }}

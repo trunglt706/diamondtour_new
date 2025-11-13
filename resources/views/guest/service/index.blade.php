@@ -98,7 +98,7 @@
                                                         <div class="swiper-slide">
                                                             <div class="img">
                                                                 <a href="#">
-                                                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ asset($bg->url) }}" alt="Image"
+                                                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($bg->url) }}" alt="Image"
                                                                         loading="lazy">
                                                                 </a>
                                                             </div>
@@ -114,7 +114,7 @@
                                     <div class="col-md-6 col-12 box-content-service ">
                                         <div class="box-content">
                                             <div class="header-title">
-                                                <img src="{{ asset($item->image) }}" alt="Image">
+                                                <img src="{{ get_file($item->image) }}" alt="Image">
                                                 <p class="title">{{ get_data_lang($item, 'name') }}</p>
                                             </div>
                                             <p class="description">

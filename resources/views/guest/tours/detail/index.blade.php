@@ -216,7 +216,7 @@
                         </div>
                         <div class="box-right col-12 col-md-6">
                             <div class="img">
-                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" loading="lazy">
+                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -290,7 +290,7 @@
                         <div class="row">
                             <div class="col-12 col-md-6 box-img">
                                 <div class="img">
-                                    <img src="{{ $item->location_img ? asset($item->location_img) : asset('style/images/default.jpg') }}"
+                                    <img src="{{ $item->location_img ? get_file($item->location_img) : asset('style/images/default.jpg') }}"
                                         alt="Image">
                                 </div>
                             </div>

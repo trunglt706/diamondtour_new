@@ -3,7 +3,7 @@
         <div class="widget_slider_banner_2 js_widget_slider_banner_1">
             <div>
                 <a href="#">
-                    <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ asset($data['menu']->background) }}" alt="Image 1" loading="lazy">
+                    <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ get_file($data['menu']->background) }}" alt="Image 1" loading="lazy">
                 </a>
             </div>
         </div>

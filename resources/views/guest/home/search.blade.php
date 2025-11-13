@@ -55,7 +55,7 @@
                     <div class="widget_slider_banner">
                         <div>
                             <a href="#">
-                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ asset($data['menu']->background) }}" alt="Image" loading="lazy">
+                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ get_file($data['menu']->background) }}" alt="Image" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                                     <div class="tour-item">
                                         <div class="img">
                                             <a href="{{ $_url }}">
-                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($tour->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
+                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ get_file($tour->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
                                             </a>
                                         </div>
                                         <div class="title">
@@ -137,13 +137,13 @@
                                     <div class="tour-item">
                                         <div class="img">
                                             <a href="{{ $_url }}">
-                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
+                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
                                             </a>
                                         </div>
                                         <div class="title">
                                             <div class="top">
-                                                <h3 class="header-tour-detail"><a
-                                                        href="{{ $_url }}">{{ get_data_lang($item, 'name') }}</a>
+                                                <h3 class="header-tour-detail">
+                                                    <a href="{{ $_url }}">{{ get_data_lang($item, 'name') }}</a>
                                                 </h3>
                                                 <a class="btn-read-more" href="{{ $_url }}">@lang('messages.view_now') ></a>
                                             </div>
@@ -179,7 +179,7 @@
                                     <div class="tour-item">
                                         <div class="img">
                                             <a href="{{ $_url }}">
-                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($des->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
+                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ get_file($des->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
                                             </a>
                                         </div>
                                         <div class="title">

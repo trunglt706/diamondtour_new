@@ -35,7 +35,7 @@
                                         <div class="item">
                                             <div class="img">
                                                 <a href="{{ $_url }}">
-                                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image"
+                                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image"
                                                         loading="lazy">
                                                 </a>
                                             </div>

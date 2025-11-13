@@ -5,7 +5,7 @@
             <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
             <span class="smllogo">
                 <a href="{{ route('index') }}">
-                    <img src="{{ asset('style/images/logo.png') }}" width="80" alt="" />
+                    <img src="{{ asset('style/images/logo.png') }}" width="80" alt="Image" />
                 </a>
             </span>
         </div>
@@ -14,7 +14,7 @@
             <div class="block-header-main--wrap d-flex flex-row w-100 h-100 align-items-center justify-content-between">
                 <div class="block-header-main--logo" aria-label="logo">
                     <a href="{{ route('index') }}">
-                        <img src="{{ asset('style/images/logo.png') }}" alt="" class="img-fluid">
+                        <img src="{{ asset('style/images/logo.png') }}" alt="Image" class="img-fluid">
                     </a>
                 </div>
                 <div class="block-header-main--menu">

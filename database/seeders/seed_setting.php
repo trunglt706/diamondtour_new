@@ -163,7 +163,7 @@ class seed_setting extends Seeder
             'value' => '<div class="row row-cols-1 row-cols-sm-2 align-items-center">
                 <div class="col">
                     <div class="-image">
-                    <img src="http://127.0.0.1:8000/assets/images/founder.jpg" class="img-fluid" alt="">
+                    <img src="http://127.0.0.1:8000/assets/images/founder.jpg" class="img-fluid" alt="Image">
                     </div>
                     <div class="-content">
                     <h2>Mr. Trần Anh Tuấn (Đạo Liên)</h2>

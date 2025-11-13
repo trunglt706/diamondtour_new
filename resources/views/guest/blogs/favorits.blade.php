@@ -75,7 +75,7 @@
                                         <div class="item">
                                             <div class="img" style="height: auto !important;">
                                                 <a href="{{ $first_url }}">
-                                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $first->image ? asset($first->image) : asset('/style/images/post/main-post.jpg') }}"
+                                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $first->image ? get_file($first->image) : asset('/style/images/post/main-post.jpg') }}"
                                                         alt="Image" loading="lazy">
                                                 </a>
                                             </div>

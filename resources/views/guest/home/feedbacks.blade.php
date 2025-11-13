@@ -17,7 +17,7 @@
                             <div class="box-info">
                                 <div class="avt">
                                     <div class="img">
-                                        <img src="{{ $item->user_avatar ? asset($item->user_avatar) : asset('/style/images/user.png') }}"
+                                        <img src="{{ $item->user_avatar ? get_file($item->user_avatar) : asset('/style/images/user.png') }}"
                                             alt="Image">
                                     </div>
                                     <div class="box-icon">

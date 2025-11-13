@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="user-info">
                                             <div class="avt">
-                                                <img src="/assets/images/founder.jpg" alt="">
+                                                <img src="/assets/images/founder.jpg" alt="Image">
                                             </div>
                                             <div class="info">
                                                 <p class="name">{{ $item->name }}</p>
@@ -84,7 +84,7 @@
                                         <button class="btn"><i class="fa-solid fa-xmark"></i></button>
                                     </div>
                                     <div class="img">
-                                        <img src="/assets/images/qrcode.jpg" alt="">
+                                        <img src="/assets/images/qrcode.jpg" alt="Image">
                                     </div>
                                 </div>
                             </div>

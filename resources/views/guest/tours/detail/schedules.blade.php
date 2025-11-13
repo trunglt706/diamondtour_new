@@ -17,8 +17,8 @@
                                 @if ($item->image)
                                     <div class="mb-2 text-center">
                                         <a data-fancybox="gallery" data-caption="{{ $item->name }}"
-                                            data-src="{{ asset($item->image) }}">
-                                            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" loading="lazy">
+                                            data-src="{{ get_file($item->image) }}">
+                                            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image" loading="lazy">
                                         </a>
                                     </div>
                                 @endif

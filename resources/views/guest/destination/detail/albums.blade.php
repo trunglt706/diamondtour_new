@@ -5,7 +5,7 @@
                 @foreach ($albums as $img)
                     <div class="item">
                         <div class="img">
-                            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ asset($img) }}" alt="Image" loading="lazy">
+                            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($img) }}" alt="Image" loading="lazy">
                         </div>
                     </div>
                 @endforeach
@@ -16,7 +16,7 @@
                 @foreach ($albums as $img)
                     <div class="item">
                         <div class="img">
-                            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ asset($img) }}" alt="Image" loading="lazy">
+                            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($img) }}" alt="Image" loading="lazy">
                         </div>
                     </div>
                 @endforeach

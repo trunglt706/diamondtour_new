@@ -16,7 +16,7 @@
 
                             <div class="img img-{{ ($key % 4) + 1 }}">
                                 <a href="{{ route('demo.library.detail', ['slug' => $item->slug]) }}">
-                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image"
+                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image"
                                         loading="lazy">
                                 </a>
                             </div>

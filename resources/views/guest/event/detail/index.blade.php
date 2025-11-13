@@ -33,7 +33,7 @@
                     <div class="widget_slider_banner">
                         <div>
                             <a href="#">
-                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ $data->background ? asset($data->background) : '' }}" alt="Image 1" loading="lazy">
+                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ $data->background ? get_file($data->background) : '' }}" alt="Image 1" loading="lazy">
                             </a>
                         </div>
                     </div>

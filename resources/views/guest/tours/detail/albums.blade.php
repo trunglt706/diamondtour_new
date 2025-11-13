@@ -9,8 +9,8 @@
                 @foreach ($data['albums'] as $key => $album)
                     <div class="img img-{{ ++$key }}">
                         <a data-fancybox="gallery" data-caption="{{ $item->name }}"
-                            data-src="{{ asset($album->image) }}">
-                            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $album->image ? asset($album->image) : asset('/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png') }}"
+                            data-src="{{ get_file($album->image) }}">
+                            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $album->image ? get_file($album->image) : asset('/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png') }}"
                                 alt="Image" loading="lazy">
                         </a>
                     </div>

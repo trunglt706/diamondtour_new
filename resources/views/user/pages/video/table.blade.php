@@ -17,7 +17,7 @@
                 </a>
             </td>
             <td>
-                <img src="{{ get_url($item->video_image) }}" class="img-fluid w-30px h-20px" alt="">
+                <img src="{{ get_url($item->video_image) }}" class="img-fluid w-30px h-20px" alt="Image">
                 {{ $item->name }}
             </td>
             <td>

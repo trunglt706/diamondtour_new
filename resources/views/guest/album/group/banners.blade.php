@@ -10,7 +10,7 @@
             </div>
             <div class="box-img">
                 <div class="img">
-                    <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ asset($data['tour_group']->image) }}" alt="Image" loading="lazy">
+                    <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ get_file($data['tour_group']->image) }}" alt="Image" loading="lazy">
                 </div>
             </div>
         </div>

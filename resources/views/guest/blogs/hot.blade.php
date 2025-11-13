@@ -12,7 +12,7 @@
             <div class="row-grid">
                 <div class="box-left">
                     <div class="img">
-                        <img src="{{ $hot->image ? asset($hot->image) : asset('/style/images/post/vvv.png') }}"
+                        <img src="{{ $hot->image ? get_file($hot->image) : asset('/style/images/post/vvv.png') }}"
                             alt="Image">
                     </div>
                 </div>

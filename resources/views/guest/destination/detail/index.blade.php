@@ -128,8 +128,7 @@
                         <div class="row">
                             <div class="col-md-7 mb-2">
                                 <div class="img hide-mobile">
-                                    <img src="{{ asset($item->image) }}" alt="Image" loading="lazy"
-                                       >
+                                    <img src="{{ get_file($item->image) }}" alt="Image" loading="lazy">
                                 </div>
                                 <h5 class="text-uppercase mt-4 title-other" style="font-size: 25px;font-weight: 600;">
                                     @lang('messages.tour.tour_lien_quan')
@@ -143,7 +142,7 @@
                                             <div class="col-6 mb-2">
                                                 <div class="item">
                                                     <a href="{{ $_url }}" class="img">
-                                                        <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($tour->image) }}" alt="Image"
+                                                        <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ get_file($tour->image) }}" alt="Image"
                                                             loading="lazy" width="353px" height="270px">
                                                     </a>
                                                     <a href="{{ $_url }}">
@@ -165,8 +164,7 @@
                             </div>
                             <div class="col-md-5 mb-2">
                                 <div class="img img-mobile show-mobile">
-                                    <img src="{{ asset($item->image) }}" alt="Image" loading="lazy"
-                                       >
+                                    <img src="{{ get_file($item->image) }}" alt="Image" loading="lazy">
                                 </div>
                                 <h2 class="text-uppercase">{{ get_data_lang($item, 'name') }}</h2>
                                 {!! $item->content !!}
@@ -191,8 +189,7 @@
                                         <ul>
                                             @foreach ($tags as $item)
                                                 <li>
-                                                    <a
-                                                        href="{{ route('demo.search') }}?t=destination&q={{ $item }}">
+                                                    <a href="{{ route('demo.search') }}?t=destination&q={{ $item }}">
                                                         {{ $item }}
                                                     </a>
                                                 </li>

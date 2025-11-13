@@ -29,7 +29,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($data['guests'] as $item)
                             <div class="swiper-slide">
-                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/banner/vikings-cosplay-2023-11-27-05-26-16-utc 1.png') }}"
+                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? get_file($item->image) : asset('/style/images/banner/vikings-cosplay-2023-11-27-05-26-16-utc 1.png') }}"
                                     alt="Image" loading="lazy" />
                             </div>
                         @endforeach

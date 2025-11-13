@@ -12,7 +12,7 @@
                                 <div class="item item-post-horizontal wow animated fadeIn">
                                     <div class="img">
                                         <a href="{{ $_url }}">
-                                            <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/post/Rectangle 212333.png') }}"
+                                            <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? get_file($item->image) : asset('/style/images/post/Rectangle 212333.png') }}"
                                                 alt="Image" loading="lazy">
                                         </a>
                                     </div>

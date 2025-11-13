@@ -65,7 +65,7 @@
                     <div class="widget_banner">
                         <div class="box-content">
                             <a href="#">
-                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ asset($item->background) }}" alt="Image 1" loading="lazy">
+                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ get_file($item->background) }}" alt="Image 1" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                                 <div class="swiper">
                                     <div class="swiper-wrapper">
                                         <div class="img swiper-slide">
-                                            <img src="{{ $item->image ? asset($item->image) : asset('user/img/user/no-avatar.jpg') }}"
+                                            <img src="{{ $item->image ? get_file($item->image) : asset('user/img/user/no-avatar.jpg') }}"
                                                 alt="Image">
                                         </div>
                                         <div class="img swiper-slide">

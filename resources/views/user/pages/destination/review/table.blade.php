@@ -27,7 +27,7 @@
                 </a>
             </td>
             <td>
-                <img src="{{ get_url($item->user_avatar) }}" class="img-fluid w-20px h-20px" alt="">
+                <img src="{{ get_url($item->user_avatar) }}" class="img-fluid w-20px h-20px" alt="Image">
                 {{ $item->user_name }}
             </td>
             <td class="text-center hide-mobile">

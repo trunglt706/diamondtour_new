@@ -20,7 +20,7 @@
                         </div>
                         <div class="box-right col-12 col-md-6">
                             <div class="img">
-                                <img src="/style/images/banner/iamge.png" alt="">
+                                <img src="/style/images/banner/iamge.png" alt="Image">
                             </div>
                             
                         </div>
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-12 col-md-3 item">
                             <div class="top">
-                                <img src="/style/images/icon/chat_bot_x2C__chatbot_x2C__chat_x2C__message_x2C__communication.png" alt="">
+                                <img src="/style/images/icon/chat_bot_x2C__chatbot_x2C__chat_x2C__message_x2C__communication.png" alt="Image">
                                 <p class="title">
                                     Ngôn ngữ
                                 </p>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-12 col-md-3 item">
                             <div class="top">
-                                <img src="/style/images/icon/_x3C_Layer_x3E_.png" alt="">
+                                <img src="/style/images/icon/_x3C_Layer_x3E_.png" alt="Image">
                                 <p class="title">
                                     Thời gian
                                 </p>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-12 col-md-3 item">
                             <div class="top">
-                                <img src="/style/images/icon/_x3C_Layer_x3E_1.png" alt="">
+                                <img src="/style/images/icon/_x3C_Layer_x3E_1.png" alt="Image">
                                 <p class="title">
                                     Số khách
                                 </p>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-12 col-md-3 item">
                             <div class="top">
-                                <img src="/style/images/icon/_x3C_Layer_x3E_2.png" alt="">
+                                <img src="/style/images/icon/_x3C_Layer_x3E_2.png" alt="Image">
                                 <p class="title">
                                     Ngày khởi hành
                                 </p>
@@ -83,7 +83,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6 box-img">
                             <div class="img">
-                                <img src="/style/images/banner/Screenshot 2024-09-03 at 11.35.28 1.png" alt="">
+                                <img src="/style/images/banner/Screenshot 2024-09-03 at 11.35.28 1.png" alt="Image">
                             </div>
                         </div>
                         <div class="col-12 col-md-6 box-content-trip">
@@ -95,7 +95,7 @@
                                     Hành trình 16 ngày trong đó có 09 ngày trekking chinh phục Annapurna Base Camp (ABC) hùng vĩ sẽ đưa bạn đi qua hết các cảnh quan thiên nhiên và văn hoá bản địa đặc sắc nhất Nepal. Với cung trek chinh phục ABC, nhà chinh phục sẽ có cơ hội hoàn thành bucket-list, chạm chân tới cung đường trekking đẹp nhất Nepal và cũng nằm trong TOP 10 cung leo núi đẹp nhất thế giới. Ngoài ra, bạn còn có cơ hội khám phá thêm các địa điểm nổi bật như đền Barahi và Hồ Fewa...
                                 </p>
                                 <div class="signature">
-                                    <img src="/style/images/icon/Group 92.png" alt="">
+                                    <img src="/style/images/icon/Group 92.png" alt="Image">
                                 </div>
                             </div>
                         </div>
@@ -113,27 +113,27 @@
                 <div class="row-grid">
                     <div class="img img-1">
                         <a href="">
-                            <img src="/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png" alt="">
+                            <img src="/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png" alt="Image">
                         </a>
                     </div>
                     <div class="img img-2">
                         <a href="">
-                            <img src="/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png" alt="">
+                            <img src="/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png" alt="Image">
                         </a>
                     </div>
                     <div class="img img-3">
                         <a href="">
-                            <img src="/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png" alt="">
+                            <img src="/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png" alt="Image">
                         </a>
                     </div>
                     <div class="img img-4">
                         <a href="">
-                            <img src="/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png" alt="">
+                            <img src="/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png" alt="Image">
                         </a>
                     </div>
                     <div class="img img-5">
                         <a href="">
-                            <img src="/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png" alt="">
+                            <img src="/style/images/banner/z3848305506961_009e59438bffdd018e14a5d5124d841b 1.png" alt="Image">
                         </a>
                     </div>
                 </div>
