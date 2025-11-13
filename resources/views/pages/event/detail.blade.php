@@ -84,7 +84,7 @@
                                         <button class="btn"><i class="fa-solid fa-xmark"></i></button>
                                     </div>
                                     <div class="img">
-                                        <img src="/assets/images/qrcode.jpg" alt="" srcset="">
+                                        <img src="/assets/images/qrcode.jpg" alt="">
                                     </div>
                                 </div>
                             </div>

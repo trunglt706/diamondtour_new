@@ -55,7 +55,7 @@
                     <div class="widget_slider_banner">
                         <div>
                             <a href="#">
-                                <img src="{{ asset($data['menu']->background) }}" alt="Image">
+                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ asset($data['menu']->background) }}" alt="Image" loading="lazy">
                             </a>
                         </div>
                     </div>

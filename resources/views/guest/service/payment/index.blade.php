@@ -15,7 +15,7 @@
             <div class="aleart-noti">
                 <div class="container">
                     <div class="alert alert--success">
-                        <img src="/style/images/icon/Ticket.png" alt="Image" srcset="">
+                        <img src="/style/images/icon/Ticket.png" alt="Image">
                         <div class="content">
                             <p class="title">Have a coupon?<a href="/"> Click have to enter your code</a></p>
                         </div>
@@ -195,7 +195,7 @@
                                         </label>
                                     </div>
                                     <div class="list-image">
-                                        <img src="/style/images/payment/pngaaa 1.png" alt="Image" srcset="">
+                                        <img src="/style/images/payment/pngaaa 1.png" alt="Image">
                                     </div>
 
                                 </div>
@@ -208,10 +208,10 @@
                                         </label>
                                     </div>
                                     <div class="list-image">
-                                        <img src="/style/images/payment/image 10.png" alt="Image" srcset="">
-                                        <img src="/style/images/payment/image 11.png" alt="Image" srcset="">
-                                        <img src="/style/images/payment/image 8.png" alt="Image" srcset="">
-                                        <img src="/style/images/payment/image 9.png" alt="Image" srcset="">
+                                        <img src="/style/images/payment/image 10.png" alt="Image">
+                                        <img src="/style/images/payment/image 11.png" alt="Image">
+                                        <img src="/style/images/payment/image 8.png" alt="Image">
+                                        <img src="/style/images/payment/image 9.png" alt="Image">
 
                                     </div>
 

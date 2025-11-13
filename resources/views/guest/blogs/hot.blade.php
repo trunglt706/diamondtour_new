@@ -13,7 +13,7 @@
                 <div class="box-left">
                     <div class="img">
                         <img src="{{ $hot->image ? asset($hot->image) : asset('/style/images/post/vvv.png') }}"
-                            alt="Image" srcset="">
+                            alt="Image">
                     </div>
                 </div>
                 <div class="box-right">

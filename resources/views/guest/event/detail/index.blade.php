@@ -33,7 +33,7 @@
                     <div class="widget_slider_banner">
                         <div>
                             <a href="#">
-                                <img src="{{ $data->background ? asset($data->background) : '' }}" alt="Image 1">
+                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ $data->background ? asset($data->background) : '' }}" alt="Image 1" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="img">
                                         <img src="{{ asset('style/images/icon/0998d669-0b87-405f-83ca-956971bf3476.webp') }}"
-                                            alt="Image" srcset="">
+                                            alt="Image">
                                     </div>
                                 </div>
                             </div>

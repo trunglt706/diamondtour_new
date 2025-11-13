@@ -4,7 +4,7 @@
             <div class="header-title">
                 <p class="title-top">@lang('messages.blog.new_share')</p>
                 <p class="title text-uppercase">@lang('messages.blog.from_guest')</p>
-                <img src="/style/images/blogs/Line.png" alt="Image" title="" loading="lazy" style="">
+                <img src="/style/images/blogs/Line.png" alt="Image" loading="lazy">
             </div>
             <div class="list-blogs ">
                 @foreach ($data['guests'] as $item)
@@ -14,14 +14,14 @@
                     <div class="item">
                         <a href="">
                             <div class="img">
-                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" title="" loading="lazy"
-                                    style="">
+                                <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image" loading="lazy"
+                                   >
                             </div>
                             <div class="title">
                                 <div class="user-info">
                                     <div class="avt">
-                                        <img src="/style/images/blogs/File233 1.png" alt="Image" title=""
-                                            loading="lazy" style="">
+                                        <img src="/style/images/blogs/File233 1.png" alt="Image"
+                                            loading="lazy">
                                     </div>
                                     <div class="content">
                                         <p class="name">@lang('messages.blog.khach_vang_lai')</p>

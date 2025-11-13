@@ -18,7 +18,7 @@
                                 <div class="avt">
                                     <div class="img">
                                         <img src="{{ $item->user_avatar ? asset($item->user_avatar) : asset('/style/images/user.png') }}"
-                                            alt="Image" srcset="">
+                                            alt="Image">
                                     </div>
                                     <div class="box-icon">
                                         <span>“</span>
@@ -27,7 +27,7 @@
                                         <div class="rate">
                                             @for ($i = 0; $i < 5; $i++)
                                                 <img src="{{ asset('/style/images/icon/Character.png') }}"
-                                                    alt="Image" srcset="">
+                                                    alt="Image">
                                             @endfor
                                         </div>
                                         <p class="name">{{ $item->user_name }}</p>

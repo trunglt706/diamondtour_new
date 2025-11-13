@@ -16,9 +16,9 @@
                                 <div class="item item-post-horizontal wow animated fadeIn item-overlay">
                                     <div class="img">
                                         <a href="{{ $_url }}">
-                                            <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/post/Rectangle 136.png') }}"
-                                                alt="{{ get_data_lang($item, 'name') }}" title="" loading="lazy"
-                                                style="">
+                                            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/post/Rectangle 136.png') }}"
+                                                alt="{{ get_data_lang($item, 'name') }}" loading="lazy"
+                                               >
                                         </a>
                                     </div>
                                     <div class="title">

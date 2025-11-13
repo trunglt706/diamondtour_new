@@ -11,8 +11,8 @@
                     <div class="item item-post-horizontal wow animated fadeIn">
                         <div class="img">
                             <a href="">
-                                <img src="{{ asset('/style/images/item/baohiem.png') }}" alt="Image" title=""
-                                    loading="lazy" style="">
+                                <img src="{{ asset('/style/images/item/baohiem.png') }}" alt="Image"
+                                    loading="lazy">
                             </a>
                         </div>
                         <div class="title">
@@ -26,8 +26,8 @@
                     <div class="item item-post-horizontal wow animated fadeIn">
                         <div class="img">
                             <a href="">
-                                <img src="{{ asset('/style/images/item/chiphi.png') }}" alt="Image" title=""
-                                    loading="lazy" style="">
+                                <img src="{{ asset('/style/images/item/chiphi.png') }}" alt="Image"
+                                    loading="lazy">
                             </a>
                         </div>
                         <div class="title">
@@ -41,8 +41,8 @@
                     <div class="item item-post-horizontal wow animated fadeIn">
                         <div class="img">
                             <a href="">
-                                <img src="{{ asset('/style/images/item/donghanh.png') }}" alt="Image" title=""
-                                    loading="lazy" style="">
+                                <img src="{{ asset('/style/images/item/donghanh.png') }}" alt="Image"
+                                    loading="lazy">
                             </a>
                         </div>
                         <div class="title">

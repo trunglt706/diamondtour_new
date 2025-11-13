@@ -6,7 +6,7 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="box-item">
                         <div class="icon">
-                            <img src="{{ asset('/style/images/icon/diemden.png') }}" alt="Image" srcset="">
+                            <img src="{{ asset('/style/images/icon/diemden.png') }}" alt="Image">
                         </div>
                         <div class="content-item">
                             <p class="title">
@@ -36,7 +36,7 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="box-item">
                         <div class="icon">
-                            <img src="{{ asset('/style/images/icon/hoatdong.png') }}" alt="Image" srcset="">
+                            <img src="{{ asset('/style/images/icon/hoatdong.png') }}" alt="Image">
                         </div>
                         <div class="content-item">
                             <p class="title">
@@ -66,7 +66,7 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="box-item">
                         <div class="icon">
-                            <img src="{{ asset('/style/images/icon/lichtrinh.png') }}" alt="Image" srcset="">
+                            <img src="{{ asset('/style/images/icon/lichtrinh.png') }}" alt="Image">
                         </div>
                         <div class="content-item">
                             <p class="title">

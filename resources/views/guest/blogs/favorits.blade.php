@@ -28,8 +28,8 @@
                                                     <div class="img">
                                                         <a href="{{ $_url }}">
                                                             <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/post/butan.png') }}"
-                                                                alt="Image" title="" loading="lazy"
-                                                                style="">
+                                                                alt="Image" loading="lazy"
+                                                               >
                                                         </a>
                                                     </div>
                                                     <div class="title">
@@ -75,8 +75,8 @@
                                         <div class="item">
                                             <div class="img" style="height: auto !important;">
                                                 <a href="{{ $first_url }}">
-                                                    <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $first->image ? asset($first->image) : asset('/style/images/post/main-post.jpg') }}"
-                                                        alt="Image" title="" loading="lazy" style="">
+                                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $first->image ? asset($first->image) : asset('/style/images/post/main-post.jpg') }}"
+                                                        alt="Image" loading="lazy">
                                                 </a>
                                             </div>
                                             <div class="title">

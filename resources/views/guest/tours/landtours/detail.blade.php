@@ -83,7 +83,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6 box-img">
                             <div class="img">
-                                <img src="/style/images/banner/Screenshot 2024-09-03 at 11.35.28 1.png" alt="" srcset="">
+                                <img src="/style/images/banner/Screenshot 2024-09-03 at 11.35.28 1.png" alt="">
                             </div>
                         </div>
                         <div class="col-12 col-md-6 box-content-trip">
@@ -95,7 +95,7 @@
                                     Hành trình 16 ngày trong đó có 09 ngày trekking chinh phục Annapurna Base Camp (ABC) hùng vĩ sẽ đưa bạn đi qua hết các cảnh quan thiên nhiên và văn hoá bản địa đặc sắc nhất Nepal. Với cung trek chinh phục ABC, nhà chinh phục sẽ có cơ hội hoàn thành bucket-list, chạm chân tới cung đường trekking đẹp nhất Nepal và cũng nằm trong TOP 10 cung leo núi đẹp nhất thế giới. Ngoài ra, bạn còn có cơ hội khám phá thêm các địa điểm nổi bật như đền Barahi và Hồ Fewa...
                                 </p>
                                 <div class="signature">
-                                    <img src="/style/images/icon/Group 92.png" alt="" srcset="">
+                                    <img src="/style/images/icon/Group 92.png" alt="">
                                 </div>
                             </div>
                         </div>

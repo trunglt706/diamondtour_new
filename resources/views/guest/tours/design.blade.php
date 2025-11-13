@@ -128,7 +128,7 @@
                                     <div class="img">
                                         <a href="{{ $_url }}">
                                             <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/post/Rectangle 212333.png') }}"
-                                                alt="Image" title="" loading="lazy" style="">
+                                                alt="Image" loading="lazy">
                                         </a>
                                     </div>
                                     <div class="title">

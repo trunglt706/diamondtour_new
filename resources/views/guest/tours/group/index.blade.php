@@ -64,7 +64,9 @@
                 @if ($item->background)
                     <div class="widget_banner">
                         <div class="box-content">
-                            <a href="#"><img src="{{ asset($item->background) }}" alt="Image 1"></a>
+                            <a href="#">
+                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ asset($item->background) }}" alt="Image 1" loading="lazy">
+                            </a>
                         </div>
                     </div>
                 @endif
@@ -81,13 +83,13 @@
                                 <div class="list-item">
                                     <div class="item">
                                         <div class="img">
-                                            <img src="/style/images/icon/Message.png" alt="Image" srcset="">
+                                            <img src="/style/images/icon/Message.png" alt="Image">
                                         </div>
                                         <a href="#">info@diamondtour.vn</a>
                                     </div>
                                     <div class="item">
                                         <div class="img">
-                                            <img src="/style/images/icon/Call.png" alt="Image" srcset="">
+                                            <img src="/style/images/icon/Call.png" alt="Image">
                                         </div>
                                         <a href="#">0905 615 666 / 0388 116 636</a>
                                     </div>

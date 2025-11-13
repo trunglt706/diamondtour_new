@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col-md-5 col-12 box-content">
                             <div class="img-bottom">
-                                <img src="/style/images/icon/Group 1000001753.png" alt="Image" srcset="">
+                                <img src="/style/images/icon/Group 1000001753.png" alt="Image">
                             </div>
                             <div class="content">
                                 <div class="box-top">
@@ -95,31 +95,31 @@
                                 </div>
                                 <div class="box-center">
                                     <div class="item">
-                                        <img src="/style/images/icon/bxs_phone-call.png" alt="Image" srcset="">
+                                        <img src="/style/images/icon/bxs_phone-call.png" alt="Image">
                                         <a>{{ get_option('contact-phone') }}</a>
                                     </div>
                                     <div class="item">
-                                        <img src="/style/images/icon/ic_sharp-email.png" alt="Image" srcset="">
+                                        <img src="/style/images/icon/ic_sharp-email.png" alt="Image">
                                         <a>{{ get_option('contact-email') }}</a>
                                     </div>
                                     <div class="item">
                                         <img src="/style/images/icon/carbon_location-filled.png" alt="Image"
-                                            srcset="">
+                                           >
                                         <a>{{ get_option('contact-address') }}</a>
                                     </div>
                                 </div>
                                 <div class="box-bottom">
                                     <img class="img_1" src="/style/images/icon/Group 1000001750.png" alt="Image"
-                                        srcset="">
+                                       >
                                     <img class="img_2" src="/style/images/icon/clarity_cursor-hand-click-line.png"
-                                        alt="Image" srcset="">
+                                        alt="Image">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-7 col-12">
                             <div class="work-with-us">
                                 <div class="img-bottom">
-                                    <img src="/style/images/icon/letter_send 1.png" alt="Image" srcset="">
+                                    <img src="/style/images/icon/letter_send 1.png" alt="Image">
                                 </div>
                                 <div class="form">
                                     <form method="POST" action="{{ route('demo.contact.create') }}">

@@ -12,7 +12,9 @@
         <div class="wrapper home about">
             <div class="widget_banner">
                 <div class="box-content">
-                    <a href="#"><img src="{{ get_file($data['menu']->background) }}" alt="Image 1"></a>
+                    <a href="#">
+                        <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ get_file($data['menu']->background) }}" alt="Image 1" loading="lazy">
+                    </a>
                 </div>
             </div>
             <div class="widget_about_3">
@@ -57,7 +59,7 @@
 
 @section('script')
     <script src="{{ asset('style/plugins/fancybox/fancybox.umd.js') }}"></script>
-    <script src="{{ asset('style/plugins/fancybox/l10n/de.umd.js') }}"></script>
+    <script src="{{ asset('style/plugins/fancybox/de.umd.js') }}"></script>
     <script>
         Fancybox.bind('[data-fancybox]', {
             l10n: Fancybox.l10n.de

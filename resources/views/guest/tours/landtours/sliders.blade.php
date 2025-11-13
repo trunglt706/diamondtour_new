@@ -3,7 +3,7 @@
         <div class="banner-grid">
             <div class="banner">
                 <a href="">
-                    <img src="{{ asset($data['menu']->background) }}" alt="" title="" loading="lazy">
+                    <img src="{{ asset($data['menu']->background) }}" alt="" loading="lazy">
                 </a>
             </div>
             <div class="content">

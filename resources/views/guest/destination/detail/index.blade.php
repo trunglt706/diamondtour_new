@@ -128,8 +128,8 @@
                         <div class="row">
                             <div class="col-md-7 mb-2">
                                 <div class="img hide-mobile">
-                                    <img src="{{ asset($item->image) }}" alt="Image" title="" loading="lazy"
-                                        style="">
+                                    <img src="{{ asset($item->image) }}" alt="Image" loading="lazy"
+                                       >
                                 </div>
                                 <h5 class="text-uppercase mt-4 title-other" style="font-size: 25px;font-weight: 600;">
                                     @lang('messages.tour.tour_lien_quan')
@@ -165,8 +165,8 @@
                             </div>
                             <div class="col-md-5 mb-2">
                                 <div class="img img-mobile show-mobile">
-                                    <img src="{{ asset($item->image) }}" alt="Image" title="" loading="lazy"
-                                        style="">
+                                    <img src="{{ asset($item->image) }}" alt="Image" loading="lazy"
+                                       >
                                 </div>
                                 <h2 class="text-uppercase">{{ get_data_lang($item, 'name') }}</h2>
                                 {!! $item->content !!}

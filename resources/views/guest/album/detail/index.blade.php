@@ -51,7 +51,7 @@
                     </div>
                     <div class="box-img">
                         <div class="img">
-                            <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/banner/L1190477 1.png') }}"
+                            <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ $item->image ? asset($item->image) : asset('/style/images/banner/L1190477 1.png') }}"
                                 alt="Image" loading="lazy">
                         </div>
                     </div>
@@ -67,7 +67,8 @@
                                 <div class="image">
                                     <a data-fancybox="gallery" data-caption="{{ $item->name }}"
                                         data-src="{{ asset($item->image) }}">
-                                        <img src="{{ asset($item->image) }}">
+                                        <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image"
+                                            loading="lazy">
                                     </a>
                                 </div>
                             </div>

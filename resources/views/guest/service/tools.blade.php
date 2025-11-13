@@ -6,8 +6,8 @@
                     <a href="#service-{{ $item->id }}">
                         <div class="item item-post-horizontal wow animated fadeIn">
                             <div class="img">
-                                <img src="{{ asset($item->image) }}" alt="Image" title="" loading="lazy"
-                                    style="">
+                                <img src="{{ asset($item->image) }}" alt="Image" loading="lazy"
+                                   >
                             </div>
                             <p class="title">{{ get_data_lang($item, 'name') }}</p>
                         </div>
