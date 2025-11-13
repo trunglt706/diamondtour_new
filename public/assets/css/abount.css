@@ -1,0 +1,46 @@
+.widget_banner .box-content {
+    height: 495px;
+}
+
+.widget_about_3 .content,
+.widget_about_3 .content p {
+    font-weight: normal !important;
+    text-align: justify !important;
+    font-family: 'Montserrat' !important;
+}
+
+@media (max-width: 932px) {
+    .widget_about_3 .header-title p {
+        margin: 0px !important;
+        font-size: 32px !important;
+    }
+
+    .main-content {
+        padding-top: 0px !important;
+    }
+
+    .widget_banner .box-content {
+        height: auto !important;
+    }
+
+    .widget_gallery_style_1 {
+        padding: 12px !important;
+    }
+
+    .home .widget_item_style_1 .box-item .row-grid .item .title h3 {
+        font-size: 18px !important;
+    }
+
+    .home .widget_item_style_1 .box-item .row-grid .item .img img {
+        width: 120px !important;
+    }
+
+    .widget_about_3 .user-info .info .name {
+        font-size: 20px !important;
+    }
+
+    .widget_about_3 .user-info .info .ex,
+    .widget_about_3 .user-info .info .description {
+        font-size: 16px !important;
+    }
+}
