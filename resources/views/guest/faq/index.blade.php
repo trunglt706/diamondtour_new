@@ -4,26 +4,7 @@
 @section('description', get_data_lang($data['menu'], 'description'))
 @section('image', asset($data['menu']->background))
 @section('style')
-    <style>
-        .accordion-item p {
-            text-align: justify;
-        }
-
-        .accordion-button {
-            padding-left: 0px !important;
-        }
-
-        @media (max-width: 932px) {
-
-            .main-content {
-                padding-top: 50px !important;
-            }
-
-            .widget_banner.widget_banner_style_3 .box-content .title {
-                font-size: 22px !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/faq/index.css') }}">
 @endsection
 @section('content')
     <section class="main-content">

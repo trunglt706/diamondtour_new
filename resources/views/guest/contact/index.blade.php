@@ -4,71 +4,7 @@
 @section('description', get_data_lang($data['menu'], 'description'))
 @section('image', asset($data['menu']->background))
 @section('style')
-    <style>
-        .widget_contact_1 .row-input-radio p,
-        .widget_contact_1 .row-input-radio label,
-        .widget_contact_1 .work-with-us label {
-            font-family: 'Montserrat' !important;
-            font-size: 16px !important;
-        }
-
-        @media (max-width: 932px) {
-
-            .widget_contact_1 .work-with-us .form,
-            .contact .box-title {
-                padding: 0 !important;
-            }
-
-            .widget_contact_1 .work-with-us .row-input {
-                display: block !important;
-            }
-
-            .widget_contact_1 .container>.row {
-                margin-right: auto !important;
-                margin-left: auto !important;
-            }
-
-            .widget_contact_1 .work-with-us .form form button {
-                width: 100% !important;
-            }
-
-            .widget_contact_1 .row-input-radio fieldset {
-                flex-direction: row;
-                display: flex !important;
-                flex-wrap: wrap;
-            }
-
-            .widget_contact_1 .row-input-radio .group {
-                gap: 15px !important;
-                margin-bottom: 12px;
-                width: 50%;
-            }
-
-            .widget_contact_1 .box-content .content .box-bottom {
-                display: none !important;
-            }
-
-            .widget_contact_2 {
-                padding: 12px !important;
-            }
-
-            .widget_contact_1 .box-content .content .box-center {
-                gap: 10px !important;
-            }
-
-            .widget_contact_1 .box-content .content .box-center .item a {
-                font-size: 14px !important;
-            }
-
-            .widget_contact_2 .title {
-                font-size: 32px !important;
-            }
-
-            .widget_contact_2 .container {
-                padding: 20px 0 !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}">
 @endsection
 @section('content')
     <section class="main-content">
@@ -192,36 +128,5 @@
     </section>
 @endsection
 @section('script')
-    <script>
-        $('.btn-submit').click(function() {
-            let form = $(this).closest('form'); // Lấy form gần nhất
-            let hasEmptyRequiredFields = false;
-            form.find('input[required], select[required], textarea[required]').each(function() {
-                if ($(this).val() === '') {
-                    hasEmptyRequiredFields = true;
-                }
-            });
-            if (!hasEmptyRequiredFields) {
-                $(this).html(
-                    `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span role="status">Loading...</span>`
-                );
-            }
-        });
-
-        $('.btn-register').click(function() {
-            let form = $(this).closest('form'); // Lấy form gần nhất
-            let hasEmptyRequiredFields = false;
-            form.find('input[required], select[required], textarea[required]').each(function() {
-                if ($(this).val() === '') {
-                    hasEmptyRequiredFields = true;
-                }
-            });
-
-            if (!hasEmptyRequiredFields) {
-                $(this).html(
-                    `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span class="visually-hidden" role="status">Loading...</span>`
-                );
-            }
-        });
-    </script>
+    <script src="{{ asset('/style/js/contact.js') }}"></script>
 @endsection

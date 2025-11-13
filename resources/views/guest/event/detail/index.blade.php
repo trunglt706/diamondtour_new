@@ -4,26 +4,7 @@
 @section('description', $data->description)
 @section('image', $data->image)
 @section('style')
-    <style>
-        .main-content .container {
-            font-size: clamp(14px, 2vw, 18px);
-        }
-
-        .widget_about_style_1 .box-content {
-            padding-top: 30px;
-        }
-
-        @media (max-width: 932px) {
-            .main-content {
-                padding-top: 50px !important;
-            }
-
-            .widget_about_style_1 {
-                padding: 12px 0px !important;
-                margin-bottom: 40px !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/event/detail.css') }}">
 @endsection
 @section('content')
     <section class="main-content">

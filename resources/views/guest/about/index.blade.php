@@ -5,7 +5,7 @@
 @section('image', asset($data['menu']->background))
 @section('style')
     <link rel="stylesheet" href="{{ asset('style/plugins/fancybox/fancybox.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/abount.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/about.css') }}">
 @endsection
 @section('content')
     <section class="main-content">
@@ -60,9 +60,4 @@
 @section('script')
     <script src="{{ asset('style/plugins/fancybox/fancybox.umd.js') }}"></script>
     <script src="{{ asset('style/plugins/fancybox/de.umd.js') }}"></script>
-    <script>
-        Fancybox.bind('[data-fancybox]', {
-            l10n: Fancybox.l10n.de
-        });
-    </script>
 @endsection

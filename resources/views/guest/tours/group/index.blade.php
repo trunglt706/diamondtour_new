@@ -7,57 +7,7 @@
 @section('description', $item->description)
 @section('image', asset($item->image))
 @section('content')
-    <style>
-        .widget_tour_1 nav {
-            justify-content: center;
-            display: flex;
-        }
-
-        .widget_about_4 .list-item .item {
-            margin-bottom: 5px;
-        }
-
-        .widget_about_4 .header-title .description {
-            max-height: 180px;
-            overflow: hidden;
-        }
-
-        .widget_about_4 {
-            padding: 50px 0;
-        }
-
-        .widget_tour_1 {
-            padding: 0px;
-        }
-
-        @media (max-width: 932px) {
-
-            .main-content {
-                padding-top: 20px !important;
-            }
-
-            .travel-detail .widget_about_4 .row-flex {
-                display: block !important;
-            }
-
-            .widget_about_4 .row-flex .box-right {
-                margin-top: 8px;
-            }
-
-            .widget_about_4 .list-item .item a {
-                font-size: 16px !important;
-            }
-
-            .header-title-style-3.header-title,
-            .widget_about_4 .list-item .item {
-                justify-content: center !important;
-            }
-
-            .widget_about_4 .header-title .header {
-                text-align: center !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/tours/group.css') }}">
     <section class="main-content">
         @if ($item)
             <div class="wrapper home travel-detail">

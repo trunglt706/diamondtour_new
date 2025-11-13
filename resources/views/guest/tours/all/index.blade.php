@@ -7,27 +7,7 @@
 @section('description', $item->description)
 @section('image', asset($item->image))
 @section('content')
-    <style>
-        .widget_tour_1 nav {
-            justify-content: center;
-            display: flex;
-        }
-
-        .widget_tour_1 {
-            padding: 0px;
-        }
-
-        @media (max-width: 932px) {
-
-            .main-content {
-                padding-top: 50px !important;
-            }
-
-            .header-title-style-3.header-title {
-                justify-content: center !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/tours/all.css') }}">
     <section class="main-content">
         {{-- start tours --}}
         <div class="widget_tour_1">

@@ -8,34 +8,8 @@
 @section('description', $item->description)
 @section('image', '')
 @section('style')
-    <link href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" rel="stylesheet" />
-    <style>
-        @media (max-width: 932px) {
-            .main-content {
-                padding-top: 50px !important;
-            }
-
-            .widget_banner_3 .box-banner .box-content .description {
-                display: none !important;
-            }
-
-            .widget_banner_3 .box-banner .box-content {
-                width: 100% !important;
-                height: 50px !important;
-                overflow: hidden !important;
-                top: auto !important;
-                bottom: 0 !important;
-                padding: 0px !important;
-            }
-
-            .widget_banner_3 .box-banner .box-content .title {
-                font-size: 14px !important;
-                line-height: 25px !important;
-                margin-bottom: 0px !important;
-                text-align: center !important;
-            }
-        }
-    </style>
+    <link href="{{ asset('style/plugins/fancybox/fancybox.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/css/album/detail.css') }}">
 @endsection
 @section('content')
     <section class="main-content">
@@ -85,11 +59,6 @@
 @section('script')
     <script src="{{ asset('/style/js/list-album.js') }}"></script>
     <script src="{{ asset('/style/js/album.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/l10n/de.umd.js"></script>
-    <script>
-        Fancybox.bind('[data-fancybox]', {
-            l10n: Fancybox.l10n.de
-        });
-    </script>
+    <script src="{{ asset('style/plugins/fancybox/fancybox.umd.js') }}"></script>
+    <script src="{{ asset('style/plugins/fancybox/de.umd.js') }}"></script>
 @endsection

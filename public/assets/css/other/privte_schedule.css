@@ -1,0 +1,10 @@
+@media (max-width: 932px) {
+    .main-content {
+        padding-top: 50px !important;
+    }
+
+    .widget_banner.widget_banner_style_3 .box-content .title {
+        font-size: 20px !important;
+        line-height: 30px !important;
+    }
+}

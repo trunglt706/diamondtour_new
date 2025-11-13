@@ -1,0 +1,9 @@
+@media (max-width: 932px) {
+    .main-content {
+        padding-top: 50px;
+    }
+
+    .widget-blog-style-1 .header-title p.title {
+        font-size: 26px !important;
+    }
+}

@@ -4,17 +4,7 @@
 @section('description', $data['title'])
 @section('image', '')
 @section('style')
-    <style>
-        .widget-blog-style-1 {
-            padding-top: 50px !important;
-        }
-
-        @media (max-width: 932px) {
-            .widget-blog-style-1 {
-                padding-top: 0 !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/blogs/list.css') }}">
 @endsection
 @section('content')
     <section class="main-content">

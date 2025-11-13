@@ -4,47 +4,7 @@
 @section('description', get_data_lang($data['menu'], 'description'))
 @section('image', asset($data['menu']->background))
 @section('style')
-    <style>
-        .header-title-style-3.header-title {
-            align-items: center;
-        }
-
-        .widget_tour_1 {
-            padding: 50px 0 !important;
-        }
-
-        .widget_tour_1 .tour-item .title .top .header-tour-detail {
-            -webkit-line-clamp: 1 !important;
-        }
-
-        @media (max-width: 932px) {
-
-            .main-content {
-                padding-top: 50px !important;
-            }
-
-            .widget_item_1 {
-                display: none;
-            }
-
-            .widget_tour_1 {
-                padding: 0px !important;
-            }
-
-            .header-title-style-3.header-title .header {
-                font-size: 26px !important;
-                text-align: center !important;
-            }
-
-            .widget_tour_1 .tour-item .title {
-                padding: 8px !important;
-            }
-
-            .header-title-style-3.header-title {
-                justify-content: center !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/home/search.css') }}">
 @endsection
 @section('content')
     <section class="main-content">
@@ -218,10 +178,6 @@
     </section>
 @endsection
 @section('script')
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
     <script>
         var url = "{{ route('demo.search') }}";
         $(function() {
