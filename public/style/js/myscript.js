@@ -10,10 +10,6 @@ $(document).ready(function () {
         }
     });
 
-    Fancybox.bind("[data-fancybox]", {
-        l10n: Fancybox.l10n.de,
-    });
-
     $('input[name="daterange"]').daterangepicker(
         {
             opens: "left",

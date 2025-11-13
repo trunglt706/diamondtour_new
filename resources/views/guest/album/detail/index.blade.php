@@ -61,4 +61,9 @@
     <script src="{{ asset('/style/js/album.js') }}"></script>
     <script src="{{ asset('style/plugins/fancybox/fancybox.umd.js') }}"></script>
     <script src="{{ asset('style/plugins/fancybox/de.umd.js') }}"></script>
+    <script>       
+        Fancybox.bind("[data-fancybox]", {
+            l10n: Fancybox.l10n.de,
+        });
+    </script>
 @endsection

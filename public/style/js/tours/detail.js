@@ -1,3 +1,7 @@
+Fancybox.bind("[data-fancybox]", {
+    l10n: Fancybox.l10n.de,
+});
+
 $(".btn-submit").click(function () {
     let form = $(this).closest("form"); // Lấy form gần nhất
     let hasEmptyRequiredFields = false;
