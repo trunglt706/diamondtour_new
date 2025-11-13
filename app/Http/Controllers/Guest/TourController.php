@@ -41,7 +41,7 @@ class TourController extends Controller
       $data = Cache::get($key);
     } else {
       $data = Cache::remember($key, CACHE_TIME, function () {
-        $menu = Menu::ofCode('tour')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+        $menu = Menu::ofCode('tour')->first();
         //countries
         $countries = Countries::ofStatus(Countries::STATUS_ACTIVE)->select('id', 'name', 'code')->get();
         // balances
@@ -107,7 +107,7 @@ class TourController extends Controller
       $data = Cache::get($key);
     } else {
       $data = Cache::remember($key, CACHE_TIME, function () use ($tour) {
-        $menu = Menu::ofCode('tour')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+        $menu = Menu::ofCode('tour')->first();
         $images = Library::type(Library::TYPE_TOUR)->ofStatus(Library::STATUS_ACTIVE)
           ->groupId($tour->id)->select('id', 'name', 'name_en', 'name_ch', 'image')->get();
         $seo = [
@@ -138,7 +138,7 @@ class TourController extends Controller
           ->orderBy('start', 'asc')->orderBy('created_at', 'desc')->limit(6)->get();
         $list = TourCalendar::with('tour')->ofDisplay(true)
           ->orderBy('start', 'desc')->orderBy('created_at', 'desc')->paginate(10);
-        $menu = Menu::ofCode('calendar')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+        $menu = Menu::ofCode('calendar')->first();
         $seo = [
           'image' => $menu->background,
           'title' => $menu->name,

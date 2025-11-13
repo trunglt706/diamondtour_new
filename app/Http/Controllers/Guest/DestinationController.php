@@ -86,7 +86,7 @@ class DestinationController extends Controller
             $data = Cache::get($key);
         } else {
             $data = Cache::remember($key, CACHE_TIME, function () use ($destination) {
-                $menu = Menu::ofCode('destination')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+                $menu = Menu::ofCode('destination')->first();
                 $reviews = $reviews1 = $reviews2 = null;
                 if ($destination->type == Destination::TYPE_NATIONAL) {
                     $reviews = Review::destinationId($destination->id)->ofStatus(Review::STATUS_ACTIVE)->orderBy('created_at', 'desc')->select('id', 'name', 'content', 'user_name', 'user_avatar')->limit(4)->get();

@@ -47,7 +47,7 @@ class HomeController extends Controller
                 $calendars = TourCalendar::with('tour', 'tour.withCountry')->ofDisplay(true)->whereDate('end', '>=', date('Y-m-d'))
                     ->orderBy('start', 'asc')->orderBy('created_at', 'desc')->limit(6)->get();
 
-                $menu = Menu::ofCode('dashboard')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch', 'images')->first();
+                $menu = Menu::ofCode('dashboard')->first();
 
                 // review
                 $review = Review::ofStatus(Review::STATUS_ACTIVE)->whereNull('destination_id')->orderBy('created_at', 'desc')->select('id', 'name', 'content', 'user_name', 'user_avatar')->limit(5)->get();
@@ -196,7 +196,7 @@ class HomeController extends Controller
             $data = Cache::get(CACHE_DESIGN_TOUR);
         } else {
             $data = Cache::remember(CACHE_DESIGN_TOUR, CACHE_TIME, function () {
-                $menu = Menu::ofCode('design-tour')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+                $menu = Menu::ofCode('design-tour')->first();
                 $countries = Countries::ofStatus(Countries::STATUS_ACTIVE)->select('id', 'name')->get();
                 // tour_groups
                 $tour_groups = TourGroup::ofStatus(TourGroup::STATUS_ACTIVE)
@@ -286,7 +286,7 @@ class HomeController extends Controller
             'title' => 'Tìm kếm',
             'description' => get_option('seo-description'),
         ];
-        $menu = Menu::ofCode('search')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+        $menu = Menu::ofCode('search')->first();
 
         $data = [
             'tours' => $tours,

@@ -19,7 +19,7 @@ class LibraryController extends Controller
             $data = Cache::get($key);
         } else {
             $data = Cache::remember($key, CACHE_TIME, function () {
-                $menu = Menu::ofCode('library')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+                $menu = Menu::ofCode('library')->first();
                 $list = LibraryGroup::ofStatus(LibraryGroup::STATUS_ACTIVE)
                     ->orderBy('important', 'desc')->orderBy('numering', 'desc')->orderBy('created_at', 'desc')
                     ->select('slug', 'image', 'name_en', 'name_ch', 'name')->paginate(6);
@@ -48,7 +48,7 @@ class LibraryController extends Controller
             $data = Cache::get($key);
         } else {
             $data = Cache::remember($key, CACHE_TIME, function () use ($group) {
-                $menu = Menu::ofCode('library')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+                $menu = Menu::ofCode('library')->first();
                 $list = Library::groupId($group->id)->type(Library::TYPE_LIBRARY)->ofStatus(Library::STATUS_ACTIVE)
                     ->orderBy('important', 'desc')->orderBy('numering', 'desc')->orderBy('created_at', 'desc')
                     ->select('id', 'image', 'name', 'name_en', 'name_ch')->paginate(9);

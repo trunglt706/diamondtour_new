@@ -20,7 +20,7 @@ class BlogController extends Controller
             $data = Cache::get($key);
         } else {
             $data = Cache::remember($key, CACHE_TIME, function () {
-                $menu = Menu::ofCode('blog')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+                $menu = Menu::ofCode('blog')->first();
                 $important = Post::ofStatus(Post::STATUS_ACTIVE)
                     ->orderBy('important', 'desc')->orderBy('created_at', 'desc')
                     ->select('id', 'name', 'slug', 'image', 'description')->limit(6)->get();
@@ -104,7 +104,7 @@ class BlogController extends Controller
             $data = Cache::get($key);
         } else {
             $data = Cache::remember($key, CACHE_TIME, function () use ($blog) {
-                $menu = Menu::ofCode('blog')->select('background', 'name', 'name_en', 'name_ch', 'description', 'description_en', 'description_ch')->first();
+                $menu = Menu::ofCode('blog')->first();
                 $other = Post::where('id', '<>', $blog->id)->groupId($blog->group_id)->ofStatus(Post::STATUS_ACTIVE)
                     ->orderBy('important', 'desc')->orderBy('created_at', 'desc')
                     ->limit(3)->select('id', 'slug', 'name', 'name_en', 'name_ch', 'image', 'description')
