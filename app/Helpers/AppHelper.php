@@ -5,7 +5,6 @@ use App\Http\Controllers\DropboxController;
 use App\Models\Images;
 use App\Models\Social;
 use App\Models\Tour;
-use App\Models\TourGroup;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
