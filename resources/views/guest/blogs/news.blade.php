@@ -13,7 +13,7 @@
                                 <div class="list-post">
                                     @foreach ($data['news']['left'] as $item)
                                         @php
-                                            $_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                                            $_url = route('blog.detail', ['slug' => $item->slug]);
                                         @endphp
                                         <div class="col-md-12 col-12">
                                             <div class="item">
@@ -63,7 +63,7 @@
                                 <div class="list-post">
                                     @foreach ($data['news']['right'] as $item)
                                         @php
-                                            $_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                                            $_url = route('blog.detail', ['slug' => $item->slug]);
                                         @endphp
                                         <div class="col-12">
                                             <div class="item">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 <div class="read-all">
-                    <a href="{{ route('demo.blog.category', ['slug' => 'news']) }}">
+                    <a href="{{ route('blog.category', ['slug' => 'news']) }}">
                         @lang('messages.view_all')
                     </a>
                 </div>

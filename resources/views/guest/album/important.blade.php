@@ -1,7 +1,7 @@
 @if ($data['important'])
     @php
         $item = $data['important'];
-        $_url = route('demo.library.detail', ['slug' => $item->slug]);
+        $_url = route('library.detail', ['slug' => $item->slug]);
     @endphp
     <div class="widget_video_style_1">
         <div class="container">

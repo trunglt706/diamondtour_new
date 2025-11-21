@@ -1,3 +1,6 @@
+@php
+    $is_login = auth()->check();
+@endphp
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="{{ asset('user/js/vendor.min.js') }}"></script>
 <script src="{{ asset('user/js/app.min.js') }}"></script>
@@ -7,7 +10,7 @@
     var urlLogout = "{{ route('user.logout') }}";
     const routeSelect = "{{ route('user.get_data_select2') }}";
     let page = 1;
-    const userId = "{{ auth()->check() ? auth()->user()->id : 0 }}";
+    const userId = "{{ $is_login ? auth()->user()->id : 0 }}";
     let btnTrigger = '';
 
     const Toast = Swal.mixin({
@@ -38,7 +41,7 @@
         });
     @endif
 </script>
-@if (auth()->check())
+@if ($is_login)
     <script src="{{ asset('user/plugins/select-picker/dist/picker.min.js') }}"></script>
     <script src="{{ asset('user/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('user/js/init.js') }}"></script>

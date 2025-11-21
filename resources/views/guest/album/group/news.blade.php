@@ -15,7 +15,7 @@
                             {!! $key == 0 || $key % 4 == 0 ? '<div class="box-item-image"><div class="row-grid">' : '' !!}
 
                             <div class="img img-{{ ($key % 4) + 1 }}">
-                                <a href="{{ route('demo.library.detail', ['slug' => $item->slug]) }}">
+                                <a href="{{ route('library.detail', ['slug' => $item->slug]) }}">
                                     <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image"
                                         loading="lazy">
                                 </a>

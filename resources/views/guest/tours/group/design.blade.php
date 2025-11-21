@@ -39,7 +39,7 @@
                     @foreach ($data['tours'] as $item)
                         @php
                             $t = isset($data['t']) ? $data['t'] : '0';
-                            $_url = route('demo.tour.detail', ['slug' => $item->slug]) . '?t=' . $t;
+                            $_url = route('tour.detail', ['slug' => $item->slug]) . '?t=' . $t;
                         @endphp
                         <div class="col-md-4 col-12">
                             <div class="tour-item">

@@ -4,7 +4,7 @@
             <div class="col-lg-9">
                 <h1 class="title">@lang('messages.service.mau_thong_tin')</h1>
                 <p class="description">@lang('messages.service.mau_thong_tin_des')</p>
-                <form method="POST" action="{{ route('demo.contact.create') }}">
+                <form method="POST" action="{{ route('contact.create') }}">
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">

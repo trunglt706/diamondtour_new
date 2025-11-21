@@ -58,7 +58,7 @@
                                     <img src="/style/images/icon/letter_send 1.png" alt="Image">
                                 </div>
                                 <div class="form">
-                                    <form method="POST" action="{{ route('demo.contact.create') }}">
+                                    <form method="POST" action="{{ route('contact.create') }}">
                                         @csrf
                                         <div class="row-input">
                                             <div>

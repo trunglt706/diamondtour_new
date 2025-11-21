@@ -69,7 +69,7 @@
                                         <ul>
                                             @foreach ($tags as $item)
                                                 <li>
-                                                    <a href="{{ route('demo.search') }}?t=blog&q={{ $item }}">
+                                                    <a href="{{ route('search') }}?t=blog&q={{ $item }}">
                                                         {{ $item }}
                                                     </a>
                                                 </li>

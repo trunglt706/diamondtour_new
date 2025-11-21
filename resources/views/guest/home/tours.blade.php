@@ -10,7 +10,7 @@
                     <div class="row g-2">
                         @foreach ($data['tours'] as $item)
                             @php
-                                $_url = route('demo.tour.category', ['slug' => $item->slug]);
+                                $_url = route('tour.category', ['slug' => $item->slug]);
                             @endphp
                             <div class="col-md-3 col-12">
                                 <div class="item item-post-horizontal wow animated fadeIn">

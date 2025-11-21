@@ -11,7 +11,7 @@
                 <div class="row">
                     @foreach ($data['importants'] as $item)
                         @php
-                            $_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                            $_url = route('blog.detail', ['slug' => $item->slug]);
                         @endphp
                         <div class="col-md-4 col-12">
                             <div class="item">

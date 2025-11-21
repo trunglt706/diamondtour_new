@@ -47,7 +47,6 @@ Route::prefix('login')->name('login.')->group(function () {
     Route::get('', [AuthController::class, 'login'])->name('index');
     Route::post('', [AuthController::class, 'postLogin'])->name('post');
 });
-// Route::get('sync', [AuthController::class, 'sync'])->name('sync');
 
 //========== user
 Route::prefix(USER_PREFIX_ROUTE)->name('user.')->middleware(['checkUser'])->group(function () {

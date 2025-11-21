@@ -11,7 +11,7 @@
                         @foreach ($data['tours'] as $item)
                             @php
                                 $t = isset($data['t']) ? $data['t'] : 0;
-                                $_url = route('demo.tour.category', ['slug' => $item->slug]) . '?t=' . $t;
+                                $_url = route('tour.category', ['slug' => $item->slug]) . '?t=' . $t;
                             @endphp
                             <div class="col-md-3 col-12">
                                 <div class="item item-post-horizontal wow animated fadeIn">

@@ -22,7 +22,7 @@
                                 @foreach ($data['seasons'] as $item)
                                     <div class="swiper-slide">
                                         <div class="img">
-                                            <a href="{{ route('demo.library.detail', ['slug' => $item->slug]) }}">
+                                            <a href="{{ route('library.detail', ['slug' => $item->slug]) }}">
                                                 <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image"
                                                     loading="lazy">
                                             </a>

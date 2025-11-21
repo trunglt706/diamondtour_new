@@ -90,7 +90,7 @@
 @endsection
 @section('script')
     <script>
-        const url = "{{ route('demo.search') }}";
+        const url = "{{ route('search') }}";
         const startDate = "{{ request()->get('start') }}";
         const endDate = "{{ request()->get('end') }}";
     </script>

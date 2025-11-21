@@ -8,8 +8,8 @@
             @foreach ($data['tours'] as $tour)
                 @php
                     $_url = $item
-                        ? route('demo.destination.detail', ['slug' => $tour->slug])
-                        : route('demo.tour.detail', ['slug' => $tour->slug]);
+                        ? route('destination.detail', ['slug' => $tour->slug])
+                        : route('tour.detail', ['slug' => $tour->slug]);
                 @endphp
                 <div class="col-md-4 col-12">
                     <div class="tour-item">

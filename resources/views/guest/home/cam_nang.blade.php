@@ -10,7 +10,7 @@
                     <div class="post-detail">
                         @foreach ($data['cam_nang'] as $item)
                             @php
-                                $cam_nang_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                                $cam_nang_url = route('blog.detail', ['slug' => $item->slug]);
                             @endphp
                             <div class="item item-post-horizontal wow animated fadeIn">
                                 <div class="img">

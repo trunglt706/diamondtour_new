@@ -9,7 +9,7 @@
             <div class="list-blogs ">
                 @foreach ($data['guests'] as $item)
                     @php
-                        $_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                        $_url = route('blog.detail', ['slug' => $item->slug]);
                     @endphp
                     <div class="item">
                         <a href="">

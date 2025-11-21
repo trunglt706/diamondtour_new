@@ -43,7 +43,7 @@
                 <div class="row">
                     @foreach ($data['tours'] as $item)
                         @php
-                            $_url = route('demo.tour.detail', ['slug' => $item->slug]);
+                            $_url = route('tour.detail', ['slug' => $item->slug]);
                         @endphp
                         <div class="col-md-4 col-12">
                             <div class="tour-item">

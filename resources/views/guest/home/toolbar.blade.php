@@ -20,7 +20,7 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <div id="searchBox" class="mobile-form">
-                        <form action="{{ route('demo.search') }}" class="search-form" id="searchform" method="get">
+                        <form action="{{ route('search') }}" class="search-form" id="searchform" method="get">
                             <input type="hidden" name="t" value="tour">
                             <input id="sbox" name="search" placeholder="@lang('messages.tim_kiem') ..." type="text"
                                 x-webkit-speech="">
@@ -50,7 +50,7 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <div id="searchBox" class="mobile-form">
-                        <form action="{{ route('demo.search') }}" class="search-form" id="searchform" method="get">
+                        <form action="{{ route('search') }}" class="search-form" id="searchform" method="get">
                             <input type="hidden" name="t" value="activity">
                             <input id="sbox" name="search" placeholder="@lang('messages.tim_kiem') ..." type="text"
                                 x-webkit-speech="">

@@ -5,7 +5,7 @@
     <div class="widget_item_style_2">
         <div class="">
             <div class="row-grid">
-                <a href="{{ route('demo.event.detail', ['slug' => $item->slug]) }}" class="box-img">
+                <a href="{{ route('event.detail', ['slug' => $item->slug]) }}" class="box-img">
                     <img class="w-100 h-100"
                         src="{{ $item->image ? get_file($item->image) : asset('/style/images/banner/Rectangle 204.png') }}"
                         alt="Image">

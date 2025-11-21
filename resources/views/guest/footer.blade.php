@@ -10,20 +10,20 @@
                     </div>
                     <div class="col-md-5 left">
                         <ul class="hide-mobile">
-                            <li class=""><a href="{{ route('demo.about') }}"><span>@lang('messages.ve_chung_toi')</span></a>
+                            <li class=""><a href="{{ route('about') }}"><span>@lang('messages.ve_chung_toi')</span></a>
                             </li>
                             <li class=""><a
-                                    href="{{ route('demo.service.index') }}"><span>@lang('messages.menu.service')</span></a></li>
-                            <li class=""><a href="{{ route('demo.faq') }}"><span>@lang('messages.FAQ')</span></a></li>
+                                    href="{{ route('service.index') }}"><span>@lang('messages.menu.service')</span></a></li>
+                            <li class=""><a href="{{ route('faq') }}"><span>@lang('messages.FAQ')</span></a></li>
                             <li class=""><a
-                                    href="{{ route('demo.contact.index') }}"><span>@lang('messages.menu.contact')</span></a></li>
+                                    href="{{ route('contact.index') }}"><span>@lang('messages.menu.contact')</span></a></li>
                             <li class=""><a><span>@lang('messages.chinh_sach_bao_mat')</span></a></li>
                             <li class=""><a
-                                    href="{{ route('demo.privte_schedule') }}"><span>@lang('messages.thiet_ke_lich_trinh_rieng')</span></a></li>
+                                    href="{{ route('privte_schedule') }}"><span>@lang('messages.thiet_ke_lich_trinh_rieng')</span></a></li>
                             <li class=""><a
-                                    href="{{ route('demo.blog.index') }}"><span>@lang('messages.bai_viet')</span></a></li>
+                                    href="{{ route('blog.index') }}"><span>@lang('messages.bai_viet')</span></a></li>
                             <li class=""><a
-                                    href="{{ route('demo.blog.index') }}"><span>@lang('messages.menu.blog')</span></a></li>
+                                    href="{{ route('blog.index') }}"><span>@lang('messages.menu.blog')</span></a></li>
                         </ul>
 
                         <div class="header-title">
@@ -48,25 +48,25 @@
                         <div class="left-show-mobile">
                             <ul>
                                 <li class=""><a
-                                        href="{{ route('demo.about') }}"><span>@lang('messages.ve_chung_toi')</span></a>
+                                        href="{{ route('about') }}"><span>@lang('messages.ve_chung_toi')</span></a>
                                 </li>
                                 <li class=""><a
-                                        href="{{ route('demo.service.index') }}"><span>@lang('messages.menu.service')</span></a>
+                                        href="{{ route('service.index') }}"><span>@lang('messages.menu.service')</span></a>
                                 </li>
                                 <li class=""><a
-                                        href="{{ route('demo.faq') }}"><span>@lang('messages.FAQ')</span></a>
+                                        href="{{ route('faq') }}"><span>@lang('messages.FAQ')</span></a>
                                 </li>
                                 <li class=""><a
-                                        href="{{ route('demo.contact.index') }}"><span>@lang('messages.menu.contact')</span></a>
+                                        href="{{ route('contact.index') }}"><span>@lang('messages.menu.contact')</span></a>
                                 </li>
                                 <li class=""><a><span>@lang('messages.chinh_sach_bao_mat')</span></a></li>
                                 <li class=""><a
-                                        href="{{ route('demo.privte_schedule') }}"><span>@lang('messages.thiet_ke_lich_trinh_rieng')</span></a>
+                                        href="{{ route('privte_schedule') }}"><span>@lang('messages.thiet_ke_lich_trinh_rieng')</span></a>
                                 </li>
                                 <li class=""><a
-                                        href="{{ route('demo.blog.index') }}"><span>@lang('messages.bai_viet')</span></a></li>
+                                        href="{{ route('blog.index') }}"><span>@lang('messages.bai_viet')</span></a></li>
                                 <li class=""><a
-                                        href="{{ route('demo.blog.index') }}"><span>@lang('messages.menu.blog')</span></a></li>
+                                        href="{{ route('blog.index') }}"><span>@lang('messages.menu.blog')</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <ul>
                             @foreach (get_tour_group() as $item)
                                 @php
-                                    $_url = route('demo.tour.category', ['slug' => $item->slug]);
+                                    $_url = route('tour.category', ['slug' => $item->slug]);
                                 @endphp
                                 <li>
                                     <a href="{{ $_url }}">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="content copy-right">
-                            <a href="{{ route('demo.home') }}">Copyright © 2023. All rights reserved</a>
+                            <a href="{{ route('home') }}">Copyright © 2023. All rights reserved</a>
                         </div>
                     </div>
                 </div>

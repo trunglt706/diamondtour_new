@@ -40,7 +40,7 @@
                         <div class="row">
                             @foreach ($data['tours'] as $tour)
                                 @php
-                                    $_url = route('demo.tour.detail', ['slug' => $tour->slug]);
+                                    $_url = route('tour.detail', ['slug' => $tour->slug]);
                                 @endphp
                                 <div class="col-md-4 col-12">
                                     <div class="tour-item">
@@ -91,7 +91,7 @@
                         <div class="row">
                             @foreach ($data['blogs'] as $item)
                                 @php
-                                    $_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                                    $_url = route('blog.detail', ['slug' => $item->slug]);
                                 @endphp
                                 <div class="col-md-4 col-12">
                                     <div class="tour-item">
@@ -133,7 +133,7 @@
                         <div class="row">
                             @foreach ($data['destinations'] as $des)
                                 @php
-                                    $_url = route('demo.destination.detail', ['slug' => $des->slug]);
+                                    $_url = route('destination.detail', ['slug' => $des->slug]);
                                 @endphp
                                 <div class="col-md-4 col-12">
                                     <div class="tour-item">
@@ -179,7 +179,7 @@
 @endsection
 @section('script')
     <script>
-        var url = "{{ route('demo.search') }}";
+        var url = "{{ route('search') }}";
         $(function() {
             // set startDat and endDate from request
             const startDate = "{{ request()->get('start') }}";

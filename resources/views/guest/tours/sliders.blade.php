@@ -22,7 +22,7 @@
                         </p>
                     </div>
                     <div class="right">
-                        <a href="{{ route('demo.tour.category', ['slug' => 'list']) . '?t=0' }}">@lang('messages.tour.kham_pha_ngay')
+                        <a href="{{ route('tour.category', ['slug' => 'list']) . '?t=0' }}">@lang('messages.tour.kham_pha_ngay')
                             <span>&#x279D;</span></a>
                     </div>
                 </div>

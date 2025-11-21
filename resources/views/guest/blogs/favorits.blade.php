@@ -1,13 +1,13 @@
 @if ($data['favorits']->count() > 0)
     @php
         $first = $data['favorits'][0];
-        $first_url = route('demo.blog.detail', ['slug' => $first->slug]);
+        $first_url = route('blog.detail', ['slug' => $first->slug]);
     @endphp
     <div class="post-like">
         <div class="header-title">
             <p class="header">@lang('messages.blog.blog_yeu_thich')</p>
             <div class="img-bg"></div>
-            <a class="read-more hide-mobile" href="{{ route('demo.blog.category', ['slug' => 'favorits']) }}">
+            <a class="read-more hide-mobile" href="{{ route('blog.category', ['slug' => 'favorits']) }}">
                 @lang('messages.view_all')<span> &#x279D;</span>
             </a>
         </div>
@@ -21,7 +21,7 @@
                                     @foreach ($data['favorits'] as $key => $item)
                                         @if ($key > 0)
                                             @php
-                                                $_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                                                $_url = route('blog.detail', ['slug' => $item->slug]);
                                             @endphp
                                             <div class="col-md-12 col-12">
                                                 <div class="item">
@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div class="read-all show-mobile">
-                    <a href="{{ route('demo.blog.category', ['slug' => 'favorits']) }}">
+                    <a href="{{ route('blog.category', ['slug' => 'favorits']) }}">
                         @lang('messages.view_all')
                     </a>
                 </div>

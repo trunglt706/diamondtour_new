@@ -24,7 +24,7 @@
 
             <div class="container py-4">
                 <section class="horizontal-wizard">
-                    <form action="{{ route('demo.privte_schedule_post') }}" method="POST">
+                    <form action="{{ route('privte_schedule_post') }}" method="POST">
                         @csrf
                         <div class="bs-stepper horizontal-wizard-example">
                             <div class="bs-stepper-header" role="tablist">

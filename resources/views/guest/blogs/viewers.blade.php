@@ -6,7 +6,7 @@
                 <div class="header-title">
                     <p class="header">@lang('messages.blog.xem_nhieu_nhat')</p>
                     <div class="img-bg"></div>
-                    <a class="read-more hide-mobile" href="{{ route('demo.blog.category', ['slug' => 'viewers']) }}">
+                    <a class="read-more hide-mobile" href="{{ route('blog.category', ['slug' => 'viewers']) }}">
                         @lang('messages.view_all')<span> &#x279D;</span>
                     </a>
                 </div>
@@ -17,7 +17,7 @@
                                 <div class="list-post">
                                     @foreach ($data['viewers'] as $item)
                                         @php
-                                            $_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                                            $_url = route('blog.detail', ['slug' => $item->slug]);
                                         @endphp
                                         <div class="col-md-12 col-12">
                                             <div class="item">
@@ -69,7 +69,7 @@
             <div class="list-cate">
                 @foreach ($data['categories'] as $item)
                     @php
-                        $_url = route('demo.blog.category', ['slug' => $item->slug]);
+                        $_url = route('blog.category', ['slug' => $item->slug]);
                     @endphp
                     <div class="cate">
                         <p class="name"><a href="{{ $_url }}">{{ get_data_lang($item, 'name') }}</a></p>

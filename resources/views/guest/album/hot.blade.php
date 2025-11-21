@@ -34,7 +34,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($data['hot'] as $item)
                             @php
-                                $_url = route('demo.library.detail', ['slug' => $item->slug]);
+                                $_url = route('library.detail', ['slug' => $item->slug]);
                             @endphp
                             <div class="swiper-slide">
                                 <div class="content">

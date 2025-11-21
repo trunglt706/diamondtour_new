@@ -1,7 +1,7 @@
 @if ($data['hot'])
     @php
         $hot = $data['hot'];
-        $_url = route('demo.blog.detail', ['slug' => $hot->slug]);
+        $_url = route('blog.detail', ['slug' => $hot->slug]);
     @endphp
     <div class="post-hot mb-3">
         <div class="header-title">

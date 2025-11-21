@@ -6,7 +6,7 @@
                     <div class="post-detail">
                         @foreach ($data['news'] as $item)
                             @php
-                                $_url = route('demo.library.category', ['slug' => $item->slug]);
+                                $_url = route('library.category', ['slug' => $item->slug]);
                             @endphp
                             <div class="box-item">
                                 <div class="item item-post-horizontal wow animated fadeIn">

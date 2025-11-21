@@ -19,7 +19,7 @@
                             <div class="row">
                                 @foreach ($data['list'] as $item)
                                     @php
-                                        $_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                                        $_url = route('blog.detail', ['slug' => $item->slug]);
                                     @endphp
                                     <div class="col-md-4 col-12">
                                         <div class="item">
@@ -42,7 +42,7 @@
                                                     <p><a href="#">@lang('messages.home.admin')</a></p>
                                                     <p>
                                                         <a
-                                                            href="{{ route('demo.blog.category', ['slug' => $item->group_slug]) }}">
+                                                            href="{{ route('blog.category', ['slug' => $item->group_slug]) }}">
                                                             {{ get_data_lang($item, 'group_name') }}
                                                         </a>
                                                     </p>

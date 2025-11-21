@@ -33,7 +33,7 @@
                                     <div class="list-tours row">
                                         @foreach ($data['tours'] as $tour)
                                             @php
-                                                $_url = route('demo.tour.detail', ['slug' => $tour->slug]);
+                                                $_url = route('tour.detail', ['slug' => $tour->slug]);
                                             @endphp
                                             <div class="col-6 mb-2">
                                                 <div class="item">
@@ -85,7 +85,7 @@
                                         <ul>
                                             @foreach ($tags as $item)
                                                 <li>
-                                                    <a href="{{ route('demo.search') }}?t=destination&q={{ $item }}">
+                                                    <a href="{{ route('search') }}?t=destination&q={{ $item }}">
                                                         {{ $item }}
                                                     </a>
                                                 </li>

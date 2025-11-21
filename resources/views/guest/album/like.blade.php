@@ -1,7 +1,7 @@
 @if ($data['likes'])
     @php
         $item = $data['likes'];
-        $_url = route('demo.library.detail', ['slug' => $item->slug]);
+        $_url = route('library.detail', ['slug' => $item->slug]);
     @endphp
     <div class="widget_about_style_3">
         <div class="container">

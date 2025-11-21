@@ -13,7 +13,7 @@
                         $t = isset($data['t']) ? $data['t'] : 0;
                     @endphp
                     <a class="read-more"
-                        href="{{ route('demo.tour.category', ['slug' => 'design']) }}?t={{ $t }}">
+                        href="{{ route('tour.category', ['slug' => 'design']) }}?t={{ $t }}">
                         @lang('messages.tour.view_toan_bo')
                     </a>
                 </div>
@@ -122,7 +122,7 @@
                         <div class="post-detail">
                             @foreach ($data['design'] as $item)
                                 @php
-                                    $_url = route('demo.tour.detail', ['slug' => $item->slug]);
+                                    $_url = route('tour.detail', ['slug' => $item->slug]);
                                 @endphp
                                 <div class="item item-post-horizontal wow animated fadeIn m-b-20">
                                     <div class="img">

@@ -6,7 +6,7 @@
         <div class="row">
             @foreach ($data['tours'] as $tour)
                 @php
-                    $_url = route('demo.destination.detail', ['slug' => $tour->slug]);
+                    $_url = route('destination.detail', ['slug' => $tour->slug]);
                 @endphp
                 <div class="col-md-4 col-12">
                     <div class="tour-item">

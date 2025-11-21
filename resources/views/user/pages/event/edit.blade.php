@@ -3,7 +3,7 @@
 @section('content')
     <div class="mb-3">
         Xem bài viết công khai tại
-        <a target="_blank" href="{{ route('demo.event.detail', ['slug' => $data->slug]) }}" class="text-decoration-none">
+        <a target="_blank" href="{{ route('event.detail', ['slug' => $data->slug]) }}" class="text-decoration-none">
             tại đây
         </a>
     </div>

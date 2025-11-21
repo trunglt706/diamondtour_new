@@ -12,7 +12,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($data['news'] as $item)
                             @php
-                                $_url = route('demo.blog.detail', ['slug' => $item->slug]);
+                                $_url = route('blog.detail', ['slug' => $item->slug]);
                             @endphp
                             <div class="item swiper-slide">
                                 <a href="{{ $_url }}">

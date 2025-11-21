@@ -19,19 +19,19 @@
                         </div>
                         <br><br>
                         <div class="row">
-                            <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=xuan"
+                            <a href="{{ route('tour.category', ['slug' => 'season']) }}?q=xuan"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="xuan">@lang('messages.home.mua_xuan')</p>
                             </a>
-                            <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=ha"
+                            <a href="{{ route('tour.category', ['slug' => 'season']) }}?q=ha"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="ha">@lang('messages.home.mua_ha')</p>
                             </a>
-                            <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=thu"
+                            <a href="{{ route('tour.category', ['slug' => 'season']) }}?q=thu"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="thu">@lang('messages.home.mua_thu')</p>
                             </a>
-                            <a href="{{ route('demo.tour.category', ['slug' => 'season']) }}?q=dong"
+                            <a href="{{ route('tour.category', ['slug' => 'season']) }}?q=dong"
                                 class="col-md-5 col-12 item">
                                 <p type="button" class="text-title item-season" data-item="dong">@lang('messages.home.mua_dong')</p>
                             </a>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="box-img col-md-8">
                     @foreach ($data['seasonal_tours'] as $item)
-                        <a href="{{ route('demo.tour.detail', ['slug' => $item->slug]) }}?t={{ $t }}"
+                        <a href="{{ route('tour.detail', ['slug' => $item->slug]) }}?t={{ $t }}"
                             class="img hover-opacity-7 pointer">
                             <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? get_file($item->image) : asset('/style/images/banner/Rectangle 206.png') }}"
                                 alt="Image" height="442px" width="266px" loading="lazy">

@@ -30,7 +30,7 @@
                         <p class="title">Page not found</p>
                         <p class="description">It looks like nothing was found at this location. Maybe try a search?</p>
                     </div>
-                    <form method="post" class="form email-register-form" action="{{ route('demo.search') }}">
+                    <form method="post" class="form email-register-form" action="{{ route('search') }}">
                         <div class="form-group">
                             <div class="input">
                                 <input name="search" type="text" placeholder="Search..." class="form-control input-lg"

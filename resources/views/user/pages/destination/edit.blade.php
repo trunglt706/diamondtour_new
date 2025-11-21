@@ -6,7 +6,7 @@
 @section('content')
     <div class="mb-3">
         Xem bà viết công khai tại
-        <a target="_blank" href="{{ route('demo.destination.detail', ['slug' => $data->slug]) }}" class="text-decoration-none">
+        <a target="_blank" href="{{ route('destination.detail', ['slug' => $data->slug]) }}" class="text-decoration-none">
             tại đây
         </a>
     </div>

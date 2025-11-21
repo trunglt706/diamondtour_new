@@ -24,7 +24,7 @@
                                         Từ 16 - 25 pax</a></li>
                             </ul>
                         </div>
-                        <a class="read-more" href="{{ route('demo.tour.category', ['slug' => 'bundle']) }}?t=1">
+                        <a class="read-more" href="{{ route('tour.category', ['slug' => 'bundle']) }}?t=1">
                             @lang('messages.tour.get_now')
                             <span>&#x279D;</span></a>
                     </div>
@@ -55,7 +55,7 @@
                             </ul>
                         </div>
                         <a class="read-more"
-                            href="{{ route('demo.tour.category', ['slug' => 'bundle']) }}?t=2">@lang('messages.tour.get_now')
+                            href="{{ route('tour.category', ['slug' => 'bundle']) }}?t=2">@lang('messages.tour.get_now')
                             <span>&#x279D;</span></a>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                             </ul>
                         </div>
                         <a class="read-more"
-                            href="{{ route('demo.tour.category', ['slug' => 'bundle']) }}?t=3">@lang('messages.tour.get_now')
+                            href="{{ route('tour.category', ['slug' => 'bundle']) }}?t=3">@lang('messages.tour.get_now')
                             <span>&#x279D;</span></a>
                     </div>
                 </div>

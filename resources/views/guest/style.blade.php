@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="{{ asset('style/plugins/swiper/swiper-bundle.min.css') }}" />
 @yield('style')
 <link rel="stylesheet" type="text/css" href="{{ asset('/style/css/style.css') }}">
-@if (in_array(Route::currentRouteName(), ['demo.blog.detail', 'demo.destination.detail']))
+@if (in_array(Route::currentRouteName(), ['blog.detail', 'destination.detail']))
     <script type="text/javascript"
         src="https://platform-api.sharethis.com/js/sharethis.js#property=65dd20dcd41ded001ab5b52f&product=inline-share-buttons&source=platform"
         async="async"></script>
