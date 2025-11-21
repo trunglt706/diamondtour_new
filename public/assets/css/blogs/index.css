@@ -1,0 +1,144 @@
+.widget_banner_style_1 .banner img {
+    height: 495px !important;
+}
+
+.post-new .header-title .header {
+    text-align: center !important;
+}
+
+.post-cate-and-style-10 .post-box-right .list-cate .cate p.name {
+    font-size: 16px !important;
+}
+
+.post-hot .box-right .title .title-top .header {
+    max-height: 108px;
+    overflow: hidden;
+}
+
+.widget_post_style_1.js_widget_post_style_1_10 .item .title .header {
+    font-family: "Montserrat" !important;
+    font-weight: 700 !important;
+}
+
+@media (max-width: 932px) {
+    .main-content {
+        padding-top: 50px !important;
+    }
+
+    .widget_banner_style_1 .banner img {
+        height: 250px !important;
+    }
+
+    .post-like .header-title .header,
+    .post-new .header-title .header {
+        text-transform: uppercase !important;
+        font-size: 23px !important;
+    }
+
+    .box-right {
+        margin-bottom: 16px !important;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_6 .item .title {
+        padding: 20px 10px !important;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_6 .item .title .header {
+        font-size: 20px !important;
+        margin: 0px !important;
+        font-weight: 600 !important;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_7 .item .title .header {
+        font-family: "Montserrat" !important;
+        text-transform: uppercase !important;
+        line-height: 28px !important;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_8 .item {
+        flex-direction: column;
+    }
+
+    .home .widget_post_style_1 {
+        padding: 0px !important;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_8 .item .img {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_6 .item .title .description {
+        margin-top: 12px;
+        font-size: 12px !important;
+        line-height: 19.2px !important;
+    }
+
+    .js_widget_post_style_1_7 .item .img {
+        height: 292px !important;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_8 .item .title {
+        padding: 20px 10px !important;
+        -webkit-line-clamp: 1 !important;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_10 .item .title .info {
+        flex-direction: row !important;
+    }
+
+    .widget_email_style_1 .header-title .header {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .email-register-form,
+    .widget_email_style_1 form .input {
+        width: 100%;
+    }
+
+    .box-left .widget_post_style_1.js_widget_post_style_1_9 .item .title {
+        width: 100% !important;
+        padding: 8px !important;
+        left: 0px !important;
+    }
+
+    .box-left
+        .widget_post_style_1.js_widget_post_style_1_9
+        .item
+        .title
+        .header
+        a {
+        font-size: 26px !important;
+        text-transform: uppercase !important;
+    }
+
+    .home .widget_post_style_1 .item .title .header a {
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_6 .item .title .read-more {
+        background: none !important;
+    }
+
+    .post-new {
+        padding-top: 15px !important;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_10 .item .title .read-more {
+        background-color: #fff !important;
+    }
+
+    .js_widget_post_style_1_8 .item .title .br {
+        display: flex !important;
+    }
+
+    .post-hot .box-right::after {
+        display: none;
+    }
+
+    .widget_post_style_1.js_widget_post_style_1_10 .item .title .description {
+        max-height: 60px;
+    }
+}

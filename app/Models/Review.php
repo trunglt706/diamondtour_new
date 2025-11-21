@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\File;
 
 class Review extends Model
 {
@@ -51,6 +50,9 @@ class Review extends Model
 
     const STATUS_ACTIVE = 'active';
     const STATUS_BLOCKED = 'blocked';
+
+    const IMPORTANT_YES = 1;
+    const IMPORTANT_NO = 0;
 
     public static function get_status($status = '')
     {

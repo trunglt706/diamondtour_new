@@ -14,15 +14,27 @@ class LogActionController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the log action index page.
+     *
+     * @param LogActionViewRequest $request
+     * @return void
+     */
     public function index(LogActionViewRequest $request)
     {
         return view('user.pages.log_action.index');
     }
 
+    /**
+     * Display a listing of the log actions.
+     *
+     * @param LogActionViewRequest $request
+     * @return void
+     */
     public function list(LogActionViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $user_id = request('user_id', '');
@@ -48,6 +60,13 @@ class LogActionController extends Controller
         }
     }
 
+    /**
+     * View details of a log action.
+     *
+     * @param [type] $id
+     * @param LogActionViewRequest $request
+     * @return void
+     */
     public function detail($id, LogActionViewRequest $request)
     {
         $data = LogAction::with('user')->findOrFail($id);

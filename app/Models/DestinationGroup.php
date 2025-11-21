@@ -63,6 +63,9 @@ class DestinationGroup extends Model
     const TYPE_NATIONAL = 'national';
     const TYPE_LOCAL = 'local';
 
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
+
     public static function get_type($type = '')
     {
         $_status = [
@@ -71,9 +74,6 @@ class DestinationGroup extends Model
         ];
         return $type == '' ? $_status : $_status["$type"];
     }
-
-    const STATUS_ACTIVE = 'active';
-    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {

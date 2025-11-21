@@ -1,7 +1,3 @@
-@php
-    use App\Models\DestinationGroup;
-    $status = DestinationGroup::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết danh mục điểm đến')
 @section('content')
@@ -100,5 +96,3 @@
         </div>
     </div>
 @endsection
-@push('js')
-@endpush

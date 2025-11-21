@@ -1,7 +1,3 @@
-@php
-    use App\Models\TourCalendar;
-    $status = TourCalendar::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết lịch khởi hành')
 @section('content')

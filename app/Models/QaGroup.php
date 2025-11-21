@@ -47,6 +47,9 @@ class QaGroup extends Model
     const STATUS_ACTIVE = 'active';
     const STATUS_BLOCKED = 'blocked';
 
+    const IS_IMPORTANT = 1;
+    const IS_NOT_IMPORTANT = 0;
+
     public static function get_status($status = '')
     {
         $_status = [

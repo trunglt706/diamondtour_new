@@ -6,8 +6,8 @@
         <div class="list-image">
             @foreach ($about_images as $item)
                 <div class="img">
-                    <a data-fancybox="gallery" data-src="{{ asset($item->url) }}">
-                        <img src="{{ asset($item->url) }}" alt="Image" srcset="">
+                    <a data-fancybox="gallery" data-src="{{ get_file($item->url) }}">
+                        <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->url) }}" alt="Image" loading="lazy">
                     </a>
                 </div>
             @endforeach

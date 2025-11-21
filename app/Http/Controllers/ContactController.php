@@ -20,16 +20,28 @@ class ContactController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display index page of the resource.
+     *
+     * @param ContactViewRequest $request
+     * @return void
+     */
     public function index(ContactViewRequest $request)
     {
         $data['status'] = Contact::get_status();
         return view('user.pages.contact.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param ContactViewRequest $request
+     * @return void
+     */
     public function list(ContactViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $export = request('export', '');
@@ -55,6 +67,12 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @param ContactInsertRequest $request
+     * @return void
+     */
     public function insert(ContactInsertRequest $request)
     {
         DB::beginTransaction();
@@ -71,6 +89,12 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param ContactUpdateRequest $request
+     * @return void
+     */
     public function update(ContactUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -102,6 +126,12 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param ContactDeleteRequest $request
+     * @return void
+     */
     public function delete(ContactDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -118,27 +148,38 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param ContactViewRequest $request
+     * @return void
+     */
     public function detail($id, ContactViewRequest $request)
     {
         $data = Contact::findOrFail($id);
         if (request()->ajax()) {
             return view('user.pages.contact.show', compact('data'))->render();
         }
-        return view('user.pages.contact.detail', compact('data'));
+        $status = Contact::get_status($data->status);
+        return view('user.pages.contact.detail', compact('data', 'status'));
     }
 
+    /**
+     * Accept the specified resource.
+     *
+     * @return void
+     */
     public function accept()
     {
         DB::beginTransaction();
         try {
             $new = Contact::findOrFail(request('id'));
-            if ($new) {
-                $new->status = Contact::STATUS_ACTIVE;
-                $new->save();
-                save_log("Liên hệ #$new->code vừa mới được duyệt", $new);
-                DB::commit();
-                return redirect()->back()->with('success', 'Duyệt dữ liệu thành công');
-            }
+            $new->status = Contact::STATUS_ACTIVE;
+            $new->save();
+            save_log("Liên hệ #$new->code vừa mới được duyệt", $new);
+            DB::commit();
+            return redirect()->back()->with('success', 'Duyệt dữ liệu thành công');
         } catch (\Throwable $th) {
             showLog($th);
         }

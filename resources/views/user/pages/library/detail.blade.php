@@ -1,7 +1,3 @@
-@php
-    use App\Models\Library;
-    $status = Library::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết danh mục thư viện')
 @section('content')

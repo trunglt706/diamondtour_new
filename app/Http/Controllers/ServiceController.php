@@ -16,16 +16,26 @@ class ServiceController extends Controller
         $this->dir = 'uploads/service';
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @return void
+     */
     public function index()
     {
         $data['status'] = Services::get_status();
         return view('user.pages.service.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return void
+     */
     public function list()
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -47,6 +57,11 @@ class ServiceController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return void
+     */
     public function insert()
     {
         DB::beginTransaction();
@@ -85,6 +100,11 @@ class ServiceController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return void
+     */
     public function update()
     {
         DB::beginTransaction();
@@ -132,21 +152,24 @@ class ServiceController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return void
+     */
     public function delete()
     {
         DB::beginTransaction();
         try {
             $new = Services::findOrFail(request('id'));
-            if ($new) {
-                $new->delete();
-                save_log("Dịch vụ #$new->name vừa mới bị xóa", $new);
-                DB::commit();
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Xóa thành công',
-                    'type' => 'success',
-                ]);
-            }
+            $new->delete();
+            save_log("Dịch vụ #$new->name vừa mới bị xóa", $new);
+            DB::commit();
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
         }
@@ -158,12 +181,19 @@ class ServiceController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function detail($id)
     {
         $data = Services::findOrFail($id);
         if (request()->ajax()) {
             return view('user.pages.service.show', compact('data'))->render();
         }
-        return view('user.pages.service.detail', compact('data'));
+        $status = Services::get_status($data->status);
+        return view('user.pages.service.detail', compact('data', 'status'));
     }
 }

@@ -1,7 +1,3 @@
-@php
-    use App\Models\RegisterTour;
-    $status = RegisterTour::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết thông tin đăng ký tour')
 @section('content')

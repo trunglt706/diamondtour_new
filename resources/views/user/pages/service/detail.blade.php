@@ -1,7 +1,3 @@
-@php
-    use App\Models\Services;
-    $status = Services::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết dịch vụ')
 @section('content')

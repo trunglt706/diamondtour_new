@@ -18,16 +18,28 @@ class QaGroupController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param QaGroupViewRequest $request
+     * @return void
+     */
     public function index(QaGroupViewRequest $request)
     {
         $data['status'] = QaGroup::get_status();
         return view('user.pages.qa.group.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param QaGroupViewRequest $request
+     * @return void
+     */
     public function list(QaGroupViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -49,12 +61,18 @@ class QaGroupController extends Controller
         }
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @param QaGroupInsertRequest $request
+     * @return void
+     */
     public function insert(QaGroupInsertRequest $request)
     {
         DB::beginTransaction();
         try {
             $data = request()->all();
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
+            $data['important'] = isset($data['important']) && $data['important'] == QaGroup::IS_IMPORTANT ? QaGroup::IS_IMPORTANT : QaGroup::IS_NOT_IMPORTANT;
             $new = QaGroup::create($data);
             save_log("Danh mục câu hỏi #$new->name vừa mới được tạo", $data);
             DB::commit();
@@ -74,6 +92,12 @@ class QaGroupController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param QaGroupUpdateRequest $request
+     * @return void
+     */
     public function update(QaGroupUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -81,7 +105,7 @@ class QaGroupController extends Controller
             $data = request()->all();
             $new = QaGroup::findOrFail(request('id'));
             $data['status'] = isset($data['status']) && $data['status'] == QaGroup::STATUS_ACTIVE ? QaGroup::STATUS_ACTIVE : QaGroup::STATUS_BLOCKED;
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
+            $data['important'] = isset($data['important']) && $data['important'] == QaGroup::IS_IMPORTANT ? QaGroup::IS_IMPORTANT : QaGroup::IS_NOT_IMPORTANT;
             $new->update($data);
             save_log("Danh mục câu hỏi #$new->name vừa mới được cập nhật", $data);
             DB::commit();
@@ -107,12 +131,18 @@ class QaGroupController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param QaGroupDeleteRequest $request
+     * @return void
+     */
     public function delete(QaGroupDeleteRequest $request)
     {
         DB::beginTransaction();
         try {
             $new = QaGroup::withCount('qas')->findOrFail(request('id'));
-            if ($new && $new->qas_count == 0) {
+            if ($new->qas_count == 0) {
                 $new->delete();
                 save_log("Danh mục câu hỏi #$new->name vừa mới bị xóa", $new);
                 DB::commit();
@@ -133,6 +163,13 @@ class QaGroupController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param QaGroupViewRequest $request
+     * @return void
+     */
     public function detail($id, QaGroupViewRequest $request)
     {
         $data = QaGroup::withCount('qas')->findOrFail($id);

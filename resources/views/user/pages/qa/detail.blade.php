@@ -1,7 +1,3 @@
-@php
-    use App\Models\Qa;
-    $status = Qa::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết câu hỏi')
 @section('content')

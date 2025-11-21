@@ -3,11 +3,6 @@
 <script src="{{ asset('user/js/app.min.js') }}"></script>
 <script src="{{ asset('user/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <script src="{{ asset('user/js/select2.min.js') }}"></script>
-@if (auth()->check())
-    <script src="{{ asset('user/plugins/select-picker/dist/picker.min.js') }}"></script>
-    <script src="{{ asset('user/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-@endif
-<!-- ================== END BASE JS ================== -->
 <script>
     var urlLogout = "{{ route('user.logout') }}";
     const routeSelect = "{{ route('user.get_data_select2') }}";
@@ -44,6 +39,8 @@
     @endif
 </script>
 @if (auth()->check())
+    <script src="{{ asset('user/plugins/select-picker/dist/picker.min.js') }}"></script>
+    <script src="{{ asset('user/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('user/js/init.js') }}"></script>
 @endif
 @stack('js')

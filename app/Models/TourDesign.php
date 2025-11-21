@@ -38,7 +38,6 @@ class TourDesign extends Model
         self::updated(function ($model) {
         });
         self::deleted(function ($model) {
-            // delete background
         });
     }
 

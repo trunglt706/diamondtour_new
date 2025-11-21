@@ -6,7 +6,7 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="box-item">
                         <div class="icon">
-                            <img src="{{ asset('/style/images/icon/diemden.png') }}" alt="Image" srcset="">
+                            <img src="{{ asset('/style/images/icon/diemden.png') }}" alt="Image">
                         </div>
                         <div class="content-item">
                             <p class="title">
@@ -36,7 +36,7 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="box-item">
                         <div class="icon">
-                            <img src="{{ asset('/style/images/icon/hoatdong.png') }}" alt="Image" srcset="">
+                            <img src="{{ asset('/style/images/icon/hoatdong.png') }}" alt="Image">
                         </div>
                         <div class="content-item">
                             <p class="title">
@@ -66,7 +66,7 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="box-item">
                         <div class="icon">
-                            <img src="{{ asset('/style/images/icon/lichtrinh.png') }}" alt="Image" srcset="">
+                            <img src="{{ asset('/style/images/icon/lichtrinh.png') }}" alt="Image">
                         </div>
                         <div class="content-item">
                             <p class="title">
@@ -82,7 +82,7 @@
                     <div class="box-calendar">
                         <input type="text" name="daterange" class="form-control" value="" />
                         <div class="my-2 text-center">
-                            <button class="btn btn-sm btn-submit-range btn-primary w-100">Tìm</button>
+                            <button class="btn btn-submit-daterange btn-sm btn-submit-range btn-primary w-100">@lang('messages.tim_kiem')</button>
                         </div>
                     </div>
                 </div>

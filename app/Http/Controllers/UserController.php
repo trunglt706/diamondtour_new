@@ -20,16 +20,28 @@ class UserController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param UserViewRequest $request
+     * @return void
+     */
     public function index(UserViewRequest $request)
     {
         $data['status'] = User::get_status();
         return view('user.pages.user.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param UserViewRequest $request
+     * @return void
+     */
     public function list(UserViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -51,6 +63,12 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param UserInsertRequest $request
+     * @return void
+     */
     public function insert(UserInsertRequest $request)
     {
         DB::beginTransaction();
@@ -76,6 +94,12 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param UserUpdateRequest $request
+     * @return void
+     */
     public function update(UserUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -93,6 +117,12 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Update the account password of the authenticated user.
+     *
+     * @param UserUpdateAccountRequest $request
+     * @return void
+     */
     public function update_account(UserUpdateAccountRequest $request)
     {
         DB::beginTransaction();
@@ -111,21 +141,25 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param UserDeleteRequest $request
+     * @return void
+     */
     public function delete(UserDeleteRequest $request)
     {
         DB::beginTransaction();
         try {
             $new = User::where('id', '<>', auth()->user()->id)->findOrFail(request('id'));
-            if ($new) {
-                $new->delete();
-                save_log("Nhân viên #$new->name vừa mới bị xóa", $new);
-                DB::commit();
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Xóa thành công',
-                    'type' => 'success',
-                ]);
-            }
+            $new->delete();
+            save_log("Nhân viên #$new->name vừa mới bị xóa", $new);
+            DB::commit();
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
         }
@@ -137,6 +171,13 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param UserViewRequest $request
+     * @return void
+     */
     public function detail($id, UserViewRequest $request)
     {
         $user = User::findOrFail($id);
@@ -145,6 +186,11 @@ class UserController extends Controller
         return view('user.pages.user.detail.index', compact('data', 'user', 'tab'));
     }
 
+    /**
+     * Update the status of the specified resource in storage.
+     *
+     * @return void
+     */
     public function updateStatus()
     {
         try {
@@ -152,14 +198,12 @@ class UserController extends Controller
             $id = request('id', '');
             $status = request('status', User::STATUS_ACTIVE);
             $user = User::findOrFail($id);
-            if ($user) {
-                $user->status = $status;
-                $user->save();
-                $msg = $status ==  User::STATUS_ACTIVE ? 'được kích hoạt' : 'bị khóa';
-                save_log("Nhân viên #$user->name vừa mới $msg", request()->all());
-                DB::commit();
-                return redirect()->back()->with('success', "Trạng thái của nhân viên đã $msg");
-            }
+            $user->status = $status;
+            $user->save();
+            $msg = $status ==  User::STATUS_ACTIVE ? 'được kích hoạt' : 'bị khóa';
+            save_log("Nhân viên #$user->name vừa mới $msg", request()->all());
+            DB::commit();
+            return redirect()->back()->with('success', "Trạng thái của nhân viên đã $msg");
         } catch (\Throwable $th) {
             showLog($th);
             DB::rollBack();

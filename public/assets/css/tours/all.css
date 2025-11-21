@@ -1,0 +1,18 @@
+.widget_tour_1 nav {
+    justify-content: center;
+    display: flex;
+}
+
+.widget_tour_1 {
+    padding: 0px;
+}
+
+@media (max-width: 932px) {
+    .main-content {
+        padding-top: 50px !important;
+    }
+
+    .header-title-style-3.header-title {
+        justify-content: center !important;
+    }
+}

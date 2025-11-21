@@ -19,6 +19,12 @@ class LibraryGroupController extends Controller
         $this->dir = 'uploads/library_group';
     }
 
+    /**
+     * Display the library group index page.
+     *
+     * @param LibraryGroupViewRequest $request
+     * @return void
+     */
     public function index(LibraryGroupViewRequest $request)
     {
         $list = LibraryGroup::query();
@@ -40,10 +46,16 @@ class LibraryGroupController extends Controller
         return view('user.pages.library.group.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the library groups.
+     *
+     * @param LibraryGroupViewRequest $request
+     * @return void
+     */
     public function list(LibraryGroupViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $important = request('important', '');
@@ -75,6 +87,12 @@ class LibraryGroupController extends Controller
         }
     }
 
+    /**
+     * Insert a new library group.
+     *
+     * @param LibraryGroupInsertRequest $request
+     * @return void
+     */
     public function insert(LibraryGroupInsertRequest $request)
     {
         DB::beginTransaction();
@@ -88,9 +106,9 @@ class LibraryGroupController extends Controller
                 $file = request()->file('background');
                 $data['background'] = store_file($file, $this->dir, false, 1500);
             }
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
-            $data['guest'] = isset($data['guest']) && $data['guest'] == 1 ? 1 : 0;
-            $data['hot'] = isset($data['hot']) && $data['hot'] == 1 ? 1 : 0;
+            $data['important'] = isset($data['important']) && $data['important'] == LibraryGroup::IMPORTANT ? LibraryGroup::IMPORTANT : LibraryGroup::NONE_IMPORTANT;
+            $data['guest'] = isset($data['guest']) && $data['guest'] == LibraryGroup::GUEST ? LibraryGroup::GUEST : LibraryGroup::NONE_GUEST;
+            $data['hot'] = isset($data['hot']) && $data['hot'] == LibraryGroup::HOT ? LibraryGroup::HOT : LibraryGroup::NONE_HOT;
             $new = LibraryGroup::create($data);
             save_log("Danh mục thư viện #$new->name vừa mới được tạo", $data);
             DB::commit();
@@ -110,14 +128,20 @@ class LibraryGroupController extends Controller
         }
     }
 
+    /**
+     * Update an existing library group.
+     *
+     * @param LibraryGroupUpdateRequest $request
+     * @return void
+     */
     public function update(LibraryGroupUpdateRequest $request)
     {
         DB::beginTransaction();
         try {
             $data = request()->all();
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
-            $data['guest'] = isset($data['guest']) && $data['guest'] == 1 ? 1 : 0;
-            $data['hot'] = isset($data['hot']) && $data['hot'] == 1 ? 1 : 0;
+            $data['important'] = isset($data['important']) && $data['important'] == LibraryGroup::IMPORTANT ? LibraryGroup::IMPORTANT : LibraryGroup::NONE_IMPORTANT;
+            $data['guest'] = isset($data['guest']) && $data['guest'] == LibraryGroup::GUEST ? LibraryGroup::GUEST : LibraryGroup::NONE_GUEST;
+            $data['hot'] = isset($data['hot']) && $data['hot'] == LibraryGroup::HOT ? LibraryGroup::HOT : LibraryGroup::NONE_HOT;
             $data['status'] = isset($data['status']) && $data['status'] == LibraryGroup::STATUS_ACTIVE ? LibraryGroup::STATUS_ACTIVE : LibraryGroup::STATUS_BLOCKED;
             $new = LibraryGroup::findOrFail(request('id'));
             if (request()->hasFile('image')) {
@@ -130,8 +154,6 @@ class LibraryGroupController extends Controller
                 $file = request()->file('background');
                 $data['background'] = store_file($file, $this->dir, false, 1500);
             }
-            $data['status'] = isset($data['status']) && $data['status'] == LibraryGroup::STATUS_ACTIVE ? LibraryGroup::STATUS_ACTIVE : LibraryGroup::STATUS_BLOCKED;
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
             $new->update($data);
             save_log("Danh mục thư viện #$new->name vừa mới được cập nhật", $data);
             DB::commit();
@@ -157,12 +179,18 @@ class LibraryGroupController extends Controller
         }
     }
 
+    /**
+     * Delete an existing library group.
+     *
+     * @param LibraryGroupDeleteRequest $request
+     * @return void
+     */
     public function delete(LibraryGroupDeleteRequest $request)
     {
         DB::beginTransaction();
         try {
             $new = LibraryGroup::withCount('libraries')->findOrFail(request('id'));
-            if ($new && $new->libraries_count == 0) {
+            if ($new->libraries_count == 0) {
                 $new->delete();
                 save_log("Danh mục thư viện #$new->name vừa mới bị xóa", $new);
                 DB::commit();
@@ -183,6 +211,13 @@ class LibraryGroupController extends Controller
         ]);
     }
 
+    /**
+     * View details of a library group.
+     *
+     * @param [type] $id
+     * @param LibraryGroupViewRequest $request
+     * @return void
+     */
     public function detail($id, LibraryGroupViewRequest $request)
     {
         $data = LibraryGroup::withCount('libraries')->findOrFail($id);
@@ -190,6 +225,7 @@ class LibraryGroupController extends Controller
         if (request()->ajax()) {
             return view('user.pages.library.group.show', compact('data', 'seasons'))->render();
         }
-        return view('user.pages.library.group.detail', compact('data', 'seasons'));
+        $status = LibraryGroup::get_status($data->status);
+        return view('user.pages.library.group.detail', compact('data', 'seasons', 'status'));
     }
 }

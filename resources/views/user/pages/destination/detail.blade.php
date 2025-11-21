@@ -1,7 +1,4 @@
 @php
-    use App\Models\Destination;
-    $status = Destination::get_status($data->status);
-    $type = Destination::get_type($data->type);
     $album = $data->album ? json_decode($data->album) : [];
 @endphp
 @extends('user.default')

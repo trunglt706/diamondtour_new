@@ -1,6 +1,4 @@
 @php
-    use App\Models\Newllter;
-    $status = Newllter::get_status($data->status);
     $device = $data->device ? json_decode($data->device) : null;
 @endphp
 @extends('user.default')

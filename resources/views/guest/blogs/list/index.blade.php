@@ -4,17 +4,7 @@
 @section('description', $data['title'])
 @section('image', '')
 @section('style')
-    <style>
-        .widget-blog-style-1 {
-            padding-top: 50px !important;
-        }
-
-        @media (max-width: 932px) {
-            .widget-blog-style-1 {
-                padding-top: 0 !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/blogs/list.css') }}">
 @endsection
 @section('content')
     <section class="main-content">
@@ -35,8 +25,8 @@
                                         <div class="item">
                                             <div class="img">
                                                 <a href="{{ $_url }}">
-                                                    <img src="{{ asset($item->image) }}" alt="Image" title=""
-                                                        loading="lazy" style="">
+                                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image"
+                                                        loading="lazy">
                                                 </a>
                                             </div>
                                             <div class="title">

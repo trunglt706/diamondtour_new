@@ -19,8 +19,8 @@
                                 <div class="item">
                                     <div class="img">
                                         <a href="{{ $_url }}">
-                                            <img src="{{ $item->image ? asset($item->image) : asset('/style/images/post/butan.png') }}"
-                                                alt="Image" title="" loading="lazy" style="">
+                                            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $item->image ? get_file($item->image) : asset('/style/images/post/butan.png') }}"
+                                                alt="Image" loading="lazy">
                                         </a>
                                     </div>
                                     <div class="title">

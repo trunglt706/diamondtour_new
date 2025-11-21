@@ -12,7 +12,7 @@
                     <h4 class="text-uppercase">{{ $item->video_name }}</h4>
                 </div>
                 <div class="box-video">
-                    <div class="bg-video" style="background-image: url('{{ asset($item->video_image) }}');">
+                    <div class="bg-video" style="background-image: url('{{ get_file($item->video_image) }}');">
                         <div class="bt-play"></div>
                     </div>
                     <div class="video-container">

@@ -7,8 +7,8 @@
             <div class="row-grid">
                 <a href="{{ route('demo.event.detail', ['slug' => $item->slug]) }}" class="box-img">
                     <img class="w-100 h-100"
-                        src="{{ $item->image ? asset($item->image) : asset('/style/images/banner/Rectangle 204.png') }}"
-                        alt="Image" srcset="">
+                        src="{{ $item->image ? get_file($item->image) : asset('/style/images/banner/Rectangle 204.png') }}"
+                        alt="Image">
                 </a>
                 <div class="box-content">
                     <div class="content-top">

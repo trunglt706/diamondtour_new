@@ -201,12 +201,7 @@
             </div>
         </form>
     </div>
-    <div class="mt-3">
-        <h4>Lưu ý</h4>
-        <div class="alert alert-danger" role="alert">
-            Blog ở trạng thái "Đang kích hoạt" mới được hiển thị ở trang ngoài.
-        </div>
-    </div>
+    @include('user.pages.blog.note')
     @include('user.pages.hd')
 @endsection
 @push('js')

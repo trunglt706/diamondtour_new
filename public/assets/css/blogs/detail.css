@@ -1,0 +1,26 @@
+@media (max-width: 932px) {
+    .main-content {
+        padding-top: 50px !important;
+    }
+
+    .widget_tour_1.js_widget_tour_1_2 .header-title p {
+        font-size: 28px !important;
+    }
+
+    .widget_tour_1.js_widget_tour_1_2 .tour-item {
+        display: block !important;
+    }
+
+    .widget-slider-blogs-style-1 .container h2 {
+        font-size: 18px !important;
+        font-weight: bold !important;
+    }
+
+    .widget_tour_1.js_widget_tour_1_2 .tour-item .title {
+        padding: 8px !important;
+    }
+
+    .widget-slider-blogs-style-1 .slick-arrow {
+        opacity: 1 !important;
+    }
+}

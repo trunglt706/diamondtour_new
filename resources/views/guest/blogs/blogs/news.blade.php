@@ -17,8 +17,8 @@
                             <div class="item swiper-slide">
                                 <a href="{{ $_url }}">
                                     <div class="img">
-                                        <img src="{{ asset($item->image) }}" alt="Image" title=""
-                                            loading="lazy" style="">
+                                        <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image"
+                                            loading="lazy">
                                     </div>
                                     <div class="title">
                                         <div class="content">
@@ -35,7 +35,7 @@
                                         <div class="user-info">
                                             <div class="avt">
                                                 <img src="/style/images/blogs/File233 1.png" alt="Image"
-                                                    title="" loading="lazy" style="">
+                                                    loading="lazy">
                                             </div>
                                             <p class="name">@lang('messages.home.admin')</p>
                                         </div>

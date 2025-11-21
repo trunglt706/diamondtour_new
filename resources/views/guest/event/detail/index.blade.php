@@ -4,26 +4,7 @@
 @section('description', $data->description)
 @section('image', $data->image)
 @section('style')
-    <style>
-        .main-content .container {
-            font-size: clamp(14px, 2vw, 18px);
-        }
-
-        .widget_about_style_1 .box-content {
-            padding-top: 30px;
-        }
-
-        @media (max-width: 932px) {
-            .main-content {
-                padding-top: 50px !important;
-            }
-
-            .widget_about_style_1 {
-                padding: 12px 0px !important;
-                margin-bottom: 40px !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/event/detail.css') }}">
 @endsection
 @section('content')
     <section class="main-content">
@@ -33,7 +14,7 @@
                     <div class="widget_slider_banner">
                         <div>
                             <a href="#">
-                                <img src="{{ $data->background ? asset($data->background) : '' }}" alt="Image 1">
+                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ $data->background ? get_file($data->background) : '' }}" alt="Image 1" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -103,7 +84,7 @@
                                     </div>
                                     <div class="img">
                                         <img src="{{ asset('style/images/icon/0998d669-0b87-405f-83ca-956971bf3476.webp') }}"
-                                            alt="Image" srcset="">
+                                            alt="Image">
                                     </div>
                                 </div>
                             </div>

@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Models\Social;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Config;
 
 class IndexComposer
 {
@@ -29,7 +30,7 @@ class IndexComposer
      */
     public function compose(View $view)
     {
-        $locale = \Config::get('app.locale');
+        $locale = Config::get('app.locale');
         $view->with('locale', $locale);
 
         //=========== menu

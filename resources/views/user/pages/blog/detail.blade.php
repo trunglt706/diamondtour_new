@@ -1,6 +1,4 @@
 @php
-    use App\Models\Post;
-    $status = Post::get_status($data->status);
     $album = $data->album ? json_decode($data->album) : [];
 @endphp
 @extends('user.default')

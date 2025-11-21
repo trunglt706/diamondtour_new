@@ -9,7 +9,7 @@
                 <p class="header">@lang('messages.album.album_noi_bat')</p>
             </div>
             <div class="box-video">
-                <div class="bg-video" style="background-image: url('{{ asset($item->image) }}');">
+                <div class="bg-video" style="background-image: url('{{ get_file($item->image) }}');">
                     <div class="bt-play"></div>
                 </div>
                 <div class="video-container">

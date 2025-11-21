@@ -1,7 +1,3 @@
-@php
-    use App\Models\Events;
-    $status = Events::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Thông tin sự kiện')
 @section('content')

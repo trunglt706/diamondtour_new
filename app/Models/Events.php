@@ -57,6 +57,12 @@ class Events extends Model
     const STATUS_ACTIVE = 'active';
     const STATUS_BLOCKED = 'blocked';
 
+    const HOME_YES = 1;
+    const HOME_NO = 0;
+
+    const IMPORTANT_YES = 1;
+    const IMPORTANT_NO = 0;
+
     public static function get_status($status = '')
     {
         $_status = [

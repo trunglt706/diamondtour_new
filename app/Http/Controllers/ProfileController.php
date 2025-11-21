@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
+    /**
+     * Display the profile page.
+     *
+     * @return void
+     */
     public function index()
     {
         $user = User::findOrFail(auth()->user()->id);
@@ -17,6 +22,11 @@ class ProfileController extends Controller
         return view('user.pages.user.profile.index', compact('data', 'user', 'tab'));
     }
 
+    /**
+     * Change the account password.
+     *
+     * @return void
+     */
     public function update_account()
     {
         DB::beginTransaction();

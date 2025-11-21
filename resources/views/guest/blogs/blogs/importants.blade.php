@@ -17,8 +17,8 @@
                             <div class="item">
                                 <div class="img">
                                     <a href="{{ $_url }}">
-                                        <img src="{{ asset($item->image) }}" alt="Image" title=""
-                                            loading="lazy" style="">
+                                        <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image"
+                                            loading="lazy">
                                     </a>
                                 </div>
                                 <div class="title">

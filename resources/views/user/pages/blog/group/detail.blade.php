@@ -1,7 +1,3 @@
-@php
-    use App\Models\PostGroup;
-    $status = PostGroup::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết danh mục blog')
 @section('content')
@@ -55,17 +51,7 @@
                 class="img-thumbnail preview w-80px h-70px hide-mobile" alt="img">
         </div>
     </div>
-    <h3 class="mt-2">Lưu ý</h3>
-    <div class="alert alert-info" role="alert">
-        <ul>
-            <li>
-                Số thứ tự thể hiện độ ưu tiên của dữ liệu
-            </li>
-            <li>
-                Số thứ tự càng cao, độ ưu tiên càng cao
-            </li>
-        </ul>
-    </div>
+    @include('user.pages.blog.group.note')
     <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <form action="{{ route('user.blog_group.update') }}" method="POST" enctype="multipart/form-data">
@@ -96,5 +82,3 @@
         </div>
     </div>
 @endsection
-@push('js')
-@endpush

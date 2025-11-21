@@ -1,7 +1,3 @@
-@php
-    use App\Models\TourGroup;
-    $status = TourGroup::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết danh mục tour')
 @section('content')

@@ -1,7 +1,3 @@
-@php
-    use App\Models\RegisterPromo;
-    $status = RegisterPromo::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết thông tin đăng ký nhận ưu đãi')
 @section('content')

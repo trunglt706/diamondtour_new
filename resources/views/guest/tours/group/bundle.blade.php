@@ -47,8 +47,8 @@
                             <div class="tour-item">
                                 <div class="img">
                                     <a href="{{ $_url }}">
-                                        <img src="{{ $item->image ? asset($item->image) : asset('/style/images/post/butan.png') }}"
-                                            alt="Image" title="" loading="lazy">
+                                        <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ $item->image ? get_file($item->image) : asset('/style/images/post/butan.png') }}"
+                                            alt="Image" loading="lazy" height="293px" width="416px">
                                     </a>
                                 </div>
                                 <div class="title">

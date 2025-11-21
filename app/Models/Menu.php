@@ -94,7 +94,7 @@ class Menu extends Model
         });
     }
 
-    public static function  getOrder($parent_id)
+    public static function getOrder($parent_id)
     {
         $max = Menu::parentId($parent_id)->max('numering') ?? 0;
         return $max + 1;

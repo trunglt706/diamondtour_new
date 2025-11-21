@@ -4,47 +4,7 @@
 @section('description', get_data_lang($data['menu'], 'description'))
 @section('image', asset($data['menu']->background))
 @section('style')
-    <style>
-        .header-title-style-3.header-title {
-            align-items: center;
-        }
-
-        .widget_tour_1 {
-            padding: 50px 0 !important;
-        }
-
-        .widget_tour_1 .tour-item .title .top .header-tour-detail {
-            -webkit-line-clamp: 1 !important;
-        }
-
-        @media (max-width: 932px) {
-
-            .main-content {
-                padding-top: 50px !important;
-            }
-
-            .widget_item_1 {
-                display: none;
-            }
-
-            .widget_tour_1 {
-                padding: 0px !important;
-            }
-
-            .header-title-style-3.header-title .header {
-                font-size: 26px !important;
-                text-align: center !important;
-            }
-
-            .widget_tour_1 .tour-item .title {
-                padding: 8px !important;
-            }
-
-            .header-title-style-3.header-title {
-                justify-content: center !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/home/search.css') }}">
 @endsection
 @section('content')
     <section class="main-content">
@@ -55,7 +15,7 @@
                     <div class="widget_slider_banner">
                         <div>
                             <a href="#">
-                                <img src="{{ asset($data['menu']->background) }}" alt="Image">
+                                <img src="{{ asset('style/images/banner/default.jpg') }}" data-src="{{ get_file($data['menu']->background) }}" alt="Image" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -86,8 +46,7 @@
                                     <div class="tour-item">
                                         <div class="img">
                                             <a href="{{ $_url }}">
-                                                <img src="{{ asset($tour->image) }}" alt="Image" title=""
-                                                    loading="lazy">
+                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ get_file($tour->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
                                             </a>
                                         </div>
                                         <div class="title">
@@ -138,14 +97,13 @@
                                     <div class="tour-item">
                                         <div class="img">
                                             <a href="{{ $_url }}">
-                                                <img src="{{ asset($item->image) }}" alt="Image" title=""
-                                                    loading="lazy">
+                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ get_file($item->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
                                             </a>
                                         </div>
                                         <div class="title">
                                             <div class="top">
-                                                <h3 class="header-tour-detail"><a
-                                                        href="{{ $_url }}">{{ get_data_lang($item, 'name') }}</a>
+                                                <h3 class="header-tour-detail">
+                                                    <a href="{{ $_url }}">{{ get_data_lang($item, 'name') }}</a>
                                                 </h3>
                                                 <a class="btn-read-more" href="{{ $_url }}">@lang('messages.view_now') ></a>
                                             </div>
@@ -181,8 +139,7 @@
                                     <div class="tour-item">
                                         <div class="img">
                                             <a href="{{ $_url }}">
-                                                <img src="{{ asset($des->image) }}" alt="Image" title=""
-                                                    loading="lazy">
+                                                <img src="{{ asset('style/images/blank.jpg') }}" data-src="{{ get_file($des->image) }}" alt="Image" loading="lazy" width="416px" height="293px">
                                             </a>
                                         </div>
                                         <div class="title">
@@ -221,23 +178,33 @@
     </section>
 @endsection
 @section('script')
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
     <script>
         var url = "{{ route('demo.search') }}";
         $(function() {
+            // set startDat and endDate from request
+            const startDate = "{{ request()->get('start') }}";
+            const endDate = "{{ request()->get('end') }}";
+
             $('input[name="daterange"]').daterangepicker({
                     opens: "left",
+                    startDate: startDate ? moment(startDate) : moment(),
+                    endDate: endDate ? moment(endDate) : moment().add(7, 'days'),
                 },
                 function(start, end, label) {
                     const startDate = start.format("YYYY-MM-DD");
                     const endDate = end.format("YYYY-MM-DD");
-                    const url = `/${url}?t=tour&start=${startDate}&end=${endDate}`;
-                    location.href = url;
+                    location.href = `${url}?t=tour&start=${startDate}&end=${endDate}`;
                 }
             );
+
+            // event click btn-submit-daterange
+            $('.btn-submit-daterange').on('click', function() {
+                const daterange = $('input[name="daterange"]').val();
+                const dates = daterange.split(' - ');
+                const startDate = moment(dates[0], "MM/DD/YYYY").format("YYYY-MM-DD");
+                const endDate = moment(dates[1], "MM/DD/YYYY").format("YYYY-MM-DD");
+                location.href = `${url}?t=tour&start=${startDate}&end=${endDate}`;
+            });
         });
 
         $(".widget_item_1 .dropdown").on("click", function(e) {

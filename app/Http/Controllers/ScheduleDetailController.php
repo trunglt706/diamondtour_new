@@ -14,10 +14,15 @@ class ScheduleDetailController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return void
+     */
     public function list()
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $schedule_id = request('schedule_id', 0);
@@ -41,6 +46,11 @@ class ScheduleDetailController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return void
+     */
     public function insert()
     {
         DB::beginTransaction();
@@ -65,6 +75,11 @@ class ScheduleDetailController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return void
+     */
     public function update()
     {
         DB::beginTransaction();
@@ -90,6 +105,11 @@ class ScheduleDetailController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return void
+     */
     public function delete()
     {
         DB::beginTransaction();
@@ -114,6 +134,12 @@ class ScheduleDetailController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function detail($id)
     {
         $data = ScheduleDetal::findOrFail($id);

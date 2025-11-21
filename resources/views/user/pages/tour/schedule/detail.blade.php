@@ -1,7 +1,3 @@
-@php
-    use App\Models\Schedule;
-    $status = Schedule::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết lịch trình')
 @section('content')

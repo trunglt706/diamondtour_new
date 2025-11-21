@@ -1,7 +1,3 @@
-@php
-    use App\Models\Tour;
-    $status = Tour::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Thông tin tour')
 @section('content')

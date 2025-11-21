@@ -21,6 +21,12 @@ class DestinationController extends Controller
         $this->dir = 'uploads/destination';
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param DestinationViewRequest $request
+     * @return void
+     */
     public function index(DestinationViewRequest $request)
     {
         $destinations = Destination::query();
@@ -37,10 +43,16 @@ class DestinationController extends Controller
         return view('user.pages.destination.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param DestinationViewRequest $request
+     * @return void
+     */
     public function list(DestinationViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $group_id = request('group_id', '');
@@ -59,7 +71,7 @@ class DestinationController extends Controller
             $list = $important != '' ? $list->ofImportant($important) : $list;
             if ($type != '') {
                 $list = $list->ofType($type);
-                if ($type == 'local') {
+                if ($type == Destination::TYPE_LOCAL) {
                     $list = $country_id != '' ? $list->countryId($country_id) : $list;
                 }
             }
@@ -78,6 +90,12 @@ class DestinationController extends Controller
         }
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @param DestinationInsertRequest $request
+     * @return void
+     */
     public function insert(DestinationInsertRequest $request)
     {
         DB::beginTransaction();
@@ -147,6 +165,12 @@ class DestinationController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param DestinationUpdateRequest $request
+     * @return void
+     */
     public function update(DestinationUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -225,6 +249,11 @@ class DestinationController extends Controller
         }
     }
 
+    /**
+     * Update the album order of the specified resource in storage.
+     *
+     * @return void
+     */
     public function updateAlbum()
     {
         DB::beginTransaction();
@@ -257,6 +286,12 @@ class DestinationController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param DestinationDeleteRequest $request
+     * @return void
+     */
     public function delete(DestinationDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -281,6 +316,13 @@ class DestinationController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param DestinationViewRequest $request
+     * @return void
+     */
     public function detail($id, DestinationViewRequest $request)
     {
         $data = Destination::findOrFail($id);
@@ -290,9 +332,18 @@ class DestinationController extends Controller
                 ->where('provinces.country_id', $data->country_id)
                 ->select('destinations.name', 'destinations.id', 'provinces.name as province_name')->get();
         }
-        return view('user.pages.destination.detail', compact('data', 'list'));
+        $status = Destination::get_status($data->status);
+        $type = Destination::get_type($data->type);
+        return view('user.pages.destination.detail', compact('data', 'list', 'status', 'type'));
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param DestinationViewRequest $request
+     * @return void
+     */
     public function edit($id, DestinationViewRequest $request)
     {
         $data = Destination::findOrFail($id);
@@ -307,6 +358,11 @@ class DestinationController extends Controller
         return view('user.pages.destination.edit', compact('data', 'other'));
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @return void
+     */
     public function create()
     {
         $data = [

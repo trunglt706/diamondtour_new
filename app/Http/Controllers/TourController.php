@@ -22,6 +22,12 @@ class TourController extends Controller
         $this->dir = 'uploads/tour';
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param TourViewRequest $request
+     * @return void
+     */
     public function index(TourViewRequest $request)
     {
         $tours = Tour::query();
@@ -42,10 +48,16 @@ class TourController extends Controller
         return view('user.pages.tour.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param TourViewRequest $request
+     * @return void
+     */
     public function list(TourViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $group_id = request('group_id', '');
@@ -78,6 +90,12 @@ class TourController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param TourInsertRequest $request
+     * @return void
+     */
     public function insert(TourInsertRequest $request)
     {
         DB::beginTransaction();
@@ -137,6 +155,12 @@ class TourController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param TourUpdateRequest $request
+     * @return void
+     */
     public function update(TourUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -206,6 +230,12 @@ class TourController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param TourDeleteRequest $request
+     * @return void
+     */
     public function delete(TourDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -230,6 +260,13 @@ class TourController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param TourViewRequest $request
+     * @return void
+     */
     public function detail($id, TourViewRequest $request)
     {
         $data = Tour::findOrFail($id);
@@ -237,9 +274,17 @@ class TourController extends Controller
             'albums' => Library::type(Library::TYPE_TOUR)->groupId($data->id)->count(),
             'schedules' => Schedule::tourId($data->id)->count(),
         ];
-        return view('user.pages.tour.detail', compact('data', 'report'));
+        $status = Tour::get_status($data->status);
+        return view('user.pages.tour.detail', compact('data', 'report', 'status'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param [type] $id
+     * @param TourViewRequest $request
+     * @return void
+     */
     public function edit($id, TourViewRequest $request)
     {
         $data = Tour::with('groups', 'groups.group')->findOrFail($id);
@@ -250,6 +295,11 @@ class TourController extends Controller
         return view('user.pages.tour.edit', compact('data', 'other'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return void
+     */
     public function create()
     {
         $data = [

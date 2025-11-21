@@ -56,15 +56,6 @@ class Setting extends Model
     const STATUS_ACTIVE = 'active';
     const STATUS_BLOCKED = 'blocked';
 
-    public static function get_status($status = '')
-    {
-        $_status = [
-            self::STATUS_ACTIVE => ['Đang kích hoạt', 'success'],
-            self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
-        ];
-        return $status == '' ? $_status : $_status["$status"];
-    }
-
     const TYPE_TEXT = 'text';
     const TYPE_FILE = 'file';
     const TYPE_CHECK_BOX = 'checkbox';
@@ -73,6 +64,15 @@ class Setting extends Model
     const TYPE_RADIO = 'radio';
     const TYPE_EDITOR = 'editor';
     const TYPE_IMAGES = 'images';
+
+    public static function get_status($status = '')
+    {
+        $_status = [
+            self::STATUS_ACTIVE => ['Đang kích hoạt', 'success'],
+            self::STATUS_BLOCKED => ['Đã bị khóa', 'danger'],
+        ];
+        return $status == '' ? $_status : $_status["$status"];
+    }
 
     public static function get_type($type = '')
     {

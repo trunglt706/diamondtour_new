@@ -18,16 +18,28 @@ class TourStyleController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param TourStyleViewRequest $request
+     * @return void
+     */
     public function index(TourStyleViewRequest $request)
     {
         $data['status'] = TourStyle::get_status();
         return view('user.pages.tour.style.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param TourStyleViewRequest $request
+     * @return void
+     */
     public function list(TourStyleViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -49,6 +61,12 @@ class TourStyleController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param TourStyleCreateRequest $request
+     * @return void
+     */
     public function insert(TourStyleCreateRequest $request)
     {
         DB::beginTransaction();
@@ -73,6 +91,12 @@ class TourStyleController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param TourStyleUpdateRequest $request
+     * @return void
+     */
     public function update(TourStyleUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -105,6 +129,12 @@ class TourStyleController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param TourStyleDeleteRequest $request
+     * @return void
+     */
     public function delete(TourStyleDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -129,6 +159,13 @@ class TourStyleController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param TourStyleViewRequest $request
+     * @return void
+     */
     public function detail($id, TourStyleViewRequest $request)
     {
         $data = TourStyle::findOrFail($id);

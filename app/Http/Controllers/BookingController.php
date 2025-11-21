@@ -18,16 +18,28 @@ class BookingController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display index page of the resource.
+     *
+     * @param BookingViewRequest $request
+     * @return void
+     */
     public function index(BookingViewRequest $request)
     {
         $data['status'] = Booking::get_status();
         return view('user.pages.booking.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param BookingViewRequest $request
+     * @return void
+     */
     public function list(BookingViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -49,12 +61,18 @@ class BookingController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param BookingInsertRequest $request
+     * @return void
+     */
     public function insert(BookingInsertRequest $request)
     {
         DB::beginTransaction();
         try {
             $data = request()->all();
-            $new = Booking::create($data);
+            Booking::create($data);
             DB::commit();
             return redirect()->back()->with('success', 'Tạo mới thành công');
         } catch (\Throwable $th) {
@@ -64,6 +82,12 @@ class BookingController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param BookingUpdateRequest $request
+     * @return void
+     */
     public function update(BookingUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -80,6 +104,12 @@ class BookingController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param BookingDeleteRequest $request
+     * @return void
+     */
     public function delete(BookingDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -95,6 +125,13 @@ class BookingController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param BookingViewRequest $request
+     * @return void
+     */
     public function detail($id, BookingViewRequest $request)
     {
         $data = Booking::findOrFail($id);

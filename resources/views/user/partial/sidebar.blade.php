@@ -4,10 +4,7 @@
     <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
         <!-- BEGIN menu -->
         <div class="menu">
-            @php
-                $currentUrl = url()->current();
-            @endphp
-            {{ renderUserMenu($currentUrl) }}
+            {{ renderUserMenu(url()->current()) }}
         </div>
         <!-- END menu -->
     </div>

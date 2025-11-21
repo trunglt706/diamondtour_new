@@ -5,6 +5,7 @@ namespace App\Http\ViewComposers;
 use App\Models\UserMenu;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Config;
 
 class AdminComposer
 {

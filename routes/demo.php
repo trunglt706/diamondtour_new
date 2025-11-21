@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Demo\AboutController;
 use App\Http\Controllers\Demo\AlbumController;
 use App\Http\Controllers\Demo\BlogController;
@@ -23,8 +24,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('clear-cache', function () {
+    Cache::flush();
+    return redirect()->back()->with('success', 'Clear cache thành công');
+})->name('clear_cache');
+
 Route::middleware('SetLang')->prefix('')->name('demo.')->group(function () {
-    Route::get('/lang/{lang}', [GuestHomeController::class, 'HomeController@changeLang'])->name('lang.change');
+    Route::get('/lang/{lang}', [GuestHomeController::class, 'changeLang'])->name('lang.change');
     Route::prefix('')->controller(HomeController::class)->group(function () {
         Route::get('', 'index')->name('home');
         Route::get('faq', 'faq')->name('faq');

@@ -20,6 +20,12 @@ class EventSubmissionController extends Controller
         $this->dir = 'uploads/event_submission';
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param EventSubmissionViewRequest $request
+     * @return void
+     */
     public function index(EventSubmissionViewRequest $request)
     {
         $event = Events::findOrFail(request('event_id', ''));
@@ -30,10 +36,16 @@ class EventSubmissionController extends Controller
         return view('user.pages.event_submission.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param EventSubmissionViewRequest $request
+     * @return void
+     */
     public function list(EventSubmissionViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $event_id = request('event_id', '');
@@ -57,6 +69,12 @@ class EventSubmissionController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param EventSubmissionCreateRequest $request
+     * @return void
+     */
     public function insert(EventSubmissionCreateRequest $request)
     {
         DB::beginTransaction();
@@ -91,6 +109,12 @@ class EventSubmissionController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param EventSubmissionUpdateRequest $request
+     * @return void
+     */
     public function update(EventSubmissionUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -127,6 +151,12 @@ class EventSubmissionController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param EventSubmissionDeleteRequest $request
+     * @return void
+     */
     public function delete(EventSubmissionDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -151,12 +181,27 @@ class EventSubmissionController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param EventSubmissionViewRequest $request
+     * @return void
+     */
     public function detail($id, EventSubmissionViewRequest $request)
     {
         $data = EventSubmissions::findOrFail($id);
-        return view('user.pages.event_submission.detail', compact('data'));
+        $status = EventSubmissions::get_status($data->status);
+        return view('user.pages.event_submission.detail', compact('data', 'status'));
     }
 
+    /**
+     * Display the specified resource for editing.
+     *
+     * @param [type] $id
+     * @param EventSubmissionViewRequest $request
+     * @return void
+     */
     public function edit($id, EventSubmissionViewRequest $request)
     {
         $data = EventSubmissions::findOrFail($id);
@@ -166,6 +211,11 @@ class EventSubmissionController extends Controller
         return view('user.pages.event_submission.edit', compact('data', 'other'));
     }
 
+    /**
+     * Display the form for creating a new resource.
+     *
+     * @return void
+     */
     public function create()
     {
         $data['status'] = EventSubmissions::get_status();

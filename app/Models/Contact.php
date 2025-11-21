@@ -38,6 +38,10 @@ class Contact extends Model
     const TYPE_CUSTOMER = 'customer';
     const TYPE_CUSTOMER_GROUP = 'customer_group';
 
+    const STATUS_UN_ACTIVE = 'un_active';
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
+
     public static function get_type($status = '')
     {
         $_status = [
@@ -48,10 +52,6 @@ class Contact extends Model
         ];
         return $status == '' ? $_status : $_status["$status"];
     }
-
-    const STATUS_UN_ACTIVE = 'un_active';
-    const STATUS_ACTIVE = 'active';
-    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {

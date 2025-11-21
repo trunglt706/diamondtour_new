@@ -18,16 +18,28 @@ class TourBalanaceController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param TourBalanceViewRequest $request
+     * @return void
+     */
     public function index(TourBalanceViewRequest $request)
     {
         $data['status'] = TourBalance::get_status();
         return view('user.pages.tour.balance.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param TourBalanceViewRequest $request
+     * @return void
+     */
     public function list(TourBalanceViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -49,6 +61,12 @@ class TourBalanaceController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param TourBalanceInsertRequest $request
+     * @return void
+     */
     public function insert(TourBalanceInsertRequest $request)
     {
         DB::beginTransaction();
@@ -73,6 +91,12 @@ class TourBalanaceController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param TourBalanceUpdateRequest $request
+     * @return void
+     */
     public function update(TourBalanceUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -105,6 +129,12 @@ class TourBalanaceController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param TourBalanceDeleteRequest $request
+     * @return void
+     */
     public function delete(TourBalanceDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -129,6 +159,13 @@ class TourBalanaceController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param TourBalanceViewRequest $request
+     * @return void
+     */
     public function detail($id, TourBalanceViewRequest $request)
     {
         $data = TourBalance::findOrFail($id);

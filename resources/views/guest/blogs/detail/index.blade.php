@@ -9,36 +9,7 @@
 @section('description', $item->description)
 @section('image', asset($item->image))
 @section('style')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <style>
-        @media (max-width: 932px) {
-
-            .main-content {
-                padding-top: 50px !important;
-            }
-
-            .widget_tour_1.js_widget_tour_1_2 .header-title p {
-                font-size: 28px !important;
-            }
-
-            .widget_tour_1.js_widget_tour_1_2 .tour-item {
-                display: block !important;
-            }
-
-            .widget-slider-blogs-style-1 .container h2 {
-                font-size: 18px !important;
-                font-weight: bold !important;
-            }
-
-            .widget_tour_1.js_widget_tour_1_2 .tour-item .title {
-                padding: 8px !important;
-            }
-
-            .widget-slider-blogs-style-1 .slick-arrow {
-                opacity: 1 !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/blogs/detail.css') }}">
 @endsection
 
 @push('head')
@@ -125,7 +96,6 @@
     </section>
 @endsection
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('/style/js/travel-detail.js') }}"></script>
     <script src="{{ asset('/style/js/post.js') }}"></script>
     <script src="{{ asset('/style/js/blogs.js') }}"></script>

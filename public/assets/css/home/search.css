@@ -1,0 +1,38 @@
+.header-title-style-3.header-title {
+    align-items: center;
+}
+
+.widget_tour_1 {
+    padding: 50px 0 !important;
+}
+
+.widget_tour_1 .tour-item .title .top .header-tour-detail {
+    -webkit-line-clamp: 1 !important;
+}
+
+@media (max-width: 932px) {
+    .main-content {
+        padding-top: 50px !important;
+    }
+
+    .widget_item_1 {
+        display: none;
+    }
+
+    .widget_tour_1 {
+        padding: 0px !important;
+    }
+
+    .header-title-style-3.header-title .header {
+        font-size: 26px !important;
+        text-align: center !important;
+    }
+
+    .widget_tour_1 .tour-item .title {
+        padding: 8px !important;
+    }
+
+    .header-title-style-3.header-title {
+        justify-content: center !important;
+    }
+}

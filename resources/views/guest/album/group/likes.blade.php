@@ -14,7 +14,7 @@
                             <div class="tour-item">
                                 <div class="img">
                                     <a href="{{ route('demo.library.detail', ['slug' => $item->slug]) }}">
-                                        <img src="{{ asset($item->image) }}" alt="Image" title=""
+                                        <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file('style/images/blank.jpg') }}" data-src="{{ asset($item->image) }}" alt="Image"
                                             loading="lazy">
                                     </a>
                                 </div>
@@ -26,7 +26,7 @@
                                                 @lang('messages.share')</a>
                                             <a href="#"><i class="fa-solid fa-eye"></i> @lang('messages.Views')</a>
                                             <a href="#"><img src="/style/images/icon/Isolation_Mode.png"
-                                                    alt="Image" srcset=""> @lang('messages.comment')</a>
+                                                    alt="Image"> @lang('messages.comment')</a>
                                         </div>
                                     </div>
                                     {{-- <span class="tag">Chùa SERA</span> --}}
