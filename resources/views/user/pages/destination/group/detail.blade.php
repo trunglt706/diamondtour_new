@@ -51,8 +51,8 @@
                     <div>{!! $data->description !!}</div>
                 </li>
             </ul>
-            <img src="{{ $data->image ? get_url($data->image) : asset('user/img/user/no-avatar.jpg') }}"
-                class="img-thumbnail preview w-80px h-70px hide-mobile" alt="img">
+            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $data->image ? get_file($data->image) : asset('user/img/user/no-avatar.jpg') }}"
+                class="img-thumbnail preview w-80px h-70px hide-mobile" loading="lazy" alt="img">
         </div>
     </div>
     <h3 class="mt-2">Lưu ý</h3>

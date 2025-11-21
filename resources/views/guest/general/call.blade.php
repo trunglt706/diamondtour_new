@@ -1,7 +1,9 @@
 <div class="call-to-action">
     @foreach (get_socials() as $item)
         <div class="icon-1">
-            <a href="{{ $item->link }}"><img src="{{ get_file($item->icon) }}" alt="Image"></a>
+            <a href="{{ $item->link }}">
+                <img src="{{ asset('style/images/blank-sm.jpg') }}" data-src="{{ get_file($item->icon) }}" alt="Image" loading="lazy">
+            </a>
         </div>
     @endforeach
 </div>

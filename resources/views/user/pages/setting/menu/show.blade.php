@@ -26,8 +26,8 @@
             </div>
             @if ($data->code != 'dashboard')
                 <div class="d-flex justify-content-between align-items-center my-3">
-                    <img src="{{ $data->background ? get_url($data->background) : asset('user/img/user/no-avatar.jpg') }}"
-                        class="img-thumbnail preview w-80px h-70px" alt="img">
+                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $data->background ? get_file($data->background) : asset('user/img/user/no-avatar.jpg') }}"
+                        class="img-thumbnail preview w-80px h-70px" loading="lazy" alt="img">
                     <div class="form-group w-100 ps-3">
                         <label class="col-form-label">
                             Ảnh nền

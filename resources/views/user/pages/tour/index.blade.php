@@ -33,59 +33,61 @@
             </a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 mb-2">
-            <div class="card card-body bg-primary">
-                <div class="d-flex justify-content-between text-white">
-                    Tổng tours
-                    <span>{{ $data['total_tours'] }}</span>
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-md-4 mb-2">
+                <div class="card card-body bg-primary">
+                    <div class="d-flex justify-content-between text-white">
+                        Tổng tours
+                        <span>{{ $data['total_tours'] }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-2">
+                <div class="card card-body bg-danger">
+                    <div class="d-flex justify-content-between text-white">
+                        Tổng landtours
+                        <span>{{ $data['total_landtours'] }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-2">
+                <div class="card card-body bg-secondary">
+                    <div class="d-flex justify-content-between">
+                        Tổng tour thiết kế
+                        <span>{{ $data['total_designs'] }}</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-2">
-            <div class="card card-body bg-danger">
-                <div class="d-flex justify-content-between text-white">
-                    Tổng landtours
-                    <span>{{ $data['total_landtours'] }}</span>
+        <div class="row">
+            <div class="col-md-4 mb-2">
+                <div class="card card-body bg-success">
+                    <div class="d-flex justify-content-between text-white">
+                        Tour trải nghiệm
+                        <span>{{ $data['total_bundle1'] }}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4 mb-2">
-            <div class="card card-body bg-secondary">
-                <div class="d-flex justify-content-between">
-                    Tổng tour thiết kế
-                    <span>{{ $data['total_designs'] }}</span>
+            <div class="col-md-4 mb-2">
+                <div class="card card-body bg-info">
+                    <div class="d-flex justify-content-between text-white">
+                        Tour bạn thân
+                        <span>{{ $data['total_bundle2'] }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-2">
+                <div class="card card-body bg-warning">
+                    <div class="d-flex justify-content-between text-white">
+                        Tour tri kỷ
+                        <span>{{ $data['total_bundle3'] }}</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 mb-2">
-            <div class="card card-body bg-success">
-                <div class="d-flex justify-content-between text-white">
-                    Tour trải nghiệm
-                    <span>{{ $data['total_bundle1'] }}</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-2">
-            <div class="card card-body bg-info">
-                <div class="d-flex justify-content-between text-white">
-                    Tour bạn thân
-                    <span>{{ $data['total_bundle2'] }}</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-2">
-            <div class="card card-body bg-warning">
-                <div class="d-flex justify-content-between text-white">
-                    Tour tri kỷ
-                    <span>{{ $data['total_bundle3'] }}</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
+    <div class="row mt-2">
         <div class="col-md-3 mb-2 text-danger">
             Tour mùa xuân: <span>{{ $data['total_mua_xua'] }}</span>
         </div>

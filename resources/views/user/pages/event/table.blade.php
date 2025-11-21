@@ -22,7 +22,7 @@
                 </a>
             </td>
             <td>
-                <img src="{{ get_url($item->image) }}" class="img-fluid w-30px h-20px" alt="Image">
+                <img src="{{ asset('style/images/blank-sm.jpg') }}" data-src="{{ get_file($item->image) }}" loading="lazy" class="img-fluid w-30px h-20px" alt="Image">
                 {{ $item->title }}
             </td>
             <td class="text-center hide-mobile">

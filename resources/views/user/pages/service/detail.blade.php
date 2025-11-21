@@ -46,7 +46,7 @@
                         <div class="w-100 d-flex flex-wrap">
                             @foreach ($images as $item)
                                 <div class="position-relative w-65px me-4 btn-delete-image-{{ $item->id }}">
-                                    <img src="{{ get_url($item->url) }}" alt="setting" class="image-setting">
+                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->url) }}" alt="setting" class="image-setting" loading="lazy">
                                     <button type="button"
                                         class="btn btn-sm btn-danger btn-delete-image position-absolute top-0 right-0"
                                         data-id={{ $item->id }}>
@@ -81,7 +81,7 @@
                     <div>{!! $data->description !!}</div>
                 </li>
             </ul>
-            <img src="{{ $data->image ? get_url($data->image) : asset('user/img/user/no-avatar.jpg') }}"
+            <img src="{{ $data->image ? get_file($data->image) : asset('user/img/user/no-avatar.jpg') }}"
                 class="img-thumbnail preview w-80px h-70px hide-mobile" alt="img">
         </div>
     </div>

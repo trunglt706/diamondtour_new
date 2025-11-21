@@ -81,8 +81,8 @@
                                                     @endif
                                                 </label>
                                                 <div class="col-lg-9 col-sm-12 mb-3 show">
-                                                    <img src="{{ get_url($setting->value) }}" alt="setting"
-                                                        class="image-setting preview">
+                                                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($setting->value) }}" alt="setting"
+                                                        class="image-setting preview" loading="lazy">
                                                     <input type="file" class="form-control previewImg"
                                                         name="{{ $setting->code }}" class="{{ $setting->code }}" accept="image/*">
                                                     <div class="form-text">(Chấp nhận kiểu tập tin: png, jpg, jpeg)</div>
@@ -107,8 +107,8 @@
                                                         @foreach ($images as $item)
                                                             <div id="{{ $item->id }}" draggable="true"
                                                                 class="draggable img-album position-relative w-65px me-4 btn-delete-image-{{ $item->id }}">
-                                                                <img src="{{ get_url($item->url) }}" alt="setting"
-                                                                    class="image-setting">
+                                                                <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ get_file($item->url) }}" alt="setting"
+                                                                    class="image-setting" loading="lazy">
                                                                 <button type="button"
                                                                     class="btn btn-sm btn-danger btn-delete-image position-absolute top-0 right-0"
                                                                     data-id={{ $item->id }}>

@@ -37,7 +37,10 @@
 
 .btn-hd:hover .fa-edit {
     transform: rotate(20deg);
-    /* Rotate icon slightly on hover */
+}
+
+.datepicker {
+    cursor: pointer;
 }
 
 /* Shake animation keyframes */

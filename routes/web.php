@@ -27,6 +27,7 @@ Route::middleware('SetLang')->group(function () {
 
         Route::get('design-tour', 'privte_schedule')->name('privte_schedule');
         Route::post('design-tour', 'privte_schedule_post')->name('privte_schedule_post');
+        Route::post('newllter', 'newllter')->name('newllter');
     });
     Route::get('gioi-thieu', [AboutController::class, 'index'])->name('about');
     Route::prefix('thu-vien')->name('library.')->controller(AlbumController::class)->group(function () {

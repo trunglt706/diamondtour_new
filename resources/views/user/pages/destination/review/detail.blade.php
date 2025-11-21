@@ -55,8 +55,8 @@
                     <span>{!! $data->content !!}</span>
                 </li>
             </ul>
-            <img src="{{ $data->user_avatar ? get_url($data->user_avatar) : asset('user/img/user/no-avatar.jpg') }}"
-                class="img-thumbnail preview w-80px h-70px hide-mobile" alt="img">
+            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $data->user_avatar ? get_file($data->user_avatar) : asset('user/img/user/no-avatar.jpg') }}"
+                class="img-thumbnail preview w-80px h-70px hide-mobile" loading="lazy" alt="img">
         </div>
     </div>
     <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">

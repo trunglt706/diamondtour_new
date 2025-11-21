@@ -23,8 +23,8 @@
     </div>
     <div class="col-md-6 mb-1">
         <div class="d-flex justify-content-between align-items-center">
-            <img src="{{ $data->user_avatar ? get_url($data->user_avatar) : asset('user/img/user/no-avatar.jpg') }}"
-                class="img-thumbnail preview w-80px h-70px" alt="img">
+            <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $data->user_avatar ? get_file($data->user_avatar) : asset('user/img/user/no-avatar.jpg') }}"
+                class="img-thumbnail preview w-80px h-70px" loading="lazy" alt="img">
             <div class="form-group w-100 ps-3">
                 <label class="col-form-label">Ảnh đại diện</label>
                 <input type="file" class="form-control previewImg" name="user_avatar" accept="image/*">

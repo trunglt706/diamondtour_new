@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Demo;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DesignTourRequest;
+use App\Http\Requests\NewllterRequest;
 use App\Models\Countries;
 use App\Models\DesignTour;
 use App\Models\Destination;
 use App\Models\Events;
 use App\Models\Menu;
+use App\Models\Newllter;
 use App\Models\Post;
 use App\Models\Province;
 use App\Models\QaGroup;
@@ -305,5 +307,31 @@ class HomeController extends Controller
             Session::put('locale', Config::get('app.locale'));
         }
         return redirect()->back();
+    }
+
+    /**
+     * Post newsletter subscription
+     *
+     * @param NewllterRequest $request
+     * @return void
+     */
+     public function newllter(NewllterRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $request->only('email');
+            $requestCount = session()->get('newllter_request_count', 0);
+            if ($requestCount >= 1) {
+                return redirect()->back()->with('error', 'Rất tiết, bạn đã vượt quá số lượng đăng ký nhận thông báo!');
+            }
+            Newllter::create($data);
+            DB::commit();
+            session()->put('newllter_request_count', $requestCount + 1);
+            return redirect()->back()->with('success', 'Đăng ký thành công');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            showLog($th);
+            return redirect()->back()->with('error', 'Đăng ký thất bại!');
+        }
     }
 }

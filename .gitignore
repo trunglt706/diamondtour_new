@@ -4,3 +4,4 @@
 /vendor
 /diamondtour
 .env
+/public/uploads

@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="menu-img online">
-                    <img src="{{ $user_info->avatar ? get_url($user_info->avatar) : asset('user/img/avatar.png') }}"
+                    <img src="{{ $user_info->avatar ? get_file($user_info->avatar) : asset('user/img/avatar.png') }}"
                         alt="staff" class="ms-100 mh-100 rounded-circle" />
                 </div>
             </a>

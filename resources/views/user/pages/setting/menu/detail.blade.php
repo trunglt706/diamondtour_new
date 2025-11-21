@@ -51,15 +51,15 @@
                 </li>
             </ul>
             <div class="d-flex flex-column hide-mobile">
-                <img src="{{ $data->background ? get_url($data->background) : asset('assets/img/user/no-avatar.jpg') }}"
-                    class="img-thumbnail preview w-100px" alt="img">
+                <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $data->background ? get_file($data->background) : asset('assets/img/user/no-avatar.jpg') }}"
+                    class="img-thumbnail preview w-100px" loading="lazy" alt="img">
                 <hr>
                 @php
                     $images = $data->images ? json_decode($data->images) : [];
                 @endphp
                 @foreach ($images as $item)
-                    <img src="{{ $item ? get_url($item) : asset('assets/img/user/no-avatar.jpg') }}"
-                        class="img-thumbnail preview w-100px" alt="img">
+                    <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $item ? get_file($item) : asset('assets/img/user/no-avatar.jpg') }}"
+                        class="img-thumbnail preview w-100px" loading="lazy" alt="img">
                 @endforeach
             </div>
         </div>

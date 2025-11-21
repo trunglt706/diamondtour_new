@@ -27,7 +27,7 @@
                 </a>
             </td>
             <td>
-                <img src="{{ get_url($item->icon) }}" class="img-fluid w-20px h-20px" alt="Image">
+                <img src="{{ get_file($item->icon) }}" class="img-fluid w-20px h-20px" alt="Image">
                 {{ $item->name }}
             </td>
             {{-- <td class="text-center hide-mobile">

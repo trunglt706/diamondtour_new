@@ -60,11 +60,11 @@
                 </li>
             </ul>
             <div>
-                <img src="{{ $data->image ? get_url($data->image) : asset('user/img/user/no-avatar.jpg') }}"
-                    class="img-thumbnail preview w-100px" alt="img">
+                <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $data->image ? get_file($data->image) : asset('user/img/user/no-avatar.jpg') }}"
+                    class="img-thumbnail preview w-100px" loading="lazy" alt="img">
                 <hr>
-                <img src="{{ $data->background ? get_url($data->background) : asset('user/img/user/no-avatar.jpg') }}"
-                    class="img-thumbnail w-100px" alt="img">
+                <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $data->background ? get_file($data->background) : asset('user/img/user/no-avatar.jpg') }}"
+                    class="img-thumbnail w-100px" loading="lazy" alt="img">
             </div>
         </div>
     </div>

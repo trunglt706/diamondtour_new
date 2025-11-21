@@ -23,8 +23,8 @@
                     <div class="swiper-wrapper">
                         @foreach ($data['hot'] as $item)
                             <div class="swiper-slide">
-                                <img src="{{ $item->image ? get_file($item->image) : asset('/style/images/banner/vikings-cosplay-2023-11-27-05-26-16-utc 1.png') }}"
-                                    alt="Image 1">
+                                <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $item->image ? get_file($item->image) : asset('/style/images/banner/vikings-cosplay-2023-11-27-05-26-16-utc 1.png') }}"
+                                    alt="Image 1" loading="lazy">
                             </div>
                         @endforeach
                         <!-- Add more slides as needed -->

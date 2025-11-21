@@ -31,8 +31,8 @@
         <input type="text" class="form-control" value="{{ $data->icon }}" name="icon">
     </div> --}}
     <div class="d-flex justify-content-between align-items-center my-3">
-        <img src="{{ $data->icon ? get_url($data->icon) : asset('user/img/user/no-avatar.jpg') }}"
-            class="img-thumbnail preview w-80px h-70px" alt="img">
+        <img src="{{ asset('style/images/blogs/default.jpg') }}" data-src="{{ $data->icon ? get_file($data->icon) : asset('user/img/user/no-avatar.jpg') }}"
+            class="img-thumbnail preview w-80px h-70px" loading="lazy" alt="img">
         <div class="form-group w-100 ps-3">
             <label class="col-form-label">Hình ảnh</label>
             <input type="file" class="form-control previewImg" name="icon" accept="image/*">
