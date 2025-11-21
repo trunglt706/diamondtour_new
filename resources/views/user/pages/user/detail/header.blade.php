@@ -14,7 +14,7 @@
     <div class="profile-header-content" style="padding: 0 25px">
         <div class="profile-header-img hide-mobile">
             <img class="h-100" class="preview"
-                src="{{ $user->avatar ? get_url($user->avatar) : asset('user/img/user/no-avatar.jpg') }}"
+                src="{{ $user->avatar ? get_file($user->avatar) : asset('user/img/user/no-avatar.jpg') }}"
                 alt="user">
         </div>
         <ul class="profile-header-tab nav nav-tabs nav-tabs-v2 ms-50px">

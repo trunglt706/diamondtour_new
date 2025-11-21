@@ -367,12 +367,7 @@
             </div>
         </form>
     </div>
-    <div class="mt-3">
-        <h4>Lưu ý</h4>
-        <div class="alert alert-danger" role="alert">
-            Tour ở trạng thái "Đang kích hoạt" mới được hiển thị ở trang ngoài.
-        </div>
-    </div>
+    @include('user.pages.tour.note')
     @include('user.pages.hd')
 @endsection
 @push('js')

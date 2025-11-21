@@ -51,21 +51,11 @@
                     <div>{!! $data->description !!}</div>
                 </li>
             </ul>
-            <img src="{{ $data->image ? get_url($data->image) : asset('user/img/user/no-avatar.jpg') }}"
+            <img src="{{ $data->image ? get_file($data->image) : asset('user/img/user/no-avatar.jpg') }}"
                 class="img-thumbnail preview w-80px h-70px" alt="img">
         </div>
     </div>
-    <h3 class="mt-2">Lưu ý</h3>
-    <div class="alert alert-info" role="alert">
-        <ul>
-            <li>
-                Số thứ tự thể hiện độ ưu tiên của dữ liệu
-            </li>
-            <li>
-                Số thứ tự càng cao, độ ưu tiên càng cao
-            </li>
-        </ul>
-    </div>
+    @include('user.pages.tour.schedule.note')
     <div class="mt-3">
         <h3>Chi tiết lịch trình</h3>
         @include('user.pages.tour.schedule.detail.index')
