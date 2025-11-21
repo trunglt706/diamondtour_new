@@ -88,11 +88,7 @@ class Tour extends Model
             }
             $images = $model->images ? json_decode($model->images) : [];
             foreach ($images as $item) {
-                try {
-                    delete_file($item);
-                } catch (\Throwable $th) {
-                    //throw $th;
-                }
+                delete_file($item);
             }
         });
     }
@@ -108,6 +104,10 @@ class Tour extends Model
     const SEASON_THU = 'thu';
     const SEASON_DONG = 'dong';
 
+    const STATUS_UN_ACTIVE = 'draft';
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
+
     public static function get_season($season = '')
     {
         $_status = [
@@ -118,10 +118,6 @@ class Tour extends Model
         ];
         return $season == '' ? $_status : $_status["$season"];
     }
-
-    const STATUS_UN_ACTIVE = 'draft';
-    const STATUS_ACTIVE = 'active';
-    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {

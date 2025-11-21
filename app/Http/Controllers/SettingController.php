@@ -18,6 +18,12 @@ class SettingController extends Controller
         $this->dir = 'uploads/setting';
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param SettingViewRequest $request
+     * @return void
+     */
     public function index(SettingViewRequest $request)
     {
         $type = request('type', 'seo');
@@ -28,6 +34,12 @@ class SettingController extends Controller
         return view('user.pages.setting.index', compact('data'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param SettingUpdateRequest $request
+     * @return void
+     */
     public function update(SettingUpdateRequest $request)
     {
         $data = $request->all();
@@ -85,6 +97,11 @@ class SettingController extends Controller
         }
     }
 
+    /**
+     * Swap image numering.
+     *
+     * @return void
+     */
     public function swapImage()
     {
         $draggedIndex = Images::find(request('draggedId'));

@@ -18,16 +18,28 @@ class FAQController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param QaViewRequest $request
+     * @return void
+     */
     public function index(QaViewRequest $request)
     {
         $data['status'] = Qa::get_status();
         return view('user.pages.qa.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param QaViewRequest $request
+     * @return void
+     */
     public function list(QaViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $group_id = request('group_id', '');
@@ -51,6 +63,12 @@ class FAQController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param QaInsertRequest $request
+     * @return void
+     */
     public function insert(QaInsertRequest $request)
     {
         DB::beginTransaction();
@@ -75,6 +93,12 @@ class FAQController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param QaUpdateRequest $request
+     * @return void
+     */
     public function update(QaUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -107,6 +131,12 @@ class FAQController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param QaDeleteRequest $request
+     * @return void
+     */
     public function delete(QaDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -131,12 +161,20 @@ class FAQController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param QaViewRequest $request
+     * @return void
+     */
     public function detail($id, QaViewRequest $request)
     {
         $data = Qa::with('group')->findOrFail($id);
         if (request()->ajax()) {
             return view('user.pages.qa.show', compact('data'))->render();
         }
-        return view('user.pages.qa.detail', compact('data'));
+        $status = Qa::get_status($data->status);
+        return view('user.pages.qa.detail', compact('data', 'status'));
     }
 }

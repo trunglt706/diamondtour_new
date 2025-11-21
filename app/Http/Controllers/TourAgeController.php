@@ -18,16 +18,28 @@ class TourAgeController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param TourAgeViewRequest $request
+     * @return void
+     */
     public function index(TourAgeViewRequest $request)
     {
         $data['status'] = TourAge::get_status();
         return view('user.pages.tour.age.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param TourAgeViewRequest $request
+     * @return void
+     */
     public function list(TourAgeViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -49,6 +61,12 @@ class TourAgeController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param TourAgeInsertRequest $request
+     * @return void
+     */
     public function insert(TourAgeInsertRequest $request)
     {
         DB::beginTransaction();
@@ -73,6 +91,12 @@ class TourAgeController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param TourAgeUpdateRequest $request
+     * @return void
+     */
     public function update(TourAgeUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -105,6 +129,12 @@ class TourAgeController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param TourAgeDeleteRequest $request
+     * @return void
+     */
     public function delete(TourAgeDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -129,6 +159,13 @@ class TourAgeController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param TourAgeViewRequest $request
+     * @return void
+     */
     public function detail($id, TourAgeViewRequest $request)
     {
         $data = TourAge::findOrFail($id);

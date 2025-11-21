@@ -12,19 +12,19 @@ use App\Models\RegisterTour;
 use App\Models\Tour;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
+    /**
+     * Display the home page with summary statistics.
+     *
+     * @return void
+     */
     public function index()
     {
-        $key = request('key', '');
-        if ($key != '') {
-            Artisan::call("app:resize-$key");
-        }
         $data = [
             'users' => User::count(),
             'blogs' => Post::count(),
@@ -34,6 +34,11 @@ class HomeController extends Controller
         return view('user.pages.home.index', compact('data'));
     }
 
+    /**
+     * Log out the current user and redirect to the login page.
+     *
+     * @return void
+     */
     public function logout()
     {
         $user = auth()->user();
@@ -42,6 +47,12 @@ class HomeController extends Controller
         return redirect()->route('login.index')->with('success', 'Đăng xuất thành công');
     }
 
+    /**
+     * Retrieve data for Select2 dropdowns based on the request parameters.
+     *
+     * @param Request $request
+     * @return array
+     */
     public function get_data_select2(Request $request)
     {
         $lstCol = $request->input('lstCol');
@@ -60,35 +71,65 @@ class HomeController extends Controller
         return $data->get()->toArray();
     }
 
+    /**
+     * Display the editor upload page.
+     *
+     * @return void
+     */
     public function upload_editor()
     {
         return view('user.pages.editor');
     }
 
+    /**
+     * Load the latest log actions.
+     *
+     * @return string
+     */
     public function load_log_action()
     {
         $list = LogAction::limit(20)->latest()->select('id', 'description', 'created_at')->get();
         return view('user.pages.home.log_action', compact('list'))->render();
     }
 
+    /**
+     * Load the latest contacts.
+     *
+     * @return string
+     */
     public function load_contact()
     {
         $list = Contact::limit(20)->latest()->select('id', 'name', 'phone', 'created_at')->get();
         return view('user.pages.home.contact', compact('list'))->render();
     }
 
+    /**
+     * Load the latest promo registrations.
+     *
+     * @return string
+     */
     public function load_register_promo()
     {
         $list = RegisterPromo::limit(20)->latest()->select('id', 'name', 'phone', 'created_at')->get();
         return view('user.pages.home.register_promo', compact('list'))->render();
     }
 
+    /**
+     * Load the latest tour registrations.
+     *
+     * @return string
+     */
     public function load_register_tour()
     {
         $list = RegisterTour::limit(20)->latest()->select('id', 'name', 'phone', 'created_at')->get();
         return view('user.pages.home.register_tour', compact('list'))->render();
     }
 
+    /**
+     * Delete an image by its ID.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete_image()
     {
         $id = request('id', '');

@@ -15,16 +15,26 @@ class VideoController extends Controller
         $this->dir = 'uploads/video';
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @return void
+     */
     public function index()
     {
         $data['video_status'] = TourGroup::get_status();
         return view('user.pages.video.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return void
+     */
     public function list()
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $video_status = request('video_status', '');
             $search = request('search', '');
 
@@ -46,6 +56,11 @@ class VideoController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return void
+     */
     public function update()
     {
         DB::beginTransaction();
@@ -77,6 +92,12 @@ class VideoController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function detail($id)
     {
         $data = TourGroup::select('id', 'video_name', 'video_image', 'video_url', 'video_status')->findOrFail($id);

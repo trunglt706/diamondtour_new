@@ -16,16 +16,26 @@ class RegisterPromoController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @return void
+     */
     public function index()
     {
         $data['status'] = RegisterPromo::get_status();
         return view('user.pages.register_promo.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return void
+     */
     public function list()
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $export = request('export', '');
@@ -51,6 +61,11 @@ class RegisterPromoController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return void
+     */
     public function update()
     {
         DB::beginTransaction();
@@ -68,21 +83,24 @@ class RegisterPromoController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return void
+     */
     public function delete()
     {
         DB::beginTransaction();
         try {
             $new = RegisterPromo::findOrFail(request('id'));
-            if ($new) {
-                $new->delete();
-                save_log("Thông tin đăng ký nhận ưu đãi #$new->code vừa mới bị xóa", $new);
-                DB::commit();
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Xóa thành công',
-                    'type' => 'success',
-                ]);
-            }
+            $new->delete();
+            save_log("Thông tin đăng ký nhận ưu đãi #$new->code vừa mới bị xóa", $new);
+            DB::commit();
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
         }
@@ -94,24 +112,34 @@ class RegisterPromoController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function detail($id)
     {
         $data = RegisterPromo::findOrFail($id);
-        return view('user.pages.register_promo.detail', compact('data'));
+        $status = RegisterPromo::get_status($data->status);
+        return view('user.pages.register_promo.detail', compact('data', 'status'));
     }
 
+    /**
+     * Accept the specified resource.
+     *
+     * @return void
+     */
     public function accept()
     {
         DB::beginTransaction();
         try {
             $new = RegisterPromo::findOrFail(request('id'));
-            if ($new) {
-                $new->status = RegisterPromo::STATUS_ACTIVE;
-                $new->save();
-                save_log("Thông tin đăng ký nhận ưu đãi #$new->code vừa mới được duyệt", $new);
-                DB::commit();
-                return redirect()->back()->with('success', 'Duyệt dữ liệu thành công');
-            }
+            $new->status = RegisterPromo::STATUS_ACTIVE;
+            $new->save();
+            save_log("Thông tin đăng ký nhận ưu đãi #$new->code vừa mới được duyệt", $new);
+            DB::commit();
+            return redirect()->back()->with('success', 'Duyệt dữ liệu thành công');
         } catch (\Throwable $th) {
             showLog($th);
         }

@@ -21,6 +21,12 @@ class ScheduleController extends Controller
         $this->dir = 'uploads/schedule';
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param ScheduleViewRequest $request
+     * @return void
+     */
     public function index(ScheduleViewRequest $request)
     {
         $id = request('id', 0);
@@ -31,10 +37,16 @@ class ScheduleController extends Controller
         return view('user.pages.tour.schedule.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param ScheduleViewRequest $request
+     * @return void
+     */
     public function list(ScheduleViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $tour_id = request('tour_id', 0);
@@ -58,6 +70,12 @@ class ScheduleController extends Controller
         }
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @param ScheduleInsertRequest $request
+     * @return void
+     */
     public function insert(ScheduleInsertRequest $request)
     {
         DB::beginTransaction();
@@ -86,6 +104,12 @@ class ScheduleController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param ScheduleUpdateRequest $request
+     * @return void
+     */
     public function update(ScheduleUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -122,6 +146,12 @@ class ScheduleController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param ScheduleDeleteRequest $request
+     * @return void
+     */
     public function delete(ScheduleDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -146,13 +176,21 @@ class ScheduleController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param ScheduleViewRequest $request
+     * @return void
+     */
     public function detail($id, ScheduleViewRequest $request)
     {
         $data = Schedule::findOrFail($id);
         if (request()->ajax()) {
             return view('user.pages.tour.schedule.show', compact('data'));
         }
+        $status = Schedule::get_status($data->status);
         $status_detail = ScheduleDetal::get_status();
-        return view('user.pages.tour.schedule.detail', compact('data', 'status_detail'));
+        return view('user.pages.tour.schedule.detail', compact('data', 'status', 'status_detail'));
     }
 }

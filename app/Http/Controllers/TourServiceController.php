@@ -18,16 +18,28 @@ class TourServiceController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param TourServiceViewRequest $request
+     * @return void
+     */
     public function index(TourServiceViewRequest $request)
     {
         $data['status'] = TourService::get_status();
         return view('user.pages.tour.service.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param TourServiceViewRequest $request
+     * @return void
+     */
     public function list(TourServiceViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -49,6 +61,12 @@ class TourServiceController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param TourServiceInsertRequest $request
+     * @return void
+     */
     public function insert(TourServiceInsertRequest $request)
     {
         DB::beginTransaction();
@@ -73,6 +91,12 @@ class TourServiceController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param TourServiceUpdateRequest $request
+     * @return void
+     */
     public function update(TourServiceUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -105,6 +129,12 @@ class TourServiceController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param TourServiceDeleteRequest $request
+     * @return void
+     */
     public function delete(TourServiceDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -129,6 +159,13 @@ class TourServiceController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param TourServiceViewRequest $request
+     * @return void
+     */
     public function detail($id, TourServiceViewRequest $request)
     {
         $data = TourService::findOrFail($id);

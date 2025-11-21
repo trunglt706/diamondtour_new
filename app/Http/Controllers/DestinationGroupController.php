@@ -19,16 +19,28 @@ class DestinationGroupController extends Controller
         $this->dir = 'uploads/destination_group';
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param DestinationGroupViewRequest $request
+     * @return void
+     */
     public function index(DestinationGroupViewRequest $request)
     {
         $data['status'] = DestinationGroup::get_status();
         return view('user.pages.destination.group.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param DestinationGroupViewRequest $request
+     * @return void
+     */
     public function list(DestinationGroupViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -50,6 +62,12 @@ class DestinationGroupController extends Controller
         }
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @param DestinationGroupInsertRequest $request
+     * @return void
+     */
     public function insert(DestinationGroupInsertRequest $request)
     {
         DB::beginTransaction();
@@ -59,8 +77,8 @@ class DestinationGroupController extends Controller
                 $file = request()->file('image');
                 $data['image'] = store_file($file, $this->dir, false, 900);
             }
-            $new = DestinationGroup::create($data);
-            save_log("Danh mục điểm đến #$new->name vừa mới được tạo", $data);
+            $destination_group = DestinationGroup::create($data);
+            save_log("Danh mục điểm đến #$destination_group->name vừa mới được tạo", $data);
             DB::commit();
             return response()->json([
                 'status' => true,
@@ -78,6 +96,12 @@ class DestinationGroupController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param DestinationGroupUpdateRequest $request
+     * @return void
+     */
     public function update(DestinationGroupUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -85,14 +109,14 @@ class DestinationGroupController extends Controller
             $data = request()->all();
             unset($data['type']);
             $data['status'] = isset($data['status']) && $data['status'] == DestinationGroup::STATUS_ACTIVE ? DestinationGroup::STATUS_ACTIVE : DestinationGroup::STATUS_BLOCKED;
-            $new = DestinationGroup::findOrFail(request('id'));
+            $destination_group = DestinationGroup::findOrFail(request('id'));
             if (request()->hasFile('image')) {
-                delete_file($new->image);
+                delete_file($destination_group->image);
                 $file = request()->file('image');
                 $data['image'] = store_file($file, $this->dir, false, 900);
             }
-            $new->update($data);
-            save_log("Danh mục điểm đến #$new->name vừa mới được cập nhật", $data);
+            $destination_group->update($data);
+            save_log("Danh mục điểm đến #$destination_group->name vừa mới được cập nhật", $data);
             DB::commit();
             if (request()->ajax()) {
                 return response()->json([
@@ -116,14 +140,20 @@ class DestinationGroupController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param DestinationGroupDeleteRequest $request
+     * @return void
+     */
     public function delete(DestinationGroupDeleteRequest $request)
     {
         DB::beginTransaction();
         try {
-            $new = DestinationGroup::withCount('destinations')->findOrFail(request('id'));
-            if ($new && $new->destinations_count == 0) {
-                $new->delete();
-                save_log("Danh mục điểm đến #$new->name vừa mới bị xóa", $new);
+            $destination_group = DestinationGroup::withCount('destinations')->findOrFail(request('id'));
+            if ($destination_group->destinations_count == 0) {
+                $destination_group->delete();
+                save_log("Danh mục điểm đến #$destination_group->name vừa mới bị xóa", $destination_group);
                 DB::commit();
                 return response()->json([
                     'status' => true,
@@ -142,12 +172,20 @@ class DestinationGroupController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param DestinationGroupViewRequest $request
+     * @return void
+     */
     public function detail($id, DestinationGroupViewRequest $request)
     {
         $data = DestinationGroup::withCount('destinations')->findOrFail($id);
         if (request()->ajax()) {
             return view('user.pages.destination.group.show', compact('data'))->render();
         }
-        return view('user.pages.destination.group.detail', compact('data'));
+        $status = DestinationGroup::get_status($data->status);
+        return view('user.pages.destination.group.detail', compact('data', 'status'));
     }
 }

@@ -18,15 +18,27 @@ class CountryController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display index page of the resource.
+     *
+     * @param CountryViewRequest $request
+     * @return void
+     */
     public function index(CountryViewRequest $request)
     {
         return view('user.pages.country.index');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param CountryViewRequest $request
+     * @return void
+     */
     public function list(CountryViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -48,6 +60,12 @@ class CountryController extends Controller
         }
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param CountryCreateRequest $request
+     * @return void
+     */
     public function insert(CountryCreateRequest $request)
     {
         DB::beginTransaction();
@@ -72,6 +90,12 @@ class CountryController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param CountryUpdateRequest $request
+     * @return void
+     */
     public function update(CountryUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -104,21 +128,25 @@ class CountryController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param CountryDeleteRequest $request
+     * @return void
+     */
     public function delete(CountryDeleteRequest $request)
     {
         DB::beginTransaction();
         try {
             $new = Countries::findOrFail(request('id'));
-            if ($new) {
-                $new->delete();
-                save_log("Quốc gia #$new->name vừa mới bị xóa", $new);
-                DB::commit();
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Xóa thành công',
-                    'type' => 'success',
-                ]);
-            }
+            $new->delete();
+            save_log("Quốc gia #$new->name vừa mới bị xóa", $new);
+            DB::commit();
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
         }
@@ -130,6 +158,13 @@ class CountryController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param CountryViewRequest $request
+     * @return void
+     */
     public function detail($id, CountryViewRequest $request)
     {
         $data = Countries::withCount('provinces')->findOrFail($id);

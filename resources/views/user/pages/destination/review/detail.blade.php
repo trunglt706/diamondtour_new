@@ -1,7 +1,3 @@
-@php
-    use App\Models\Review;
-    $status = Review::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết review')
 @section('content')

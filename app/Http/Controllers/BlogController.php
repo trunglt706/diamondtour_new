@@ -20,6 +20,12 @@ class BlogController extends Controller
         $this->dir = 'uploads/blog';
     }
 
+    /**
+     * Display index page of the resource.
+     *
+     * @param BlogViewRequest $request
+     * @return void
+     */
     public function index(BlogViewRequest $request)
     {
         $data['status'] = Post::get_status();
@@ -30,17 +36,23 @@ class BlogController extends Controller
             // được yêu thích
             'like' => $blogs->clone()->where('like_total', '>', 0)->count(),
             // tiêu đểm
-            'tieu_diem' => $blogs->clone()->where('tieu_diem', 1)->count(),
+            'tieu_diem' => $blogs->clone()->where('tieu_diem', Post::IS_IMPORTANT)->count(),
             // hot
-            'hot' => $blogs->clone()->where('hot', 1)->count(),
+            'hot' => $blogs->clone()->where('hot', Post::IS_HOT)->count(),
         ];
         return view('user.pages.blog.index', compact('data', 'report'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param BlogViewRequest $request
+     * @return void
+     */
     public function list(BlogViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $group_id = request('group_id', '');
@@ -70,6 +82,12 @@ class BlogController extends Controller
         }
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @param BlogInsertRequest $request
+     * @return void
+     */
     public function insert(BlogInsertRequest $request)
     {
         DB::beginTransaction();
@@ -92,8 +110,8 @@ class BlogController extends Controller
             }
             $data['tags'] = isset($data['tags']) ? json_encode(explode(',', $data['tags'])) : json_encode([]);
             $data['tours'] = isset($data['tours']) ? json_encode($data['tours']) : json_encode([]);
-            $data['hot'] = isset($data['hot']) && $data['hot'] == 1 ? 1 : 0;
-            $data['tieu_diem'] = isset($data['tieu_diem']) && $data['tieu_diem'] == 1 ? 1 : 0;
+            $data['hot'] = isset($data['hot']) && $data['hot'] == Post::IS_HOT ? Post::IS_HOT : Post::IS_NOT_HOT;
+            $data['tieu_diem'] = isset($data['tieu_diem']) && $data['tieu_diem'] == Post::IS_IMPORTANT ? Post::IS_IMPORTANT : Post::IS_NOT_IMPORTANT;
             $data['like_total'] = isset($data['like_total']) && $data['like_total'] == 1 ? 1 : 0;
             $new = Post::create($data);
             save_log("Blog #$new->name vừa mới được tạo", $data);
@@ -120,6 +138,12 @@ class BlogController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param BlogUpdateRequest $request
+     * @return void
+     */
     public function update(BlogUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -149,8 +173,8 @@ class BlogController extends Controller
             }
             $data['tags'] = isset($data['tags']) ? json_encode(explode(',', $data['tags'])) : json_encode([]);
             $data['tours'] = isset($data['tours']) ? json_encode($data['tours']) : json_encode([]);
-            $data['hot'] = isset($data['hot']) && $data['hot'] == 1 ? 1 : 0;
-            $data['tieu_diem'] = isset($data['tieu_diem']) && $data['tieu_diem'] == 1 ? 1 : 0;
+            $data['hot'] = isset($data['hot']) && $data['hot'] == Post::IS_HOT ? Post::IS_HOT : Post::IS_NOT_HOT;
+            $data['tieu_diem'] = isset($data['tieu_diem']) && $data['tieu_diem'] == Post::IS_IMPORTANT ? Post::IS_IMPORTANT : Post::IS_NOT_IMPORTANT;
             $data['like_total'] = isset($data['like_total']) && $data['like_total'] == 1 ? 1 : 0;
             $new->update($data);
             save_log("Blog #$new->name vừa mới được cập nhật", $data);
@@ -177,6 +201,11 @@ class BlogController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return void
+     */
     public function updateAlbum()
     {
         DB::beginTransaction();
@@ -209,6 +238,12 @@ class BlogController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param BlogDeleteRequest $request
+     * @return void
+     */
     public function delete(BlogDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -233,12 +268,27 @@ class BlogController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param BlogViewRequest $request
+     * @return void
+     */
     public function detail($id, BlogViewRequest $request)
     {
         $data = Post::findOrFail($id);
-        return view('user.pages.blog.detail', compact('data'));
+        $status = Post::get_status($data->status);
+        return view('user.pages.blog.detail', compact('data', 'status'));
     }
 
+    /**
+     * Display the specified resource for editing.
+     *
+     * @param [type] $id
+     * @param BlogViewRequest $request
+     * @return void
+     */
     public function edit($id, BlogViewRequest $request)
     {
         $data = Post::findOrFail($id);
@@ -250,6 +300,11 @@ class BlogController extends Controller
         return view('user.pages.blog.edit', compact('data', 'other'));
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @return void
+     */
     public function create()
     {
         $data['status'] = Post::get_status();

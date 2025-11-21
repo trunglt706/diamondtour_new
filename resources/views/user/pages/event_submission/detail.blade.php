@@ -1,7 +1,3 @@
-@php
-    use App\Models\EventSubmissions;
-    $status = EventSubmissions::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Thông tin bài tham dự')
 @section('content')

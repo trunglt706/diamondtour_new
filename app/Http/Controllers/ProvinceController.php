@@ -19,6 +19,12 @@ class ProvinceController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param ProvinceViewRequest $request
+     * @return void
+     */
     public function index(ProvinceViewRequest $request)
     {
         $country_id = request('country_id', '');
@@ -26,10 +32,16 @@ class ProvinceController extends Controller
         return view('user.pages.province.index', compact('country'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param ProvinceViewRequest $request
+     * @return void
+     */
     public function list(ProvinceViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $search = request('search', '');
             $country_id = request('country_id', '');
 
@@ -51,6 +63,12 @@ class ProvinceController extends Controller
         }
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @param ProvinceCreateRequest $request
+     * @return void
+     */
     public function insert(ProvinceCreateRequest $request)
     {
         DB::beginTransaction();
@@ -75,6 +93,12 @@ class ProvinceController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param ProvinceUpdateRequest $request
+     * @return void
+     */
     public function update(ProvinceUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -106,21 +130,25 @@ class ProvinceController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param ProvinceDeleteRequest $request
+     * @return void
+     */
     public function delete(ProvinceDeleteRequest $request)
     {
         DB::beginTransaction();
         try {
             $new = Province::findOrFail(request('id'));
-            if ($new) {
-                $new->delete();
-                save_log("Khu vực #$new->name vừa mới bị xóa", $new);
-                DB::commit();
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Xóa thành công',
-                    'type' => 'success',
-                ]);
-            }
+            $new->delete();
+            save_log("Khu vực #$new->name vừa mới bị xóa", $new);
+            DB::commit();
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
         }
@@ -132,6 +160,13 @@ class ProvinceController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param ProvinceViewRequest $request
+     * @return void
+     */
     public function detail($id, ProvinceViewRequest $request)
     {
         $data = Province::findOrFail($id);

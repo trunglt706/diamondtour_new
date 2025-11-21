@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Library;
 use App\Models\Tour;
 use Illuminate\Support\Facades\DB;
-use Image;
-use File;
 
 class TourLibraryController extends Controller
 {
@@ -18,6 +16,11 @@ class TourLibraryController extends Controller
         $this->dir = 'uploads/library';
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @return void
+     */
     public function index()
     {
         $data = [
@@ -27,10 +30,15 @@ class TourLibraryController extends Controller
         return view('user.pages.tour.library.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return void
+     */
     public function list()
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $group_id = request('group_id', '');
@@ -54,6 +62,11 @@ class TourLibraryController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return void
+     */
     public function insert()
     {
         DB::beginTransaction();
@@ -82,6 +95,11 @@ class TourLibraryController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return void
+     */
     public function update()
     {
         DB::beginTransaction();
@@ -113,6 +131,11 @@ class TourLibraryController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return void
+     */
     public function delete()
     {
         DB::beginTransaction();
@@ -137,6 +160,12 @@ class TourLibraryController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function detail($id)
     {
         $data = Library::type(Library::TYPE_TOUR)->findOrFail($id);

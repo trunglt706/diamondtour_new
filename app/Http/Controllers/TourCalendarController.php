@@ -18,16 +18,28 @@ class TourCalendarController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param TourCalendarViewRequest $request
+     * @return void
+     */
     public function index(TourCalendarViewRequest $request)
     {
         $data['status'] = TourCalendar::get_status();
         return view('user.pages.tour.calendar.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param TourCalendarViewRequest $request
+     * @return void
+     */
     public function list(TourCalendarViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $tour_id = request('tour_id', '');
@@ -51,13 +63,19 @@ class TourCalendarController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param TourCalendarCreateRequest $request
+     * @return void
+     */
     public function insert(TourCalendarCreateRequest $request)
     {
         DB::beginTransaction();
         try {
             $data = request()->all();
             $data['status'] = isset($data['status']) && $data['status'] == TourCalendar::STATUS_ACTIVE ? TourCalendar::STATUS_ACTIVE : TourCalendar::STATUS_BLOCKED;
-            $data['display'] = isset($data['display']) && $data['display'] == 1 ? 1 : 0;
+            $data['display'] = isset($data['display']) && $data['display'] == TourCalendar::DISPLAY_SHOW ? TourCalendar::DISPLAY_SHOW : TourCalendar::DISPLAY_HIDE;
             $new = TourCalendar::create($data);
             save_log("Lịch khởi hành #$new->name vừa mới được tạo", $data);
             DB::commit();
@@ -77,6 +95,12 @@ class TourCalendarController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param TourCalendarUpdateRequest $request
+     * @return void
+     */
     public function update(TourCalendarUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -84,7 +108,7 @@ class TourCalendarController extends Controller
             $data = request()->all();
             $new = TourCalendar::findOrFail(request('id'));
             $data['status'] = isset($data['status']) && $data['status'] == TourCalendar::STATUS_ACTIVE ? TourCalendar::STATUS_ACTIVE : TourCalendar::STATUS_BLOCKED;
-            $data['display'] = isset($data['display']) && $data['display'] == 1 ? 1 : 0;
+            $data['display'] = isset($data['display']) && $data['display'] == TourCalendar::DISPLAY_SHOW ? TourCalendar::DISPLAY_SHOW : TourCalendar::DISPLAY_HIDE;
             $new->update($data);
             save_log("Lịch khởi hành #$new->name vừa mới được cập nhật", $data);
             DB::commit();
@@ -110,6 +134,12 @@ class TourCalendarController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param TourCalendarDeleteRequest $request
+     * @return void
+     */
     public function delete(TourCalendarDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -134,12 +164,20 @@ class TourCalendarController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param TourCalendarViewRequest $request
+     * @return void
+     */
     public function detail($id, TourCalendarViewRequest $request)
     {
         $data = TourCalendar::findOrFail($id);
         if (request()->ajax()) {
             return view('user.pages.tour.calendar.show', compact('data'));
         }
-        return view('user.pages.tour.calendar.detail', compact('data'));
+        $status = TourCalendar::get_status($data->status);
+        return view('user.pages.tour.calendar.detail', compact('data', 'status'));
     }
 }

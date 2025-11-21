@@ -19,16 +19,28 @@ class SocialController extends Controller
         $this->dir = 'uploads/social';
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param SocialViewRequest $request
+     * @return void
+     */
     public function index(SocialViewRequest $request)
     {
         $data['status'] = Social::get_status();
         return view('user.pages.setting.social.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param SocialViewRequest $request
+     * @return void
+     */
     public function list(SocialViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -50,6 +62,12 @@ class SocialController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param SocialInsertRequest $request
+     * @return void
+     */
     public function insert(SocialInsertRequest $request)
     {
         DB::beginTransaction();
@@ -78,6 +96,12 @@ class SocialController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param SocialUpdateRequest $request
+     * @return void
+     */
     public function update(SocialUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -115,6 +139,12 @@ class SocialController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param SocialDeleteRequest $request
+     * @return void
+     */
     public function delete(SocialDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -139,6 +169,13 @@ class SocialController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param SocialViewRequest $request
+     * @return void
+     */
     public function detail($id, SocialViewRequest $request)
     {
         $data = Social::findOrFail($id);

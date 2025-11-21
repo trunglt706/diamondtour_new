@@ -19,16 +19,28 @@ class BlogCategoryController extends Controller
         $this->dir = 'uploads/blog_group';
     }
 
+    /**
+     * Display index page of the resource.
+     *
+     * @param BlogCategoryViewRequest $request
+     * @return void
+     */
     public function index(BlogCategoryViewRequest $request)
     {
         $data['status'] = PostGroup::get_status();
         return view('user.pages.blog.group.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param BlogCategoryViewRequest $request
+     * @return void
+     */
     public function list(BlogCategoryViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -50,6 +62,12 @@ class BlogCategoryController extends Controller
         }
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @param BlogCategoryInsertRequest $request
+     * @return void
+     */
     public function insert(BlogCategoryInsertRequest $request)
     {
         DB::beginTransaction();
@@ -78,6 +96,12 @@ class BlogCategoryController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param BlogCategoryUpdateRequest $request
+     * @return void
+     */
     public function update(BlogCategoryUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -115,12 +139,18 @@ class BlogCategoryController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param BlogCategoryDeleteRequest $request
+     * @return void
+     */
     public function delete(BlogCategoryDeleteRequest $request)
     {
         DB::beginTransaction();
         try {
             $new = PostGroup::withCount('blogs')->findOrFail(request('id'));
-            if ($new && $new->blogs_count == 0) {
+            if ($new->blogs_count == 0) {
                 $new->delete();
                 save_log("Danh mục blog #$new->name vừa mới bị xóa", $new);
                 DB::commit();
@@ -141,12 +171,20 @@ class BlogCategoryController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param BlogCategoryViewRequest $request
+     * @return void
+     */
     public function detail($id, BlogCategoryViewRequest $request)
     {
         $data = PostGroup::withCount('blogs')->findOrFail($id);
         if (request()->ajax()) {
             return view('user.pages.blog.group.show', compact('data'))->render();
         }
-        return view('user.pages.blog.group.detail', compact('data'));
+        $status = PostGroup::get_status($data->status);
+        return view('user.pages.blog.group.detail', compact('data', 'status'));
     }
 }

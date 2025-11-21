@@ -19,16 +19,28 @@ class NewllterController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the newllter index page.
+     *
+     * @param NewllterViewRequest $request
+     * @return void
+     */
     public function index(NewllterViewRequest $request)
     {
         $data['status'] = Newllter::get_status();
         return view('user.pages.newllter.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the newllters.
+     *
+     * @param NewllterViewRequest $request
+     * @return void
+     */
     public function list(NewllterViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $export = request('export', '');
@@ -54,6 +66,12 @@ class NewllterController extends Controller
         }
     }
 
+    /**
+     * Update an existing newllter.
+     *
+     * @param NewllterUpdateRequest $request
+     * @return void
+     */
     public function update(NewllterUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -71,21 +89,25 @@ class NewllterController extends Controller
         }
     }
 
+    /**
+     * Delete an existing newllter.
+     *
+     * @param NewllterDeleteRequest $request
+     * @return void
+     */
     public function delete(NewllterDeleteRequest $request)
     {
         DB::beginTransaction();
         try {
             $new = Newllter::findOrFail(request('id'));
-            if ($new) {
-                $new->delete();
-                save_log("Newllter #$new->code vừa mới bị xóa", $new);
-                DB::commit();
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Xóa thành công',
-                    'type' => 'success',
-                ]);
-            }
+            $new->delete();
+            save_log("Newllter #$new->code vừa mới bị xóa", $new);
+            DB::commit();
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
         }
@@ -97,24 +119,35 @@ class NewllterController extends Controller
         ]);
     }
 
+    /**
+     * Display the details of a specific newllter.
+     *
+     * @param [type] $id
+     * @param NewllterViewRequest $request
+     * @return void
+     */
     public function detail($id, NewllterViewRequest $request)
     {
         $data = Newllter::findOrFail($id);
-        return view('user.pages.newllter.detail', compact('data'));
+        $status = Newllter::get_status($data->status);
+        return view('user.pages.newllter.detail', compact('data', 'status'));
     }
 
+    /**
+     * Accept a newllter.
+     *
+     * @return void
+     */
     public function accept()
     {
         DB::beginTransaction();
         try {
             $new = Newllter::findOrFail(request('id'));
-            if ($new) {
-                $new->status = Newllter::STATUS_ACTIVE;
-                $new->save();
-                save_log("Newllter #$new->code vừa mới được duyệt", $new);
-                DB::commit();
-                return redirect()->back()->with('success', 'Duyệt dữ liệu thành công');
-            }
+            $new->status = Newllter::STATUS_ACTIVE;
+            $new->save();
+            save_log("Newllter #$new->code vừa mới được duyệt", $new);
+            DB::commit();
+            return redirect()->back()->with('success', 'Duyệt dữ liệu thành công');
         } catch (\Throwable $th) {
             showLog($th);
         }

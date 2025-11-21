@@ -19,16 +19,28 @@ class EventController extends Controller
         $this->dir = 'uploads/event';
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param EventViewRequest $request
+     * @return void
+     */
     public function index(EventViewRequest $request)
     {
         $data['status'] = Events::get_status();
         return view('user.pages.event.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param EventViewRequest $request
+     * @return void
+     */
     public function list(EventViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $important = request('important', '');
@@ -54,6 +66,12 @@ class EventController extends Controller
         }
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param EventCreateRequest $request
+     * @return void
+     */
     public function insert(EventCreateRequest $request)
     {
         DB::beginTransaction();
@@ -67,8 +85,8 @@ class EventController extends Controller
                 $file = request()->file('background');
                 $data['background'] = store_file($file, $this->dir, false, 1500);
             }
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
-            $data['home'] = isset($data['home']) && $data['home'] == 1 ? 1 : 0;
+            $data['important'] = isset($data['important']) && $data['important'] == Events::IMPORTANT_YES ? Events::IMPORTANT_YES : Events::IMPORTANT_NO;
+            $data['home'] = isset($data['home']) && $data['home'] == Events::HOME_YES ? Events::HOME_YES : Events::HOME_NO;
             $new = Events::create($data);
             save_log("Sự kiện #$new->name vừa mới được tạo", $data);
             DB::commit();
@@ -94,6 +112,12 @@ class EventController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param EventUpdateRequest $request
+     * @return void
+     */
     public function update(EventUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -110,8 +134,8 @@ class EventController extends Controller
                 $file = request()->file('background');
                 $data['background'] = store_file($file, $this->dir, false, 1500);
             }
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
-            $data['home'] = isset($data['home']) && $data['home'] == 1 ? 1 : 0;
+            $data['important'] = isset($data['important']) && $data['important'] == Events::IMPORTANT_YES ? Events::IMPORTANT_YES : Events::IMPORTANT_NO;
+            $data['home'] = isset($data['home']) && $data['home'] == Events::HOME_YES ? Events::HOME_YES : Events::HOME_NO;
             $new->update($data);
             save_log("Sự kiện #$new->name vừa mới được cập nhật", $data);
             DB::commit();
@@ -137,6 +161,12 @@ class EventController extends Controller
         }
     }
 
+    /**
+     * Delete the specified resource from storage.
+     *
+     * @param EventDeleteRequest $request
+     * @return void
+     */
     public function delete(EventDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -161,12 +191,27 @@ class EventController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param EventViewRequest $request
+     * @return void
+     */
     public function detail($id, EventViewRequest $request)
     {
         $data = Events::findOrFail($id);
-        return view('user.pages.event.detail', compact('data'));
+        $status = Events::get_status($data->status);
+        return view('user.pages.event.detail', compact('data', 'status'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param [type] $id
+     * @param EventViewRequest $request
+     * @return void
+     */
     public function edit($id, EventViewRequest $request)
     {
         $data = Events::findOrFail($id);
@@ -176,6 +221,11 @@ class EventController extends Controller
         return view('user.pages.event.edit', compact('data', 'other'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return void
+     */
     public function create()
     {
         $data['status'] = Events::get_status();

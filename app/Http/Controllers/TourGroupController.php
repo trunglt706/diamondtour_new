@@ -22,16 +22,28 @@ class TourGroupController extends Controller
         $this->dir = 'uploads/tour_group';
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param TourGroupViewRequest $request
+     * @return void
+     */
     public function index(TourGroupViewRequest $request)
     {
         $data['status'] = TourGroup::get_status();
         return view('user.pages.tour.group.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param TourGroupViewRequest $request
+     * @return void
+     */
     public function list(TourGroupViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -53,6 +65,12 @@ class TourGroupController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param TourGroupInsertRequest $request
+     * @return void
+     */
     public function insert(TourGroupInsertRequest $request)
     {
         DB::beginTransaction();
@@ -81,6 +99,12 @@ class TourGroupController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param TourGroupUpdateRequest $request
+     * @return void
+     */
     public function update(TourGroupUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -93,7 +117,6 @@ class TourGroupController extends Controller
                 $file = request()->file('image');
                 $data['image'] = store_file($file, $this->dir, false, 900);
             }
-            $data['status'] = isset($data['status']) && $data['status'] == TourGroup::STATUS_ACTIVE ? TourGroup::STATUS_ACTIVE : TourGroup::STATUS_BLOCKED;
             $new->update($data);
             save_log("Danh mục tour #$new->name vừa mới được cập nhật", $data);
             DB::commit();
@@ -119,12 +142,18 @@ class TourGroupController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param TourGroupDeleteRequest $request
+     * @return void
+     */
     public function delete(TourGroupDeleteRequest $request)
     {
         DB::beginTransaction();
         try {
             $new = TourGroup::withCount('tours')->findOrFail(request('id'));
-            if ($new && $new->tours_count == 0) {
+            if ($new->tours_count == 0) {
                 $new->delete();
                 save_log("Danh mục tour #$new->name vừa mới bị xóa", $new);
                 DB::commit();
@@ -145,6 +174,13 @@ class TourGroupController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param TourGroupViewRequest $request
+     * @return void
+     */
     public function detail($id, TourGroupViewRequest $request)
     {
         $data = TourGroup::withCount('tours')->findOrFail($id);
@@ -167,6 +203,7 @@ class TourGroupController extends Controller
             // tổng danh mục thư viện ảnh
             'total_albums' => LibraryGroup::tourGroupId($group_id)->count(),
         ];
-        return view('user.pages.tour.group.detail', compact('data', 'list', 'report'));
+        $status = TourGroup::get_status($data->status);
+        return view('user.pages.tour.group.detail', compact('data', 'list', 'report', 'status'));
     }
 }

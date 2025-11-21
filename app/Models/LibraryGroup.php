@@ -71,6 +71,18 @@ class LibraryGroup extends Model
     const SEASON_THU = 'thu';
     const SEASON_DONG = 'dong';
 
+    const IMPORTANT = 1;
+    const NONE_IMPORTANT = 0;
+
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
+
+    const GUEST = 1;
+    const NONE_GUEST = 0;
+
+    const HOT = 1;
+    const NONE_HOT = 0;
+
     public static function get_season($season = '')
     {
         $_status = [
@@ -82,9 +94,6 @@ class LibraryGroup extends Model
         return $season == '' ? $_status : $_status["$season"];
     }
 
-    const IMPORTANT = 1;
-    const NONE_IMPORTANT = 0;
-
     public static function get_important($status = '')
     {
         $_status = [
@@ -93,9 +102,6 @@ class LibraryGroup extends Model
         ];
         return $status == '' ? $_status : $_status["$status"];
     }
-
-    const STATUS_ACTIVE = 'active';
-    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {

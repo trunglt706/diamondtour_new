@@ -23,6 +23,8 @@ use App\Models\TourStyle;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Config;
 
 class HomeController extends Controller
 {
@@ -215,8 +217,6 @@ class HomeController extends Controller
         });
     }
 
-
-
     public function privte_schedule()
     {
         if (Cache::has(CACHE_DESIGN_TOUR)) {
@@ -294,5 +294,16 @@ class HomeController extends Controller
             showLog($th);
             return redirect()->back()->with('error', 'Thiết kế lịch trình riêng thất bại!');
         }
+    }
+
+    public function changeLang($lang)
+    {
+        $a = ['vi', 'en', 'ch'];
+        if (in_array($lang, $a)) {
+            Session::put('locale', $lang);
+        } else {
+            Session::put('locale', Config::get('app.locale'));
+        }
+        return redirect()->back();
     }
 }

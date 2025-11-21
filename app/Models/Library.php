@@ -58,6 +58,15 @@ class Library extends Model
     const EXTENSION_PHOTO = 'photo';
     const EXTENSION_VIDEO = 'video';
 
+    const TYPE_LIBRARY = 'library';
+    const TYPE_TOUR = 'tour';
+
+    const IMPORTANT = 1;
+    const NONE_IMPORTANT = 0;
+
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
+
     public static function get_extension($extension = '')
     {
         $_status = [
@@ -67,12 +76,6 @@ class Library extends Model
         return $extension == '' ? $_status : $_status["$extension"];
     }
 
-    const TYPE_LIBRARY = 'library';
-    const TYPE_TOUR = 'tour';
-
-    const IMPORTANT = 1;
-    const NONE_IMPORTANT = 0;
-
     public static function get_important($status = '')
     {
         $_status = [
@@ -81,9 +84,6 @@ class Library extends Model
         ];
         return $status == '' ? $_status : $_status["$status"];
     }
-
-    const STATUS_ACTIVE = 'active';
-    const STATUS_BLOCKED = 'blocked';
 
     public static function get_status($status = '')
     {

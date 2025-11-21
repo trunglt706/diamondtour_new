@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Support\Facades\DB;
-use Image;
-use File;
 
 class ReviewController extends Controller
 {
@@ -18,6 +16,11 @@ class ReviewController extends Controller
         $this->dir = 'uploads/review';
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @return void
+     */
     public function index()
     {
         $review = Review::query();
@@ -33,10 +36,15 @@ class ReviewController extends Controller
         return view('user.pages.destination.review.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return void
+     */
     public function list()
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $destination_id = request('destination_id', '');
@@ -60,6 +68,11 @@ class ReviewController extends Controller
         }
     }
 
+    /**
+     * Insert a newly created resource in storage.
+     *
+     * @return void
+     */
     public function insert()
     {
         DB::beginTransaction();
@@ -69,7 +82,7 @@ class ReviewController extends Controller
                 $file = request()->file('user_avatar');
                 $data['user_avatar'] = store_file($file, $this->dir, false, 100);
             }
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
+            $data['important'] = isset($data['important']) && $data['important'] == Review::IMPORTANT_YES ? Review::IMPORTANT_YES : Review::IMPORTANT_NO;
             $new = Review::create($data);
             save_log("Review #$new->code vừa mới được tạo", $data);
             DB::commit();
@@ -89,6 +102,11 @@ class ReviewController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return void
+     */
     public function update()
     {
         DB::beginTransaction();
@@ -101,7 +119,7 @@ class ReviewController extends Controller
                 $data['user_avatar'] = store_file($file, $this->dir, false, 100);
             }
             $data['status'] = isset($data['status']) && $data['status'] == Review::STATUS_ACTIVE ? Review::STATUS_ACTIVE : Review::STATUS_BLOCKED;
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
+            $data['important'] = isset($data['important']) && $data['important'] == Review::IMPORTANT_YES ? Review::IMPORTANT_YES : Review::IMPORTANT_NO;
             $data['destination_id'] = isset($data['destination_id']) ? $data['destination_id'] : null;
             $new->update($data);
             save_log("Review #$new->code vừa mới được cập nhật", $data);
@@ -128,21 +146,24 @@ class ReviewController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return void
+     */
     public function delete()
     {
         DB::beginTransaction();
         try {
             $new = Review::findOrFail(request('id'));
-            if ($new) {
-                $new->delete();
-                save_log("Review #$new->code vừa mới bị xóa", $new);
-                DB::commit();
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Xóa thành công',
-                    'type' => 'success',
-                ]);
-            }
+            $new->delete();
+            save_log("Review #$new->code vừa mới bị xóa", $new);
+            DB::commit();
+            return response()->json([
+                'status' => true,
+                'message' => 'Xóa thành công',
+                'type' => 'success',
+            ]);
         } catch (\Throwable $th) {
             showLog($th);
         }
@@ -154,12 +175,19 @@ class ReviewController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function detail($id)
     {
         $data = Review::with('destination')->findOrFail($id);
         if (request()->ajax()) {
             return view('user.pages.destination.review.show', compact('data'))->render();
         }
-        return view('user.pages.destination.review.detail', compact('data'));
+        $status = Review::get_status($data->status);
+        return view('user.pages.destination.review.detail', compact('data', 'status'));
     }
 }

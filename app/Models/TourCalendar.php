@@ -47,6 +47,9 @@ class TourCalendar extends Model
     const STATUS_ACTIVE = 'active';
     const STATUS_BLOCKED = 'blocked';
 
+    const DISPLAY_SHOW = 1;
+    const DISPLAY_HIDE = 0;
+
     public static function get_status($status = '')
     {
         $_status = [

@@ -1,7 +1,11 @@
+@php
+    $url_current = url()->current();
+@endphp
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta charset="utf-8">
 <title>@yield('title')</title>
-<link rel="canonical" href="{{ url()->current() }}" />
+<link rel="canonical" href="{{ $url_current }}" />
 @stack('head')
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="@yield('description')">
@@ -18,14 +22,14 @@
 <meta property="og:image" content="@yield('image')" />
 <meta property="og:image:alt" content="@yield('title')" />
 <meta property='og:type' content='website' />
-<meta property="og:url" content="{{ Request::url() }}" />
+<meta property="og:url" content="{{ $url_current }}" />
 <meta property="og:title" content="@yield('title')" />
 <meta property="og:description" content="@yield('description')">
 <!-- END META FOR FACEBOOK -->
 
 <!-- Twitter Card -->
 <meta name="twitter:card" value="summary" />
-<meta name="twitter:url" content="{{ url()->current() }}" />
+<meta name="twitter:url" content="{{ $url_current }}" />
 <meta name="twitter:title" content="@yield('title')" />
 <meta name="twitter:description" content="@yield('description')" />
 <meta name="twitter:image" content="@yield('image')" />

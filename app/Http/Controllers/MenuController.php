@@ -17,15 +17,27 @@ class MenuController extends Controller
         $this->dir = 'uploads/menu';
     }
 
+    /**
+     * Display the menu index page.
+     *
+     * @param MenuViewRequest $request
+     * @return void
+     */
     public function index(MenuViewRequest $request)
     {
         return view('user.pages.setting.menu.index');
     }
 
+    /**
+     * Display a listing of the menus.
+     *
+     * @param MenuViewRequest $request
+     * @return void
+     */
     public function list(MenuViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -47,6 +59,12 @@ class MenuController extends Controller
         }
     }
 
+    /**
+     * Update an existing menu.
+     *
+     * @param MenuUpdateRequest $request
+     * @return void
+     */
     public function update(MenuUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -94,6 +112,13 @@ class MenuController extends Controller
         }
     }
 
+    /**
+     * Display the details of a specific menu.
+     *
+     * @param [type] $id
+     * @param MenuViewRequest $request
+     * @return void
+     */
     public function detail($id, MenuViewRequest $request)
     {
         $data = Menu::findOrFail($id);
@@ -103,6 +128,11 @@ class MenuController extends Controller
         return view('user.pages.setting.menu.detail', compact('data'));
     }
 
+    /**
+     * Insert a new menu.
+     *
+     * @return void
+     */
     public function insert()
     {
         DB::beginTransaction();

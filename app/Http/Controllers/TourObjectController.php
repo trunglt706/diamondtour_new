@@ -18,16 +18,28 @@ class TourObjectController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param TourObjectViewRequest $request
+     * @return void
+     */
     public function index(TourObjectViewRequest $request)
     {
         $data['status'] = TourObject::get_status();
         return view('user.pages.tour.object.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param TourObjectViewRequest $request
+     * @return void
+     */
     public function list(TourObjectViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
 
@@ -49,6 +61,12 @@ class TourObjectController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param TourObjectInsertRequest $request
+     * @return void
+     */
     public function insert(TourObjectInsertRequest $request)
     {
         DB::beginTransaction();
@@ -73,6 +91,12 @@ class TourObjectController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param TourObjectUpdateRequest $request
+     * @return void
+     */
     public function update(TourObjectUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -105,6 +129,12 @@ class TourObjectController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param TourObjectDeleteRequest $request
+     * @return void
+     */
     public function delete(TourObjectDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -129,6 +159,13 @@ class TourObjectController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param TourObjectViewRequest $request
+     * @return void
+     */
     public function detail($id, TourObjectViewRequest $request)
     {
         $data = TourObject::findOrFail($id);

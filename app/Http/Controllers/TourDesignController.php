@@ -17,6 +17,12 @@ class TourDesignController extends Controller
         $this->limit_default = 10;
     }
 
+    /**
+     * Display the index page of the resource.
+     *
+     * @param TourDesignViewRequest $request
+     * @return void
+     */
     public function index(TourDesignViewRequest $request)
     {
         $data = [
@@ -25,10 +31,16 @@ class TourDesignController extends Controller
         return view('user.pages.tour.design.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param TourDesignViewRequest $request
+     * @return void
+     */
     public function list(TourDesignViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $country_id = request('country_id', '');
@@ -66,6 +78,12 @@ class TourDesignController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param TourDesignUpdateRequest $request
+     * @return void
+     */
     public function update(TourDesignUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -82,6 +100,12 @@ class TourDesignController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param TourDesignDeleteRequest $request
+     * @return void
+     */
     public function delete(TourDesignDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -97,6 +121,13 @@ class TourDesignController extends Controller
         }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param [type] $id
+     * @param TourDesignViewRequest $request
+     * @return void
+     */
     public function detail($id, TourDesignViewRequest $request)
     {
         $data = DesignTour::findOrFail($id);

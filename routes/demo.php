@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Demo\AboutController;
 use App\Http\Controllers\Demo\AlbumController;
 use App\Http\Controllers\Demo\BlogController;
@@ -22,6 +23,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('clear-cache', function () {
+    Cache::flush();
+    return redirect()->back()->with('success', 'Clear cache thành công');
+})->name('clear_cache');
 
 Route::middleware('SetLang')->prefix('')->name('demo.')->group(function () {
     Route::get('/lang/{lang}', [GuestHomeController::class, 'changeLang'])->name('lang.change');

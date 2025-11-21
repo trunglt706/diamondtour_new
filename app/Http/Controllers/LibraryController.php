@@ -19,6 +19,12 @@ class LibraryController extends Controller
         $this->dir = 'uploads/library';
     }
 
+    /**
+     * Display the library index page.
+     *
+     * @param LibraryViewRequest $request
+     * @return void
+     */
     public function index(LibraryViewRequest $request)
     {
         $data = [
@@ -28,10 +34,16 @@ class LibraryController extends Controller
         return view('user.pages.library.index', compact('data'));
     }
 
+    /**
+     * Display a listing of the library items.
+     *
+     * @param LibraryViewRequest $request
+     * @return void
+     */
     public function list(LibraryViewRequest $request)
     {
         try {
-            $limit = request('limit', 10);
+            $limit = request('limit', $this->limit_default);
             $status = request('status', '');
             $search = request('search', '');
             $group_id = request('group_id', '');
@@ -57,6 +69,12 @@ class LibraryController extends Controller
         }
     }
 
+    /**
+     * Insert a new library item.
+     *
+     * @param LibraryInsertRequest $request
+     * @return void
+     */
     public function insert(LibraryInsertRequest $request)
     {
         DB::beginTransaction();
@@ -66,7 +84,7 @@ class LibraryController extends Controller
                 $file = request()->file('image');
                 $data['image'] = store_file($file, $this->dir, false, 1500);
             }
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
+            $data['important'] = isset($data['important']) && $data['important'] == Library::IMPORTANT ? Library::IMPORTANT : Library::NONE_IMPORTANT;
             $new = Library::create($data);
             save_log("Thư viện #$new->name vừa mới được tạo", $data);
             DB::commit();
@@ -86,6 +104,12 @@ class LibraryController extends Controller
         }
     }
 
+    /**
+     * Update an existing library item.
+     *
+     * @param LibraryUpdateRequest $request
+     * @return void
+     */
     public function update(LibraryUpdateRequest $request)
     {
         DB::beginTransaction();
@@ -98,7 +122,7 @@ class LibraryController extends Controller
                 $data['image'] = store_file($file, $this->dir, false, 1500);
             }
             $data['status'] = isset($data['status']) && $data['status'] == Library::STATUS_ACTIVE ? Library::STATUS_ACTIVE : Library::STATUS_BLOCKED;
-            $data['important'] = isset($data['important']) && $data['important'] == 1 ? 1 : 0;
+            $data['important'] = isset($data['important']) && $data['important'] == Library::IMPORTANT ? Library::IMPORTANT : Library::NONE_IMPORTANT;
             $new->update($data);
             save_log("Thư viện #$new->name vừa mới được cập nhật", $data);
             DB::commit();
@@ -124,6 +148,12 @@ class LibraryController extends Controller
         }
     }
 
+    /**
+     * Delete an existing library item.
+     *
+     * @param LibraryDeleteRequest $request
+     * @return void
+     */
     public function delete(LibraryDeleteRequest $request)
     {
         DB::beginTransaction();
@@ -148,12 +178,20 @@ class LibraryController extends Controller
         }
     }
 
+    /**
+     * View details of a library item.
+     *
+     * @param [type] $id
+     * @param LibraryViewRequest $request
+     * @return void
+     */
     public function detail($id, LibraryViewRequest $request)
     {
         $data = Library::type(Library::TYPE_LIBRARY)->findOrFail($id);
         if (request()->ajax()) {
             return view('user.pages.library.show', compact('data'))->render();
         }
-        return view('user.pages.library.detail', compact('data'));
+        $status = Library::get_status($data->status);
+        return view('user.pages.library.detail', compact('data', 'status'));
     }
 }

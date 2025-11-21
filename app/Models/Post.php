@@ -66,11 +66,7 @@ class Post extends Model
             }
             $album = $model->album ? json_decode($model->album) : [];
             foreach ($album as $file) {
-                try {
-                    delete_file($file);
-                } catch (\Throwable $th) {
-                    //throw $th;
-                }
+                delete_file($file);
             }
         });
     }
@@ -78,6 +74,11 @@ class Post extends Model
     const STATUS_UN_ACTIVE = 'draft';
     const STATUS_ACTIVE = 'active';
     const STATUS_BLOCKED = 'blocked';
+
+    const IS_HOT = 1;
+    const IS_NOT_HOT = 0;
+    const IS_IMPORTANT = 1;
+    const IS_NOT_IMPORTANT = 0;
 
     public static function get_status($status = '')
     {

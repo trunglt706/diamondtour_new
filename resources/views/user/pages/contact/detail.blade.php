@@ -1,7 +1,3 @@
-@php
-    use App\Models\Contact;
-    $status = Contact::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết thông tin liên hệ')
 @section('content')

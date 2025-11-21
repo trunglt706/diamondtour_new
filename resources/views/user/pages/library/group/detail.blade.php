@@ -1,7 +1,3 @@
-@php
-    use App\Models\LibraryGroup;
-    $status = LibraryGroup::get_status($data->status);
-@endphp
 @extends('user.default')
 @section('title', 'Chi tiết danh mục thư viện')
 @section('content')
