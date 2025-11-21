@@ -15,6 +15,6 @@ sudo chown root:www-data storage/logs/laravel.log
 sudo chmod 664 storage/logs/laravel.log
 
 composer install --no-dev --optimize-autoloader
-php artisan migrate --force
+# php artisan migrate --force
 php artisan optimize
 sudo systemctl reload php8.2-fpm
