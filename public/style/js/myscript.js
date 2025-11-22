@@ -45,7 +45,7 @@ $(document).ready(function () {
     }
 
     // Gọi 1 lần đầu
-    lazyLoad();
+    // lazyLoad();
 
     const Toast = Swal.mixin({
         toast: true,
